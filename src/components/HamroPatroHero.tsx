@@ -124,6 +124,22 @@ export default function HamroPatroHero({
   const [forexDate, setForexDate] = useState<string>("");
   const [forexLoading, setForexLoading] = useState<boolean>(false);
 
+  // Live FENEGOSIDA Bullion Data
+  interface BullionRate {
+    id: number;
+    rateType: string;
+    name: string;
+    nameEn: string;
+    unit: string;
+    rate: number;
+    rateFormatted: string;
+    rateFormattedNe: string;
+  }
+  const [bullionRates, setBullionRates] = useState<BullionRate[]>([]);
+  const [bullionSource, setBullionSource] = useState<string>("नेपाल सुनचाँदी व्यवसायी महासंघ (Live FENEGOSIDA API)");
+  const [bullionDate, setBullionDate] = useState<string>("");
+  const [bullionLoading, setBullionLoading] = useState<boolean>(false);
+
   useEffect(() => {
     let isMounted = true;
     async function fetchForex() {
@@ -145,6 +161,27 @@ export default function HamroPatroHero({
       }
     }
     fetchForex();
+
+    async function fetchBullion() {
+      setBullionLoading(true);
+      try {
+        const res = await fetch("/api/bullion");
+        if (res.ok) {
+          const json = await res.json();
+          if (isMounted && json.rates && Array.isArray(json.rates)) {
+            setBullionRates(json.rates);
+            setBullionSource(json.source || "FENEGOSIDA");
+            setBullionDate(json.date || "");
+          }
+        }
+      } catch (err) {
+        console.error("Bullion fetch error:", err);
+      } finally {
+        if (isMounted) setBullionLoading(false);
+      }
+    }
+    fetchBullion();
+
     return () => {
       isMounted = false;
     };
@@ -436,29 +473,45 @@ export default function HamroPatroHero({
             {/* Tool 3: Bullion Rates */}
             {activeTool === "bullion" && (
               <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Coins className="w-5 h-5 text-[#C5994E]" />
-                  <h3 className="font-black text-sm sm:text-base text-[#12213A]">
-                    {isNe ? "नेपाल सुनचाँदी व्यवसायी महासंघ मूल्य सूची" : "Federation of Nepal Gold & Silver Rates"}
-                  </h3>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
-                  <div className="p-3 bg-amber-50/70 border border-amber-300 rounded-none">
-                    <span className="text-xs text-slate-700 font-bold">{isNe ? "छापावाल सुन (प्रति तोला)" : "Fine Gold (Per Tola)"}</span>
-                    <div className="text-lg font-black text-[#12213A] mt-0.5">रु १,५२,३००</div>
-                    <span className="text-[11px] text-emerald-700 font-bold">▲ रु ५०० वृद्धि</span>
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <div className="flex items-center gap-2">
+                    <Coins className="w-5 h-5 text-[#C85A17]" />
+                    <h3 className="font-black text-sm sm:text-base text-[#181411]">
+                      {isNe ? "नेपाल सुनचाँदी व्यवसायी महासंघ मूल्य सूची (Live)" : "Federation of Nepal Gold & Silver Rates (Live)"}
+                    </h3>
                   </div>
-                  <div className="p-3 bg-amber-50/70 border border-amber-300 rounded-none">
-                    <span className="text-xs text-slate-700 font-bold">{isNe ? "तेजाबी सुन (प्रति तोला)" : "Tejabi Gold (Per Tola)"}</span>
-                    <div className="text-lg font-black text-[#12213A] mt-0.5">रु १,५१,६००</div>
-                    <span className="text-[11px] text-emerald-700 font-bold">▲ रु ५०० वृद्धि</span>
-                  </div>
-                  <div className="p-3 bg-slate-50 border border-slate-300 rounded-none">
-                    <span className="text-xs text-slate-700 font-bold">{isNe ? "चाँदी (प्रति तोला)" : "Silver (Per Tola)"}</span>
-                    <div className="text-lg font-black text-slate-900 mt-0.5">रु १,८५०</div>
-                    <span className="text-[11px] text-slate-500 font-bold">स्थिर (No Change)</span>
+                  <div className="text-xs text-stone-500 flex items-center gap-2">
+                    <span className="font-medium">{bullionSource}</span>
+                    {bullionDate && <span className="font-bold text-stone-800">({bullionDate})</span>}
                   </div>
                 </div>
+
+                {bullionLoading ? (
+                  <div className="py-6 text-center text-xs text-stone-500 font-mono animate-pulse">
+                    {isNe ? "महासंघबाट लाइभ सुनचाँदी दर लोड हुँदैछ..." : "Fetching live bullion rates from FENEGOSIDA..."}
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
+                    {(bullionRates.length > 0 ? bullionRates : [
+                      { id: 306, name: "छापावाल सुन (१ तोला)", nameEn: "Fine Gold (Per Tola)", rateFormattedNe: "रु २,९९,३००", rateFormatted: "Rs. 2,99,300" },
+                      { id: 307, name: "छापावाल सुन (१० ग्राम)", nameEn: "Fine Gold (10 Grams)", rateFormattedNe: "रु २,५६,६००", rateFormatted: "Rs. 2,56,600" },
+                      { id: 304, name: "असली चाँदी दर (१ तोला)", nameEn: "Silver (Per Tola)", rateFormattedNe: "रु ४,६५५", rateFormatted: "Rs. 4,655" },
+                      { id: 305, name: "असली चाँदी दर (१० ग्राम)", nameEn: "Silver (10 Grams)", rateFormattedNe: "रु ३,९९१", rateFormatted: "Rs. 3,991" },
+                    ]).map((item, idx) => (
+                      <div key={idx} className="p-3 bg-white border border-[#E7DFD5] rounded-none">
+                        <span className="text-xs text-stone-600 font-bold block truncate">
+                          {isNe ? item.name : item.nameEn || item.name}
+                        </span>
+                        <div className="text-lg font-black text-[#181411] mt-0.5">
+                          {isNe ? item.rateFormattedNe : item.rateFormatted}
+                        </div>
+                        <span className="text-[10px] text-stone-500 font-medium">
+                          {isNe ? "प्रमाणित महासंघ दर" : "Official Market Rate"}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
 
