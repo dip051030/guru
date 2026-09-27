@@ -13,9 +13,9 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
   const { t, language } = useLanguage();
 
   return (
-    <footer id="contact" className="w-full bg-[#0D1524] text-stone-300 border-t border-stone-800 pt-16 pb-12">
+    <footer id="contact" className="w-full bg-[#0D1524] text-stone-300 border-t border-stone-800/60 pt-16 pb-12">
       <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-stone-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-stone-800/60">
           {/* Brand Column (Col 1 to 5) */}
           <div className="lg:col-span-5 flex flex-col gap-4">
             <BrandLogo variant="light" size="lg" />

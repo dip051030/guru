@@ -29,12 +29,12 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
   }, [language]);
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white border-b border-stone-200 shadow-2xs">
+    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-xs border-b border-stone-200/60 shadow-2xs transition-all duration-300">
       {/* Top Authentic Date Bar */}
-      <div className="hidden lg:flex items-center justify-between px-8 py-1.5 border-b border-stone-200 text-xs font-mono text-stone-500 bg-stone-50">
+      <div className="hidden lg:flex items-center justify-between px-8 py-1.5 border-b border-stone-200/50 text-xs font-mono text-stone-500 bg-stone-50/70">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 bg-[#C85A17] rounded-none" />
+            <span className="w-1.5 h-1.5 bg-[#C85A17] rounded-none animate-pulse-subtle" />
             <span className="text-[#181411] font-bold">{t.header.patro}</span>
             <span className="text-[#D97706] font-bold">{nepaliDateStr || t.header.loading}</span>
           </div>

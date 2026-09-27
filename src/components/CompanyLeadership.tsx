@@ -53,14 +53,14 @@ export default function CompanyLeadership({ onOpenInquiry }: LeadershipProps) {
         </div>
 
         {/* Content Card with Sharp Frame & Bio */}
-        <div className="bg-white rounded-none p-8 md:p-12 lg:p-14 border border-stone-300 shadow-2xs">
+        <div className="bg-white rounded-none p-8 md:p-12 lg:p-14 border border-stone-200/70 shadow-2xs">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left: Classical Sharp Geometric Frame */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center text-center">
               <div className="relative">
                 {/* Sharp Geometric Frame */}
-                <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-none bg-stone-50 border-2 border-stone-300 p-2 shadow-2xs flex items-center justify-center relative">
-                  <div className="w-full h-full rounded-none bg-white border border-stone-200 flex flex-col items-center justify-center p-4">
+                <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-none bg-stone-50/80 border border-stone-200/80 p-2 shadow-2xs flex items-center justify-center relative hover:border-[#C85A17]/60 transition-colors duration-300">
+                  <div className="w-full h-full rounded-none bg-white border border-stone-200/50 flex flex-col items-center justify-center p-4">
                     <BrandLogo showText={false} size="lg" variant="dark" />
                     <span className="font-serif text-base font-bold text-[#181411] mt-3">
                       {t.about.title}
@@ -72,7 +72,7 @@ export default function CompanyLeadership({ onOpenInquiry }: LeadershipProps) {
                 </div>
 
                 {/* Floating Auspicious Badge */}
-                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-none bg-[#C85A17] text-white text-xs font-mono font-bold shadow-sm flex items-center gap-1.5 whitespace-nowrap">
+                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-none bg-[#C85A17] text-white text-xs font-mono font-bold shadow-xs flex items-center gap-1.5 whitespace-nowrap animate-float-subtle">
                   <Award className="w-3.5 h-3.5" />
                   <span>{language === "ne" ? "वैदिक महर्षि परम्परा" : "Vedic Maharshi Lineage"}</span>
                 </div>
@@ -100,9 +100,9 @@ export default function CompanyLeadership({ onOpenInquiry }: LeadershipProps) {
               </div>
 
               {/* 4 Stat Badges Grid */}
-              <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-6 border-t border-stone-200">
+              <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-6 border-t border-stone-200/60">
                 {HIGHLIGHTS.map((item, idx) => (
-                  <div key={idx} className="p-3 rounded-none bg-stone-50 border border-stone-200 text-center">
+                  <div key={idx} className="p-3 rounded-none bg-stone-50/70 border border-stone-200/60 text-center hover:border-[#C85A17]/50 hover:-translate-y-0.5 transition-all duration-200">
                     <div className="font-serif text-base lg:text-lg font-bold text-[#C85A17]">
                       {item.value}
                     </div>

@@ -215,20 +215,20 @@ export default function HamroPatroHero({
   const holidayEntries = festivalEntries.filter((ev) => ev.isHoliday);
 
   return (
-    <section className="relative w-full bg-[#FDFBF7] text-[#181411] pt-4 pb-12 border-b border-[#E7DFD5]">
+    <section className="relative w-full bg-[#FDFBF7] text-[#181411] pt-4 pb-12 border-b border-stone-200/60">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         
         {/* ========================================================================= */}
         {/* 1. TOP LIVE DATE BANNER & HORIZONTALLY SCROLLABLE TOOLS (Mobile-First)   */}
         {/* ========================================================================= */}
-        <div className="bg-white border border-[#E7DFD5] p-3.5 sm:p-5 shadow-2xs mb-5 sm:mb-6 rounded-none">
+        <div className="bg-white border border-stone-200/70 p-3.5 sm:p-5 shadow-2xs mb-5 sm:mb-6 rounded-none animate-fade-in">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 sm:gap-4">
             
             {/* Left: Prominent Live Nepali Date in Saffron & Amber */}
             <div>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-orange-50 text-[#C85A17] text-[10px] sm:text-[11px] font-bold tracking-wide border border-orange-200 rounded-none uppercase">
-                  <span className="w-1.5 h-1.5 bg-[#C85A17] rounded-none animate-pulse" />
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-orange-50/80 text-[#C85A17] text-[10px] sm:text-[11px] font-bold tracking-wide border border-orange-200/50 rounded-none uppercase">
+                  <span className="w-1.5 h-1.5 bg-[#C85A17] rounded-none animate-pulse-subtle" />
                   {isNe ? "आजको पञ्चाङ्ग" : "Live Panchanga"}
                 </span>
                 <span className="text-[11px] sm:text-xs text-stone-500 font-medium">
@@ -250,10 +250,10 @@ export default function HamroPatroHero({
             <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 sm:pb-0 scrollbar-none -mx-1 px-1 sm:mx-0 sm:px-0">
               <button
                 onClick={() => setActiveTool(activeTool === "converter" ? null : "converter")}
-                className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold border transition-colors rounded-none ${
+                className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold border transition-all duration-200 rounded-none ${
                   activeTool === "converter"
-                    ? "bg-[#C85A17] text-white border-[#C85A17]"
-                    : "bg-white text-stone-700 border-[#E7DFD5] hover:border-[#C85A17] hover:text-[#C85A17]"
+                    ? "bg-[#C85A17] text-white border-[#C85A17] shadow-xs"
+                    : "bg-white text-stone-700 border-stone-200/70 hover:border-[#C85A17]/60 hover:text-[#C85A17] hover:bg-orange-50/30"
                 }`}
               >
                 <CalendarIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D97706]" />
@@ -262,10 +262,10 @@ export default function HamroPatroHero({
 
               <button
                 onClick={() => setActiveTool(activeTool === "rashifal" ? null : "rashifal")}
-                className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold border transition-colors rounded-none ${
+                className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold border transition-all duration-200 rounded-none ${
                   activeTool === "rashifal"
-                    ? "bg-[#C85A17] text-white border-[#C85A17]"
-                    : "bg-white text-stone-700 border-[#E7DFD5] hover:border-[#C85A17] hover:text-[#C85A17]"
+                    ? "bg-[#C85A17] text-white border-[#C85A17] shadow-xs"
+                    : "bg-white text-stone-700 border-stone-200/70 hover:border-[#C85A17]/60 hover:text-[#C85A17] hover:bg-orange-50/30"
                 }`}
               >
                 <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D97706]" />
@@ -274,10 +274,10 @@ export default function HamroPatroHero({
 
               <button
                 onClick={() => setActiveTool(activeTool === "bullion" ? null : "bullion")}
-                className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold border transition-colors rounded-none ${
+                className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold border transition-all duration-200 rounded-none ${
                   activeTool === "bullion"
-                    ? "bg-[#C85A17] text-white border-[#C85A17]"
-                    : "bg-white text-stone-700 border-[#E7DFD5] hover:border-[#C85A17] hover:text-[#C85A17]"
+                    ? "bg-[#C85A17] text-white border-[#C85A17] shadow-xs"
+                    : "bg-white text-stone-700 border-stone-200/70 hover:border-[#C85A17]/60 hover:text-[#C85A17] hover:bg-orange-50/30"
                 }`}
               >
                 <Coins className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D97706]" />
@@ -286,10 +286,10 @@ export default function HamroPatroHero({
 
               <button
                 onClick={() => setActiveTool(activeTool === "forex" ? null : "forex")}
-                className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold border transition-colors rounded-none ${
+                className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold border transition-all duration-200 rounded-none ${
                   activeTool === "forex"
-                    ? "bg-[#C85A17] text-white border-[#C85A17]"
-                    : "bg-white text-stone-700 border-[#E7DFD5] hover:border-[#C85A17] hover:text-[#C85A17]"
+                    ? "bg-[#C85A17] text-white border-[#C85A17] shadow-xs"
+                    : "bg-white text-stone-700 border-stone-200/70 hover:border-[#C85A17]/60 hover:text-[#C85A17] hover:bg-orange-50/30"
                 }`}
               >
                 <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D97706]" />
@@ -332,10 +332,10 @@ export default function HamroPatroHero({
         {/* SHARP RECTANGULAR QUICK TOOL PANELS (Vedic Saffron-Orange Theme)          */}
         {/* ========================================================================= */}
         {activeTool && (
-          <div className="mb-6 bg-white border-2 border-[#C85A17] p-4 sm:p-5 shadow-sm relative rounded-none animate-in fade-in duration-150">
+          <div className="mb-6 bg-white border border-[#C85A17]/60 p-4 sm:p-5 shadow-xs relative rounded-none animate-fade-in">
             <button
               onClick={() => setActiveTool(null)}
-              className="absolute top-3 right-3 text-stone-400 hover:text-[#C85A17] p-1 rounded-none hover:bg-orange-50 transition-colors"
+              className="absolute top-3 right-3 text-stone-400 hover:text-[#C85A17] p-1 rounded-none hover:bg-orange-50/50 transition-colors"
               aria-label="Close"
             >
               <X className="w-5 h-5" />
@@ -568,14 +568,14 @@ export default function HamroPatroHero({
           {/* ======================================================================= */}
           {/* LEFT 8 COLS: 7-COLUMN MONTHLY CALENDAR GRID                             */}
           {/* ======================================================================= */}
-          <div className="lg:col-span-8 bg-white border border-stone-300 shadow-2xs rounded-none overflow-hidden">
+          <div className="lg:col-span-8 bg-white border border-stone-200/70 shadow-2xs rounded-none overflow-hidden">
             
             {/* Calendar Controls Bar - Fully Responsive */}
-            <div className="p-3 sm:p-4 border-b border-stone-200 bg-stone-50 flex flex-wrap items-center justify-between gap-2.5 sm:gap-3">
+            <div className="p-3 sm:p-4 border-b border-stone-200/60 bg-stone-50/70 flex flex-wrap items-center justify-between gap-2.5 sm:gap-3">
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <button
                   onClick={handlePrevMonth}
-                  className="p-1 sm:p-1.5 border border-stone-300 bg-white hover:bg-orange-50 hover:border-[#C85A17] text-stone-800 transition-colors rounded-none"
+                  className="p-1 sm:p-1.5 border border-stone-200/80 bg-white hover:bg-orange-50/60 hover:border-[#C85A17]/60 text-stone-800 transition-all duration-150 rounded-none"
                   aria-label="Previous Month"
                 >
                   <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -585,14 +585,14 @@ export default function HamroPatroHero({
                   <h2 className="text-lg sm:text-2xl font-black text-[#181411] tracking-tight">
                     {isNe ? calendarData.monthName : calendarData.monthNameEn} {isNe ? toNepaliNum(selectedYear) : selectedYear}
                   </h2>
-                  <span className="text-[10px] sm:text-xs font-bold text-stone-600 bg-white border border-stone-300 px-1.5 py-0.5 sm:px-2 rounded-none">
+                  <span className="text-[10px] sm:text-xs font-bold text-stone-600 bg-white border border-stone-200/80 px-1.5 py-0.5 sm:px-2 rounded-none">
                     {calendarData.adMonthsSpan} {calendarData.yearEn}
                   </span>
                 </div>
 
                 <button
                   onClick={handleNextMonth}
-                  className="p-1 sm:p-1.5 border border-stone-300 bg-white hover:bg-orange-50 hover:border-[#C85A17] text-stone-800 transition-colors rounded-none"
+                  className="p-1 sm:p-1.5 border border-stone-200/80 bg-white hover:bg-orange-50/60 hover:border-[#C85A17]/60 text-stone-800 transition-all duration-150 rounded-none"
                   aria-label="Next Month"
                 >
                   <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -603,10 +603,10 @@ export default function HamroPatroHero({
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <button
                   onClick={() => handleMonthChange(liveToday.monthBs, liveToday.yearBs)}
-                  className={`px-2.5 py-1 sm:px-3 sm:py-1.5 text-xs font-bold border transition-colors rounded-none ${
+                  className={`px-2.5 py-1 sm:px-3 sm:py-1.5 text-xs font-bold border transition-all duration-150 rounded-none ${
                     selectedMonth === liveToday.monthBs && selectedYear === liveToday.yearBs
-                      ? "bg-[#C85A17] text-white border-[#C85A17]"
-                      : "bg-white text-stone-700 border-stone-300 hover:bg-orange-50"
+                      ? "bg-[#C85A17] text-white border-[#C85A17] shadow-xs"
+                      : "bg-white text-stone-700 border-stone-200/80 hover:bg-orange-50/50 hover:border-[#C85A17]/40"
                   }`}
                 >
                   {isNe ? "आज" : "Today"}
@@ -616,7 +616,7 @@ export default function HamroPatroHero({
                 <select
                   value={selectedMonth}
                   onChange={(e) => handleMonthChange(parseInt(e.target.value, 10))}
-                  className="px-2 py-1 sm:px-2.5 sm:py-1.5 text-xs font-bold border border-stone-300 bg-white text-stone-900 rounded-none focus:outline-none focus:border-[#C85A17]"
+                  className="px-2 py-1 sm:px-2.5 sm:py-1.5 text-xs font-bold border border-stone-200/80 bg-white text-stone-900 rounded-none focus:outline-none focus:border-[#C85A17]/70"
                 >
                   {MONTH_NAMES_BS.map((m, i) => (
                     <option key={i} value={i + 1}>
@@ -629,7 +629,7 @@ export default function HamroPatroHero({
                 <select
                   value={selectedYear}
                   onChange={(e) => handleMonthChange(selectedMonth, parseInt(e.target.value, 10))}
-                  className="px-2 py-1 sm:px-2.5 sm:py-1.5 text-xs font-bold border border-stone-300 bg-white text-stone-900 rounded-none focus:outline-none focus:border-[#C85A17]"
+                  className="px-2 py-1 sm:px-2.5 sm:py-1.5 text-xs font-bold border border-stone-200/80 bg-white text-stone-900 rounded-none focus:outline-none focus:border-[#C85A17]/70"
                 >
                   {[2080, 2081, 2082, 2083, 2084, 2085, 2086].map((yr) => (
                     <option key={yr} value={yr}>
@@ -641,12 +641,12 @@ export default function HamroPatroHero({
             </div>
 
             {/* Weekday Column Headers (Sun to Sat) - Responsive labels */}
-            <div className="grid grid-cols-7 border-b border-stone-200 bg-stone-100 text-center text-xs font-bold py-1.5 sm:py-2">
+            <div className="grid grid-cols-7 border-b border-stone-200/60 bg-stone-50/80 text-center text-xs font-bold py-1.5 sm:py-2">
               {WEEKDAYS.map((wd, idx) => (
                 <div
                   key={idx}
                   className={`flex flex-col items-center justify-center ${
-                    idx === 0 || idx === 6 ? "text-[#C2410C] font-extrabold" : "text-stone-800"
+                    idx === 0 || idx === 6 ? "text-[#C2410C] font-extrabold" : "text-stone-700"
                   }`}
                 >
                   <span className="sm:hidden text-[11px]">{isNe ? wd.shortNe : wd.shortEn}</span>
@@ -656,7 +656,7 @@ export default function HamroPatroHero({
             </div>
 
             {/* 7-Column Calendar Grid Cells - Fully Responsive min-height and typography */}
-            <div className="grid grid-cols-7 divide-x divide-y divide-stone-200 bg-stone-200 border-b border-stone-200">
+            <div className="grid grid-cols-7 divide-x divide-y divide-stone-200/50 bg-stone-100/60 border-b border-stone-200/60">
               {calendarData.days.map((day, idx) => {
                 const isSelected =
                   selectedDay.bsDay === day.bsDay &&
@@ -670,17 +670,17 @@ export default function HamroPatroHero({
                     key={idx}
                     type="button"
                     onClick={() => setSelectedDay(day)}
-                    className={`relative min-h-[70px] sm:min-h-[102px] md:min-h-[118px] p-1.5 sm:p-2.5 text-left flex flex-col justify-between transition-all duration-150 focus:outline-none rounded-none ${
+                    className={`relative min-h-[70px] sm:min-h-[102px] md:min-h-[118px] p-1.5 sm:p-2.5 text-left flex flex-col justify-between transition-all duration-200 focus:outline-none rounded-none ${
                       // Today cell: Warm Saffron Highlight
                       day.isToday
                         ? "bg-[#C85A17] text-white font-bold z-10 hover:bg-[#A6440C] shadow-sm"
                         : isSelected
-                        ? "bg-orange-50 ring-2 ring-[#C85A17] z-10"
+                        ? "bg-orange-50 ring-2 ring-[#C85A17]/80 z-10"
                         : day.isCurrentMonth
                         ? day.isHoliday || isSat
-                          ? "bg-[#FFFDF9] hover:bg-orange-50/50 text-stone-900"
-                          : "bg-white hover:bg-orange-50/40 text-stone-900"
-                        : "bg-stone-50 text-stone-400 opacity-50"
+                          ? "bg-[#FFFDF9] hover:bg-orange-50/40 text-stone-900"
+                          : "bg-white hover:bg-orange-50/30 text-stone-900"
+                        : "bg-stone-50/50 text-stone-400 opacity-40"
                     }`}
                   >
                     {/* Top Row: English Day (top-right) */}
@@ -782,15 +782,15 @@ export default function HamroPatroHero({
           <div className="lg:col-span-4 space-y-4">
             
             {/* Selected Day Panchanga Card */}
-            <div className="bg-white border border-stone-300 p-4 sm:p-5 shadow-2xs rounded-none">
-              <div className="flex items-center justify-between pb-3 border-b border-stone-200">
+            <div className="bg-white border border-stone-200/70 p-4 sm:p-5 shadow-2xs rounded-none">
+              <div className="flex items-center justify-between pb-3 border-b border-stone-200/60">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-[#C85A17] rounded-none" />
+                  <div className="w-2 h-2 bg-[#C85A17] rounded-none animate-pulse-subtle" />
                   <h3 className="font-black text-xs text-[#181411] uppercase tracking-wider">
                     {isNe ? "छानिएको दिनको पञ्चाङ्ग" : "Selected Day Panchanga"}
                   </h3>
                 </div>
-                <span className="text-[11px] font-bold px-2 py-0.5 bg-stone-100 text-stone-800 border border-stone-300 rounded-none">
+                <span className="text-[11px] font-bold px-2 py-0.5 bg-stone-50 text-stone-700 border border-stone-200/70 rounded-none">
                   {selectedDay.isToday ? (isNe ? "आज" : "Today") : `${selectedDay.adMonth} ${selectedDay.adDay}`}
                 </span>
               </div>
@@ -809,14 +809,14 @@ export default function HamroPatroHero({
 
               {/* Event alert if present - Clean Accent Line, Not Trapped in a Box */}
               {selectedDay.event && (
-                <div className="mt-3 p-2.5 bg-orange-50/70 border-l-2 border-[#C85A17] text-xs font-bold text-stone-900 flex items-center gap-2">
+                <div className="mt-3 p-2.5 bg-orange-50/70 border-l-2 border-[#C85A17]/80 text-xs font-bold text-stone-900 flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-[#C85A17] shrink-0" />
                   <span>{isNe ? selectedDay.event : selectedDay.eventEn || selectedDay.event}</span>
                 </div>
               )}
 
               {/* Clean Panchanga Matrix - Unified Clean Architectural Grid */}
-              <div className="mt-4 grid grid-cols-2 divide-x divide-y divide-stone-200 border border-stone-200 text-xs bg-white">
+              <div className="mt-4 grid grid-cols-2 divide-x divide-y divide-stone-200/50 border border-stone-200/60 text-xs bg-white">
                 <div className="p-2 sm:p-2.5">
                   <span className="text-stone-400 font-semibold block text-[10px] uppercase tracking-wider">{isNe ? "तिथि" : "Tithi"}</span>
                   <span className="font-bold text-[#181411] text-xs">{isNe ? selectedDay.tithi : selectedDay.tithiEn}</span>
@@ -845,7 +845,7 @@ export default function HamroPatroHero({
 
               {/* Muhurta info if any */}
               {selectedDay.muhurta && (
-                <div className="mt-3 p-2.5 bg-orange-50/50 border-l-2 border-[#D97706] text-xs text-stone-900">
+                <div className="mt-3 p-2.5 bg-orange-50/50 border-l-2 border-[#D97706]/70 text-xs text-stone-900">
                   <span className="font-bold block text-[#C85A17]">{isNe ? "शुभ साइत / चौघडिया:" : "Auspicious Muhurta:"}</span>
                   <span className="font-medium">{selectedDay.muhurta}</span>
                 </div>
@@ -866,8 +866,8 @@ export default function HamroPatroHero({
             </div>
 
             {/* 3 Tabs: पर्वहरू / साइतहरू / आगामी बिदा */}
-            <div className="bg-white border border-stone-300 rounded-none shadow-2xs overflow-hidden">
-              <div className="flex border-b border-stone-200 bg-stone-50">
+            <div className="bg-white border border-stone-200/70 rounded-none shadow-2xs overflow-hidden">
+              <div className="flex border-b border-stone-200/60 bg-stone-50/70">
                 <button
                   onClick={() => setSidebarTab("festivals")}
                   className={`flex-1 py-2.5 text-xs font-bold transition-all border-b-2 rounded-none ${

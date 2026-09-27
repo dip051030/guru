@@ -180,15 +180,15 @@ Karana: ${result.karana.name}`;
 
           {/* Center Column: Traditional North-Indian Diamond Kundali Chart */}
           <div className="lg:col-span-4 flex justify-center">
-            <div className="w-full max-w-[340px] aspect-square bg-[#FDFBF7] border-2 border-stone-300 rounded-none p-3 shadow-2xs relative">
+            <div className="w-full max-w-[340px] aspect-square bg-[#FDFBF7] border border-stone-200/80 rounded-none p-3 shadow-2xs relative hover:border-[#C85A17]/60 transition-all duration-300">
               <div className="absolute inset-3 pointer-events-none">
-                <svg className="w-full h-full stroke-gold/70 stroke-[1.2]">
+                <svg className="w-full h-full stroke-gold/60 stroke-[1.2]">
                   <line x1="0" y1="0" x2="100%" y2="100%" />
                   <line x1="100%" y1="0" x2="0" y2="100%" />
                   <polygon
                     points="50%,0% 100%,50% 50%,100% 0%,50%"
                     fill="#FBF7EE"
-                    className="stroke-terracotta/70 stroke-[1.5]"
+                    className="stroke-terracotta/60 stroke-[1.5]"
                   />
                 </svg>
               </div>
@@ -304,8 +304,8 @@ Karana: ${result.karana.name}`;
 
           {/* Right Column: 4 Feature Items */}
           <div className="lg:col-span-4 flex flex-col gap-3">
-            <div className="p-3.5 rounded-none border border-stone-300 bg-white flex items-center gap-3.5 hover:border-[#C85A17] transition-colors shadow-2xs">
-              <div className="w-10 h-10 rounded-none border border-orange-200 bg-orange-50 flex items-center justify-center text-[#C85A17] shrink-0">
+            <div className="p-3.5 rounded-none border border-stone-200/70 bg-white flex items-center gap-3.5 hover:border-[#C85A17]/70 hover:translate-x-1 transition-all duration-200 shadow-2xs group">
+              <div className="w-10 h-10 rounded-none border border-orange-200/60 bg-orange-50 flex items-center justify-center text-[#C85A17] shrink-0 group-hover:bg-[#C85A17] group-hover:text-white transition-colors duration-200">
                 <Compass className="w-4 h-4" />
               </div>
               <div>
@@ -318,8 +318,8 @@ Karana: ${result.karana.name}`;
               </div>
             </div>
 
-            <div className="p-3.5 rounded-none border border-stone-300 bg-white flex items-center gap-3.5 hover:border-[#C85A17] transition-colors shadow-2xs">
-              <div className="w-10 h-10 rounded-none border border-orange-200 bg-orange-50 flex items-center justify-center text-[#C85A17] shrink-0">
+            <div className="p-3.5 rounded-none border border-stone-200/70 bg-white flex items-center gap-3.5 hover:border-[#C85A17]/70 hover:translate-x-1 transition-all duration-200 shadow-2xs group">
+              <div className="w-10 h-10 rounded-none border border-orange-200/60 bg-orange-50 flex items-center justify-center text-[#C85A17] shrink-0 group-hover:bg-[#C85A17] group-hover:text-white transition-colors duration-200">
                 <Calendar className="w-4 h-4" />
               </div>
               <div>
@@ -332,8 +332,8 @@ Karana: ${result.karana.name}`;
               </div>
             </div>
 
-            <div className="p-3.5 rounded-none border border-stone-300 bg-white flex items-center gap-3.5 hover:border-[#C85A17] transition-colors shadow-2xs">
-              <div className="w-10 h-10 rounded-none border border-orange-200 bg-orange-50 flex items-center justify-center text-[#C85A17] shrink-0">
+            <div className="p-3.5 rounded-none border border-stone-200/70 bg-white flex items-center gap-3.5 hover:border-[#C85A17]/70 hover:translate-x-1 transition-all duration-200 shadow-2xs group">
+              <div className="w-10 h-10 rounded-none border border-orange-200/60 bg-orange-50 flex items-center justify-center text-[#C85A17] shrink-0 group-hover:bg-[#C85A17] group-hover:text-white transition-colors duration-200">
                 <Clock className="w-4 h-4" />
               </div>
               <div>
@@ -346,8 +346,8 @@ Karana: ${result.karana.name}`;
               </div>
             </div>
 
-            <div className="p-3.5 rounded-none border border-stone-300 bg-white flex items-center gap-3.5 hover:border-[#C85A17] transition-colors shadow-2xs">
-              <div className="w-10 h-10 rounded-none border border-orange-200 bg-orange-50 flex items-center justify-center text-[#C85A17] shrink-0">
+            <div className="p-3.5 rounded-none border border-stone-200/70 bg-white flex items-center gap-3.5 hover:border-[#C85A17]/70 hover:translate-x-1 transition-all duration-200 shadow-2xs group">
+              <div className="w-10 h-10 rounded-none border border-orange-200/60 bg-orange-50 flex items-center justify-center text-[#C85A17] shrink-0 group-hover:bg-[#C85A17] group-hover:text-white transition-colors duration-200">
                 <Sparkles className="w-4 h-4" />
               </div>
               <div>
@@ -364,8 +364,8 @@ Karana: ${result.karana.name}`;
 
         {/* Collapsible Clean Form Drawer for Instant Recalculation */}
         {showInputDrawer && (
-          <div className="mt-8 p-6 rounded-none border-2 border-[#C85A17] bg-white shadow-sm animate-in fade-in slide-in-from-top-4 duration-300">
-            <div className="flex items-center justify-between pb-4 border-b border-stone-200">
+          <div className="mt-8 p-6 rounded-none border border-[#C85A17]/70 bg-white shadow-xs animate-fade-in">
+            <div className="flex items-center justify-between pb-4 border-b border-stone-200/60">
               <div className="flex items-center gap-3">
                 <span className="font-serif text-base font-bold text-[#181411]">
                   {t.calculator.formTitle}

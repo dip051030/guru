@@ -78,17 +78,17 @@ export default function TestimonialsSection() {
           {TESTIMONIALS.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-none p-7 lg:p-8 border border-stone-300 shadow-2xs flex flex-col justify-between relative hover:border-[#C85A17] transition-all duration-200"
+              className="bg-white rounded-none p-7 lg:p-8 border border-stone-200/70 shadow-2xs flex flex-col justify-between relative hover:border-[#C85A17]/70 hover:-translate-y-1 transition-all duration-300"
             >
               <div>
                 {/* Header: Stars & Quote Icon */}
-                <div className="flex items-center justify-between pb-4 border-b border-stone-200">
+                <div className="flex items-center justify-between pb-4 border-b border-stone-200/60">
                   <div className="flex items-center gap-1 text-[#D97706]">
                     {[...Array(item.rating)].map((_, i) => (
                       <Star key={i} className="w-4 h-4 fill-[#D97706] text-[#D97706]" />
                     ))}
                   </div>
-                  <Quote className="w-6 h-6 text-orange-200" />
+                  <Quote className="w-6 h-6 text-orange-200/80" />
                 </div>
 
                 {/* Body Text */}
@@ -98,7 +98,7 @@ export default function TestimonialsSection() {
               </div>
 
               {/* Footer: User Details */}
-              <div className="mt-6 pt-4 border-t border-stone-200 flex items-center justify-between">
+              <div className="mt-6 pt-4 border-t border-stone-200/60 flex items-center justify-between">
                 <div>
                   <h4 className="font-serif font-bold text-[#181411] text-base">
                     {item.name}
@@ -107,7 +107,7 @@ export default function TestimonialsSection() {
                     {item.role} • {item.location}
                   </p>
                 </div>
-                <div className="text-[11px] font-mono px-2.5 py-1 rounded-none bg-orange-50 border border-orange-200 text-[#C85A17] font-bold">
+                <div className="text-[11px] font-mono px-2.5 py-1 rounded-none bg-orange-50/80 border border-orange-200/60 text-[#C85A17] font-bold">
                   {item.service}
                 </div>
               </div>

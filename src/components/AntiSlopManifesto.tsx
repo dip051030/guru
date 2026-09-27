@@ -85,9 +85,9 @@ export default function AntiSlopManifesto() {
               return (
                 <div
                   key={pillar.num}
-                  className="flex items-start gap-4 p-5 rounded-none bg-white/[0.04] border border-white/10 hover:border-[#C85A17] transition-all duration-200"
+                  className="flex items-start gap-4 p-5 rounded-none bg-white/[0.03] border border-white/[0.08] hover:border-[#C85A17]/80 hover:translate-x-1 transition-all duration-200"
                 >
-                  <div className="w-10 h-10 rounded-none bg-[#C85A17]/20 border border-[#C85A17]/40 flex items-center justify-center shrink-0 mt-0.5 text-[#F59E0B]">
+                  <div className="w-10 h-10 rounded-none bg-[#C85A17]/15 border border-[#C85A17]/30 flex items-center justify-center shrink-0 mt-0.5 text-[#F59E0B]">
                     <Icon className="w-5 h-5" />
                   </div>
                   <div>
@@ -110,7 +110,7 @@ export default function AntiSlopManifesto() {
 
           {/* Right Column: Featured Quote with Sharp Border */}
           <div className="lg:col-span-6 flex flex-col justify-between">
-            <div className="relative rounded-none p-8 md:p-10 bg-white/[0.04] border border-orange-500/30 flex-1 flex flex-col justify-between">
+            <div className="relative rounded-none p-8 md:p-10 bg-white/[0.03] border border-orange-500/20 flex-1 flex flex-col justify-between hover:border-orange-500/40 transition-colors duration-300">
               <div className="text-orange-500/20 font-serif text-7xl leading-none select-none pointer-events-none mb-2">
                 “
               </div>
@@ -120,7 +120,7 @@ export default function AntiSlopManifesto() {
                   &ldquo;{t.manifesto.quote}&rdquo;
                 </blockquote>
 
-                <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-4">
+                <div className="mt-8 pt-6 border-t border-white/[0.08] flex items-center gap-4">
                   <BrandLogo showText={false} size="lg" variant="gold" />
                   <div>
                     <h4 className="font-serif text-lg text-white font-bold">

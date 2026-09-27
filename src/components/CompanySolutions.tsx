@@ -100,15 +100,15 @@ export default function CompanySolutions({ onOpenInquiry }: SolutionsProps) {
             return (
               <div
                 key={index}
-                className="bg-white rounded-none p-7 border border-stone-300 shadow-2xs hover:border-[#C85A17] transition-all duration-200 flex flex-col justify-between group"
+                className="bg-white rounded-none p-7 border border-stone-200/70 shadow-2xs hover:border-[#C85A17]/70 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   {/* Square Saffron Icon Badge */}
-                  <div className="w-12 h-12 rounded-none bg-orange-50 text-[#C85A17] border border-orange-200 flex items-center justify-center mb-5 group-hover:bg-[#C85A17] group-hover:text-white transition-all duration-200">
+                  <div className="w-12 h-12 rounded-none bg-orange-50/80 text-[#C85A17] border border-orange-200/60 flex items-center justify-center mb-5 group-hover:bg-[#C85A17] group-hover:text-white transition-all duration-300">
                     <Icon className="w-5 h-5" />
                   </div>
 
-                  <h3 className="font-serif text-xl font-bold text-[#181411] group-hover:text-[#C85A17] transition-colors">
+                  <h3 className="font-serif text-xl font-bold text-[#181411] group-hover:text-[#C85A17] transition-colors duration-200">
                     {service.title}
                   </h3>
                   <p className="mt-2.5 text-sm text-stone-600 leading-relaxed font-light">
@@ -116,10 +116,10 @@ export default function CompanySolutions({ onOpenInquiry }: SolutionsProps) {
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-stone-200 flex items-center justify-between">
+                <div className="mt-6 pt-4 border-t border-stone-200/60 flex items-center justify-between">
                   <button
                     onClick={() => onOpenInquiry(service.title)}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#C85A17] group-hover:translate-x-1 transition-transform"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#C85A17] group-hover:translate-x-1.5 transition-transform duration-200"
                   >
                     <span>{t.solutions.learnMore}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
