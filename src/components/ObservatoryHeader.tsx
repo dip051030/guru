@@ -29,31 +29,31 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
   }, [language]);
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-[#E8DFD1] shadow-soft">
+    <header className="sticky top-0 z-40 w-full bg-white border-b border-slate-200 shadow-2xs">
       {/* Top Authentic Date Bar */}
-      <div className="hidden lg:flex items-center justify-between px-8 py-1.5 border-b border-[#F0EAE1] text-xs font-mono text-textMuted bg-[#FAF7F2]">
+      <div className="hidden lg:flex items-center justify-between px-8 py-1.5 border-b border-slate-200 text-xs font-mono text-slate-500 bg-slate-50">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-terracotta" />
-            <span className="text-navy font-medium">{t.header.patro}</span>
-            <span className="text-terracotta font-semibold">{nepaliDateStr || t.header.loading}</span>
+            <span className="w-1.5 h-1.5 bg-slate-900 rounded-none" />
+            <span className="text-slate-900 font-bold">{t.header.patro}</span>
+            <span className="text-red-700 font-bold">{nepaliDateStr || t.header.loading}</span>
           </div>
-          <span className="text-[#E0D5C1]">|</span>
-          <div className="flex items-center gap-2 text-textBody">
+          <span className="text-slate-300">|</span>
+          <div className="flex items-center gap-2 text-slate-600">
             <span>{t.header.sunrise}</span>
-            <span className="text-navy font-medium">{muhurtaInfo?.sunrise || "06:02 AM"}</span>
+            <span className="text-slate-900 font-bold">{muhurtaInfo?.sunrise || "06:02 AM"}</span>
             <span>• {t.header.sunset}</span>
-            <span className="text-navy font-medium">{muhurtaInfo?.sunset || "05:58 PM"}</span>
+            <span className="text-slate-900 font-bold">{muhurtaInfo?.sunset || "05:58 PM"}</span>
           </div>
         </div>
 
         <div className="flex items-center gap-6 text-[11px]">
-          <div className="flex items-center gap-1.5 text-textBody">
-            <Phone className="w-3.5 h-3.5 text-gold" />
+          <div className="flex items-center gap-1.5 text-slate-600">
+            <Phone className="w-3.5 h-3.5 text-amber-700" />
             <span>{t.header.contact}</span>
           </div>
-          <span className="text-[#E0D5C1]">|</span>
-          <span className="text-gold font-medium">{t.header.location}</span>
+          <span className="text-slate-300">|</span>
+          <span className="text-amber-800 font-bold">{t.header.location}</span>
         </div>
       </div>
 
@@ -65,24 +65,24 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
         </a>
 
         {/* Center Nav Links */}
-        <nav className="hidden lg:flex items-center gap-7 text-sm font-sans text-navy">
-          <a href="#" className="text-terracotta font-semibold hover:text-terracotta transition-colors py-1 relative">
+        <nav className="hidden lg:flex items-center gap-7 text-sm font-sans text-slate-900 font-medium">
+          <a href="#" className="text-slate-900 font-bold hover:text-red-700 transition-colors py-1 relative">
             {t.header.home}
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-terracotta rounded-full" />
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-slate-900 rounded-none" />
           </a>
-          <a href="#services" className="hover:text-terracotta transition-colors py-1">
+          <a href="#services" className="hover:text-red-700 transition-colors py-1">
             {t.header.services}
           </a>
-          <a href="#kundali" className="hover:text-terracotta transition-colors py-1">
+          <a href="#kundali" className="hover:text-red-700 transition-colors py-1">
             {t.header.kundali}
           </a>
-          <a href="#about-guru" className="hover:text-terracotta transition-colors py-1">
+          <a href="#about-guru" className="hover:text-red-700 transition-colors py-1">
             {t.header.aboutGuru}
           </a>
-          <a href="#works" className="hover:text-terracotta transition-colors py-1">
+          <a href="#works" className="hover:text-red-700 transition-colors py-1">
             {t.header.research}
           </a>
-          <a href="#contact" className="hover:text-terracotta transition-colors py-1">
+          <a href="#contact" className="hover:text-red-700 transition-colors py-1">
             {t.header.contactNav}
           </a>
         </nav>
@@ -93,7 +93,7 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
 
           <button
             onClick={() => onOpenInquiry(t.header.bookConsultation)}
-            className="px-6 py-2.5 rounded-full bg-terracotta text-white text-xs lg:text-sm font-medium hover:bg-terracotta-dark transition-all duration-200 flex items-center gap-2 shadow-soft hover:shadow-hover"
+            className="px-5 py-2.5 rounded-none bg-slate-900 text-white text-xs lg:text-sm font-bold hover:bg-black transition-colors flex items-center gap-2 shadow-2xs"
           >
             <Calendar className="w-4 h-4" />
             <span>{t.header.bookConsultation}</span>
@@ -105,7 +105,7 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
           <LanguageToggle variant="header" />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-navy rounded-lg border border-[#E0D5C1]"
+            className="p-2 text-slate-900 rounded-none border border-slate-300"
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
