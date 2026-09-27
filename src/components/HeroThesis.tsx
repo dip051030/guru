@@ -12,6 +12,7 @@ import {
   MapPin,
   CheckCircle2,
 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface HeroProps {
   onScrollToConsole: () => void;
@@ -22,21 +23,94 @@ export default function HeroThesis({
   onScrollToConsole,
   onOpenInquiry,
 }: HeroProps) {
+  const { t, language } = useLanguage();
   const [activeHouse, setActiveHouse] = useState<number | null>(1);
 
   const HOUSES = [
-    { num: 1, name: "लग्न", desc: "व्यक्तित्व, शरीर, आत्मा", planet: "सूर्य" },
-    { num: 2, name: "धन", desc: "सम्पत्ति, वाणी, कुटुम्ब", planet: "बुध" },
-    { num: 3, name: "सहज", desc: "पराक्रम, भ्रातृ, सङ्घर्ष", planet: "मंगल" },
-    { num: 4, name: "सुख", desc: "माता, गृह, मनको शान्ति", planet: "चन्द्र" },
-    { num: 5, name: "सुत", desc: "बुद्धि, सन्तान, विद्या", planet: "बृहस्पति" },
-    { num: 6, name: "शत्रु", desc: "रोग, ऋण, प्रतिस्पर्धा", planet: "शनि" },
-    { num: 7, name: "जाया", desc: "विवाह, साझेदारी, यात्रा", planet: "शुक्र" },
-    { num: 8, name: "आयु", desc: "आयुष्य, गूढ विद्या, संकट", planet: "राहु" },
-    { num: 9, name: "धर्म", desc: "भाग्य, गुरु, तीर्थाटन", planet: "बृहस्पति" },
-    { num: 10, name: "कर्म", desc: "आजीविका, पद, प्रतिष्ठा", planet: "सूर्य" },
-    { num: 11, name: "लाभ", desc: "आय, इच्छापूर्ति, मित्र", planet: "बुध" },
-    { num: 12, name: "व्यय", desc: "खर्च, मोक्ष, विदेश यात्रा", planet: "केतु" },
+    {
+      num: 1,
+      name: language === "ne" ? "लग्न" : "Lagna (Ascendant)",
+      desc: language === "ne" ? "व्यक्तित्व, शरीर, आत्मा" : "Self, Vitality & Appearance",
+      planet: language === "ne" ? "सूर्य" : "Sun",
+      label: language === "ne" ? "कर्कट • चन्द्र" : "Cancer • Moon",
+    },
+    {
+      num: 2,
+      name: language === "ne" ? "धन" : "Dhana (Wealth)",
+      desc: language === "ne" ? "सम्पत्ति, वाणी, कुटुम्ब" : "Wealth, Speech & Family",
+      planet: language === "ne" ? "बुध" : "Mercury",
+      label: language === "ne" ? "सिंह • सूर्य" : "Leo • Sun",
+    },
+    {
+      num: 3,
+      name: language === "ne" ? "सहज" : "Sahaja (Courage)",
+      desc: language === "ne" ? "पराक्रम, भ्रातृ, सङ्घर्ष" : "Siblings, Valor & Efforts",
+      planet: language === "ne" ? "मंगल" : "Mars",
+      label: language === "ne" ? "कन्या • बुध" : "Virgo • Mercury",
+    },
+    {
+      num: 4,
+      name: language === "ne" ? "सुख" : "Sukha (Home/Mind)",
+      desc: language === "ne" ? "माता, गृह, मनको शान्ति" : "Mother, Property & Inner Peace",
+      planet: language === "ne" ? "चन्द्र" : "Moon",
+      label: language === "ne" ? "तुला • शुक्र" : "Libra • Venus",
+    },
+    {
+      num: 5,
+      name: language === "ne" ? "सुत" : "Suta (Children)",
+      desc: language === "ne" ? "बुद्धि, सन्तान, विद्या" : "Intellect, Progeny & Creative Spark",
+      planet: language === "ne" ? "बृहस्पति" : "Jupiter",
+      label: language === "ne" ? "वृश्चिक • मंगल" : "Scorpio • Mars",
+    },
+    {
+      num: 6,
+      name: language === "ne" ? "शत्रु" : "Shatru (Challenges)",
+      desc: language === "ne" ? "रोग, ऋण, प्रतिस्पर्धा" : "Debts, Health & Competition",
+      planet: language === "ne" ? "शनि" : "Saturn",
+      label: language === "ne" ? "धनु • गुरु" : "Sagittarius • Jupiter",
+    },
+    {
+      num: 7,
+      name: language === "ne" ? "जाया" : "Jaya (Spouse)",
+      desc: language === "ne" ? "विवाह, साझेदारी, यात्रा" : "Marriage, Partnership & Business",
+      planet: language === "ne" ? "शुक्र" : "Venus",
+      label: language === "ne" ? "मकर • शनि" : "Capricorn • Saturn",
+    },
+    {
+      num: 8,
+      name: language === "ne" ? "आयु" : "Ayu (Longevity)",
+      desc: language === "ne" ? "आयुष्य, गूढ विद्या, संकट" : "Occult, Longevity & Transformation",
+      planet: language === "ne" ? "राहु" : "Rahu",
+      label: language === "ne" ? "कुम्भ • शनि" : "Aquarius • Saturn",
+    },
+    {
+      num: 9,
+      name: language === "ne" ? "धर्म" : "Dharma (Destiny)",
+      desc: language === "ne" ? "भाग्य, गुरु, तीर्थाटन" : "Fortune, Philosophy & Higher Wisdom",
+      planet: language === "ne" ? "बृहस्पति" : "Jupiter",
+      label: language === "ne" ? "मीन • गुरु" : "Pisces • Jupiter",
+    },
+    {
+      num: 10,
+      name: language === "ne" ? "कर्म" : "Karma (Career)",
+      desc: language === "ne" ? "आजीविका, पद, प्रतिष्ठा" : "Profession, Ambition & Public Status",
+      planet: language === "ne" ? "सूर्य" : "Sun",
+      label: language === "ne" ? "मेष • मंगल" : "Aries • Mars",
+    },
+    {
+      num: 11,
+      name: language === "ne" ? "लाभ" : "Labha (Gains)",
+      desc: language === "ne" ? "आय, इच्छापूर्ति, मित्र" : "Income, Desires & High Connections",
+      planet: language === "ne" ? "बुध" : "Mercury",
+      label: language === "ne" ? "वृष • शुक्र" : "Taurus • Venus",
+    },
+    {
+      num: 12,
+      name: language === "ne" ? "व्यय" : "Vyaya (Liberation)",
+      desc: language === "ne" ? "खर्च, मोक्ष, विदेश यात्रा" : "Foreign Travel, Solitude & Moksha",
+      planet: language === "ne" ? "केतु" : "Ketu",
+      label: language === "ne" ? "मिथुन • बुध" : "Gemini • Mercury",
+    },
   ];
 
   return (
@@ -57,43 +131,43 @@ export default function HeroThesis({
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
               <span className="text-xs font-mono font-medium text-navy tracking-tight">
-                काठमाडौँ वेधशाला • प्रत्यक्ष तथा अनलाइन परामर्श उपलब्ध
+                {t.hero.statusPill}
               </span>
             </div>
 
             {/* Classical Eyebrow */}
             <div className="flex items-center gap-2 text-xs font-mono tracking-[0.2em] text-terracotta uppercase mb-3 font-semibold">
               <span className="text-gold">—</span>
-              <span>प्राचीन सूर्य सिद्धान्त • शुद्ध दृक-गणित • जीवन दर्शन</span>
+              <span>{t.hero.eyebrow}</span>
               <span className="text-gold">—</span>
             </div>
 
             {/* Master Headline */}
             <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4.1rem] text-navy font-bold tracking-tight leading-[1.12]">
-              समयको लय, <br className="hidden sm:inline" />
+              {t.hero.titleLine1} <br className="hidden sm:inline" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-navy via-terracotta to-[#8F3316]">
-                जीवनको स्पष्ट मार्गचित्र।
+                {t.hero.titleLine2}
               </span>
             </h1>
 
             {/* Sub-headline */}
             <p className="mt-4 font-serif text-lg sm:text-xl text-gold font-medium">
-              गुरु नील हरि • ३ दशकको प्रामाणिक साधना र शास्त्रसम्मत परामर्श
+              {t.hero.subtitle}
             </p>
 
             {/* Paragraph / Value Proposition */}
             <p className="mt-5 text-sm sm:text-base text-textBody max-w-2xl font-light leading-relaxed">
-              काल्पनिक डर र व्यापारिक शोषणबिना, तपाईंको वास्तविक जन्म समय र ग्रह-नक्षत्रको सूक्ष्म गणितीय विश्लेषणबाट व्यक्तिगत जीवन, वैवाहिक सम्बन्ध, व्यापारिक साइत र भविष्यका महत्वपूर्ण निर्णयहरूमा स्पष्ट, सात्विक दिशा प्राप्त गर्नुहोस्।
+              {t.hero.desc}
             </p>
 
             {/* CTA Actions */}
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <button
-                onClick={() => onOpenInquiry("परामर्श सुरु गर्नुहोस्")}
+                onClick={() => onOpenInquiry(t.hero.ctaPrimary)}
                 className="px-8 py-4 rounded-full bg-terracotta text-white font-medium text-sm md:text-base hover:bg-terracotta-dark shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2.5 group"
               >
                 <Calendar className="w-4 h-4" />
-                <span>परामर्श सुरु गर्नुहोस्</span>
+                <span>{t.hero.ctaPrimary}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
 
@@ -102,7 +176,7 @@ export default function HeroThesis({
                 className="px-7 py-4 rounded-full bg-white hover:bg-[#FAF7F2] border border-[#DCD0BE] text-navy font-medium text-sm md:text-base transition-all duration-200 flex items-center gap-2 shadow-sm hover:border-terracotta/40"
               >
                 <Compass className="w-4 h-4 text-terracotta" />
-                <span>कुण्डली गणना गर्नुहोस्</span>
+                <span>{t.hero.ctaSecondary}</span>
               </button>
             </div>
 
@@ -114,10 +188,10 @@ export default function HeroThesis({
                 ))}
               </div>
               <span className="font-mono text-xs font-bold text-navy">
-                ४.९५ / ५.०
+                {t.hero.rating}
               </span>
               <span className="text-xs text-textMuted font-mono">
-                (२५,०००+ भन्दा बढी कुण्डली परामर्श सम्पन्न)
+                {t.hero.ratingCount}
               </span>
             </div>
           </div>
@@ -131,12 +205,12 @@ export default function HeroThesis({
                 <div className="flex items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-full bg-terracotta" />
                   <span className="font-serif text-sm font-bold text-navy">
-                    लग्न कुण्डली चक्र (D-1)
+                    {t.hero.chartTitle}
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5 text-[11px] font-mono text-gold font-medium">
                   <MapPin className="w-3 h-3 text-terracotta" />
-                  <span>काठमाडौँ वेधशाला</span>
+                  <span>{t.hero.observatory}</span>
                 </div>
               </div>
 
@@ -164,10 +238,10 @@ export default function HeroThesis({
                   }`}
                 >
                   <span className="font-serif text-xs font-bold text-terracotta">
-                    १ लग्न
+                    {language === "ne" ? "१ लग्न" : "1 Lagna"}
                   </span>
                   <span className="text-[10px] font-mono text-navy font-semibold">
-                    कर्कट • चन्द्र
+                    {HOUSES[0].label}
                   </span>
                 </button>
 
@@ -181,7 +255,7 @@ export default function HeroThesis({
                   }`}
                 >
                   <span className="font-serif text-[11px] font-bold text-navy">
-                    २ धन
+                    {language === "ne" ? "२ धन" : "2 Wealth"}
                   </span>
                 </button>
 
@@ -195,7 +269,7 @@ export default function HeroThesis({
                   }`}
                 >
                   <span className="font-serif text-[11px] font-bold text-navy">
-                    ३ सहज
+                    {language === "ne" ? "३ सहज" : "3 Valor"}
                   </span>
                 </button>
 
@@ -209,9 +283,11 @@ export default function HeroThesis({
                   }`}
                 >
                   <span className="font-serif text-xs font-bold text-terracotta">
-                    ४ सुख
+                    {language === "ne" ? "४ सुख" : "4 Sukha"}
                   </span>
-                  <span className="text-[9px] font-mono text-textMuted">गृह/मन</span>
+                  <span className="text-[9px] font-mono text-textMuted">
+                    {language === "ne" ? "गृह/मन" : "Home/Mind"}
+                  </span>
                 </button>
 
                 {/* 7th House (Jaya / Marriage) - Bottom Center */}
@@ -224,10 +300,10 @@ export default function HeroThesis({
                   }`}
                 >
                   <span className="font-serif text-xs font-bold text-terracotta">
-                    ७ जाया
+                    {language === "ne" ? "७ जाया" : "7 Spouse"}
                   </span>
                   <span className="text-[10px] font-mono text-navy font-semibold">
-                    मकर • शनि
+                    {HOUSES[6].label}
                   </span>
                 </button>
 
@@ -241,9 +317,11 @@ export default function HeroThesis({
                   }`}
                 >
                   <span className="font-serif text-xs font-bold text-terracotta">
-                    १० कर्म
+                    {language === "ne" ? "१० कर्म" : "10 Karma"}
                   </span>
-                  <span className="text-[9px] font-mono text-textMuted">आजीविका</span>
+                  <span className="text-[9px] font-mono text-textMuted">
+                    {language === "ne" ? "आजीविका" : "Career"}
+                  </span>
                 </button>
 
                 {/* Center Auspicious Bindu */}
@@ -257,7 +335,7 @@ export default function HeroThesis({
                 <div className="mt-5 p-3.5 rounded-xl bg-white border border-[#E8DEC9] shadow-sm flex items-center justify-between text-xs">
                   <div>
                     <span className="font-bold font-serif text-terracotta text-sm">
-                      {HOUSES[activeHouse - 1].num} भाव ({HOUSES[activeHouse - 1].name}):
+                      {HOUSES[activeHouse - 1].num} {language === "ne" ? "भाव" : "House"} ({HOUSES[activeHouse - 1].name}):
                     </span>
                     <span className="text-textBody ml-1.5 font-light">
                       {HOUSES[activeHouse - 1].desc}
@@ -271,8 +349,8 @@ export default function HeroThesis({
 
               {/* Coordinates Pill */}
               <div className="mt-4 pt-3 border-t border-[#E8DEC9] flex items-center justify-between text-[11px] font-mono text-textMuted">
-                <span>अक्षांश: २७° ४३' उ.</span>
-                <span>चित्रापक्षीय अयनांश: २४° ०९' ५३"</span>
+                <span>{t.hero.lat}</span>
+                <span>{t.hero.ayanamsha}</span>
               </div>
             </div>
           </div>
@@ -286,9 +364,9 @@ export default function HeroThesis({
             </div>
             <div>
               <h4 className="font-serif text-sm font-bold text-navy">
-                प्रामाणिक दृक-गणित
+                {t.hero.b1Title}
               </h4>
-              <p className="text-xs text-textMuted mt-0.5">चित्रापक्षीय अयनांश मानक</p>
+              <p className="text-xs text-textMuted mt-0.5">{t.hero.b1Sub}</p>
             </div>
           </div>
 
@@ -298,9 +376,9 @@ export default function HeroThesis({
             </div>
             <div>
               <h4 className="font-serif text-sm font-bold text-navy">
-                ३०+ वर्ष साधना
+                {t.hero.b2Title}
               </h4>
-              <p className="text-xs text-textMuted mt-0.5">पाराशर तथा जैमिनी पद्धति</p>
+              <p className="text-xs text-textMuted mt-0.5">{t.hero.b2Sub}</p>
             </div>
           </div>
 
@@ -310,9 +388,9 @@ export default function HeroThesis({
             </div>
             <div>
               <h4 className="font-serif text-sm font-bold text-navy">
-                शोषणमुक्त सात्विक
+                {t.hero.b3Title}
               </h4>
-              <p className="text-xs text-textMuted mt-0.5">महँगो रत्न व्यापार निषेध</p>
+              <p className="text-xs text-textMuted mt-0.5">{t.hero.b3Sub}</p>
             </div>
           </div>
 
@@ -322,9 +400,9 @@ export default function HeroThesis({
             </div>
             <div>
               <h4 className="font-serif text-sm font-bold text-navy">
-                सम्पूर्ण गोपनीयता
+                {t.hero.b4Title}
               </h4>
-              <p className="text-xs text-textMuted mt-0.5">प्रत्यक्ष तथा भिडियो परामर्श</p>
+              <p className="text-xs text-textMuted mt-0.5">{t.hero.b4Sub}</p>
             </div>
           </div>
         </div>

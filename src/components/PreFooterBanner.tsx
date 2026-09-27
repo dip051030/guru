@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Calendar, Phone, Sparkles, Shield, HeartHandshake, CheckCircle } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 import BrandLogo from "./BrandLogo";
 
 interface PreFooterBannerProps {
@@ -9,6 +10,8 @@ interface PreFooterBannerProps {
 }
 
 export default function PreFooterBanner({ onOpenInquiry }: PreFooterBannerProps) {
+  const { t } = useLanguage();
+
   return (
     <section className="w-full py-16 md:py-24 bg-gradient-to-b from-[#12213A] to-[#0D1829] text-white relative overflow-hidden">
       {/* Decorative Sky Stars / Circles */}
@@ -20,27 +23,27 @@ export default function PreFooterBanner({ onOpenInquiry }: PreFooterBannerProps)
         <div className="mb-4">
           <BrandLogo showText={false} size="lg" variant="gold" />
         </div>
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/15 text-gold text-xs font-mono tracking-widest uppercase mb-4">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/15 text-gold text-xs font-mono tracking-widest uppercase mb-4 font-semibold">
           <Sparkles className="w-3.5 h-3.5" />
-          <span>सत्य • निष्पक्षता • शास्त्रीय मर्यादा</span>
+          <span>{t.preFooter.badge}</span>
         </div>
 
         <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl text-white font-bold tracking-tight leading-tight">
-          अब नै आफ्नो जन्म कुण्डली तथा शुभ साइत परामर्श लिनुहोस्
+          {t.preFooter.title}
         </h2>
 
         <p className="mt-4 text-[#BAC7D8] text-base md:text-lg max-w-2xl mx-auto font-light leading-relaxed">
-          काठमाडौँ बालुवाटारस्थित केन्द्रमा प्रत्यक्ष उपस्थित भएर वा संसारको जुनसुकै कुनाबाट अनलाइन भिडियो परामर्श मार्फत गुरु नील हरिसँग संवाद गर्नुहोस्।
+          {t.preFooter.desc}
         </p>
 
         {/* CTA Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
-            onClick={() => onOpenInquiry("अग्रिम परामर्श बुकिङ")}
+            onClick={() => onOpenInquiry(t.preFooter.bookNow)}
             className="w-full sm:w-auto px-8 py-4 rounded-full bg-terracotta text-white font-medium text-sm md:text-base hover:bg-terracotta-dark shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2.5"
           >
             <Calendar className="w-4 h-4" />
-            <span>परामर्श बुक गर्नुहोस्</span>
+            <span>{t.preFooter.bookNow}</span>
           </button>
 
           <a
@@ -48,7 +51,7 @@ export default function PreFooterBanner({ onOpenInquiry }: PreFooterBannerProps)
             className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-white font-medium text-sm md:text-base transition-all flex items-center justify-center gap-2.5 backdrop-blur-sm"
           >
             <Phone className="w-4 h-4 text-gold" />
-            <span className="font-mono">+९७७ १ ४४१२३४५ / ९८५१०१२३४५</span>
+            <span className="font-mono">{t.preFooter.phoneText}</span>
           </a>
         </div>
 
@@ -56,15 +59,15 @@ export default function PreFooterBanner({ onOpenInquiry }: PreFooterBannerProps)
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono text-[#8F9FB5]">
           <div className="flex items-center gap-2">
             <Shield className="w-4 h-4 text-gold" />
-            <span>गोपनीयताको पूर्ण प्रत्याभूति</span>
+            <span>{t.preFooter.privacy}</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle className="w-4 h-4 text-emerald-400" />
-            <span>शास्त्रीय दृक-सिद्ध शुद्धता</span>
+            <span>{t.preFooter.accuracy}</span>
           </div>
           <div className="flex items-center gap-2">
             <HeartHandshake className="w-4 h-4 text-terracotta" />
-            <span>सात्विक र निष्पक्ष मार्गदर्शन</span>
+            <span>{t.preFooter.remedy}</span>
           </div>
         </div>
       </div>

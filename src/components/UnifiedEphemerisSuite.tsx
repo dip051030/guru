@@ -19,6 +19,7 @@ import {
   Table,
   CheckCircle2,
 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface UnifiedEphemerisProps {
   onOpenInquiry: (subject?: string) => void;
@@ -36,6 +37,7 @@ const PRESET_LOCATIONS = [
 ];
 
 export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemerisProps) {
+  const { t, language } = useLanguage();
   const [selectedDate, setSelectedDate] = useState<string>("2024-04-14");
   const [selectedTime, setSelectedTime] = useState<string>("12:00");
   const [latitude, setLatitude] = useState<number>(27.7172);
@@ -56,7 +58,9 @@ export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemeri
   }, [selectedDate, selectedTime, latitude, longitude]);
 
   const handleCopySummary = () => {
-    const text = `नील हरि वैदिक ज्योतिष केन्द्र - कुण्डली तथा पञ्चाङ्ग विवरण:
+    const text =
+      language === "ne"
+        ? `नील हरि वैदिक ज्योतिष केन्द्र - कुण्डली तथा पञ्चाङ्ग विवरण:
 नेपाली मिति: ${result.bikramSambat.formattedNepali} (${result.bikramSambat.formatted})
 अंग्रेजी मिति: ${result.gregorianDate}
 जन्म लग्न: ${result.ascendant.sanskritSign} (${result.ascendant.degreeInSign}°)
@@ -65,7 +69,18 @@ export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemeri
 नक्षत्र: ${result.nakshatra.name} (चरण ${result.nakshatra.pada}, स्वामी: ${result.nakshatra.ruler})
 तिथि: ${result.tithi.sanskritName}
 योग: ${result.yoga.name}
-करण: ${result.karana.name}`;
+करण: ${result.karana.name}`
+        : `Neel Hari Vedic Jyotish Kendra - Natal & Ephemeris Summary:
+Bikram Sambat: ${result.bikramSambat.formatted}
+Gregorian Date: ${result.gregorianDate}
+Ascendant (Lagna): ${result.ascendant.sanskritSign} (${result.ascendant.degreeInSign}°)
+Solar Sign: ${result.solarSign.sanskrit} (${result.solarSign.degree}°)
+Lunar Sign: ${result.lunarSign.sanskrit} (${result.lunarSign.degree}°)
+Nakshatra: ${result.nakshatra.name} (Pada ${result.nakshatra.pada}, Ruler: ${result.nakshatra.ruler})
+Tithi: ${result.tithi.sanskritName}
+Yoga: ${result.yoga.name}
+Karana: ${result.karana.name}`;
+
     navigator.clipboard.writeText(text);
     setCopiedNotice(true);
     setTimeout(() => setCopiedNotice(false), 2500);
@@ -77,76 +92,92 @@ export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemeri
     for (let i = 1; i <= 12; i++) map[i] = [];
     result.planets.forEach((p) => {
       if (map[p.house]) {
-        map[p.house].push(`${p.symbol} ${p.sanskrit}`);
+        map[p.house].push(`${p.symbol} ${language === "ne" ? p.sanskrit : p.english}`);
       }
     });
     return map;
-  }, [result.planets]);
+  }, [result.planets, language]);
 
   return (
-    <section id="kundali" className="w-full py-16 md:py-24 border-b border-border bg-surface scroll-mt-20">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+    <section id="kundali" className="w-full py-16 md:py-24 border-b border-border bg-white scroll-mt-20">
+      <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
         {/* Section matching user reference layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Left Column: Description & Action */}
           <div className="lg:col-span-4 flex flex-col items-start">
-            <div className="flex items-center gap-2 text-xs font-serif tracking-widest text-primary font-medium mb-3">
-              <span className="text-secondary">—</span>
-              <span>मुख्य सेवा</span>
-              <span className="text-secondary">—</span>
+            <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-terracotta uppercase font-bold mb-3">
+              <span className="text-gold">—</span>
+              <span>{t.calculator.badge}</span>
+              <span className="text-gold">—</span>
             </div>
 
-            <h2 className="font-serif text-3xl sm:text-4xl text-textHeading font-normal tracking-tight leading-tight">
-              जन्म कुण्डली तथा पञ्चाङ्ग गणना
+            <h2 className="font-serif text-3xl sm:text-4xl text-navy font-bold tracking-tight leading-tight">
+              {t.calculator.title}
             </h2>
 
             <p className="mt-4 text-sm text-textBody leading-relaxed font-light">
-              तपाईंको जन्म समय, स्थान र ग्रह-नक्षत्रको आधारमा तयार हुने जन्म कुण्डलीले
-              जीवनका प्रमुख क्षेत्रहरूमा मार्गदर्शन प्रदान गर्दछ। कुण्डली, पञ्चाङ्ग गणनाबाट
-              शुभ-अशुभ समय, तिथि, बार, नक्षत्र, योग र करणको जानकारी प्राप्त गर्न सकिन्छ।
+              {t.calculator.desc}
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <button
                 onClick={() => setShowInputDrawer(!showInputDrawer)}
-                className="px-6 py-3 rounded-lg bg-navy text-textInverted text-sm font-sans font-medium hover:bg-navy-dark transition-all duration-200 flex items-center gap-2 shadow-soft hover:shadow-hover"
+                className="px-6 py-3 rounded-full bg-terracotta text-white text-xs lg:text-sm font-medium hover:bg-terracotta-dark transition-all duration-200 flex items-center gap-2 shadow-soft hover:shadow-hover"
               >
-                <span>{showInputDrawer ? "विवरण बन्द गर्नुहोस्" : "गणना गर्नुहोस्"}</span>
+                <span>
+                  {showInputDrawer
+                    ? language === "ne"
+                      ? "विवरण बन्द गर्नुहोस्"
+                      : "Close Input Form"
+                    : language === "ne"
+                    ? "गणना गर्नुहोस्"
+                    : "Enter Coordinates"}
+                </span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
               <button
                 onClick={handleCopySummary}
-                className="px-4 py-3 rounded-lg border border-border bg-surface text-textBody hover:text-foreground text-xs font-mono transition-colors flex items-center gap-1.5"
+                className="px-4 py-3 rounded-full border border-[#DED4C3] bg-[#FAF7F2] text-navy hover:text-terracotta text-xs font-mono transition-colors flex items-center gap-1.5"
               >
-                <Share2 className="w-3.5 h-3.5 text-secondary" />
-                <span>{copiedNotice ? "कपी भयो!" : "कपी गर्नुहोस्"}</span>
+                <Share2 className="w-3.5 h-3.5 text-gold" />
+                <span>
+                  {copiedNotice
+                    ? language === "ne"
+                      ? "कपी भयो!"
+                      : "Copied!"
+                    : language === "ne"
+                    ? "कपी गर्नुहोस्"
+                    : "Copy Summary"}
+                </span>
               </button>
             </div>
           </div>
 
           {/* Center Column: Beautiful Traditional North-Indian Diamond Kundali Chart matching reference */}
           <div className="lg:col-span-4 flex justify-center">
-            <div className="w-full max-w-[340px] aspect-square bg-[#FFFDF8] border-2 border-secondary/70 rounded-xl p-3 shadow-card relative">
+            <div className="w-full max-w-[340px] aspect-square bg-[#FFFDF8] border-2 border-gold/70 rounded-2xl p-3 shadow-card relative">
               <div className="absolute inset-3 pointer-events-none">
-                <svg className="w-full h-full stroke-secondary/70 stroke-[1.2]">
+                <svg className="w-full h-full stroke-gold/70 stroke-[1.2]">
                   <line x1="0" y1="0" x2="100%" y2="100%" />
                   <line x1="100%" y1="0" x2="0" y2="100%" />
                   <polygon
                     points="50%,0% 100%,50% 50%,100% 0%,50%"
                     fill="#FBF7EE"
-                    className="stroke-primary/70 stroke-[1.5]"
+                    className="stroke-terracotta/70 stroke-[1.5]"
                   />
                 </svg>
               </div>
 
               {/* House 1: Lagna */}
               <div className="absolute top-[16%] left-[32%] w-[36%] h-[20%] flex flex-col items-center justify-center text-center">
-                <span className="font-serif text-[11px] text-primary font-bold">१ (लग्न)</span>
-                <span className="font-serif text-[11px] font-semibold text-textHeading">
+                <span className="font-serif text-[11px] text-terracotta font-bold">
+                  {language === "ne" ? "१ (लग्न)" : "1 (Asc)"}
+                </span>
+                <span className="font-serif text-[11px] font-bold text-navy">
                   {result.ascendant.sanskritSign}
                 </span>
-                <div className="text-[9px] font-mono text-secondary font-medium">
+                <div className="text-[9px] font-mono text-gold font-medium">
                   {planetsByHouse[1]?.join(" ") || "—"}
                 </div>
               </div>
@@ -154,7 +185,7 @@ export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemeri
               {/* House 2 */}
               <div className="absolute top-[4%] left-[16%] w-[22%] h-[18%] flex flex-col items-center justify-center text-center">
                 <span className="font-serif text-[10px] text-textMuted">२</span>
-                <div className="text-[8px] font-mono text-foreground font-medium">
+                <div className="text-[8px] font-mono text-navy font-medium">
                   {planetsByHouse[2]?.join(" ") || "—"}
                 </div>
               </div>
@@ -162,15 +193,17 @@ export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemeri
               {/* House 3 */}
               <div className="absolute top-[16%] left-[4%] w-[20%] h-[20%] flex flex-col items-center justify-center text-center">
                 <span className="font-serif text-[10px] text-textMuted">३</span>
-                <div className="text-[8px] font-mono text-foreground font-medium">
+                <div className="text-[8px] font-mono text-navy font-medium">
                   {planetsByHouse[3]?.join(" ") || "—"}
                 </div>
               </div>
 
               {/* House 4 */}
               <div className="absolute top-[38%] left-[15%] w-[25%] h-[25%] flex flex-col items-center justify-center text-center">
-                <span className="font-serif text-[10px] text-primary font-bold">४ सुख</span>
-                <div className="text-[8px] font-mono text-secondary font-medium">
+                <span className="font-serif text-[10px] text-terracotta font-bold">
+                  {language === "ne" ? "४ सुख" : "4 Sukha"}
+                </span>
+                <div className="text-[8px] font-mono text-gold font-medium">
                   {planetsByHouse[4]?.join(" ") || "—"}
                 </div>
               </div>
@@ -178,7 +211,7 @@ export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemeri
               {/* House 5 */}
               <div className="absolute bottom-[16%] left-[4%] w-[20%] h-[20%] flex flex-col items-center justify-center text-center">
                 <span className="font-serif text-[10px] text-textMuted">५</span>
-                <div className="text-[8px] font-mono text-foreground font-medium">
+                <div className="text-[8px] font-mono text-navy font-medium">
                   {planetsByHouse[5]?.join(" ") || "—"}
                 </div>
               </div>
@@ -186,15 +219,17 @@ export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemeri
               {/* House 6 */}
               <div className="absolute bottom-[4%] left-[16%] w-[22%] h-[18%] flex flex-col items-center justify-center text-center">
                 <span className="font-serif text-[10px] text-textMuted">६</span>
-                <div className="text-[8px] font-mono text-foreground font-medium">
+                <div className="text-[8px] font-mono text-navy font-medium">
                   {planetsByHouse[6]?.join(" ") || "—"}
                 </div>
               </div>
 
               {/* House 7: Vivaha */}
               <div className="absolute bottom-[16%] left-[32%] w-[36%] h-[20%] flex flex-col items-center justify-center text-center">
-                <span className="font-serif text-[11px] text-primary font-bold">७ विवाह</span>
-                <div className="text-[9px] font-mono text-secondary font-medium">
+                <span className="font-serif text-[11px] text-terracotta font-bold">
+                  {language === "ne" ? "७ विवाह" : "7 Spouse"}
+                </span>
+                <div className="text-[9px] font-mono text-gold font-medium">
                   {planetsByHouse[7]?.join(" ") || "—"}
                 </div>
               </div>
@@ -202,7 +237,7 @@ export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemeri
               {/* House 8 */}
               <div className="absolute bottom-[4%] right-[16%] w-[22%] h-[18%] flex flex-col items-center justify-center text-center">
                 <span className="font-serif text-[10px] text-textMuted">८</span>
-                <div className="text-[8px] font-mono text-foreground font-medium">
+                <div className="text-[8px] font-mono text-navy font-medium">
                   {planetsByHouse[8]?.join(" ") || "—"}
                 </div>
               </div>
@@ -210,15 +245,17 @@ export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemeri
               {/* House 9 */}
               <div className="absolute bottom-[16%] right-[4%] w-[20%] h-[20%] flex flex-col items-center justify-center text-center">
                 <span className="font-serif text-[10px] text-textMuted">९</span>
-                <div className="text-[8px] font-mono text-foreground font-medium">
+                <div className="text-[8px] font-mono text-navy font-medium">
                   {planetsByHouse[9]?.join(" ") || "—"}
                 </div>
               </div>
 
               {/* House 10 */}
               <div className="absolute top-[38%] right-[15%] w-[25%] h-[25%] flex flex-col items-center justify-center text-center">
-                <span className="font-serif text-[10px] text-primary font-bold">१० कर्म</span>
-                <div className="text-[8px] font-mono text-secondary font-medium">
+                <span className="font-serif text-[10px] text-terracotta font-bold">
+                  {language === "ne" ? "१० कर्म" : "10 Karma"}
+                </span>
+                <div className="text-[8px] font-mono text-gold font-medium">
                   {planetsByHouse[10]?.join(" ") || "—"}
                 </div>
               </div>
@@ -226,7 +263,7 @@ export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemeri
               {/* House 11 */}
               <div className="absolute top-[16%] right-[4%] w-[20%] h-[20%] flex flex-col items-center justify-center text-center">
                 <span className="font-serif text-[10px] text-textMuted">११</span>
-                <div className="text-[8px] font-mono text-foreground font-medium">
+                <div className="text-[8px] font-mono text-navy font-medium">
                   {planetsByHouse[11]?.join(" ") || "—"}
                 </div>
               </div>
@@ -234,60 +271,68 @@ export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemeri
               {/* House 12 */}
               <div className="absolute top-[4%] right-[16%] w-[22%] h-[18%] flex flex-col items-center justify-center text-center">
                 <span className="font-serif text-[10px] text-textMuted">१२</span>
-                <div className="text-[8px] font-mono text-foreground font-medium">
+                <div className="text-[8px] font-mono text-navy font-medium">
                   {planetsByHouse[12]?.join(" ") || "—"}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column: 4 Feature Items matching reference */}
+          {/* Right Column: 4 Feature Items */}
           <div className="lg:col-span-4 flex flex-col gap-4">
-            <div className="p-4 rounded-xl border border-border bg-surface-elevated flex items-center gap-3.5 hover:border-secondary transition-colors shadow-soft">
-              <div className="w-10 h-10 rounded-full border border-secondary/50 bg-surface flex items-center justify-center text-primary shrink-0">
+            <div className="p-4 rounded-2xl border border-[#EBE3D5] bg-[#FAF7F2] flex items-center gap-3.5 hover:border-terracotta/40 transition-colors shadow-soft">
+              <div className="w-10 h-10 rounded-full border border-gold/40 bg-white flex items-center justify-center text-terracotta shrink-0">
                 <Compass className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="font-serif text-sm font-semibold text-textHeading">
-                  जन्म कुण्डली निर्माण
+                <h4 className="font-serif text-sm font-bold text-navy">
+                  {language === "ne" ? "जन्म कुण्डली निर्माण" : "Natal Cartography"}
                 </h4>
-                <p className="text-xs text-textMuted">सूक्ष्म लग्न तथा षोडशवर्ग गणना</p>
+                <p className="text-xs text-textMuted">
+                  {language === "ne" ? "सूक्ष्म लग्न तथा षोडशवर्ग गणना" : "Ascendant & 16 Varga Matrices"}
+                </p>
               </div>
             </div>
 
-            <div className="p-4 rounded-xl border border-border bg-surface-elevated flex items-center gap-3.5 hover:border-secondary transition-colors shadow-soft">
-              <div className="w-10 h-10 rounded-full border border-secondary/50 bg-surface flex items-center justify-center text-primary shrink-0">
+            <div className="p-4 rounded-2xl border border-[#EBE3D5] bg-[#FAF7F2] flex items-center gap-3.5 hover:border-terracotta/40 transition-colors shadow-soft">
+              <div className="w-10 h-10 rounded-full border border-gold/40 bg-white flex items-center justify-center text-terracotta shrink-0">
                 <Calendar className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="font-serif text-sm font-semibold text-textHeading">
-                  दैनिक पञ्चाङ्ग गणना
+                <h4 className="font-serif text-sm font-bold text-navy">
+                  {language === "ne" ? "दैनिक पञ्चाङ्ग गणना" : "Ephemeris & Panchanga"}
                 </h4>
-                <p className="text-xs text-textMuted">तिथि, नक्षत्र, योग र करण</p>
+                <p className="text-xs text-textMuted">
+                  {language === "ne" ? "तिथि, नक्षत्र, योग र करण" : "Tithi, Nakshatra, Yoga & Karana"}
+                </p>
               </div>
             </div>
 
-            <div className="p-4 rounded-xl border border-border bg-surface-elevated flex items-center gap-3.5 hover:border-secondary transition-colors shadow-soft">
-              <div className="w-10 h-10 rounded-full border border-secondary/50 bg-surface flex items-center justify-center text-primary shrink-0">
+            <div className="p-4 rounded-2xl border border-[#EBE3D5] bg-[#FAF7F2] flex items-center gap-3.5 hover:border-terracotta/40 transition-colors shadow-soft">
+              <div className="w-10 h-10 rounded-full border border-gold/40 bg-white flex items-center justify-center text-terracotta shrink-0">
                 <Clock className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="font-serif text-sm font-semibold text-textHeading">
-                  शुभ मुहूर्त निर्धारण
+                <h4 className="font-serif text-sm font-bold text-navy">
+                  {language === "ne" ? "शुभ मुहूर्त निर्धारण" : "Muhurta & Electional Timing"}
                 </h4>
-                <p className="text-xs text-textMuted">विवाह, व्यापार र गृह प्रवेश साइत</p>
+                <p className="text-xs text-textMuted">
+                  {language === "ne" ? "विवाह, व्यापार र गृह प्रवेश साइत" : "Weddings, Commercial & Groundbreaking"}
+                </p>
               </div>
             </div>
 
-            <div className="p-4 rounded-xl border border-border bg-surface-elevated flex items-center gap-3.5 hover:border-secondary transition-colors shadow-soft">
-              <div className="w-10 h-10 rounded-full border border-secondary/50 bg-surface flex items-center justify-center text-primary shrink-0">
+            <div className="p-4 rounded-2xl border border-[#EBE3D5] bg-[#FAF7F2] flex items-center gap-3.5 hover:border-terracotta/40 transition-colors shadow-soft">
+              <div className="w-10 h-10 rounded-full border border-gold/40 bg-white flex items-center justify-center text-terracotta shrink-0">
                 <Sparkles className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="font-serif text-sm font-semibold text-textHeading">
-                  ग्रह दशा विश्लेषण
+                <h4 className="font-serif text-sm font-bold text-navy">
+                  {language === "ne" ? "ग्रह दशा विश्लेषण" : "Dasha Trajectory"}
                 </h4>
-                <p className="text-xs text-textMuted">विंशोत्तरी महादशा र गोचर फल</p>
+                <p className="text-xs text-textMuted">
+                  {language === "ne" ? "विंशोत्तरी महादशा र गोचर फल" : "Vimshottari Dasha & Transit Forecasts"}
+                </p>
               </div>
             </div>
           </div>
@@ -295,47 +340,47 @@ export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemeri
 
         {/* Collapsible Clean Form Drawer for Instant Recalculation */}
         {showInputDrawer && (
-          <div className="mt-8 p-6 rounded-2xl border border-secondary/50 bg-surface-cream shadow-card animate-in fade-in slide-in-from-top-4 duration-300">
-            <div className="flex items-center justify-between pb-4 border-b border-border">
-              <span className="font-serif text-base font-semibold text-textHeading">
-                जन्म विवरण प्रविष्ट गर्नुहोस् (Enter Birth Details)
+          <div className="mt-8 p-6 rounded-2xl border border-gold/40 bg-[#FAF7F2] shadow-card animate-in fade-in slide-in-from-top-4 duration-300">
+            <div className="flex items-center justify-between pb-4 border-b border-[#EBE3D5]">
+              <span className="font-serif text-base font-bold text-navy">
+                {t.calculator.formTitle}
               </span>
               <button
                 onClick={() => setShowInputDrawer(false)}
-                className="text-xs font-mono text-textMuted hover:text-foreground"
+                className="text-xs font-mono text-textMuted hover:text-navy"
               >
-                ✕ बन्द गर्नुहोस्
+                ✕ {language === "ne" ? "बन्द गर्नुहोस्" : "Close"}
               </button>
             </div>
 
             <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <div>
                 <label className="block text-xs font-mono text-textMuted mb-1.5">
-                  जन्म मिति (Date A.D.)
+                  {t.calculator.dateLabel}
                 </label>
                 <input
                   type="date"
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg border border-border bg-surface text-foreground font-mono text-xs focus:outline-none focus:border-primary"
+                  className="w-full px-3 py-2 rounded-xl border border-[#EBE3D5] bg-white text-navy font-mono text-xs focus:outline-none focus:border-terracotta"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-mono text-textMuted mb-1.5">
-                  जन्म समय (Time Local)
+                  {t.calculator.timeLabel}
                 </label>
                 <input
                   type="time"
                   value={selectedTime}
                   onChange={(e) => setSelectedTime(e.target.value)}
-                  className="w-full px-3 py-2 rounded-lg border border-border bg-surface text-foreground font-mono text-xs focus:outline-none focus:border-primary"
+                  className="w-full px-3 py-2 rounded-xl border border-[#EBE3D5] bg-white text-navy font-mono text-xs focus:outline-none focus:border-terracotta"
                 />
               </div>
 
               <div>
                 <label className="block text-xs font-mono text-textMuted mb-1.5">
-                  जन्म स्थान (City)
+                  {t.calculator.locationLabel}
                 </label>
                 <select
                   onChange={(e) => {
@@ -345,7 +390,7 @@ export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemeri
                     setLongitude(preset.lng);
                   }}
                   defaultValue="0"
-                  className="w-full px-3 py-2 rounded-lg border border-border bg-surface text-foreground font-mono text-xs focus:outline-none focus:border-primary"
+                  className="w-full px-3 py-2 rounded-xl border border-[#EBE3D5] bg-white text-navy font-mono text-xs focus:outline-none focus:border-terracotta"
                 >
                   {PRESET_LOCATIONS.map((loc, idx) => (
                     <option key={loc.name} value={idx}>
@@ -358,9 +403,9 @@ export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemeri
               <div className="flex items-end">
                 <button
                   onClick={() => onOpenInquiry(`कुण्डली अध्ययन: ${result.bikramSambat.formattedNepali} जन्म विवरण`)}
-                  className="w-full py-2.5 rounded-lg bg-primary text-textInverted text-xs font-sans font-medium hover:bg-primary-dark transition-colors shadow-soft"
+                  className="w-full py-2.5 rounded-full bg-terracotta text-white text-xs font-medium hover:bg-terracotta-dark transition-colors shadow-soft"
                 >
-                  गुरुसँग कुण्डली परामर्श लिनुहोस्
+                  {t.calculator.bookPersonalAnalysis}
                 </button>
               </div>
             </div>

@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { Mail, Phone, MapPin, Clock, Compass, Heart } from "lucide-react";
+import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 import BrandLogo from "./BrandLogo";
 
 interface FooterProps {
@@ -9,6 +10,8 @@ interface FooterProps {
 }
 
 export default function Footer({ onOpenInquiry }: FooterProps) {
+  const { t, language } = useLanguage();
+
   return (
     <footer id="contact" className="w-full bg-[#0B1526] text-[#BAC7D8] border-t border-[#1C2C45] pt-16 pb-12">
       <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
@@ -18,41 +21,37 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
             <BrandLogo variant="light" size="lg" />
 
             <p className="text-sm text-[#93A5BC] max-w-md font-light leading-relaxed mt-2">
-              काठमाडौँको ऐतिहासिक वैदिक परम्परामा आधारित प्रामाणिक ज्योतिष परामर्श। व्यक्तिगत जन्म कुण्डली, विंशोत्तरी दशा फल, विवाह मिलान, व्यापारिक साइत र पञ्चाङ्ग गणनाको शुद्ध मार्गदर्शन।
+              {t.footer.tagline}
             </p>
 
             <div className="mt-2 flex items-center gap-3 text-xs font-mono text-gold">
-              <span>बालुवाटार, काठमाडौँ</span>
-              <span>•</span>
-              <span>वि.सं. २०८१</span>
-              <span>•</span>
-              <span>चित्रापक्षीय अयनांश</span>
+              <span>{t.footer.city}</span>
             </div>
           </div>
 
           {/* Quick Links (Col 6 to 7) */}
           <div className="lg:col-span-2 flex flex-col gap-3">
             <span className="font-mono text-xs uppercase tracking-widest text-gold font-bold">
-              द्रुत लिङ्कहरू
+              {t.footer.quickLinks}
             </span>
             <div className="flex flex-col gap-2.5 text-xs font-mono text-[#93A5BC]">
               <a href="#" className="hover:text-white transition-colors">
-                गृह पृष्ठ (Home)
+                {t.header.home}
               </a>
-              <a href="#ephemeris" className="hover:text-white transition-colors">
-                कुण्डली तथा पञ्चाङ्ग
+              <a href="#kundali" className="hover:text-white transition-colors">
+                {t.header.kundali}
               </a>
-              <a href="#solutions" className="hover:text-white transition-colors">
-                शास्त्रीय सेवाहरू
+              <a href="#services" className="hover:text-white transition-colors">
+                {t.header.services}
               </a>
               <a href="#works" className="hover:text-white transition-colors">
-                परामर्श तथा अनुसन्धान
+                {t.header.research}
               </a>
               <a href="#philosophy" className="hover:text-white transition-colors">
-                वैदिक मूल्यमान्यता
+                {language === "ne" ? "वैदिक मूल्यमान्यता" : "Ethical Manifesto"}
               </a>
               <a href="#about-guru" className="hover:text-white transition-colors">
-                ज्योतिषाचार्य परिचय
+                {t.header.aboutGuru}
               </a>
             </div>
           </div>
@@ -60,38 +59,38 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
           {/* Practice Groups (Col 8 to 9) */}
           <div className="lg:col-span-2 flex flex-col gap-3">
             <span className="font-mono text-xs uppercase tracking-widest text-gold font-bold">
-              हाम्रा सेवाहरू
+              {t.footer.ourServices}
             </span>
             <div className="flex flex-col gap-2.5 text-xs font-mono text-[#93A5BC]">
               <button
-                onClick={() => onOpenInquiry("जन्म कुण्डली तथा विंशोत्तरी दशा")}
+                onClick={() => onOpenInquiry(language === "ne" ? "जन्म कुण्डली तथा विंशोत्तरी दशा" : "Natal Kundali & Dasha")}
                 className="text-left hover:text-white transition-colors"
               >
-                जन्म कुण्डली तथा दशा
+                {language === "ne" ? "जन्म कुण्डली तथा दशा" : "Natal Kundali & Dasha"}
               </button>
               <button
-                onClick={() => onOpenInquiry("विवाह कुण्डली मिलान")}
+                onClick={() => onOpenInquiry(language === "ne" ? "विवाह कुण्डली मिलान" : "Matrimonial Compatibility")}
                 className="text-left hover:text-white transition-colors"
               >
-                विवाह कुण्डली मिलान
+                {language === "ne" ? "विवाह कुण्डली मिलान" : "Marriage Matchmaking"}
               </button>
               <button
-                onClick={() => onOpenInquiry("नयाँ व्यापार तथा उद्योग साइत")}
+                onClick={() => onOpenInquiry(language === "ne" ? "नयाँ व्यापार तथा उद्योग साइत" : "Enterprise Muhurta")}
                 className="text-left hover:text-white transition-colors"
               >
-                व्यापारिक शुभ साइत
+                {language === "ne" ? "व्यापारिक शुभ साइत" : "Auspicious Muhurta"}
               </button>
               <button
-                onClick={() => onOpenInquiry("गृह प्रवेश तथा वास्तु परामर्श")}
+                onClick={() => onOpenInquiry(language === "ne" ? "गृह प्रवेश तथा वास्तु परामर्श" : "Vastu Consultation")}
                 className="text-left hover:text-white transition-colors"
               >
-                वास्तु तथा दिशा शोधन
+                {language === "ne" ? "वास्तु तथा दिशा शोधन" : "Vedic Vastu Alignment"}
               </button>
               <button
-                onClick={() => onOpenInquiry("शान्ति तथा वैदिक अनुष्ठान")}
+                onClick={() => onOpenInquiry(language === "ne" ? "शान्ति तथा वैदिक अनुष्ठान" : "Graha Shanti Rituals")}
                 className="text-left hover:text-white transition-colors"
               >
-                शान्ति तथा अनुष्ठान
+                {language === "ne" ? "शान्ति तथा अनुष्ठान" : "Shanti & Vedic Rituals"}
               </button>
             </div>
           </div>
@@ -99,16 +98,20 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
           {/* Contact (Col 10 to 12) */}
           <div className="lg:col-span-3 flex flex-col gap-3">
             <span className="font-mono text-xs uppercase tracking-widest text-gold font-bold">
-              सम्पर्क तथा ठेगाना
+              {t.footer.contactTitle}
             </span>
             <div className="text-xs font-mono text-[#93A5BC] leading-relaxed space-y-2">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-terracotta shrink-0 mt-0.5" />
-                <span>बालुवाटार, काठमाडौँ, नेपाल (सभामुख निवास नजिक)</span>
+                <span>
+                  {language === "ne"
+                    ? "बालुवाटार, काठमाडौँ, नेपाल (सभामुख निवास नजिक)"
+                    : "Baluwatar, Kathmandu, Nepal (Near Speaker's Residence)"}
+                </span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Clock className="w-4 h-4 text-terracotta shrink-0" />
-                <span>आइतबार – शुक्रबार: बिहान ८:०० – साँझ ६:००</span>
+                <span>{t.footer.hours}</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-terracotta shrink-0" />
@@ -125,12 +128,10 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
         {/* Bottom Bar */}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#6A7E97]">
           <div>
-            © २०८१ नील हरि वैदिक ज्योतिष केन्द्र। सर्वाधिकार सुरक्षित।
+            {t.footer.copyright}
           </div>
           <div className="flex items-center gap-2 text-[11px]">
-            <span>प्रामाणिक वैदिक ज्योतिष तथा दृक-गणित</span>
-            <span>•</span>
-            <span>काठमाडौँ, नेपाल</span>
+            <span>{t.footer.standards}</span>
           </div>
         </div>
       </div>

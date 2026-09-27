@@ -5,6 +5,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, CheckCircle2, Compass, Shield, Calendar, Phone, Video, MapPin } from "lucide-react";
 import confetti from "canvas-confetti";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface InquiryDrawerProps {
   isOpen: boolean;
@@ -12,39 +13,12 @@ interface InquiryDrawerProps {
   initialTopic?: string;
 }
 
-const CONSULTATION_TYPES = [
-  {
-    id: "kundali",
-    title: "विस्तृत जन्म कुण्डली तथा विंशोत्तरी दशा",
-    desc: "करियर, स्वास्थ्य, आर्थिक योग, अनुकूल समय र सात्विक उपाय।",
-  },
-  {
-    id: "marriage",
-    title: "विवाह कुण्डली मिलान तथा शुभ लग्न साइत",
-    desc: "अष्टकूट गुण मिलान, नाडी/मङ्गल विचार र पाणिग्रहण साइत।",
-  },
-  {
-    id: "business",
-    title: "नयाँ व्यवसाय, लगानी तथा सम्झौता साइत",
-    desc: "उद्योग शिलान्यास, कम्पनी दर्ता र वित्तीय वृद्धिको शुभ मुहूर्त।",
-  },
-  {
-    id: "vastu",
-    title: "गृह प्रवेश, जग्गा खरिद तथा वास्तु परामर्श",
-    desc: "भूमि परीक्षण, पञ्चतत्व सन्तुलन र वास्तु शान्ति साइत।",
-  },
-  {
-    id: "patro",
-    title: "नेपाली पात्रो, तिथि तथा पञ्चाङ्ग परामर्श",
-    desc: "चाडपर्व निर्णय, संस्कार कर्म तथा क्यालेन्डर इन्जिन सहयोग।",
-  },
-];
-
 export default function InquiryDrawer({
   isOpen,
   onClose,
   initialTopic,
 }: InquiryDrawerProps) {
+  const { language } = useLanguage();
   const [selectedType, setSelectedType] = useState("kundali");
   const [meetingMode, setMeetingMode] = useState<"in_person" | "online">("online");
   const [fullName, setFullName] = useState("");
@@ -57,26 +31,54 @@ export default function InquiryDrawer({
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
+  const CONSULTATION_TYPES = [
+    {
+      id: "kundali",
+      title: language === "ne" ? "विस्तृत जन्म कुण्डली तथा विंशोत्तरी दशा" : "Comprehensive Natal Chart & Vimshottari Dasha",
+      desc: language === "ne" ? "करियर, स्वास्थ्य, आर्थिक योग, अनुकूल समय र सात्विक उपाय।" : "Career, health, financial yogas, auspicious timing, and sattvic remedies.",
+    },
+    {
+      id: "marriage",
+      title: language === "ne" ? "विवाह कुण्डली मिलान तथा शुभ लग्न साइत" : "Matrimonial Compatibility & Wedding Muhurta",
+      desc: language === "ne" ? "अष्टकूट गुण मिलान, नाडी/मङ्गल विचार र पाणिग्रहण साइत।" : "Ashtakoota score, Nadi/Mangal analysis, and auspicious lagna timing.",
+    },
+    {
+      id: "business",
+      title: language === "ne" ? "नयाँ व्यवसाय, लगानी तथा सम्झौता साइत" : "Enterprise Timing, Investment & Legal Muhurta",
+      desc: language === "ne" ? "उद्योग शिलान्यास, कम्पनी दर्ता र वित्तीय वृद्धिको शुभ मुहूर्त।" : "Groundbreaking, company registration, and financial expansion timing.",
+    },
+    {
+      id: "vastu",
+      title: language === "ne" ? "गृह प्रवेश, जग्गा खरिद तथा वास्तु परामर्श" : "Griha Pravesh & Vedic Vastu Consultation",
+      desc: language === "ne" ? "भूमि परीक्षण, पञ्चतत्व सन्तुलन र वास्तु शान्ति साइत।" : "Land testing, 5-element spatial balance, and consecration timing.",
+    },
+    {
+      id: "patro",
+      title: language === "ne" ? "नेपाली पात्रो, तिथि तथा पञ्चाङ्ग परामर्श" : "Nepali Patro & Calendar Ephemeris Consultation",
+      desc: language === "ne" ? "चाडपर्व निर्णय, संस्कार कर्म तथा क्यालेन्डर इन्जिन सहयोग।" : "Festival dates, Vedic rites of passage, and calendar engine collaboration.",
+    },
+  ];
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!fullName.trim() || !phone.trim()) {
-      setErrorMsg("कृपया तपाईंको पूरा नाम र फोन/ह्वाट्सएप नम्बर अनिवार्य भर्नुहोस्।");
+      setErrorMsg(language === "ne" ? "कृपया आफ्नो पूरा नाम र फोन नम्बर प्रविष्ट गर्नुहोस्।" : "Please enter your full name and phone number.");
       return;
     }
+    setErrorMsg("");
 
     try {
       confetti({
         particleCount: 50,
         spread: 60,
         origin: { y: 0.6 },
-        colors: ["#A8624F", "#C9A66B", "#3A342E"],
+        colors: ["#B34A26", "#C5994E", "#12213A"],
       });
     } catch {
-      // safe fallback
+      // Ignore confetti error
     }
 
     setSubmitted(true);
-    setErrorMsg("");
   };
 
   const handleReset = () => {
@@ -112,20 +114,20 @@ export default function InquiryDrawer({
                   animate={{ x: 0 }}
                   exit={{ x: "100%" }}
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative w-full max-w-xl h-full bg-surface border-l border-border p-6 md:p-10 flex flex-col justify-between overflow-y-auto shadow-hard"
+                  className="relative w-full max-w-xl h-full bg-white border-l border-[#E5DAC8] p-6 md:p-10 flex flex-col justify-between overflow-y-auto shadow-2xl"
                 >
                   {/* Top Header */}
                   <div>
-                    <div className="flex items-center justify-between pb-6 border-b border-border">
-                      <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-primary">
-                        <Compass className="w-4 h-4 text-secondary" />
-                        <span>नील हरि वैदिक ज्योतिष केन्द्र // परामर्श बुकिङ</span>
+                    <div className="flex items-center justify-between pb-6 border-b border-[#EBE3D5]">
+                      <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-terracotta font-semibold">
+                        <Compass className="w-4 h-4 text-gold" />
+                        <span>{language === "ne" ? "नील हरि वैदिक ज्योतिष केन्द्र // परामर्श बुकिङ" : "NEEL HARI VEDIC ATELIER // CONSULTATION"}</span>
                       </div>
 
                       <Dialog.Close asChild>
                         <button
-                          className="p-2 border border-border hover:border-primary text-foreground transition-colors"
-                          aria-label="बन्द गर्नुहोस्"
+                          className="p-2 rounded-full border border-[#EBE3D5] hover:border-terracotta text-navy transition-colors"
+                          aria-label="Close"
                         >
                           <X className="w-5 h-5" />
                         </button>
@@ -134,61 +136,71 @@ export default function InquiryDrawer({
 
                     {submitted ? (
                       <div className="py-14 flex flex-col items-center text-center">
-                        <div className="w-16 h-16 border border-secondary bg-surface-elevated flex items-center justify-center mb-6">
-                          <CheckCircle2 className="w-8 h-8 text-primary" />
+                        <div className="w-16 h-16 rounded-full border border-gold bg-[#FAF7F2] flex items-center justify-center mb-6">
+                          <CheckCircle2 className="w-8 h-8 text-terracotta" />
                         </div>
-                        <Dialog.Title className="font-serif text-3xl text-textHeading font-semibold">
-                          परामर्श आवेदन प्राप्त भयो
+                        <Dialog.Title className="font-serif text-3xl text-navy font-bold">
+                          {language === "ne" ? "परामर्श आवेदन प्राप्त भयो" : "Consultation Request Received"}
                         </Dialog.Title>
                         <Dialog.Description className="mt-4 text-sm text-textBody max-w-md font-light leading-relaxed">
-                          आदरणीय <strong className="font-semibold">{fullName}</strong> ज्यू,
-                          तपाईंको परामर्श अनुरोध नील हरि वैदिक ज्योतिष केन्द्रमा दर्ता भएको छ।
-                          हाम्रो सचिवालयले तपाईंको सम्पर्क नम्बर <span className="font-mono text-primary font-bold">{phone}</span> वा
-                          इमेलमा २४ घण्टाभित्र सम्पर्क गरी परामर्शको निश्चित समय र आवश्यक तयारीबारे जानकारी गराउनेछ।
+                          {language === "ne" ? (
+                            <>
+                              आदरणीय <strong className="font-semibold text-navy">{fullName}</strong> ज्यू,
+                              तपाईंको परामर्श अनुरोध नील हरि वैदिक ज्योतिष केन्द्रमा दर्ता भएको छ।
+                              हाम्रो सचिवालयले तपाईंको सम्पर्क नम्बर <span className="font-mono text-terracotta font-bold">{phone}</span> वा
+                              इमेलमा २४ घण्टाभित्र सम्पर्क गरी परामर्शको निश्चित समय र आवश्यक तयारीबारे जानकारी गराउनेछ।
+                            </>
+                          ) : (
+                            <>
+                              Dear <strong className="font-semibold text-navy">{fullName}</strong>,
+                              your consultation request has been registered at Neel Hari Vedic Jyotish Kendra.
+                              Our sanctum coordinator will contact you at <span className="font-mono text-terracotta font-bold">{phone}</span> within 24 hours to confirm your scheduled appointment time.
+                            </>
+                          )}
                         </Dialog.Description>
 
-                        <div className="mt-8 p-4 border border-border bg-surface-elevated font-mono text-xs text-textMuted text-left w-full space-y-1.5">
-                          <div>बुकिङ दर्ता नं: NHK-{(Math.random() * 9000 + 1000).toFixed(0)}</div>
-                          <div>माध्यम: {meetingMode === "online" ? "अनलाइन भिडियो (Zoom/WhatsApp)" : "प्रत्यक्ष भेट (बालुवाटार, काठमाडौँ)"}</div>
-                          <div>गोपनीयता: १००% व्यक्तिगत र मर्यादित</div>
+                        <div className="mt-8 p-4 rounded-xl border border-[#EBE3D5] bg-[#FAF7F2] font-mono text-xs text-textMuted text-left w-full space-y-1.5">
+                          <div>{language === "ne" ? "बुकिङ दर्ता नं" : "Booking Reference"}: NHK-{(Math.random() * 9000 + 1000).toFixed(0)}</div>
+                          <div>{language === "ne" ? "माध्यम" : "Mode"}: {meetingMode === "online" ? (language === "ne" ? "अनलाइन भिडियो (Zoom/WhatsApp)" : "Encrypted Video (Zoom/WhatsApp)") : (language === "ne" ? "प्रत्यक्ष भेट (बालुवाटार, काठमाडौँ)" : "In-Person (Baluwatar, Kathmandu)")}</div>
+                          <div>{language === "ne" ? "गोपनीयता" : "Privacy"}: {language === "ne" ? "१००% व्यक्तिगत र मर्यादित" : "100% Strictly Confidential"}</div>
                         </div>
 
                         <button
                           onClick={handleReset}
-                          className="mt-8 px-8 py-3 bg-primary text-textInverted text-xs font-mono uppercase tracking-widest hover:bg-primary-dark transition-colors"
+                          className="mt-8 px-8 py-3.5 rounded-full bg-terracotta text-white text-xs font-mono uppercase tracking-widest hover:bg-terracotta-dark transition-colors"
                         >
-                          बन्द गरी मुख्य पृष्ठमा फर्कनुहोस्
+                          {language === "ne" ? "बन्द गरी मुख्य पृष्ठमा फर्कनुहोस्" : "Return to Home Page"}
                         </button>
                       </div>
                     ) : (
                       <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-6">
                         <div>
-                          <Dialog.Title className="font-serif text-2xl text-textHeading font-normal">
-                            गुरु नील हरिसँग परामर्श
+                          <Dialog.Title className="font-serif text-2xl text-navy font-bold">
+                            {language === "ne" ? "गुरु नील हरिसँग परामर्श" : "Consultation with Guru Neel Hari"}
                           </Dialog.Title>
                           <Dialog.Description className="mt-1 text-xs text-textMuted font-light">
-                            कुण्डली तथा जन्म विवरणका आधारमा प्रत्यक्ष वा अनलाइन ज्योतिषीय परामर्श।
+                            {language === "ne" ? "कुण्डली तथा जन्म विवरणका आधारमा प्रत्यक्ष वा अनलाइन ज्योतिषीय परामर्श।" : "In-person or encrypted video consultation based on precise natal coordinates."}
                           </Dialog.Description>
                         </div>
 
                         {/* Meeting Mode Switcher */}
                         <div>
-                          <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-2">
-                            परामर्शको माध्यम (CONSULTATION MODE)
+                          <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-2 font-semibold">
+                            {language === "ne" ? "परामर्शको माध्यम (CONSULTATION MODE)" : "CONSULTATION MODE"}
                           </label>
                           <div className="grid grid-cols-2 gap-3">
                             <button
                               type="button"
                               onClick={() => setMeetingMode("online")}
-                              className={`p-3 border text-left flex items-center gap-2.5 transition-colors ${
+                              className={`p-3 rounded-xl border text-left flex items-center gap-2.5 transition-colors ${
                                 meetingMode === "online"
-                                  ? "border-primary bg-surface-elevated text-primary font-medium"
-                                  : "border-border bg-surface text-textBody"
+                                  ? "border-terracotta bg-[#FAF7F2] text-terracotta font-medium"
+                                  : "border-[#EBE3D5] bg-white text-textBody"
                               }`}
                             >
-                              <Video className="w-4 h-4 text-secondary shrink-0" />
+                              <Video className="w-4 h-4 text-gold shrink-0" />
                               <div className="text-xs font-mono">
-                                <div className="font-semibold">अनलाइन भिडियो</div>
+                                <div className="font-semibold">{language === "ne" ? "अनलाइन भिडियो" : "Online Video"}</div>
                                 <div className="text-[10px] text-textMuted">Zoom / WhatsApp</div>
                               </div>
                             </button>
@@ -196,16 +208,16 @@ export default function InquiryDrawer({
                             <button
                               type="button"
                               onClick={() => setMeetingMode("in_person")}
-                              className={`p-3 border text-left flex items-center gap-2.5 transition-colors ${
+                              className={`p-3 rounded-xl border text-left flex items-center gap-2.5 transition-colors ${
                                 meetingMode === "in_person"
-                                  ? "border-primary bg-surface-elevated text-primary font-medium"
-                                  : "border-border bg-surface text-textBody"
+                                  ? "border-terracotta bg-[#FAF7F2] text-terracotta font-medium"
+                                  : "border-[#EBE3D5] bg-white text-textBody"
                               }`}
                             >
-                              <MapPin className="w-4 h-4 text-secondary shrink-0" />
+                              <MapPin className="w-4 h-4 text-gold shrink-0" />
                               <div className="text-xs font-mono">
-                                <div className="font-semibold">प्रत्यक्ष भेट</div>
-                                <div className="text-[10px] text-textMuted">बालुवाटार, काठमाडौँ</div>
+                                <div className="font-semibold">{language === "ne" ? "प्रत्यक्ष भेट" : "In-Person"}</div>
+                                <div className="text-[10px] text-textMuted">{language === "ne" ? "बालुवाटार, काठमाडौँ" : "Baluwatar, Kathmandu"}</div>
                               </div>
                             </button>
                           </div>
@@ -213,17 +225,17 @@ export default function InquiryDrawer({
 
                         {/* Consultation Topic Selector */}
                         <div>
-                          <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-2">
-                            परामर्शको विषय छनोट गर्नुहोस्
+                          <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-2 font-semibold">
+                            {language === "ne" ? "परामर्शको विषय छनोट गर्नुहोस्" : "SELECT CONSULTATION DOMAIN"}
                           </label>
                           <div className="grid grid-cols-1 gap-2">
                             {CONSULTATION_TYPES.map((type) => (
                               <label
                                 key={type.id}
-                                className={`p-3 border flex flex-col cursor-pointer transition-colors ${
+                                className={`p-3 rounded-xl border flex flex-col cursor-pointer transition-colors ${
                                   selectedType === type.id
-                                    ? "border-primary bg-surface-elevated"
-                                    : "border-border bg-surface hover:border-secondary/50"
+                                    ? "border-terracotta bg-[#FAF7F2]"
+                                    : "border-[#EBE3D5] bg-white hover:border-gold/50"
                                 }`}
                               >
                                 <div className="flex items-center gap-2">
@@ -233,9 +245,9 @@ export default function InquiryDrawer({
                                     value={type.id}
                                     checked={selectedType === type.id}
                                     onChange={() => setSelectedType(type.id)}
-                                    className="accent-primary"
+                                    className="accent-terracotta"
                                   />
-                                  <span className="font-serif text-sm font-semibold text-foreground">
+                                  <span className="font-serif text-sm font-bold text-navy">
                                     {type.title}
                                   </span>
                                 </div>
@@ -250,22 +262,22 @@ export default function InquiryDrawer({
                         {/* Personal Contact Inputs */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div>
-                            <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-1.5">
-                              पूरा नाम *
+                            <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-1.5 font-semibold">
+                              {language === "ne" ? "पूरा नाम *" : "Full Name *"}
                             </label>
                             <input
                               type="text"
                               required
                               value={fullName}
                               onChange={(e) => setFullName(e.target.value)}
-                              placeholder="तपाईंको पूरा नाम"
-                              className="w-full px-3 py-2.5 border border-border bg-background text-foreground font-mono text-xs focus:outline-none focus:border-primary"
+                              placeholder={language === "ne" ? "तपाईंको पूरा नाम" : "Your full name"}
+                              className="w-full px-3 py-2.5 rounded-xl border border-[#EBE3D5] bg-[#FAF7F2] text-navy font-mono text-xs focus:outline-none focus:border-terracotta"
                             />
                           </div>
 
                           <div>
-                            <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-1.5">
-                              फोन / WhatsApp नम्बर *
+                            <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-1.5 font-semibold">
+                              {language === "ne" ? "फोन / WhatsApp नम्बर *" : "Phone / WhatsApp *"}
                             </label>
                             <input
                               type="tel"
@@ -273,101 +285,105 @@ export default function InquiryDrawer({
                               value={phone}
                               onChange={(e) => setPhone(e.target.value)}
                               placeholder="+977 98XXXXXXXX"
-                              className="w-full px-3 py-2.5 border border-border bg-background text-foreground font-mono text-xs focus:outline-none focus:border-primary"
+                              className="w-full px-3 py-2.5 rounded-xl border border-[#EBE3D5] bg-[#FAF7F2] text-navy font-mono text-xs focus:outline-none focus:border-terracotta"
                             />
                           </div>
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div>
-                            <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-1.5">
-                              इमेल ठेगाना
+                            <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-1.5 font-semibold">
+                              {language === "ne" ? "इमेल ठेगाना" : "Email Address"}
                             </label>
                             <input
                               type="email"
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
                               placeholder="your@email.com"
-                              className="w-full px-3 py-2.5 border border-border bg-background text-foreground font-mono text-xs focus:outline-none focus:border-primary"
+                              className="w-full px-3 py-2.5 rounded-xl border border-[#EBE3D5] bg-[#FAF7F2] text-navy font-mono text-xs focus:outline-none focus:border-terracotta"
                             />
                           </div>
 
                           <div>
-                            <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-1.5">
-                              जन्म मिति (BS वा AD)
+                            <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-1.5 font-semibold">
+                              {language === "ne" ? "जन्म मिति (BS वा AD)" : "Date of Birth (BS or AD)"}
                             </label>
                             <input
                               type="text"
                               value={dob}
                               onChange={(e) => setDob(e.target.value)}
-                              placeholder="उदा: २०४८-०५-१४ वा 1991-08-30"
-                              className="w-full px-3 py-2.5 border border-border bg-background text-foreground font-mono text-xs focus:outline-none focus:border-primary"
+                              placeholder={language === "ne" ? "उदा: २०४८-०५-१४ वा 1991-08-30" : "e.g. 1992-05-15"}
+                              className="w-full px-3 py-2.5 rounded-xl border border-[#EBE3D5] bg-[#FAF7F2] text-navy font-mono text-xs focus:outline-none focus:border-terracotta"
                             />
                           </div>
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div>
-                            <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-1.5">
-                              जन्म समय (Time of Birth)
+                            <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-1.5 font-semibold">
+                              {language === "ne" ? "जन्म समय (Time of Birth)" : "Time of Birth (Exact)"}
                             </label>
                             <input
                               type="text"
                               value={tob}
                               onChange={(e) => setTob(e.target.value)}
-                              placeholder="उदा: बिहान ०६:४५ वा 18:30"
-                              className="w-full px-3 py-2.5 border border-border bg-background text-foreground font-mono text-xs focus:outline-none focus:border-primary"
+                              placeholder={language === "ne" ? "उदा: बिहान ०६:४५ वा 18:30" : "e.g. 06:45 AM or 18:30"}
+                              className="w-full px-3 py-2.5 rounded-xl border border-[#EBE3D5] bg-[#FAF7F2] text-navy font-mono text-xs focus:outline-none focus:border-terracotta"
                             />
                           </div>
 
                           <div>
-                            <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-1.5">
-                              जन्म स्थान (जिल्ला वा देश)
+                            <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-1.5 font-semibold">
+                              {language === "ne" ? "जन्म स्थान (जिल्ला वा देश)" : "Place of Birth (City/Country)"}
                             </label>
                             <input
                               type="text"
                               value={pob}
                               onChange={(e) => setPob(e.target.value)}
-                              placeholder="उदा: काठमाडौँ वा पोखरा"
-                              className="w-full px-3 py-2.5 border border-border bg-background text-foreground font-mono text-xs focus:outline-none focus:border-primary"
+                              placeholder={language === "ne" ? "उदा: काठमाडौँ वा पोखरा" : "e.g. Kathmandu or Sydney"}
+                              className="w-full px-3 py-2.5 rounded-xl border border-[#EBE3D5] bg-[#FAF7F2] text-navy font-mono text-xs focus:outline-none focus:border-terracotta"
                             />
                           </div>
                         </div>
 
                         <div>
-                          <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-1.5">
-                            मुख्य जिज्ञासा वा समस्या (विस्तृत विवरण)
+                          <label className="block text-[11px] font-mono uppercase tracking-widest text-textMuted mb-1.5 font-semibold">
+                            {language === "ne" ? "मुख्य जिज्ञासा वा समस्या (विस्तृत विवरण)" : "Key Inquiries or Guidance Needed"}
                           </label>
                           <textarea
                             rows={3}
                             value={question}
                             onChange={(e) => setQuestion(e.target.value)}
-                            placeholder="कुण्डली, विवाह, व्यापार, अध्ययन वा स्वास्थ्य सम्बन्धी मुख्य प्रश्नहरू यहाँ लेख्नुहोस्..."
-                            className="w-full px-3 py-2.5 border border-border bg-background text-foreground font-mono text-xs focus:outline-none focus:border-primary resize-none"
+                            placeholder={language === "ne" ? "कुण्डली, विवाह, व्यापार, अध्ययन वा स्वास्थ्य सम्बन्धी मुख्य प्रश्नहरू यहाँ लेख्नुहोस्..." : "Please describe your primary questions regarding career, marriage, business, or life..."}
+                            className="w-full px-3 py-2.5 rounded-xl border border-[#EBE3D5] bg-[#FAF7F2] text-navy font-mono text-xs focus:outline-none focus:border-terracotta resize-none"
                           />
                         </div>
 
                         {errorMsg && (
-                          <div className="text-xs font-mono text-primary bg-primary/10 p-2.5 border border-primary/30">
+                          <div className="text-xs font-mono text-terracotta bg-terracotta/10 p-2.5 border border-terracotta/30 rounded-lg">
                             {errorMsg}
                           </div>
                         )}
 
                         <button
                           type="submit"
-                          className="w-full py-4 bg-primary text-textInverted font-mono text-xs uppercase tracking-widest hover:bg-primary-dark transition-all duration-200 flex items-center justify-center gap-2 shadow-soft"
+                          className="w-full py-4 rounded-full bg-terracotta text-white font-medium text-xs sm:text-sm uppercase tracking-wider hover:bg-terracotta-dark transition-all duration-200 flex items-center justify-center gap-2 shadow-soft"
                         >
                           <Send className="w-3.5 h-3.5" />
-                          <span>परामर्श अनुरोध पठाउनुहोस् (Book Appointment)</span>
+                          <span>{language === "ne" ? "परामर्श अनुरोध पठाउनुहोस्" : "Submit Consultation Request"}</span>
                         </button>
                       </form>
                     )}
                   </div>
 
                   {/* Security & Confidentiality Footer */}
-                  <div className="pt-6 border-t border-border mt-8 flex items-center gap-2 text-[11px] font-mono text-textMuted">
-                    <Shield className="w-3.5 h-3.5 text-secondary shrink-0" />
-                    <span>तपाईंको सम्पूर्ण विवरण वैदिक मर्यादा र आचारसंहिता अनुसार पूर्ण रूपमा गोप्य राखिनेछ।</span>
+                  <div className="pt-6 border-t border-[#EBE3D5] mt-8 flex items-center gap-2 text-[11px] font-mono text-textMuted">
+                    <Shield className="w-3.5 h-3.5 text-gold shrink-0" />
+                    <span>
+                      {language === "ne"
+                        ? "तपाईंको सम्पूर्ण विवरण वैदिक मर्यादा र आचारसंहिता अनुसार पूर्ण रूपमा गोप्य राखिनेछ।"
+                        : "Your personal details and birth chart are protected under strict spiritual and ethical discretion."}
+                    </span>
                   </div>
                 </motion.div>
               </Dialog.Content>
@@ -378,4 +394,3 @@ export default function InquiryDrawer({
     </Dialog.Root>
   );
 }
-

@@ -3,6 +3,7 @@
 import React from "react";
 import { CaseStudy } from "./CaseStudyModal";
 import { ArrowUpRight, Sparkles } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const RESEARCH_STUDIES: CaseStudy[] = [
   {
@@ -204,6 +205,8 @@ interface PortfolioWorksProps {
 }
 
 export default function PortfolioWorks({ onSelectStudy }: PortfolioWorksProps) {
+  const { t, language } = useLanguage();
+
   return (
     <section id="works" className="w-full py-16 md:py-24 border-b border-border bg-[#FAF7F2] relative overflow-hidden">
       {/* Decorative Subtle Background Rings */}
@@ -213,15 +216,15 @@ export default function PortfolioWorks({ onSelectStudy }: PortfolioWorksProps) {
       <div className="max-w-[1300px] mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-terracotta/10 text-terracotta text-xs font-mono tracking-widest uppercase mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-terracotta/10 text-terracotta text-xs font-mono tracking-widest uppercase mb-3 font-semibold">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>शास्त्रीय अनुसन्धान र परामर्श</span>
+            <span>{t.research.badge}</span>
           </div>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-navy font-bold tracking-tight">
-            प्रमुख परामर्श तथा शास्त्रीय अनुसन्धान
+            {t.research.title}
           </h2>
           <p className="mt-3 text-textMuted text-sm md:text-base leading-relaxed font-light">
-            गुरु नील हरिको प्रत्यक्ष मार्गदर्शनमा सम्पन्न भएका प्रामाणिक वैदिक अध्ययन, पात्रो गणना, र व्यक्तिगत परामर्शका ६ प्रमुख क्षेत्रहरू।
+            {t.research.desc}
           </p>
         </div>
 
@@ -264,7 +267,7 @@ export default function PortfolioWorks({ onSelectStudy }: PortfolioWorksProps) {
                   {study.client}
                 </span>
                 <div className="inline-flex items-center gap-1 text-xs font-mono text-terracotta font-medium group-hover:translate-x-1 transition-transform">
-                  <span>विस्तृत विवरण</span>
+                  <span>{t.research.viewDetails}</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </div>
               </div>
