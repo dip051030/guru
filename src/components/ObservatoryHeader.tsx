@@ -79,9 +79,6 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
           <a href="#about-guru" className="hover:text-[#C85A17] transition-colors py-1">
             {t.header.aboutGuru}
           </a>
-          <a href="#works" className="hover:text-[#C85A17] transition-colors py-1">
-            {t.header.research}
-          </a>
           <a href="#contact" className="hover:text-[#C85A17] transition-colors py-1">
             {t.header.contactNav}
           </a>
@@ -148,13 +145,6 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
             className="py-1 hover:text-terracotta"
           >
             {t.header.aboutGuru}
-          </a>
-          <a
-            href="#works"
-            onClick={() => setMobileMenuOpen(false)}
-            className="py-1 hover:text-terracotta"
-          >
-            {t.header.research}
           </a>
           <a
             href="#contact"

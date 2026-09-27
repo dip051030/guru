@@ -201,13 +201,10 @@ export default function HamroPatroHero({
 
               <div className="mt-1 flex flex-wrap items-baseline gap-x-2.5 sm:gap-x-3 gap-y-0.5">
                 <h1 className="text-xl sm:text-3xl font-black text-[#181411] tracking-tight">
-                  {isNe ? "११ असोज २०८३, आइतवार" : "11 Ashwin 2083, Sunday"}
+                  {isNe ? liveToday.formattedNe : liveToday.formattedEn}
                 </h1>
                 <span className="text-sm sm:text-lg font-semibold text-stone-400">
-                  / Sep 27, 2026
-                </span>
-                <span className="text-xs sm:text-sm font-semibold text-[#D97706] hidden sm:inline">
-                  • {isNe ? "असोज कृष्ण प्रतिपदा" : "Ashwin Krishna Pratipada"}
+                  / {liveToday.jsDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
                 </span>
               </div>
             </div>

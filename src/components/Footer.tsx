@@ -44,9 +44,6 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
               <a href="#services" className="hover:text-white transition-colors">
                 {t.header.services}
               </a>
-              <a href="#works" className="hover:text-white transition-colors">
-                {t.header.research}
-              </a>
               <a href="#philosophy" className="hover:text-white transition-colors">
                 {language === "ne" ? "वैदिक मूल्यमान्यता" : "Ethical Manifesto"}
               </a>

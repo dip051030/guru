@@ -144,29 +144,15 @@ export default function BrandLogo({
         </svg>
       </div>
 
-      {/* Luxury Typography Lockup */}
+      {/* Clean Minimal Typography Lockup - No Spam Subheadings */}
       {showText && (
-        <div className="flex flex-col text-left">
-          <div className="flex items-center gap-1.5">
-            <span
-              className={`font-serif tracking-tight font-bold leading-none ${
-                size === "sm" ? "text-base" : size === "md" ? "text-xl" : "text-2xl"
-              } ${textStyles.title}`}
-            >
-              नील हरि
-            </span>
-            <span
-              className={`font-serif font-light tracking-wide leading-none ${
-                size === "sm" ? "text-xs" : size === "md" ? "text-sm" : "text-base"
-              } ${textStyles.sub}`}
-            >
-              वैदिक वेधशाला
-            </span>
-          </div>
+        <div className="flex items-center text-left">
           <span
-            className={`font-mono uppercase tracking-[0.22em] mt-1 text-[9px] md:text-[10px] leading-tight ${textStyles.tag}`}
+            className={`font-serif tracking-tight font-bold leading-none ${
+              size === "sm" ? "text-base" : size === "md" ? "text-xl" : "text-2xl"
+            } ${textStyles.title}`}
           >
-            NEEL HARI • VEDIC ATELIER & JYOTISH
+            गुरु नील हरि
           </span>
         </div>
       )}
