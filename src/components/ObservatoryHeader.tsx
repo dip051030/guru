@@ -34,26 +34,26 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
       <div className="hidden lg:flex items-center justify-between px-8 py-1.5 border-b border-slate-200 text-xs font-mono text-slate-500 bg-slate-50">
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 bg-slate-900 rounded-none" />
-            <span className="text-slate-900 font-bold">{t.header.patro}</span>
-            <span className="text-red-700 font-bold">{nepaliDateStr || t.header.loading}</span>
+            <span className="w-1.5 h-1.5 bg-[#12213A] rounded-none" />
+            <span className="text-[#12213A] font-bold">{t.header.patro}</span>
+            <span className="text-[#C5994E] font-bold">{nepaliDateStr || t.header.loading}</span>
           </div>
           <span className="text-slate-300">|</span>
           <div className="flex items-center gap-2 text-slate-600">
             <span>{t.header.sunrise}</span>
-            <span className="text-slate-900 font-bold">{muhurtaInfo?.sunrise || "06:02 AM"}</span>
+            <span className="text-[#12213A] font-bold">{muhurtaInfo?.sunrise || "06:02 AM"}</span>
             <span>• {t.header.sunset}</span>
-            <span className="text-slate-900 font-bold">{muhurtaInfo?.sunset || "05:58 PM"}</span>
+            <span className="text-[#12213A] font-bold">{muhurtaInfo?.sunset || "05:58 PM"}</span>
           </div>
         </div>
 
         <div className="flex items-center gap-6 text-[11px]">
           <div className="flex items-center gap-1.5 text-slate-600">
-            <Phone className="w-3.5 h-3.5 text-amber-700" />
+            <Phone className="w-3.5 h-3.5 text-[#C5994E]" />
             <span>{t.header.contact}</span>
           </div>
           <span className="text-slate-300">|</span>
-          <span className="text-amber-800 font-bold">{t.header.location}</span>
+          <span className="text-[#C5994E] font-bold">{t.header.location}</span>
         </div>
       </div>
 
@@ -65,24 +65,24 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
         </a>
 
         {/* Center Nav Links */}
-        <nav className="hidden lg:flex items-center gap-7 text-sm font-sans text-slate-900 font-medium">
-          <a href="#" className="text-slate-900 font-bold hover:text-red-700 transition-colors py-1 relative">
+        <nav className="hidden lg:flex items-center gap-7 text-sm font-sans text-slate-800 font-medium">
+          <a href="#" className="text-[#12213A] font-bold hover:text-[#C5994E] transition-colors py-1 relative">
             {t.header.home}
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-slate-900 rounded-none" />
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#12213A] rounded-none" />
           </a>
-          <a href="#services" className="hover:text-red-700 transition-colors py-1">
+          <a href="#services" className="hover:text-[#C5994E] transition-colors py-1">
             {t.header.services}
           </a>
-          <a href="#kundali" className="hover:text-red-700 transition-colors py-1">
+          <a href="#kundali" className="hover:text-[#C5994E] transition-colors py-1">
             {t.header.kundali}
           </a>
-          <a href="#about-guru" className="hover:text-red-700 transition-colors py-1">
+          <a href="#about-guru" className="hover:text-[#C5994E] transition-colors py-1">
             {t.header.aboutGuru}
           </a>
-          <a href="#works" className="hover:text-red-700 transition-colors py-1">
+          <a href="#works" className="hover:text-[#C5994E] transition-colors py-1">
             {t.header.research}
           </a>
-          <a href="#contact" className="hover:text-red-700 transition-colors py-1">
+          <a href="#contact" className="hover:text-[#C5994E] transition-colors py-1">
             {t.header.contactNav}
           </a>
         </nav>
@@ -93,9 +93,9 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
 
           <button
             onClick={() => onOpenInquiry(t.header.bookConsultation)}
-            className="px-5 py-2.5 rounded-none bg-[#B91C1C] hover:bg-[#991B1B] text-white text-xs lg:text-sm font-bold transition-colors flex items-center gap-2 shadow-sm"
+            className="px-5 py-2.5 rounded-none bg-[#12213A] hover:bg-[#0B1526] text-white text-xs lg:text-sm font-bold transition-colors flex items-center gap-2 shadow-sm border border-[#12213A]"
           >
-            <Calendar className="w-4 h-4" />
+            <Calendar className="w-4 h-4 text-[#C5994E]" />
             <span>{t.header.bookConsultation}</span>
           </button>
         </div>
