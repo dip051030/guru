@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import ObservatoryHeader from "@/components/ObservatoryHeader";
-import HeroThesis from "@/components/HeroThesis";
+import HamroPatroHero from "@/components/HamroPatroHero";
 import UnifiedEphemerisSuite from "@/components/UnifiedEphemerisSuite";
 import CompanySolutions from "@/components/CompanySolutions";
 import PortfolioWorks from "@/components/PortfolioWorks";
@@ -40,8 +40,8 @@ export default function Home() {
       {/* 1. Classical Sticky Header */}
       <ObservatoryHeader onOpenInquiry={handleOpenInquiry} />
 
-      {/* 2. Hero Section with North-Indian Kundali & Badges */}
-      <HeroThesis
+      {/* 2. Hero Section: Authentic HamroPatro-style Nepali Calendar */}
+      <HamroPatroHero
         onScrollToConsole={scrollToEphemeris}
         onOpenInquiry={handleOpenInquiry}
       />
