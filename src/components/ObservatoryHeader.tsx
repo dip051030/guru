@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Calendar, Phone, Menu, X, ArrowRight } from "lucide-react";
-import { getNepaliDate, getDailyMuhurtaTimings } from "@/utils/astronomy";
+import { getNepaliDate, getDailyMuhurtaTimings, toNepaliNumber } from "@/utils/astronomy";
 import { useLanguage } from "@/context/LanguageContext";
 import BrandLogo from "./BrandLogo";
 import LanguageToggle from "./LanguageToggle";
@@ -41,9 +41,21 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
           <span className="text-stone-300">|</span>
           <div className="flex items-center gap-2 text-stone-600">
             <span>{t.header.sunrise}</span>
-            <span className="text-[#181411] font-bold">{muhurtaInfo?.sunrise || "06:02 AM"}</span>
+            <span className="text-[#181411] font-bold">
+              {muhurtaInfo?.sunrise
+                ? language === "ne"
+                  ? toNepaliNumber(muhurtaInfo.sunrise)
+                  : muhurtaInfo.sunrise
+                : "06:02 AM"}
+            </span>
             <span>• {t.header.sunset}</span>
-            <span className="text-[#181411] font-bold">{muhurtaInfo?.sunset || "05:58 PM"}</span>
+            <span className="text-[#181411] font-bold">
+              {muhurtaInfo?.sunset
+                ? language === "ne"
+                  ? toNepaliNumber(muhurtaInfo.sunset)
+                  : muhurtaInfo.sunset
+                : "05:58 PM"}
+            </span>
           </div>
         </div>
 

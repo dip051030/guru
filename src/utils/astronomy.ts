@@ -142,13 +142,13 @@ const NEPALI_MONTHS = [
 
 const NEPALI_NUMERALS = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
 
-export function toNepaliNumber(num: number): string {
+export function toNepaliNumber(num: number | string): string {
   return num
     .toString()
     .split("")
     .map((ch) => {
       const parsed = parseInt(ch, 10);
-      return !isNaN(parsed) ? NEPALI_NUMERALS[parsed] : ch;
+      return !isNaN(parsed) && ch >= "0" && ch <= "9" ? NEPALI_NUMERALS[parsed] : ch;
     })
     .join("");
 }
@@ -449,12 +449,54 @@ export function evaluatePanchanga(date: Date, latitude = 27.7172, longitude = 85
 }
 
 /**
- * Calculates approximate daily auspicious and inauspicious Muhurta segments for Kathmandu
+ * Astronomical Solar calculation for Kathmandu (27.7172° N, 85.3240° E)
+ * Calculates local sunrise and sunset based on true solar zenith and equation of time
+ */
+export function getKathmanduSunTimes(date: Date): { sunrise: string; sunset: string } {
+  const lat = 27.7172;
+  const lon = 85.3240;
+  const rad = Math.PI / 180;
+
+  const startOfYear = new Date(date.getFullYear(), 0, 0);
+  const diff = date.getTime() - startOfYear.getTime();
+  const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+  // Solar declination approximation
+  const delta = 23.45 * Math.sin(rad * (360 / 365) * (dayOfYear - 81));
+
+  // Hour angle for civil zenith (90.833 degrees)
+  const cosH =
+    (Math.cos(rad * 90.833) - Math.sin(rad * lat) * Math.sin(rad * delta)) /
+    (Math.cos(rad * lat) * Math.cos(rad * delta));
+  const H = Math.acos(Math.max(-1, Math.min(1, cosH))) * (180 / Math.PI);
+
+  // Solar noon in UTC + 5:45 for Nepal Standard Time (5.75)
+  const solarNoonNepal = 12 - lon / 15 + 5.75;
+  const sunriseHours = solarNoonNepal - H / 15;
+  const sunsetHours = solarNoonNepal + H / 15;
+
+  const formatTime = (decHours: number): string => {
+    const hours = Math.floor(decHours);
+    const mins = Math.floor((decHours - hours) * 60);
+    const ampm = hours >= 12 ? "PM" : "AM";
+    const h12 = hours % 12 === 0 ? 12 : hours % 12;
+    return `${h12 < 10 ? "0" : ""}${h12}:${mins < 10 ? "0" : ""}${mins} ${ampm}`;
+  };
+
+  return {
+    sunrise: formatTime(sunriseHours),
+    sunset: formatTime(sunsetHours),
+  };
+}
+
+/**
+ * Calculates daily auspicious and inauspicious Muhurta segments for Kathmandu
  */
 export function getDailyMuhurtaTimings(date: Date) {
   const dayOfWeek = date.getDay(); // 0 = Sunday, 1 = Monday, ... 6 = Saturday
+  const sunTimes = getKathmanduSunTimes(date);
 
-  // Traditional Rahu Kaal segments by day of week (approx for Kathmandu ~6am sunrise, ~6pm sunset)
+  // Traditional Rahu Kaal segments by day of week
   const rahuKaalHours = [
     { start: "16:30", end: "18:00" }, // Sunday (8th octant)
     { start: "07:30", end: "09:00" }, // Monday (2nd octant)
@@ -479,9 +521,9 @@ export function getDailyMuhurtaTimings(date: Date) {
   return {
     rahuKaal: rahuKaalHours[dayOfWeek],
     yamaGanda: yamaGandaHours[dayOfWeek],
-    abhijitMuhurta: { start: "11:42", end: "12:30" }, // Approx midday window
+    abhijitMuhurta: { start: "11:42", end: "12:30" }, // Midday window
     brahmaMuhurta: { start: "04:36", end: "05:24" },
-    sunrise: "06:02 AM",
-    sunset: "05:58 PM",
+    sunrise: sunTimes.sunrise,
+    sunset: sunTimes.sunset,
   };
 }

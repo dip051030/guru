@@ -74,15 +74,15 @@
 }
 
 @layer components {
-  /* Sharp Architectural Card */
+  /* Sharp Architectural Card with decreased border opacity */
   .arch-card {
     background-color: #FFFFFF;
-    border: 1px solid #E7DFD5;
+    border: 1px solid rgba(231, 223, 213, 0.65);
     border-radius: 0px;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .arch-card:hover {
-    border-color: #C85A17;
+    border-color: rgba(200, 90, 23, 0.5);
   }
 
   /* Sharp Vedic Saffron Button */
@@ -179,38 +179,56 @@
     scrollbar-width: none;
   }
 
-  /* Clean, non-distracting architectural animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(6px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+}
 
-  @keyframes pulseSubtle {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.45;
-    }
+/* Clean, non-distracting architectural keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
   }
-
-  @keyframes floatSlow {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-4px);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@layer utilities {
   .animate-fade-in {
     animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   .animate-pulse-subtle {
@@ -221,3 +239,4 @@
     animation: floatSlow 6s ease-in-out infinite;
   }
 }
+

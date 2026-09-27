@@ -8,7 +8,9 @@
  */
 
 import NepaliDate from "nepali-date-converter";
-import { evaluatePanchanga } from "./astronomy";
+import { evaluatePanchanga, getKathmanduSunTimes, toNepaliNumber } from "./astronomy";
+
+export { getKathmanduSunTimes };
 
 export interface CalendarDay {
   bsDay: number;
@@ -54,6 +56,10 @@ export function toNepaliNum(n: number): string {
     .split("")
     .map((d) => NEPALI_NUMERALS[parseInt(d, 10)] || d)
     .join("");
+}
+
+export function toNepaliDigits(str: string | number): string {
+  return toNepaliNumber(str);
 }
 
 export const MONTH_NAMES_BS = [
@@ -113,47 +119,6 @@ export const TITHI_NAMES_NE: Record<number, { ne: string; en: string }> = {
   29: { ne: "चतुर्दशी", en: "Chaturdashi" },
   30: { ne: "औंसी", en: "Amavasya (Aunsi)" },
 };
-
-/**
- * Astronomical Solar calculation for Kathmandu (27.7172° N, 85.3240° E)
- * Calculates local sunrise and sunset based on true solar zenith and equation of time
- */
-export function getKathmanduSunTimes(date: Date): { sunrise: string; sunset: string } {
-  const lat = 27.7172;
-  const lon = 85.3240;
-  const rad = Math.PI / 180;
-
-  const startOfYear = new Date(date.getFullYear(), 0, 0);
-  const diff = date.getTime() - startOfYear.getTime();
-  const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-  // Solar declination approximation
-  const delta = 23.45 * Math.sin(rad * (360 / 365) * (dayOfYear - 81));
-
-  // Hour angle for civil zenith (90.833 degrees)
-  const cosH =
-    (Math.cos(rad * 90.833) - Math.sin(rad * lat) * Math.sin(rad * delta)) /
-    (Math.cos(rad * lat) * Math.cos(rad * delta));
-  const H = Math.acos(Math.max(-1, Math.min(1, cosH))) * (180 / Math.PI);
-
-  // Solar noon in UTC + 5:45 for Nepal Standard Time (5.75)
-  const solarNoonNepal = 12 - lon / 15 + 5.75;
-  const sunriseHours = solarNoonNepal - H / 15;
-  const sunsetHours = solarNoonNepal + H / 15;
-
-  const formatTime = (decHours: number): string => {
-    const hours = Math.floor(decHours);
-    const mins = Math.floor((decHours - hours) * 60);
-    const ampm = hours >= 12 ? "PM" : "AM";
-    const h12 = hours % 12 === 0 ? 12 : hours % 12;
-    return `${h12 < 10 ? "0" : ""}${h12}:${mins < 10 ? "0" : ""}${mins} ${ampm}`;
-  };
-
-  return {
-    sunrise: formatTime(sunriseHours),
-    sunset: formatTime(sunsetHours),
-  };
-}
 
 /**
  * Official Gazette & Traditional Festival Database covering all 12 Bikram Sambat Months
@@ -520,11 +485,42 @@ export function getLiveTodayNepaliDate(): {
   jsDate: Date;
   formattedEn: string;
   formattedNe: string;
+  tithiNe: string;
+  tithiEn: string;
+  nakshatra: string;
+  yoga: string;
+  moonSign: string;
+  sunrise: string;
+  sunset: string;
+  event?: string;
+  eventEn?: string;
+  nepalSamvatNe: string;
+  nepalSamvatEn: string;
 } {
   const now = new Date();
   const res = convertAdToBs(now);
+  const pan = evaluatePanchanga(now, 27.7172, 85.324);
+  const sun = getKathmanduSunTimes(now);
+  const todayEvent = FESTIVALS_BY_MONTH[res.monthBs]?.[res.dayBs];
+
+  // Nepal Samvat calculation (approx current NS year 1146)
+  const nsYear = res.yearBs > 2083 ? 1147 : 1146;
+  const nepalSamvatNe = `नेपाल संवत् ${toNepaliNum(nsYear)} अनलागा पञ्च`;
+  const nepalSamvatEn = `Nepal Samvat ${nsYear} Analaga Pancha`;
+
   return {
     ...res,
     jsDate: now,
+    tithiNe: TITHI_NAMES_NE[pan.tithi.index]?.ne || pan.tithi.name,
+    tithiEn: TITHI_NAMES_NE[pan.tithi.index]?.en || pan.tithi.name,
+    nakshatra: pan.nakshatra.name,
+    yoga: pan.yoga.name,
+    moonSign: `${pan.lunarSign.sanskrit} (${pan.lunarSign.name})`,
+    sunrise: sun.sunrise,
+    sunset: sun.sunset,
+    event: todayEvent?.event,
+    eventEn: todayEvent?.eventEn,
+    nepalSamvatNe,
+    nepalSamvatEn,
   };
 }

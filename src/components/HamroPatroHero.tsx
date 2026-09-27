@@ -22,6 +22,7 @@ import {
   getMonthCalendarData,
   WEEKDAYS,
   toNepaliNum,
+  toNepaliDigits,
   CalendarDay,
   MONTH_NAMES_BS,
   FESTIVALS_BY_MONTH,
@@ -232,7 +233,7 @@ export default function HamroPatroHero({
                   {isNe ? "आजको पञ्चाङ्ग" : "Live Panchanga"}
                 </span>
                 <span className="text-[11px] sm:text-xs text-stone-500 font-medium">
-                  {isNe ? "नेपाल संवत् ११४६ अनलागा पञ्च" : "Nepal Samvat 1146 Analaga Pancha"}
+                  {isNe ? liveToday.nepalSamvatNe : liveToday.nepalSamvatEn}
                 </span>
               </div>
 
@@ -299,26 +300,26 @@ export default function HamroPatroHero({
           </div>
 
           {/* Sub-strip: Today's Festival Alert Banner */}
-          <div className="mt-3 pt-2.5 border-t border-stone-200 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div className="mt-3 pt-2.5 border-t border-stone-200/60 flex flex-wrap items-center justify-between gap-2 text-xs">
             <div className="flex items-center gap-2 text-stone-900">
-              <span className="px-2 py-0.5 bg-orange-50 text-[#C85A17] font-bold text-[10px] sm:text-xs uppercase tracking-wider border border-orange-200 rounded-none">
+              <span className="px-2 py-0.5 bg-orange-50 text-[#C85A17] font-bold text-[10px] sm:text-xs uppercase tracking-wider border border-orange-200/70 rounded-none">
                 {isNe ? "पर्व / उत्सव" : "Festival"}
               </span>
               <span className="font-bold text-[#181411] text-xs sm:text-sm">
                 {isNe
-                  ? "सोह्रश्राद्ध प्रारम्भ (प्रतिपदा श्राद्ध) / विश्व पर्यटन दिवस"
-                  : "Sohrashraddha Pratipada / World Tourism Day"}
+                  ? (liveToday.event || "आज कुनै विशेष सार्वजनिक बिदा वा पर्व छैन")
+                  : (liveToday.eventEn || "No gazetted public holiday or special festival today")}
               </span>
             </div>
 
             <div className="flex items-center gap-3 sm:gap-4 text-[11px] text-slate-500 font-medium">
               <span className="inline-flex items-center gap-1">
                 <Sun className="w-3.5 h-3.5 text-amber-500" />
-                {isNe ? "सूर्योदय: ०६:०१" : "Sunrise: 06:01 AM"}
+                {isNe ? `सूर्योदय: ${toNepaliDigits(liveToday.sunrise.split(" ")[0])}` : `Sunrise: ${liveToday.sunrise}`}
               </span>
               <span className="inline-flex items-center gap-1">
                 <Moon className="w-3.5 h-3.5 text-indigo-400" />
-                {isNe ? "सूर्यास्त: १७:५८" : "Sunset: 05:58 PM"}
+                {isNe ? `सूर्यास्त: ${toNepaliDigits(liveToday.sunset.split(" ")[0])}` : `Sunset: ${liveToday.sunset}`}
               </span>
               <span className="inline-flex items-center gap-1 hidden md:inline-flex">
                 <MapPin className="w-3.5 h-3.5 text-slate-400" />
