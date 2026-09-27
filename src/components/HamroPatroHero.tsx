@@ -617,33 +617,27 @@ export default function HamroPatroHero({
                     key={idx}
                     type="button"
                     onClick={() => setSelectedDay(day)}
-                    className={`relative min-h-[64px] sm:min-h-[96px] md:min-h-[110px] p-1 sm:p-2 text-left flex flex-col justify-between transition-colors focus:outline-none rounded-none ${
-                      // Today cell: Warm Saffron Orange Accent
+                    className={`relative min-h-[70px] sm:min-h-[102px] md:min-h-[118px] p-1.5 sm:p-2.5 text-left flex flex-col justify-between transition-all duration-150 focus:outline-none rounded-none ${
+                      // Today cell: Warm Saffron Highlight
                       day.isToday
                         ? "bg-[#C85A17] text-white font-bold z-10 hover:bg-[#A6440C] shadow-sm"
                         : isSelected
                         ? "bg-orange-50 ring-2 ring-[#C85A17] z-10"
                         : day.isCurrentMonth
                         ? day.isHoliday || isSat
-                          ? "bg-amber-50/60 hover:bg-amber-100/70 text-stone-900"
+                          ? "bg-[#FFFDF9] hover:bg-orange-50/50 text-stone-900"
                           : "bg-white hover:bg-orange-50/40 text-stone-900"
-                        : "bg-stone-100 text-stone-400 opacity-60"
+                        : "bg-stone-50 text-stone-400 opacity-50"
                     }`}
                   >
-                    {/* Top Row: English Day (top-right) & Indicator */}
-                    <div className="flex items-start justify-between w-full">
-                      {day.isHoliday && day.isCurrentMonth && !day.isToday ? (
-                        <span className="w-1.5 h-1.5 bg-[#C2410C] rounded-none" title="Holiday" />
-                      ) : (
-                        <span />
-                      )}
-                      
+                    {/* Top Row: English Day (top-right) */}
+                    <div className="flex items-center justify-end w-full">
                       <span
-                        className={`text-[9px] sm:text-xs font-bold tabular-nums ${
+                        className={`text-[9px] sm:text-xs font-semibold tabular-nums ${
                           day.isToday
                             ? "text-orange-100"
                             : isSat || isSun || day.isHoliday
-                            ? "text-[#C2410C] font-extrabold"
+                            ? "text-[#C2410C]"
                             : "text-stone-400"
                         }`}
                       >
@@ -651,10 +645,10 @@ export default function HamroPatroHero({
                       </span>
                     </div>
 
-                    {/* Middle: Prominent Nepali Day Numeral */}
-                    <div className="my-0.5 text-center">
+                    {/* Middle: Prominent Day Numeral + Clear Unboxed Event */}
+                    <div className="my-0.5 text-center w-full">
                       <span
-                        className={`text-lg sm:text-2xl md:text-3xl font-black block leading-tight ${
+                        className={`text-xl sm:text-2xl md:text-3xl font-extrabold block leading-tight ${
                           day.isToday
                             ? "text-white"
                             : isSat || day.isHoliday
@@ -665,16 +659,26 @@ export default function HamroPatroHero({
                         {isNe ? day.bsDayNepali : day.bsDay}
                       </span>
 
-                      {/* Event / Festival Tag Snippet (Responsive dot on tiny screens, badge on sm+) */}
+                      {/* Event / Festival Title - Pure Clear Typography (No Box) */}
                       {day.event && day.isCurrentMonth && (
                         <>
                           <span
-                            className="hidden sm:block text-[9px] sm:text-[10px] font-bold leading-tight line-clamp-1 mt-1 px-1 py-0.5 rounded-none border bg-orange-50/80 text-stone-800 border-orange-200"
+                            className={`hidden sm:block text-[10px] sm:text-[11px] leading-tight line-clamp-2 mt-1 px-0.5 text-center ${
+                              day.isToday
+                                ? "text-orange-50 font-semibold"
+                                : day.isHoliday || isSat
+                                ? "text-[#C2410C] font-bold"
+                                : "text-stone-700 font-semibold"
+                            }`}
                             title={isNe ? day.event : day.eventEn || day.event}
                           >
                             {isNe ? day.event : day.eventEn || day.event}
                           </span>
-                          <span className="sm:hidden block w-1.5 h-1.5 rounded-none bg-[#C2410C] mx-auto mt-0.5" />
+                          <span
+                            className={`sm:hidden block w-1.5 h-1.5 rounded-full mx-auto mt-0.5 ${
+                              day.isToday ? "bg-white" : "bg-[#C2410C]"
+                            }`}
+                          />
                         </>
                       )}
                     </div>
@@ -682,7 +686,7 @@ export default function HamroPatroHero({
                     {/* Bottom: Tithi Name */}
                     <div className="w-full text-center">
                       <span
-                        className={`block text-[8px] sm:text-[10.5px] font-semibold tracking-tight truncate ${
+                        className={`block text-[8.5px] sm:text-[10px] font-medium tracking-tight truncate ${
                           day.isToday ? "text-orange-100" : "text-stone-500"
                         }`}
                       >
@@ -750,45 +754,45 @@ export default function HamroPatroHero({
                 </div>
               </div>
 
-              {/* Event alert if present (Warm Amber / Saffron, No Red) */}
+              {/* Event alert if present - Clean Accent Line, Not Trapped in a Box */}
               {selectedDay.event && (
-                <div className="mt-3 p-2 bg-orange-50 border border-orange-200 text-xs font-bold text-stone-900 flex items-center gap-2 rounded-none">
+                <div className="mt-3 p-2.5 bg-orange-50/70 border-l-2 border-[#C85A17] text-xs font-bold text-stone-900 flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-[#C85A17] shrink-0" />
                   <span>{isNe ? selectedDay.event : selectedDay.eventEn || selectedDay.event}</span>
                 </div>
               )}
 
-              {/* Sharp Panchanga Matrix */}
-              <div className="mt-4 grid grid-cols-2 gap-1.5 text-xs">
-                <div className="p-2.5 bg-stone-50 border border-stone-200 rounded-none">
-                  <span className="text-stone-500 font-semibold block text-[11px]">{isNe ? "तिथि" : "Tithi"}</span>
-                  <span className="font-bold text-[#181411]">{isNe ? selectedDay.tithi : selectedDay.tithiEn}</span>
+              {/* Clean Panchanga Matrix - Unified Clean Architectural Grid */}
+              <div className="mt-4 grid grid-cols-2 divide-x divide-y divide-stone-200 border border-stone-200 text-xs bg-white">
+                <div className="p-2 sm:p-2.5">
+                  <span className="text-stone-400 font-semibold block text-[10px] uppercase tracking-wider">{isNe ? "तिथि" : "Tithi"}</span>
+                  <span className="font-bold text-[#181411] text-xs">{isNe ? selectedDay.tithi : selectedDay.tithiEn}</span>
                 </div>
-                <div className="p-2.5 bg-stone-50 border border-stone-200 rounded-none">
-                  <span className="text-stone-500 font-semibold block text-[11px]">{isNe ? "नक्षत्र" : "Nakshatra"}</span>
-                  <span className="font-bold text-[#181411]">{selectedDay.nakshatra}</span>
+                <div className="p-2 sm:p-2.5">
+                  <span className="text-stone-400 font-semibold block text-[10px] uppercase tracking-wider">{isNe ? "नक्षत्र" : "Nakshatra"}</span>
+                  <span className="font-bold text-[#181411] text-xs">{selectedDay.nakshatra}</span>
                 </div>
-                <div className="p-2.5 bg-stone-50 border border-stone-200 rounded-none">
-                  <span className="text-stone-500 font-semibold block text-[11px]">{isNe ? "योग" : "Yoga"}</span>
-                  <span className="font-bold text-[#181411]">{selectedDay.yoga}</span>
+                <div className="p-2 sm:p-2.5">
+                  <span className="text-stone-400 font-semibold block text-[10px] uppercase tracking-wider">{isNe ? "योग" : "Yoga"}</span>
+                  <span className="font-bold text-[#181411] text-xs">{selectedDay.yoga}</span>
                 </div>
-                <div className="p-2.5 bg-stone-50 border border-stone-200 rounded-none">
-                  <span className="text-stone-500 font-semibold block text-[11px]">{isNe ? "चन्द्र राशि" : "Moon Sign"}</span>
-                  <span className="font-bold text-[#181411]">{selectedDay.moonSign}</span>
+                <div className="p-2 sm:p-2.5">
+                  <span className="text-stone-400 font-semibold block text-[10px] uppercase tracking-wider">{isNe ? "चन्द्र राशि" : "Moon Sign"}</span>
+                  <span className="font-bold text-[#181411] text-xs">{selectedDay.moonSign}</span>
                 </div>
-                <div className="p-2.5 bg-stone-50 border border-stone-200 rounded-none">
-                  <span className="text-stone-500 font-semibold block text-[11px]">{isNe ? "सूर्योदय" : "Sunrise"}</span>
-                  <span className="font-bold text-[#181411]">{selectedDay.sunrise}</span>
+                <div className="p-2 sm:p-2.5">
+                  <span className="text-stone-400 font-semibold block text-[10px] uppercase tracking-wider">{isNe ? "सूर्योदय" : "Sunrise"}</span>
+                  <span className="font-bold text-[#181411] text-xs">{selectedDay.sunrise}</span>
                 </div>
-                <div className="p-2.5 bg-stone-50 border border-stone-200 rounded-none">
-                  <span className="text-stone-500 font-semibold block text-[11px]">{isNe ? "सूर्यास्त" : "Sunset"}</span>
-                  <span className="font-bold text-[#181411]">{selectedDay.sunset}</span>
+                <div className="p-2 sm:p-2.5">
+                  <span className="text-stone-400 font-semibold block text-[10px] uppercase tracking-wider">{isNe ? "सूर्यास्त" : "Sunset"}</span>
+                  <span className="font-bold text-[#181411] text-xs">{selectedDay.sunset}</span>
                 </div>
               </div>
 
               {/* Muhurta info if any */}
               {selectedDay.muhurta && (
-                <div className="mt-3 p-2 bg-orange-50 border border-orange-200 text-xs text-stone-900 rounded-none">
+                <div className="mt-3 p-2.5 bg-orange-50/50 border-l-2 border-[#D97706] text-xs text-stone-900">
                   <span className="font-bold block text-[#C85A17]">{isNe ? "शुभ साइत / चौघडिया:" : "Auspicious Muhurta:"}</span>
                   <span className="font-medium">{selectedDay.muhurta}</span>
                 </div>
@@ -845,9 +849,9 @@ export default function HamroPatroHero({
                 </button>
               </div>
 
-              {/* Tab 1: Festivals List for Current Month */}
+              {/* Tab 1: Festivals List for Current Month - Clean list, not nested boxes */}
               {sidebarTab === "festivals" && (
-                <div className="p-3 space-y-2 max-h-[360px] overflow-y-auto">
+                <div className="divide-y divide-stone-100 max-h-[360px] overflow-y-auto">
                   {festivalEntries.length > 0 ? (
                     festivalEntries.map((ev) => (
                       <div
@@ -858,23 +862,23 @@ export default function HamroPatroHero({
                           );
                           if (target) setSelectedDay(target);
                         }}
-                        className="p-2.5 border border-stone-200 hover:border-[#C85A17] hover:bg-orange-50/50 transition-colors cursor-pointer flex items-start gap-3 rounded-none"
+                        className="p-3 hover:bg-orange-50/50 transition-colors cursor-pointer flex items-center gap-3"
                       >
-                        <div className="shrink-0 w-8 h-8 bg-stone-100 flex flex-col items-center justify-center border border-stone-300 rounded-none">
+                        <div className="shrink-0 w-8 h-8 bg-stone-100 flex flex-col items-center justify-center border border-stone-200">
                           <span className="text-[9px] text-stone-500 leading-none font-bold">
                             {isNe ? calendarData.monthName.slice(0, 3) : calendarData.monthNameEn.slice(0, 3)}
                           </span>
-                          <span className="text-xs font-black text-[#181411] leading-none mt-0.5">
+                          <span className="text-xs font-black text-[#C85A17] leading-none mt-0.5">
                             {isNe ? toNepaliNum(ev.day) : ev.day}
                           </span>
                         </div>
-                        <div>
-                          <div className="text-xs font-bold text-[#181411] line-clamp-1">
+                        <div className="flex-1 min-w-0">
+                          <div className="text-xs font-bold text-[#181411] truncate">
                             {isNe ? ev.event : ev.eventEn}
                           </div>
                           <div className="text-[11px] text-stone-500 mt-0.5">
                             {ev.isHoliday ? (
-                              <span className="text-[#C2410C] font-bold">{isNe ? "सार्वजनिक बिदा" : "Public Holiday"}</span>
+                              <span className="text-[#C2410C] font-semibold">{isNe ? "सार्वजनिक बिदा" : "Public Holiday"}</span>
                             ) : (
                               <span>{isNe ? "धार्मिक / सांस्कृतिक पर्व" : "Cultural Festival"}</span>
                             )}
