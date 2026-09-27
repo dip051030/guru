@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Calendar, Phone, Sparkles, Shield, HeartHandshake, CheckCircle } from "lucide-react";
+import BrandLogo from "./BrandLogo";
 
 interface PreFooterBannerProps {
   onOpenInquiry: (subject?: string) => void;
@@ -15,7 +16,10 @@ export default function PreFooterBanner({ onOpenInquiry }: PreFooterBannerProps)
       <div className="absolute -top-32 right-1/4 w-96 h-96 rounded-full bg-gold/5 blur-3xl pointer-events-none" />
       <div className="absolute -bottom-32 left-1/4 w-96 h-96 rounded-full bg-terracotta/10 blur-3xl pointer-events-none" />
 
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-12 text-center relative z-10">
+      <div className="max-w-[1100px] mx-auto px-6 lg:px-12 text-center relative z-10 flex flex-col items-center">
+        <div className="mb-4">
+          <BrandLogo showText={false} size="lg" variant="gold" />
+        </div>
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/15 text-gold text-xs font-mono tracking-widest uppercase mb-4">
           <Sparkles className="w-3.5 h-3.5" />
           <span>सत्य • निष्पक्षता • शास्त्रीय मर्यादा</span>

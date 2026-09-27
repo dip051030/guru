@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Mail, Compass, Sparkles, Award, Users, ShieldCheck, MapPin, Calendar } from "lucide-react";
+import BrandLogo from "./BrandLogo";
 
 interface LeadershipProps {
   onOpenInquiry: (subject: string) => void;
@@ -64,15 +65,13 @@ export default function CompanyLeadership({ onOpenInquiry }: LeadershipProps) {
                   <div className="absolute inset-0 bg-radial from-gold/15 to-transparent pointer-events-none" />
                   
                   {/* Auspicious Classical Emblem */}
-                  <div className="w-full h-full rounded-full bg-[#FAF7F2] border-2 border-gold/40 flex flex-col items-center justify-center p-4">
-                    <span className="font-serif text-6xl text-terracotta select-none font-bold">
-                      ॐ
-                    </span>
-                    <span className="font-serif text-sm font-semibold text-navy mt-1">
+                  <div className="w-full h-full rounded-full bg-[#FAF7F2] border-2 border-gold/40 flex flex-col items-center justify-center p-3 shadow-inner">
+                    <BrandLogo showText={false} size="lg" variant="dark" />
+                    <span className="font-serif text-base font-bold text-navy mt-2">
                       गुरु नील हरि
                     </span>
-                    <span className="font-mono text-[10px] text-gold tracking-widest uppercase mt-0.5">
-                      ज्योतिषाचार्य
+                    <span className="font-mono text-[10px] text-terracotta tracking-widest uppercase mt-0.5 font-semibold">
+                      मुख्य ज्योतिषाचार्य
                     </span>
                   </div>
                 </div>

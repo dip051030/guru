@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ShieldCheck, Compass, HeartHandshake, Flame, Sparkles } from "lucide-react";
+import BrandLogo from "./BrandLogo";
 
 export default function AntiSlopManifesto() {
   const PILLARS = [
@@ -100,9 +101,7 @@ export default function AntiSlopManifesto() {
                 </blockquote>
 
                 <div className="mt-8 pt-6 border-t border-gold/20 flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full border-2 border-gold flex items-center justify-center bg-terracotta/20 text-gold font-serif text-2xl font-bold shadow-inner">
-                    ॐ
-                  </div>
+                  <BrandLogo showText={false} size="lg" variant="gold" />
                   <div>
                     <h4 className="font-serif text-lg text-white font-bold">
                       गुरु नील हरि

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Calendar, Phone, Menu, X, ArrowRight } from "lucide-react";
 import { getNepaliDate, getDailyMuhurtaTimings } from "@/utils/astronomy";
+import BrandLogo from "./BrandLogo";
 
 interface HeaderProps {
   onOpenInquiry: (initialSubject?: string) => void;
@@ -51,23 +52,9 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
 
       {/* Main Navigation Bar */}
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
-        {/* Brand Logo matching reference */}
-        <a href="#" className="flex items-center gap-3 group">
-          <div className="w-11 h-11 rounded-full border border-secondary/40 flex items-center justify-center bg-surface-cream shadow-soft group-hover:border-primary transition-colors">
-            {/* Elegant Mandala Sun SVG */}
-            <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <circle cx="12" cy="12" r="4" />
-              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
-            </svg>
-          </div>
-          <div className="flex flex-col">
-            <span className="font-serif text-2xl font-bold tracking-tight text-foreground leading-none">
-              ज्योतिष दर्शन
-            </span>
-            <span className="text-[11px] text-textMuted font-sans mt-1">
-              गुरु नील हरि • परम्परा • मार्गदर्शन
-            </span>
-          </div>
+        {/* Brand Logo with luxury vector lockup */}
+        <a href="#" className="flex items-center group">
+          <BrandLogo variant="dark" size="md" />
         </a>
 
         {/* Center Nav Links matching reference */}

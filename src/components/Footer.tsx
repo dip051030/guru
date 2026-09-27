@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Mail, Phone, MapPin, Clock, Compass, Heart } from "lucide-react";
+import BrandLogo from "./BrandLogo";
 
 interface FooterProps {
   onOpenInquiry: (subject?: string) => void;
@@ -14,19 +15,7 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-[#1C2C45]">
           {/* Brand Column (Col 1 to 5) */}
           <div className="lg:col-span-5 flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full border border-gold/40 flex items-center justify-center bg-terracotta text-white shadow-md">
-                <span className="font-serif text-lg font-bold">ॐ</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-serif text-xl md:text-2xl font-bold text-white tracking-tight">
-                  नील हरि वैदिक ज्योतिष केन्द्र
-                </span>
-                <span className="text-[11px] font-mono text-gold tracking-wider uppercase">
-                  NEEL HARI VEDIC JYOTISH KENDRA • KATHMANDU
-                </span>
-              </div>
-            </div>
+            <BrandLogo variant="light" size="lg" />
 
             <p className="text-sm text-[#93A5BC] max-w-md font-light leading-relaxed mt-2">
               काठमाडौँको ऐतिहासिक वैदिक परम्परामा आधारित प्रामाणिक ज्योतिष परामर्श। व्यक्तिगत जन्म कुण्डली, विंशोत्तरी दशा फल, विवाह मिलान, व्यापारिक साइत र पञ्चाङ्ग गणनाको शुद्ध मार्गदर्शन।

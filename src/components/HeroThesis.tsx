@@ -1,14 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
   Calendar,
   ArrowRight,
   ShieldCheck,
   Award,
-  Users,
-  Globe,
+  Sparkles,
   Compass,
+  Star,
+  MapPin,
+  CheckCircle2,
 } from "lucide-react";
 
 interface HeroProps {
@@ -20,155 +22,309 @@ export default function HeroThesis({
   onScrollToConsole,
   onOpenInquiry,
 }: HeroProps) {
+  const [activeHouse, setActiveHouse] = useState<number | null>(1);
+
+  const HOUSES = [
+    { num: 1, name: "लग्न", desc: "व्यक्तित्व, शरीर, आत्मा", planet: "सूर्य" },
+    { num: 2, name: "धन", desc: "सम्पत्ति, वाणी, कुटुम्ब", planet: "बुध" },
+    { num: 3, name: "सहज", desc: "पराक्रम, भ्रातृ, सङ्घर्ष", planet: "मंगल" },
+    { num: 4, name: "सुख", desc: "माता, गृह, मनको शान्ति", planet: "चन्द्र" },
+    { num: 5, name: "सुत", desc: "बुद्धि, सन्तान, विद्या", planet: "बृहस्पति" },
+    { num: 6, name: "शत्रु", desc: "रोग, ऋण, प्रतिस्पर्धा", planet: "शनि" },
+    { num: 7, name: "जाया", desc: "विवाह, साझेदारी, यात्रा", planet: "शुक्र" },
+    { num: 8, name: "आयु", desc: "आयुष्य, गूढ विद्या, संकट", planet: "राहु" },
+    { num: 9, name: "धर्म", desc: "भाग्य, गुरु, तीर्थाटन", planet: "बृहस्पति" },
+    { num: 10, name: "कर्म", desc: "आजीविका, पद, प्रतिष्ठा", planet: "सूर्य" },
+    { num: 11, name: "लाभ", desc: "आय, इच्छापूर्ति, मित्र", planet: "बुध" },
+    { num: 12, name: "व्यय", desc: "खर्च, मोक्ष, विदेश यात्रा", planet: "केतु" },
+  ];
+
   return (
-    <section className="relative w-full border-b border-border bg-gradient-to-b from-[#FDFBF7] via-[#FAF6EE] to-[#F5EFE6] pt-12 md:pt-16 pb-12 lg:pb-16 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          {/* Left Column: Headline and Thesis */}
-          <div className="lg:col-span-7 flex flex-col items-start">
-            {/* Cultural Eyebrow with decorative hyphens */}
-            <div className="flex items-center gap-2 text-xs font-serif tracking-widest text-primary font-medium mb-4">
-              <span className="text-secondary">—</span>
-              <span>प्राचीन ज्ञान • आधुनिक जीवन</span>
-              <span className="text-secondary">—</span>
+    <section className="relative w-full border-b border-[#E8DFD1] bg-[#FAF7F2] pt-10 sm:pt-14 md:pt-16 pb-14 md:pb-20 overflow-hidden">
+      {/* Delicate Atmospheric Ambient Radiance & Sacred Geometry Rings */}
+      <div className="absolute top-0 right-1/4 w-[700px] h-[700px] rounded-full bg-gradient-to-br from-[#F5E6CC]/40 via-[#F3DEBD]/20 to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full border border-gold/15 pointer-events-none" />
+      <div className="absolute -top-16 -left-16 w-[400px] h-[400px] rounded-full border border-dashed border-terracotta/10 pointer-events-none" />
+
+      <div className="max-w-[1360px] mx-auto px-6 lg:px-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+          {/* Left Column: Editorial & Thesis Content */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left">
+            {/* Live Observatory Status Pill */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white border border-[#E5DAC8] shadow-sm mb-6">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <span className="text-xs font-mono font-medium text-navy tracking-tight">
+                काठमाडौँ वेधशाला • प्रत्यक्ष तथा अनलाइन परामर्श उपलब्ध
+              </span>
             </div>
 
-            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] text-textHeading font-normal tracking-tight leading-[1.12]">
-              ज्योतिष दर्शन
+            {/* Classical Eyebrow */}
+            <div className="flex items-center gap-2 text-xs font-mono tracking-[0.2em] text-terracotta uppercase mb-3 font-semibold">
+              <span className="text-gold">—</span>
+              <span>प्राचीन सूर्य सिद्धान्त • शुद्ध दृक-गणित • जीवन दर्शन</span>
+              <span className="text-gold">—</span>
+            </div>
+
+            {/* Master Headline */}
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4.1rem] text-navy font-bold tracking-tight leading-[1.12]">
+              समयको लय, <br className="hidden sm:inline" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-navy via-terracotta to-[#8F3316]">
+                जीवनको स्पष्ट मार्गचित्र।
+              </span>
             </h1>
 
-            <p className="mt-3 font-serif text-lg sm:text-xl md:text-2xl text-primary font-normal">
-              तपाईंको जीवनयात्रामा वैदिक ज्योतिषको मार्गदर्शन
+            {/* Sub-headline */}
+            <p className="mt-4 font-serif text-lg sm:text-xl text-gold font-medium">
+              गुरु नील हरि • ३ दशकको प्रामाणिक साधना र शास्त्रसम्मत परामर्श
             </p>
 
-            <p className="mt-5 text-sm sm:text-base text-textBody max-w-xl font-light leading-relaxed">
-              जन्म कुण्डली, पञ्चाङ्ग गणना, ग्रह-नक्षत्रको प्रभाव र शास्त्रीय वैदिक उपायद्वारा
-              जीवनका महत्वपूर्ण निर्णयहरूमा सही दिशा पाउनुहोस्। गुरु नील हरिको प्रत्यक्ष
-              मार्गदर्शनमा अन्धविश्वास बिनाको प्रामाणिक परामर्श।
+            {/* Paragraph / Value Proposition */}
+            <p className="mt-5 text-sm sm:text-base text-textBody max-w-2xl font-light leading-relaxed">
+              काल्पनिक डर र व्यापारिक शोषणबिना, तपाईंको वास्तविक जन्म समय र ग्रह-नक्षत्रको सूक्ष्म गणितीय विश्लेषणबाट व्यक्तिगत जीवन, वैवाहिक सम्बन्ध, व्यापारिक साइत र भविष्यका महत्वपूर्ण निर्णयहरूमा स्पष्ट, सात्विक दिशा प्राप्त गर्नुहोस्।
             </p>
 
-            {/* Primary Action Button matching reference */}
+            {/* CTA Actions */}
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <button
                 onClick={() => onOpenInquiry("परामर्श सुरु गर्नुहोस्")}
-                className="px-8 py-3.5 rounded-lg bg-primary text-textInverted text-sm font-sans font-medium hover:bg-primary-dark transition-all duration-200 flex items-center gap-2.5 shadow-card hover:shadow-hover group"
+                className="px-8 py-4 rounded-full bg-terracotta text-white font-medium text-sm md:text-base hover:bg-terracotta-dark shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2.5 group"
               >
-                <Calendar className="w-4 h-4 text-secondary" />
+                <Calendar className="w-4 h-4" />
                 <span>परामर्श सुरु गर्नुहोस्</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
 
               <button
                 onClick={onScrollToConsole}
-                className="px-6 py-3.5 rounded-lg border border-border bg-surface text-textBody hover:text-foreground text-sm font-sans font-medium hover:border-secondary transition-all duration-200 flex items-center gap-2 shadow-soft"
+                className="px-7 py-4 rounded-full bg-white hover:bg-[#FAF7F2] border border-[#DCD0BE] text-navy font-medium text-sm md:text-base transition-all duration-200 flex items-center gap-2 shadow-sm hover:border-terracotta/40"
               >
-                <Compass className="w-4 h-4 text-secondary" />
-                <span>कुण्डली गणना हेर्नुहोस्</span>
+                <Compass className="w-4 h-4 text-terracotta" />
+                <span>कुण्डली गणना गर्नुहोस्</span>
               </button>
+            </div>
+
+            {/* Social Proof & Rating Snippet */}
+            <div className="mt-8 flex items-center gap-3 pt-6 border-t border-[#EAE1D3] w-full">
+              <div className="flex items-center text-gold">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-gold text-gold" />
+                ))}
+              </div>
+              <span className="font-mono text-xs font-bold text-navy">
+                ४.९५ / ५.०
+              </span>
+              <span className="text-xs text-textMuted font-mono">
+                (२५,०००+ भन्दा बढी कुण्डली परामर्श सम्पन्न)
+              </span>
             </div>
           </div>
 
-          {/* Right Column: Hero Visual composition matching the reference image */}
+          {/* Right Column: Aesthetic Celestial Astrolabe & Diamond Kundali Visualizer */}
           <div className="lg:col-span-5 relative flex justify-center">
-            <div className="relative w-full max-w-[480px] aspect-[4/3] rounded-2xl overflow-hidden border border-secondary/30 bg-gradient-to-br from-[#FFF9EE] via-[#F8EFE0] to-[#EEDCC4] p-4 shadow-card flex items-center justify-center">
-              {/* Soft celestial background circles */}
-              <div className="absolute inset-0 opacity-15 pointer-events-none">
-                <svg className="w-full h-full text-secondary" viewBox="0 0 400 300">
-                  <circle cx="200" cy="150" r="140" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
-                  <circle cx="200" cy="150" r="100" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                  <circle cx="200" cy="150" r="60" fill="none" stroke="currentColor" strokeWidth="1" />
-                </svg>
+            {/* Visual Container with Multi-layer Shadow & Parchment Tone */}
+            <div className="relative w-full max-w-[480px] bg-gradient-to-b from-[#FFFDF9] to-[#F7EFE1] rounded-3xl p-6 sm:p-8 border border-[#E2D5C0] shadow-card">
+              {/* Top Bar of the Visualizer */}
+              <div className="flex items-center justify-between pb-4 border-b border-[#E8DEC9]">
+                <div className="flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-terracotta" />
+                  <span className="font-serif text-sm font-bold text-navy">
+                    लग्न कुण्डली चक्र (D-1)
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5 text-[11px] font-mono text-gold font-medium">
+                  <MapPin className="w-3 h-3 text-terracotta" />
+                  <span>काठमाडौँ वेधशाला</span>
+                </div>
               </div>
 
-              {/* Composition: Authentic Diamond Kundali Sheet on scripture */}
-              <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
-                {/* Traditional North-Indian Diamond Kundali Chart Sheet */}
-                <div className="w-[82%] aspect-square max-h-[240px] bg-[#FFFDF8] border-2 border-secondary/70 rounded-lg p-2.5 shadow-hover relative transform -rotate-1 hover:rotate-0 transition-transform duration-300">
-                  <div className="absolute inset-2 pointer-events-none">
-                    <svg className="w-full h-full stroke-secondary/70 stroke-[1.2]">
-                      <line x1="0" y1="0" x2="100%" y2="100%" />
-                      <line x1="100%" y1="0" x2="0" y2="100%" />
-                      <polygon
-                        points="50%,0% 100%,50% 50%,100% 0%,50%"
-                        fill="#FDF8F0"
-                        className="stroke-primary/70 stroke-[1.5]"
-                      />
-                    </svg>
-                  </div>
+              {/* The Diamond Kundali Chart with Interactive House Cells */}
+              <div className="mt-6 relative aspect-square w-full max-w-[340px] mx-auto bg-[#FFFDF8] border-2 border-gold/70 rounded-2xl p-3 shadow-inner flex items-center justify-center">
+                {/* Background Sacred Geometric Lines */}
+                <svg className="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] stroke-gold/60 stroke-[1.2] pointer-events-none">
+                  <line x1="0" y1="0" x2="100%" y2="100%" />
+                  <line x1="100%" y1="0" x2="0" y2="100%" />
+                  <polygon
+                    points="50%,0% 100%,50% 50%,100% 0%,50%"
+                    fill="rgba(197,153,78,0.06)"
+                    className="stroke-terracotta/70 stroke-[1.5]"
+                  />
+                </svg>
 
-                  {/* House Text in Chart */}
-                  <div className="absolute top-[16%] left-[32%] w-[36%] h-[20%] flex flex-col items-center justify-center text-center">
-                    <span className="font-serif text-[11px] text-primary font-bold">१ लग्न</span>
-                    <span className="font-serif text-[10px] text-foreground font-semibold">कर्कट</span>
-                  </div>
-                  <div className="absolute top-[38%] left-[15%] w-[25%] h-[25%] flex items-center justify-center">
-                    <span className="font-serif text-[10px] text-primary font-bold">४ सुख</span>
-                  </div>
-                  <div className="absolute bottom-[16%] left-[32%] w-[36%] h-[20%] flex items-center justify-center">
-                    <span className="font-serif text-[10px] text-primary font-bold">७ विवाह</span>
-                  </div>
-                  <div className="absolute top-[38%] right-[15%] w-[25%] h-[25%] flex items-center justify-center">
-                    <span className="font-serif text-[10px] text-primary font-bold">१० कर्म</span>
-                  </div>
-                </div>
+                {/* 12 Interactive Houses Layout */}
+                {/* 1st House (Lagna / Ascendant) - Top Center */}
+                <button
+                  onClick={() => setActiveHouse(1)}
+                  className={`absolute top-[16%] left-[32%] w-[36%] h-[20%] rounded-lg flex flex-col items-center justify-center transition-all ${
+                    activeHouse === 1
+                      ? "bg-terracotta/15 border border-terracotta scale-105"
+                      : "hover:bg-gold/10"
+                  }`}
+                >
+                  <span className="font-serif text-xs font-bold text-terracotta">
+                    १ लग्न
+                  </span>
+                  <span className="text-[10px] font-mono text-navy font-semibold">
+                    कर्कट • चन्द्र
+                  </span>
+                </button>
 
-                {/* Brass Diyo / Lamp accent bar */}
-                <div className="mt-3 flex items-center gap-3 px-4 py-1.5 rounded-full bg-surface/90 border border-secondary/40 shadow-soft text-xs font-serif text-textHeading">
-                  <span className="text-secondary font-bold text-sm">ॐ</span>
-                  <span>शुभम् भवतु • श्री गुरु नील हरि</span>
+                {/* 2nd House - Top Left */}
+                <button
+                  onClick={() => setActiveHouse(2)}
+                  className={`absolute top-[4%] left-[12%] w-[22%] h-[18%] rounded-lg flex flex-col items-center justify-center transition-all ${
+                    activeHouse === 2
+                      ? "bg-terracotta/15 border border-terracotta scale-105"
+                      : "hover:bg-gold/10"
+                  }`}
+                >
+                  <span className="font-serif text-[11px] font-bold text-navy">
+                    २ धन
+                  </span>
+                </button>
+
+                {/* 3rd House - Mid Upper Left */}
+                <button
+                  onClick={() => setActiveHouse(3)}
+                  className={`absolute top-[26%] left-[4%] w-[18%] h-[20%] rounded-lg flex flex-col items-center justify-center transition-all ${
+                    activeHouse === 3
+                      ? "bg-terracotta/15 border border-terracotta scale-105"
+                      : "hover:bg-gold/10"
+                  }`}
+                >
+                  <span className="font-serif text-[11px] font-bold text-navy">
+                    ३ सहज
+                  </span>
+                </button>
+
+                {/* 4th House (Sukha / Mind) - Mid Left */}
+                <button
+                  onClick={() => setActiveHouse(4)}
+                  className={`absolute top-[40%] left-[16%] w-[22%] h-[20%] rounded-lg flex flex-col items-center justify-center transition-all ${
+                    activeHouse === 4
+                      ? "bg-terracotta/15 border border-terracotta scale-105"
+                      : "hover:bg-gold/10"
+                  }`}
+                >
+                  <span className="font-serif text-xs font-bold text-terracotta">
+                    ४ सुख
+                  </span>
+                  <span className="text-[9px] font-mono text-textMuted">गृह/मन</span>
+                </button>
+
+                {/* 7th House (Jaya / Marriage) - Bottom Center */}
+                <button
+                  onClick={() => setActiveHouse(7)}
+                  className={`absolute bottom-[16%] left-[32%] w-[36%] h-[20%] rounded-lg flex flex-col items-center justify-center transition-all ${
+                    activeHouse === 7
+                      ? "bg-terracotta/15 border border-terracotta scale-105"
+                      : "hover:bg-gold/10"
+                  }`}
+                >
+                  <span className="font-serif text-xs font-bold text-terracotta">
+                    ७ जाया
+                  </span>
+                  <span className="text-[10px] font-mono text-navy font-semibold">
+                    मकर • शनि
+                  </span>
+                </button>
+
+                {/* 10th House (Karma / Profession) - Mid Right */}
+                <button
+                  onClick={() => setActiveHouse(10)}
+                  className={`absolute top-[40%] right-[16%] w-[22%] h-[20%] rounded-lg flex flex-col items-center justify-center transition-all ${
+                    activeHouse === 10
+                      ? "bg-terracotta/15 border border-terracotta scale-105"
+                      : "hover:bg-gold/10"
+                  }`}
+                >
+                  <span className="font-serif text-xs font-bold text-terracotta">
+                    १० कर्म
+                  </span>
+                  <span className="text-[9px] font-mono text-textMuted">आजीविका</span>
+                </button>
+
+                {/* Center Auspicious Bindu */}
+                <div className="w-5 h-5 rounded-full bg-terracotta text-white flex items-center justify-center font-serif text-[10px] shadow-sm select-none">
+                  ॐ
                 </div>
+              </div>
+
+              {/* Active House Selected Detail Card */}
+              {activeHouse && (
+                <div className="mt-5 p-3.5 rounded-xl bg-white border border-[#E8DEC9] shadow-sm flex items-center justify-between text-xs">
+                  <div>
+                    <span className="font-bold font-serif text-terracotta text-sm">
+                      {HOUSES[activeHouse - 1].num} भाव ({HOUSES[activeHouse - 1].name}):
+                    </span>
+                    <span className="text-textBody ml-1.5 font-light">
+                      {HOUSES[activeHouse - 1].desc}
+                    </span>
+                  </div>
+                  <span className="px-2 py-0.5 rounded-md bg-[#FAF7F2] font-mono text-[10px] text-gold font-bold border border-[#E5DAC8]">
+                    {HOUSES[activeHouse - 1].planet}
+                  </span>
+                </div>
+              )}
+
+              {/* Coordinates Pill */}
+              <div className="mt-4 pt-3 border-t border-[#E8DEC9] flex items-center justify-between text-[11px] font-mono text-textMuted">
+                <span>अक्षांश: २७° ४३' उ.</span>
+                <span>चित्रापक्षीय अयनांश: २४° ०९' ५३"</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom 4 Feature Badges Strip matching reference */}
-        <div className="mt-12 pt-8 border-t border-border/70 grid grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Prestigious Institutional Badges Strip */}
+        <div className="mt-14 pt-10 border-t border-[#E8DFD1] grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-full border border-secondary/50 bg-surface flex items-center justify-center text-primary shadow-soft shrink-0">
-              <ShieldCheck className="w-5 h-5 stroke-[1.5]" />
+            <div className="w-12 h-12 rounded-full border border-gold/40 bg-white flex items-center justify-center text-terracotta shadow-sm shrink-0">
+              <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="font-serif text-sm font-semibold text-textHeading">
-                विश्वासिलो परामर्श
+              <h4 className="font-serif text-sm font-bold text-navy">
+                प्रामाणिक दृक-गणित
               </h4>
-              <p className="text-xs text-textMuted mt-0.5">सत्य र निष्पक्ष मार्गदर्शन</p>
+              <p className="text-xs text-textMuted mt-0.5">चित्रापक्षीय अयनांश मानक</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-full border border-secondary/50 bg-surface flex items-center justify-center text-primary shadow-soft shrink-0">
-              <Award className="w-5 h-5 stroke-[1.5]" />
+            <div className="w-12 h-12 rounded-full border border-gold/40 bg-white flex items-center justify-center text-terracotta shadow-sm shrink-0">
+              <Award className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="font-serif text-sm font-semibold text-textHeading">
-                शास्त्रीय प्रामाणिकता
+              <h4 className="font-serif text-sm font-bold text-navy">
+                ३०+ वर्ष साधना
               </h4>
-              <p className="text-xs text-textMuted mt-0.5">पाराशर र जैमिनी पद्धति</p>
+              <p className="text-xs text-textMuted mt-0.5">पाराशर तथा जैमिनी पद्धति</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-full border border-secondary/50 bg-surface flex items-center justify-center text-primary shadow-soft shrink-0">
-              <Users className="w-5 h-5 stroke-[1.5]" />
+            <div className="w-12 h-12 rounded-full border border-gold/40 bg-white flex items-center justify-center text-terracotta shadow-sm shrink-0">
+              <CheckCircle2 className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="font-serif text-sm font-semibold text-textHeading">
-                अनुभवी ज्योतिषाचार्य
+              <h4 className="font-serif text-sm font-bold text-navy">
+                शोषणमुक्त सात्विक
               </h4>
-              <p className="text-xs text-textMuted mt-0.5">२८+ वर्षको शास्त्रीय साधना</p>
+              <p className="text-xs text-textMuted mt-0.5">महँगो रत्न व्यापार निषेध</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3.5">
-            <div className="w-11 h-11 rounded-full border border-secondary/50 bg-surface flex items-center justify-center text-primary shadow-soft shrink-0">
-              <Globe className="w-5 h-5 stroke-[1.5]" />
+            <div className="w-12 h-12 rounded-full border border-gold/40 bg-white flex items-center justify-center text-terracotta shadow-sm shrink-0">
+              <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="font-serif text-sm font-semibold text-textHeading">
-                अनलाइन तथा प्रत्यक्ष
+              <h4 className="font-serif text-sm font-bold text-navy">
+                सम्पूर्ण गोपनीयता
               </h4>
-              <p className="text-xs text-textMuted mt-0.5">स्वदेश तथा विदेशबाट सहज</p>
+              <p className="text-xs text-textMuted mt-0.5">प्रत्यक्ष तथा भिडियो परामर्श</p>
             </div>
           </div>
         </div>
