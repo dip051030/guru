@@ -60,52 +60,46 @@ export default function AntiSlopManifesto() {
   ];
 
   return (
-    <section id="philosophy" className="w-full py-20 md:py-28 bg-[#12213A] text-white relative overflow-hidden">
-      {/* Background Mandala & Sacred Orbital Pattern */}
-      <div className="absolute top-1/2 right-10 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-gold/10 pointer-events-none" />
-      <div className="absolute top-1/2 right-24 -translate-y-1/2 w-[460px] h-[460px] rounded-full border border-gold/15 pointer-events-none" />
-      <div className="absolute top-1/2 right-40 -translate-y-1/2 w-[320px] h-[320px] rounded-full border border-dashed border-gold/20 pointer-events-none animate-spin-very-slow" />
-      <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-terracotta/10 blur-3xl pointer-events-none" />
-
+    <section id="philosophy" className="w-full py-20 md:py-28 bg-[#131B2E] text-white relative">
       <div className="max-w-[1300px] mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 text-gold text-xs font-mono tracking-widest uppercase mb-3 font-semibold">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none bg-orange-500/10 text-[#F59E0B] border border-orange-500/30 text-xs font-mono tracking-widest uppercase mb-3 font-bold">
+            <Sparkles className="w-3.5 h-3.5 text-[#F59E0B]" />
             <span>{t.manifesto.badge}</span>
           </div>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white font-bold tracking-tight">
             {t.manifesto.title}
           </h2>
-          <p className="mt-3 text-[#A8B6C8] text-sm md:text-base leading-relaxed font-light">
+          <p className="mt-3 text-stone-300 text-sm md:text-base leading-relaxed font-light">
             {t.manifesto.desc}
           </p>
         </div>
 
         {/* 2-Column Content: Left Pillars, Right Featured Quote */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left Column: 4 Circular Pillars */}
-          <div className="lg:col-span-6 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+          {/* Left Column: 4 Sharp Pillars */}
+          <div className="lg:col-span-6 space-y-4">
             {PILLARS.map((pillar) => {
               const Icon = pillar.icon;
               return (
                 <div
                   key={pillar.num}
-                  className="flex items-start gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-gold/30 hover:bg-white/[0.08] transition-all duration-200"
+                  className="flex items-start gap-4 p-5 rounded-none bg-white/[0.04] border border-white/10 hover:border-[#C85A17] transition-all duration-200"
                 >
-                  <div className="w-11 h-11 rounded-full bg-terracotta/20 border border-terracotta/40 flex items-center justify-center shrink-0 mt-0.5 text-terracotta">
+                  <div className="w-10 h-10 rounded-none bg-[#C85A17]/20 border border-[#C85A17]/40 flex items-center justify-center shrink-0 mt-0.5 text-[#F59E0B]">
                     <Icon className="w-5 h-5" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-mono text-xs text-gold font-bold">
+                      <span className="font-mono text-xs text-[#F59E0B] font-bold">
                         {pillar.num}.
                       </span>
                       <h3 className="font-serif text-lg font-bold text-white">
                         {pillar.title}
                       </h3>
                     </div>
-                    <p className="mt-1.5 text-xs md:text-sm text-[#B4C2D4] leading-relaxed font-light">
+                    <p className="mt-1.5 text-xs md:text-sm text-stone-300 leading-relaxed font-light">
                       {pillar.desc}
                     </p>
                   </div>
@@ -114,29 +108,28 @@ export default function AntiSlopManifesto() {
             })}
           </div>
 
-          {/* Right Column: Featured Quote with Golden Frame */}
-          <div className="lg:col-span-6">
-            <div className="relative rounded-3xl p-8 md:p-12 bg-gradient-to-br from-[#182946] to-[#0F1D33] border border-gold/30 shadow-2xl overflow-hidden">
-              {/* Decorative Accent */}
-              <div className="text-gold/20 font-serif text-8xl md:text-9xl leading-none absolute -top-4 -left-2 select-none pointer-events-none">
+          {/* Right Column: Featured Quote with Sharp Border */}
+          <div className="lg:col-span-6 flex flex-col justify-between">
+            <div className="relative rounded-none p-8 md:p-10 bg-white/[0.04] border border-orange-500/30 flex-1 flex flex-col justify-between">
+              <div className="text-orange-500/20 font-serif text-7xl leading-none select-none pointer-events-none mb-2">
                 “
               </div>
 
-              <div className="relative z-10">
+              <div>
                 <blockquote className="font-serif text-xl md:text-2xl text-[#FFF8EB] leading-relaxed font-normal italic">
                   &ldquo;{t.manifesto.quote}&rdquo;
                 </blockquote>
 
-                <div className="mt-8 pt-6 border-t border-gold/20 flex items-center gap-4">
+                <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-4">
                   <BrandLogo showText={false} size="lg" variant="gold" />
                   <div>
                     <h4 className="font-serif text-lg text-white font-bold">
                       {t.manifesto.author}
                     </h4>
-                    <p className="text-xs font-mono text-gold mt-0.5">
+                    <p className="text-xs font-mono text-[#F59E0B] mt-0.5 font-bold">
                       {t.manifesto.role}
                     </p>
-                    <p className="text-[11px] font-mono text-[#8C9EB6] mt-0.5">
+                    <p className="text-[11px] font-mono text-stone-400 mt-0.5">
                       {t.manifesto.org}
                     </p>
                   </div>
@@ -145,7 +138,7 @@ export default function AntiSlopManifesto() {
             </div>
 
             {/* Bottom 4 Badges */}
-            <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+            <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
               {[
                 {
                   title: "१००%",
@@ -164,11 +157,11 @@ export default function AntiSlopManifesto() {
                   sub: language === "ne" ? "गोपनीयता" : "Privacy Shield",
                 },
               ].map((badge, idx) => (
-                <div key={idx} className="p-3 rounded-xl bg-white/5 border border-white/10">
-                  <div className="font-mono text-xs md:text-sm font-bold text-gold">
+                <div key={idx} className="p-3 rounded-none bg-white/[0.03] border border-white/10">
+                  <div className="font-mono text-xs md:text-sm font-bold text-[#F59E0B]">
                     {badge.title}
                   </div>
-                  <div className="text-[10px] font-mono text-[#8C9EB6] mt-0.5">
+                  <div className="text-[10px] font-mono text-stone-400 mt-0.5">
                     {badge.sub}
                   </div>
                 </div>

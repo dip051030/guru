@@ -105,13 +105,13 @@ Karana: ${result.karana.name}`;
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Left Column: Description & Action */}
           <div className="lg:col-span-4 flex flex-col items-start">
-            <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-terracotta uppercase font-bold mb-3">
-              <span className="text-gold">—</span>
+            <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-[#C85A17] uppercase font-bold mb-3">
+              <span className="text-[#D97706]">—</span>
               <span>{t.calculator.badge}</span>
-              <span className="text-gold">—</span>
+              <span className="text-[#D97706]">—</span>
             </div>
 
-            <h2 className="font-serif text-3xl sm:text-4xl text-navy font-bold tracking-tight leading-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl text-[#181411] font-bold tracking-tight leading-tight">
               {t.calculator.title}
             </h2>
 
@@ -122,7 +122,7 @@ Karana: ${result.karana.name}`;
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <button
                 onClick={() => setShowInputDrawer(!showInputDrawer)}
-                className="px-6 py-3 rounded-full bg-terracotta text-white text-xs lg:text-sm font-medium hover:bg-terracotta-dark transition-all duration-200 flex items-center gap-2 shadow-soft hover:shadow-hover"
+                className="px-6 py-3 rounded-none bg-[#C85A17] text-white text-xs lg:text-sm font-bold hover:bg-[#A6440C] transition-all duration-200 flex items-center gap-2 shadow-sm border border-[#C85A17]"
               >
                 <span>
                   {showInputDrawer
@@ -133,14 +133,14 @@ Karana: ${result.karana.name}`;
                     ? "गणना गर्नुहोस्"
                     : "Enter Coordinates"}
                 </span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 text-orange-200" />
               </button>
 
               <button
                 onClick={handleCopySummary}
-                className="px-4 py-3 rounded-full border border-[#DED4C3] bg-[#FAF7F2] text-navy hover:text-terracotta text-xs font-mono transition-colors flex items-center gap-1.5"
+                className="px-4 py-3 rounded-none border border-stone-300 bg-stone-50 text-[#181411] hover:text-[#C85A17] hover:border-[#C85A17] text-xs font-mono transition-colors flex items-center gap-1.5"
               >
-                <Share2 className="w-3.5 h-3.5 text-gold" />
+                <Share2 className="w-3.5 h-3.5 text-[#D97706]" />
                 <span>
                   {copiedNotice
                     ? language === "ne"
@@ -154,9 +154,9 @@ Karana: ${result.karana.name}`;
             </div>
           </div>
 
-          {/* Center Column: Beautiful Traditional North-Indian Diamond Kundali Chart matching reference */}
+          {/* Center Column: Traditional North-Indian Diamond Kundali Chart */}
           <div className="lg:col-span-4 flex justify-center">
-            <div className="w-full max-w-[340px] aspect-square bg-[#FFFDF8] border-2 border-gold/70 rounded-2xl p-3 shadow-card relative">
+            <div className="w-full max-w-[340px] aspect-square bg-[#FDFBF7] border-2 border-stone-300 rounded-none p-3 shadow-2xs relative">
               <div className="absolute inset-3 pointer-events-none">
                 <svg className="w-full h-full stroke-gold/70 stroke-[1.2]">
                   <line x1="0" y1="0" x2="100%" y2="100%" />
@@ -279,58 +279,58 @@ Karana: ${result.karana.name}`;
           </div>
 
           {/* Right Column: 4 Feature Items */}
-          <div className="lg:col-span-4 flex flex-col gap-4">
-            <div className="p-4 rounded-2xl border border-[#EBE3D5] bg-[#FAF7F2] flex items-center gap-3.5 hover:border-terracotta/40 transition-colors shadow-soft">
-              <div className="w-10 h-10 rounded-full border border-gold/40 bg-white flex items-center justify-center text-terracotta shrink-0">
+          <div className="lg:col-span-4 flex flex-col gap-3">
+            <div className="p-3.5 rounded-none border border-stone-300 bg-white flex items-center gap-3.5 hover:border-[#C85A17] transition-colors shadow-2xs">
+              <div className="w-10 h-10 rounded-none border border-orange-200 bg-orange-50 flex items-center justify-center text-[#C85A17] shrink-0">
                 <Compass className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="font-serif text-sm font-bold text-navy">
+                <h4 className="font-serif text-sm font-bold text-[#181411]">
                   {language === "ne" ? "जन्म कुण्डली निर्माण" : "Natal Cartography"}
                 </h4>
-                <p className="text-xs text-textMuted">
+                <p className="text-xs text-stone-500">
                   {language === "ne" ? "सूक्ष्म लग्न तथा षोडशवर्ग गणना" : "Ascendant & 16 Varga Matrices"}
                 </p>
               </div>
             </div>
 
-            <div className="p-4 rounded-2xl border border-[#EBE3D5] bg-[#FAF7F2] flex items-center gap-3.5 hover:border-terracotta/40 transition-colors shadow-soft">
-              <div className="w-10 h-10 rounded-full border border-gold/40 bg-white flex items-center justify-center text-terracotta shrink-0">
+            <div className="p-3.5 rounded-none border border-stone-300 bg-white flex items-center gap-3.5 hover:border-[#C85A17] transition-colors shadow-2xs">
+              <div className="w-10 h-10 rounded-none border border-orange-200 bg-orange-50 flex items-center justify-center text-[#C85A17] shrink-0">
                 <Calendar className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="font-serif text-sm font-bold text-navy">
+                <h4 className="font-serif text-sm font-bold text-[#181411]">
                   {language === "ne" ? "दैनिक पञ्चाङ्ग गणना" : "Ephemeris & Panchanga"}
                 </h4>
-                <p className="text-xs text-textMuted">
+                <p className="text-xs text-stone-500">
                   {language === "ne" ? "तिथि, नक्षत्र, योग र करण" : "Tithi, Nakshatra, Yoga & Karana"}
                 </p>
               </div>
             </div>
 
-            <div className="p-4 rounded-2xl border border-[#EBE3D5] bg-[#FAF7F2] flex items-center gap-3.5 hover:border-terracotta/40 transition-colors shadow-soft">
-              <div className="w-10 h-10 rounded-full border border-gold/40 bg-white flex items-center justify-center text-terracotta shrink-0">
+            <div className="p-3.5 rounded-none border border-stone-300 bg-white flex items-center gap-3.5 hover:border-[#C85A17] transition-colors shadow-2xs">
+              <div className="w-10 h-10 rounded-none border border-orange-200 bg-orange-50 flex items-center justify-center text-[#C85A17] shrink-0">
                 <Clock className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="font-serif text-sm font-bold text-navy">
+                <h4 className="font-serif text-sm font-bold text-[#181411]">
                   {language === "ne" ? "शुभ मुहूर्त निर्धारण" : "Muhurta & Electional Timing"}
                 </h4>
-                <p className="text-xs text-textMuted">
+                <p className="text-xs text-stone-500">
                   {language === "ne" ? "विवाह, व्यापार र गृह प्रवेश साइत" : "Weddings, Commercial & Groundbreaking"}
                 </p>
               </div>
             </div>
 
-            <div className="p-4 rounded-2xl border border-[#EBE3D5] bg-[#FAF7F2] flex items-center gap-3.5 hover:border-terracotta/40 transition-colors shadow-soft">
-              <div className="w-10 h-10 rounded-full border border-gold/40 bg-white flex items-center justify-center text-terracotta shrink-0">
+            <div className="p-3.5 rounded-none border border-stone-300 bg-white flex items-center gap-3.5 hover:border-[#C85A17] transition-colors shadow-2xs">
+              <div className="w-10 h-10 rounded-none border border-orange-200 bg-orange-50 flex items-center justify-center text-[#C85A17] shrink-0">
                 <Sparkles className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="font-serif text-sm font-bold text-navy">
+                <h4 className="font-serif text-sm font-bold text-[#181411]">
                   {language === "ne" ? "ग्रह दशा विश्लेषण" : "Dasha Trajectory"}
                 </h4>
-                <p className="text-xs text-textMuted">
+                <p className="text-xs text-stone-500">
                   {language === "ne" ? "विंशोत्तरी महादशा र गोचर फल" : "Vimshottari Dasha & Transit Forecasts"}
                 </p>
               </div>
@@ -340,14 +340,14 @@ Karana: ${result.karana.name}`;
 
         {/* Collapsible Clean Form Drawer for Instant Recalculation */}
         {showInputDrawer && (
-          <div className="mt-8 p-6 rounded-2xl border border-gold/40 bg-[#FAF7F2] shadow-card animate-in fade-in slide-in-from-top-4 duration-300">
-            <div className="flex items-center justify-between pb-4 border-b border-[#EBE3D5]">
-              <span className="font-serif text-base font-bold text-navy">
+          <div className="mt-8 p-6 rounded-none border-2 border-[#C85A17] bg-white shadow-sm animate-in fade-in slide-in-from-top-4 duration-300">
+            <div className="flex items-center justify-between pb-4 border-b border-stone-200">
+              <span className="font-serif text-base font-bold text-[#181411]">
                 {t.calculator.formTitle}
               </span>
               <button
                 onClick={() => setShowInputDrawer(false)}
-                className="text-xs font-mono text-textMuted hover:text-navy"
+                className="text-xs font-mono text-stone-500 hover:text-[#C85A17]"
               >
                 ✕ {language === "ne" ? "बन्द गर्नुहोस्" : "Close"}
               </button>
@@ -355,31 +355,31 @@ Karana: ${result.karana.name}`;
 
             <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <div>
-                <label className="block text-xs font-mono text-textMuted mb-1.5">
+                <label className="block text-xs font-mono text-stone-600 mb-1.5 font-bold">
                   {t.calculator.dateLabel}
                 </label>
                 <input
                   type="date"
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl border border-[#EBE3D5] bg-white text-navy font-mono text-xs focus:outline-none focus:border-terracotta"
+                  className="w-full px-3 py-2 rounded-none border border-stone-300 bg-white text-[#181411] font-mono text-xs focus:outline-none focus:border-[#C85A17]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-textMuted mb-1.5">
+                <label className="block text-xs font-mono text-stone-600 mb-1.5 font-bold">
                   {t.calculator.timeLabel}
                 </label>
                 <input
                   type="time"
                   value={selectedTime}
                   onChange={(e) => setSelectedTime(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl border border-[#EBE3D5] bg-white text-navy font-mono text-xs focus:outline-none focus:border-terracotta"
+                  className="w-full px-3 py-2 rounded-none border border-stone-300 bg-white text-[#181411] font-mono text-xs focus:outline-none focus:border-[#C85A17]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-textMuted mb-1.5">
+                <label className="block text-xs font-mono text-stone-600 mb-1.5 font-bold">
                   {t.calculator.locationLabel}
                 </label>
                 <select
@@ -390,7 +390,7 @@ Karana: ${result.karana.name}`;
                     setLongitude(preset.lng);
                   }}
                   defaultValue="0"
-                  className="w-full px-3 py-2 rounded-xl border border-[#EBE3D5] bg-white text-navy font-mono text-xs focus:outline-none focus:border-terracotta"
+                  className="w-full px-3 py-2 rounded-none border border-stone-300 bg-white text-[#181411] font-mono text-xs focus:outline-none focus:border-[#C85A17]"
                 >
                   {PRESET_LOCATIONS.map((loc, idx) => (
                     <option key={loc.name} value={idx}>
@@ -403,7 +403,7 @@ Karana: ${result.karana.name}`;
               <div className="flex items-end">
                 <button
                   onClick={() => onOpenInquiry(`कुण्डली अध्ययन: ${result.bikramSambat.formattedNepali} जन्म विवरण`)}
-                  className="w-full py-2.5 rounded-full bg-terracotta text-white text-xs font-medium hover:bg-terracotta-dark transition-colors shadow-soft"
+                  className="w-full py-2.5 rounded-none bg-[#C85A17] text-white text-xs font-bold hover:bg-[#A6440C] transition-colors shadow-sm border border-[#C85A17]"
                 >
                   {t.calculator.bookPersonalAnalysis}
                 </button>

@@ -208,65 +208,61 @@ export default function PortfolioWorks({ onSelectStudy }: PortfolioWorksProps) {
   const { t, language } = useLanguage();
 
   return (
-    <section id="works" className="w-full py-16 md:py-24 border-b border-border bg-[#FAF7F2] relative overflow-hidden">
-      {/* Decorative Subtle Background Rings */}
-      <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full border border-gold/15 pointer-events-none" />
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full border border-terracotta/10 pointer-events-none" />
-
+    <section id="works" className="w-full py-16 md:py-24 border-b border-stone-200 bg-[#FDFBF7] relative">
       <div className="max-w-[1300px] mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-terracotta/10 text-terracotta text-xs font-mono tracking-widest uppercase mb-3 font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none bg-orange-50 border border-orange-200 text-[#C85A17] text-xs font-mono tracking-widest uppercase mb-3 font-bold">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t.research.badge}</span>
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-navy font-bold tracking-tight">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#181411] font-bold tracking-tight">
             {t.research.title}
           </h2>
-          <p className="mt-3 text-textMuted text-sm md:text-base leading-relaxed font-light">
+          <p className="mt-3 text-stone-600 text-sm md:text-base leading-relaxed font-light">
             {t.research.desc}
           </p>
         </div>
 
-        {/* 6 Cards Grid (3x2 on desktop) */}
+        {/* 6 Cards Grid (3x2 on desktop) - Sharp Architectural Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {RESEARCH_STUDIES.map((study) => (
             <article
               key={study.id}
               onClick={() => onSelectStudy(study)}
-              className="group rounded-2xl p-7 border border-[#EBE3D5] hover:border-terracotta/40 hover:shadow-card transition-all duration-300 cursor-pointer flex flex-col justify-between relative bg-white"
+              className="group rounded-none p-7 border border-stone-300 hover:border-[#C85A17] shadow-2xs transition-all duration-200 cursor-pointer flex flex-col justify-between relative bg-white"
             >
               <div>
                 {/* Card Top: Number + Tag */}
-                <div className="flex items-center justify-between pb-4 border-b border-[#F0EBE1]">
-                  <span className="w-8 h-8 rounded-full bg-terracotta/10 text-terracotta font-mono font-bold text-xs flex items-center justify-center">
+                <div className="flex items-center justify-between pb-4 border-b border-stone-200">
+                  <span className="w-8 h-8 rounded-none bg-orange-50 border border-orange-200 text-[#C85A17] font-mono font-bold text-xs flex items-center justify-center">
                     {study.number}
                   </span>
-                  <span className="text-[10px] font-mono tracking-wider text-textMuted uppercase">
+                  <span className="text-[10px] font-mono tracking-wider text-stone-500 uppercase font-bold">
                     {study.tag}
                   </span>
                 </div>
 
                 {/* Card Body */}
                 <div className="mt-5">
-                  <h3 className="font-serif text-xl lg:text-2xl text-navy font-bold group-hover:text-terracotta transition-colors leading-snug">
+                  <h3 className="font-serif text-xl lg:text-2xl text-[#181411] font-bold group-hover:text-[#C85A17] transition-colors leading-snug">
                     {study.title}
                   </h3>
-                  <p className="mt-2 text-xs font-mono text-gold font-medium">
+                  <p className="mt-2 text-xs font-mono text-[#D97706] font-bold">
                     {study.subtitle}
                   </p>
-                  <p className="mt-3 text-xs md:text-sm text-textBody leading-relaxed line-clamp-3 font-light">
+                  <p className="mt-3 text-xs md:text-sm text-stone-600 leading-relaxed line-clamp-3 font-light">
                     {study.summary}
                   </p>
                 </div>
               </div>
 
               {/* Card Footer: Link */}
-              <div className="mt-6 pt-4 border-t border-[#F0EBE1] flex items-center justify-between">
-                <span className="text-xs font-mono text-textMuted">
+              <div className="mt-6 pt-4 border-t border-stone-200 flex items-center justify-between">
+                <span className="text-xs font-mono text-stone-500">
                   {study.client}
                 </span>
-                <div className="inline-flex items-center gap-1 text-xs font-mono text-terracotta font-medium group-hover:translate-x-1 transition-transform">
+                <div className="inline-flex items-center gap-1 text-xs font-bold text-[#C85A17] group-hover:translate-x-1 transition-transform">
                   <span>{t.research.viewDetails}</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </div>

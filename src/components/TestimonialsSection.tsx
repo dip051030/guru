@@ -57,57 +57,57 @@ export default function TestimonialsSection() {
   ];
 
   return (
-    <section className="w-full py-20 md:py-28 border-b border-border bg-[#F5EFEB] relative overflow-hidden">
+    <section className="w-full py-20 md:py-28 border-b border-stone-200 bg-[#FDFBF7] relative">
       <div className="max-w-[1300px] mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-terracotta/10 text-terracotta text-xs font-mono tracking-widest uppercase mb-3 font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none bg-orange-50 border border-orange-200 text-[#C85A17] text-xs font-mono tracking-widest uppercase mb-3 font-bold">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t.testimonials.badge}</span>
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-navy font-bold tracking-tight">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#181411] font-bold tracking-tight">
             {t.testimonials.title}
           </h2>
-          <p className="mt-3 text-textMuted text-sm md:text-base leading-relaxed font-light">
+          <p className="mt-3 text-stone-600 text-sm md:text-base leading-relaxed font-light">
             {t.testimonials.desc}
           </p>
         </div>
 
-        {/* 3 Testimonials Grid */}
+        {/* 3 Testimonials Grid - Sharp Architectural Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {TESTIMONIALS.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-2xl p-7 lg:p-8 border border-[#E8DFD1] shadow-card flex flex-col justify-between relative hover:border-terracotta/40 transition-all duration-300"
+              className="bg-white rounded-none p-7 lg:p-8 border border-stone-300 shadow-2xs flex flex-col justify-between relative hover:border-[#C85A17] transition-all duration-200"
             >
               <div>
                 {/* Header: Stars & Quote Icon */}
-                <div className="flex items-center justify-between pb-4 border-b border-[#F0EBE1]">
-                  <div className="flex items-center gap-1 text-gold">
+                <div className="flex items-center justify-between pb-4 border-b border-stone-200">
+                  <div className="flex items-center gap-1 text-[#D97706]">
                     {[...Array(item.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-gold text-gold" />
+                      <Star key={i} className="w-4 h-4 fill-[#D97706] text-[#D97706]" />
                     ))}
                   </div>
-                  <Quote className="w-6 h-6 text-terracotta/30" />
+                  <Quote className="w-6 h-6 text-orange-200" />
                 </div>
 
                 {/* Body Text */}
-                <blockquote className="mt-5 text-sm md:text-base text-textBody leading-relaxed font-light italic">
+                <blockquote className="mt-5 text-sm md:text-base text-stone-700 leading-relaxed font-light italic">
                   &ldquo;{item.text}&rdquo;
                 </blockquote>
               </div>
 
               {/* Footer: User Details */}
-              <div className="mt-6 pt-4 border-t border-[#F0EBE1] flex items-center justify-between">
+              <div className="mt-6 pt-4 border-t border-stone-200 flex items-center justify-between">
                 <div>
-                  <h4 className="font-serif font-bold text-navy text-base">
+                  <h4 className="font-serif font-bold text-[#181411] text-base">
                     {item.name}
                   </h4>
-                  <p className="text-xs text-textMuted">
+                  <p className="text-xs text-stone-500">
                     {item.role} • {item.location}
                   </p>
                 </div>
-                <div className="text-[11px] font-mono px-2.5 py-1 rounded-full bg-terracotta/10 text-terracotta font-medium">
+                <div className="text-[11px] font-mono px-2.5 py-1 rounded-none bg-orange-50 border border-orange-200 text-[#C85A17] font-bold">
                   {item.service}
                 </div>
               </div>
@@ -116,19 +116,19 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Trust Badges Bar */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-textMuted text-center">
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-stone-500 text-center font-bold">
           <div className="flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-emerald-600" />
             <span>{t.testimonials.verifiedReviews}</span>
           </div>
           <span>•</span>
           <div className="flex items-center gap-2">
-            <Star className="w-4 h-4 fill-gold text-gold" />
+            <Star className="w-4 h-4 fill-[#D97706] text-[#D97706]" />
             <span>{t.testimonials.avgRating}</span>
           </div>
           <span>•</span>
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-terracotta" />
+            <Sparkles className="w-4 h-4 text-[#C85A17]" />
             <span>{t.testimonials.consultationsDelivered}</span>
           </div>
         </div>

@@ -13,28 +13,28 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
   const { t, language } = useLanguage();
 
   return (
-    <footer id="contact" className="w-full bg-[#0B1526] text-[#BAC7D8] border-t border-[#1C2C45] pt-16 pb-12">
+    <footer id="contact" className="w-full bg-[#0D1524] text-stone-300 border-t border-stone-800 pt-16 pb-12">
       <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-[#1C2C45]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-stone-800">
           {/* Brand Column (Col 1 to 5) */}
           <div className="lg:col-span-5 flex flex-col gap-4">
             <BrandLogo variant="light" size="lg" />
 
-            <p className="text-sm text-[#93A5BC] max-w-md font-light leading-relaxed mt-2">
+            <p className="text-sm text-stone-400 max-w-md font-light leading-relaxed mt-2">
               {t.footer.tagline}
             </p>
 
-            <div className="mt-2 flex items-center gap-3 text-xs font-mono text-gold">
+            <div className="mt-2 flex items-center gap-3 text-xs font-mono text-[#F59E0B] font-bold">
               <span>{t.footer.city}</span>
             </div>
           </div>
 
           {/* Quick Links (Col 6 to 7) */}
           <div className="lg:col-span-2 flex flex-col gap-3">
-            <span className="font-mono text-xs uppercase tracking-widest text-gold font-bold">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#F59E0B] font-bold">
               {t.footer.quickLinks}
             </span>
-            <div className="flex flex-col gap-2.5 text-xs font-mono text-[#93A5BC]">
+            <div className="flex flex-col gap-2.5 text-xs font-mono text-stone-400">
               <a href="#" className="hover:text-white transition-colors">
                 {t.header.home}
               </a>
@@ -58,10 +58,10 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
 
           {/* Practice Groups (Col 8 to 9) */}
           <div className="lg:col-span-2 flex flex-col gap-3">
-            <span className="font-mono text-xs uppercase tracking-widest text-gold font-bold">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#F59E0B] font-bold">
               {t.footer.ourServices}
             </span>
-            <div className="flex flex-col gap-2.5 text-xs font-mono text-[#93A5BC]">
+            <div className="flex flex-col gap-2.5 text-xs font-mono text-stone-400">
               <button
                 onClick={() => onOpenInquiry(language === "ne" ? "जन्म कुण्डली तथा विंशोत्तरी दशा" : "Natal Kundali & Dasha")}
                 className="text-left hover:text-white transition-colors"
@@ -97,12 +97,12 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
 
           {/* Contact (Col 10 to 12) */}
           <div className="lg:col-span-3 flex flex-col gap-3">
-            <span className="font-mono text-xs uppercase tracking-widest text-gold font-bold">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#F59E0B] font-bold">
               {t.footer.contactTitle}
             </span>
-            <div className="text-xs font-mono text-[#93A5BC] leading-relaxed space-y-2">
+            <div className="text-xs font-mono text-stone-400 leading-relaxed space-y-2">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-terracotta shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#C85A17] shrink-0 mt-0.5" />
                 <span>
                   {language === "ne"
                     ? "बालुवाटार, काठमाडौँ, नेपाल (सभामुख निवास नजिक)"
@@ -110,15 +110,15 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Clock className="w-4 h-4 text-terracotta shrink-0" />
+                <Clock className="w-4 h-4 text-[#C85A17] shrink-0" />
                 <span>{t.footer.hours}</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-terracotta shrink-0" />
+                <Phone className="w-4 h-4 text-[#C85A17] shrink-0" />
                 <span>+९७७ १ ४४१२३४५ / ९८५१०१२३४५</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-terracotta shrink-0" />
+                <Mail className="w-4 h-4 text-[#C85A17] shrink-0" />
                 <span>contact@guruneelhari.com</span>
               </div>
             </div>
@@ -126,7 +126,7 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#6A7E97]">
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-stone-500">
           <div>
             {t.footer.copyright}
           </div>

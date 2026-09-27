@@ -13,18 +13,18 @@ export default function LanguageToggle({ variant = "header" }: LanguageTogglePro
 
   if (variant === "mobile") {
     return (
-      <div className="flex items-center justify-between p-3 rounded-none bg-slate-50 border border-slate-300">
-        <div className="flex items-center gap-2 text-xs font-mono text-[#12213A] font-bold">
-          <Globe className="w-4 h-4 text-[#C5994E]" />
+      <div className="flex items-center justify-between p-3 rounded-none bg-stone-50 border border-stone-300">
+        <div className="flex items-center gap-2 text-xs font-mono text-[#181411] font-bold">
+          <Globe className="w-4 h-4 text-[#C85A17]" />
           <span>भाषा / Language</span>
         </div>
-        <div className="flex items-center p-0.5 rounded-none bg-white border border-slate-300">
+        <div className="flex items-center p-0.5 rounded-none bg-white border border-stone-300">
           <button
             onClick={() => setLanguage("ne")}
             className={`px-3 py-1 rounded-none text-xs font-bold transition-all ${
               language === "ne"
-                ? "bg-[#12213A] text-white"
-                : "text-slate-600 hover:text-[#12213A]"
+                ? "bg-[#C85A17] text-white"
+                : "text-stone-600 hover:text-[#C85A17]"
             }`}
           >
             नेपाली
@@ -33,8 +33,8 @@ export default function LanguageToggle({ variant = "header" }: LanguageTogglePro
             onClick={() => setLanguage("en")}
             className={`px-3 py-1 rounded-none text-xs font-bold transition-all ${
               language === "en"
-                ? "bg-[#12213A] text-white"
-                : "text-slate-600 hover:text-[#12213A]"
+                ? "bg-[#C85A17] text-white"
+                : "text-stone-600 hover:text-[#C85A17]"
             }`}
           >
             English
@@ -45,14 +45,14 @@ export default function LanguageToggle({ variant = "header" }: LanguageTogglePro
   }
 
   return (
-    <div className="inline-flex items-center p-0.5 rounded-none bg-slate-100 border border-slate-300 text-xs">
+    <div className="inline-flex items-center p-0.5 rounded-none bg-stone-100 border border-stone-300 text-xs">
       <button
         onClick={() => setLanguage("ne")}
         aria-label="Switch to Nepali"
         className={`px-2.5 py-1 rounded-none transition-colors text-xs font-bold ${
           language === "ne"
-            ? "bg-[#12213A] text-white shadow-2xs"
-            : "text-slate-600 hover:text-[#12213A]"
+            ? "bg-[#C85A17] text-white shadow-2xs"
+            : "text-stone-600 hover:text-[#C85A17]"
         }`}
       >
         नेपाली
@@ -62,8 +62,8 @@ export default function LanguageToggle({ variant = "header" }: LanguageTogglePro
         aria-label="Switch to English"
         className={`px-2.5 py-1 rounded-none transition-colors text-xs font-bold ${
           language === "en"
-            ? "bg-[#12213A] text-white shadow-2xs"
-            : "text-slate-600 hover:text-[#12213A]"
+            ? "bg-[#C85A17] text-white shadow-2xs"
+            : "text-stone-600 hover:text-[#C85A17]"
         }`}
       >
         EN
