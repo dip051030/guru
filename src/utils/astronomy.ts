@@ -10,6 +10,8 @@
  * - Ascendant (Lagna) determination for any geographic coordinates
  */
 
+import NepaliDate from "nepali-date-converter";
+
 export interface GrahaPosition {
   name: string;
   sanskrit: string;
@@ -288,61 +290,32 @@ export function calculateKarana(sunLong: number, moonLong: number) {
 }
 
 /**
- * Converts AD Date to Bikram Sambat Date
+ * Converts AD Date to Bikram Sambat Date using Official Samiti Mapping
  */
 export function getNepaliDate(date: Date) {
-  // Astronomical baseline: 2024-04-13 is approx BS 2080-12-31, 2024-04-14 is BS 2081-01-01
-  const baseAD = new Date(Date.UTC(2024, 3, 14)); // 2024 April 14
-  const baseBS = { year: 2081, month: 1, day: 1 };
+  try {
+    const nd = new NepaliDate(date);
+    const year = nd.getYear();
+    const month = nd.getMonth() + 1;
+    const day = nd.getDate();
+    const monthName = NEPALI_MONTHS[month - 1] || "बैशाख";
 
-  const diffTime = date.getTime() - baseAD.getTime();
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-  // Approximate solar month lengths in Bikram Sambat (averaging 31 or 32 in summer, 29-30 in winter)
-  const monthLengths = [31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30]; // 365 days
-  let year = baseBS.year;
-  let remainingDays = diffDays;
-
-  if (remainingDays >= 0) {
-    while (remainingDays >= 365) {
-      remainingDays -= 365;
-      year++;
-    }
-    let m = 0;
-    while (m < 12 && remainingDays >= monthLengths[m]) {
-      remainingDays -= monthLengths[m];
-      m++;
-    }
-    const month = m + 1;
-    const day = remainingDays + 1;
     return {
       year,
       monthIndex: month,
-      monthName: NEPALI_MONTHS[month - 1],
+      monthName,
       day,
-      formatted: `${NEPALI_MONTHS[month - 1]} ${day}, ${year} BS`,
-      formattedNepali: `${year} ${NEPALI_MONTHS[month - 1]} ${toNepaliNumber(day)}`,
+      formatted: `${monthName} ${day}, ${year} BS`,
+      formattedNepali: `${toNepaliNumber(year)} ${monthName} ${toNepaliNumber(day)}`,
     };
-  } else {
-    // For earlier dates
-    while (remainingDays < 0) {
-      remainingDays += 365;
-      year--;
-    }
-    let m = 0;
-    while (m < 12 && remainingDays >= monthLengths[m]) {
-      remainingDays -= monthLengths[m];
-      m++;
-    }
-    const month = m + 1;
-    const day = remainingDays + 1;
+  } catch {
     return {
-      year,
-      monthIndex: month,
-      monthName: NEPALI_MONTHS[month - 1],
-      day,
-      formatted: `${NEPALI_MONTHS[month - 1]} ${day}, ${year} BS`,
-      formattedNepali: `${year} ${NEPALI_MONTHS[month - 1]} ${toNepaliNumber(day)}`,
+      year: 2083,
+      monthIndex: 6,
+      monthName: "असोज",
+      day: 11,
+      formatted: "असोज 11, 2083 BS",
+      formattedNepali: "२०८३ असोज ११",
     };
   }
 }

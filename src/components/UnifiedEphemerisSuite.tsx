@@ -38,12 +38,36 @@ const PRESET_LOCATIONS = [
 
 export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemerisProps) {
   const { t, language } = useLanguage();
-  const [selectedDate, setSelectedDate] = useState<string>("2024-04-14");
-  const [selectedTime, setSelectedTime] = useState<string>("12:00");
+  const [selectedDate, setSelectedDate] = useState<string>(() => {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, "0");
+    const d = String(now.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
+  });
+  const [selectedTime, setSelectedTime] = useState<string>(() => {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, "0");
+    const m = String(now.getMinutes()).padStart(2, "0");
+    return `${h}:${m}`;
+  });
   const [latitude, setLatitude] = useState<number>(27.7172);
   const [longitude, setLongitude] = useState<number>(85.324);
   const [showInputDrawer, setShowInputDrawer] = useState<boolean>(false);
   const [copiedNotice, setCopiedNotice] = useState(false);
+
+  const handleResetToNow = () => {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, "0");
+    const d = String(now.getDate()).padStart(2, "0");
+    const h = String(now.getHours()).padStart(2, "0");
+    const min = String(now.getMinutes()).padStart(2, "0");
+    setSelectedDate(`${y}-${m}-${d}`);
+    setSelectedTime(`${h}:${min}`);
+    setLatitude(27.7172);
+    setLongitude(85.324);
+  };
 
   // Compute live result
   const result: PanchangaResult = useMemo(() => {
@@ -342,9 +366,18 @@ Karana: ${result.karana.name}`;
         {showInputDrawer && (
           <div className="mt-8 p-6 rounded-none border-2 border-[#C85A17] bg-white shadow-sm animate-in fade-in slide-in-from-top-4 duration-300">
             <div className="flex items-center justify-between pb-4 border-b border-stone-200">
-              <span className="font-serif text-base font-bold text-[#181411]">
-                {t.calculator.formTitle}
-              </span>
+              <div className="flex items-center gap-3">
+                <span className="font-serif text-base font-bold text-[#181411]">
+                  {t.calculator.formTitle}
+                </span>
+                <button
+                  type="button"
+                  onClick={handleResetToNow}
+                  className="px-2.5 py-1 text-[11px] font-mono font-bold text-[#C85A17] bg-orange-50 border border-orange-200 hover:bg-orange-100 transition-colors rounded-none"
+                >
+                  ⚡ {language === "ne" ? "अहिलेको लाइभ समय" : "Reset to Live Now"}
+                </button>
+              </div>
               <button
                 onClick={() => setShowInputDrawer(false)}
                 className="text-xs font-mono text-stone-500 hover:text-[#C85A17]"

@@ -26,6 +26,7 @@ import {
   MONTH_NAMES_BS,
   FESTIVALS_BY_MONTH,
   convertBsToAd,
+  getLiveTodayNepaliDate,
 } from "@/utils/nepaliCalendar";
 
 interface HamroPatroHeroProps {
@@ -50,9 +51,12 @@ export default function HamroPatroHero({
   const { language } = useLanguage();
   const isNe = language === "ne";
 
-  // Dynamic Year & Month State (Default: Ashwin 2083)
-  const [selectedYear, setSelectedYear] = useState<number>(2083);
-  const [selectedMonth, setSelectedMonth] = useState<number>(6); // 1 = Baisakh, 6 = Ashwin
+  // Dynamic Live Today Date in Bikram Sambat
+  const liveToday = getLiveTodayNepaliDate();
+
+  // Dynamic Year & Month State (Initializes to true live date)
+  const [selectedYear, setSelectedYear] = useState<number>(() => liveToday.yearBs);
+  const [selectedMonth, setSelectedMonth] = useState<number>(() => liveToday.monthBs);
   const [activeTool, setActiveTool] = useState<ActiveTool>(null);
   const [sidebarTab, setSidebarTab] = useState<"festivals" | "muhurta" | "holidays">("festivals");
 
@@ -63,6 +67,7 @@ export default function HamroPatroHero({
   const [selectedDay, setSelectedDay] = useState<CalendarDay>(() => {
     return (
       calendarData.days.find((d) => d.isToday) ||
+      calendarData.days.find((d) => d.isCurrentMonth && d.bsDay === liveToday.dayBs) ||
       calendarData.days.find((d) => d.isCurrentMonth && d.bsDay === 1) ||
       calendarData.days[10]
     );
@@ -96,10 +101,10 @@ export default function HamroPatroHero({
   };
 
   // Date Converter State
-  const [convBsYear, setConvBsYear] = useState("2083");
-  const [convBsMonth, setConvBsMonth] = useState("6");
-  const [convBsDay, setConvBsDay] = useState("11");
-  const [convertedResult, setConvertedResult] = useState<string>("Sunday, September 27, 2026 (A.D.)");
+  const [convBsYear, setConvBsYear] = useState(() => liveToday.yearBs.toString());
+  const [convBsMonth, setConvBsMonth] = useState(() => liveToday.monthBs.toString());
+  const [convBsDay, setConvBsDay] = useState(() => liveToday.dayBs.toString());
+  const [convertedResult, setConvertedResult] = useState<string>(() => `${liveToday.formattedEn} (A.D.)`);
 
   const handleRunConversion = () => {
     try {
@@ -484,10 +489,10 @@ export default function HamroPatroHero({
                 ) : (
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
                     {(forexRates.length > 0 ? forexRates.slice(0, 8) : [
-                      { iso3: "USD", name: "U.S. Dollar", unit: 1, buy: "136.69", sell: "137.29" },
-                      { iso3: "EUR", name: "European Euro", unit: 1, buy: "148.20", sell: "148.85" },
-                      { iso3: "GBP", name: "UK Pound", unit: 1, buy: "177.10", sell: "177.90" },
-                      { iso3: "AUD", name: "Australian Dollar", unit: 1, buy: "91.10", sell: "91.55" },
+                      { iso3: "USD", name: "U.S. Dollar", unit: 1, buy: "153.01", sell: "153.61" },
+                      { iso3: "EUR", name: "European Euro", unit: 1, buy: "174.32", sell: "175.00" },
+                      { iso3: "GBP", name: "UK Pound", unit: 1, buy: "202.64", sell: "203.43" },
+                      { iso3: "AUD", name: "Australian Dollar", unit: 1, buy: "107.55", sell: "107.97" },
                     ]).map((r) => (
                       <div key={r.iso3} className="p-2 sm:p-2.5 bg-slate-50 border border-slate-200 rounded-none">
                         <div className="font-black text-[#12213A] flex items-center justify-between">
@@ -547,9 +552,9 @@ export default function HamroPatroHero({
               {/* Quick Jump Buttons & Selectors */}
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <button
-                  onClick={() => handleMonthChange(6, 2083)}
+                  onClick={() => handleMonthChange(liveToday.monthBs, liveToday.yearBs)}
                   className={`px-2.5 py-1 sm:px-3 sm:py-1.5 text-xs font-bold border transition-colors rounded-none ${
-                    selectedMonth === 6 && selectedYear === 2083
+                    selectedMonth === liveToday.monthBs && selectedYear === liveToday.yearBs
                       ? "bg-[#C85A17] text-white border-[#C85A17]"
                       : "bg-white text-stone-700 border-stone-300 hover:bg-orange-50"
                   }`}

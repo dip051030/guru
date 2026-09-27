@@ -374,10 +374,9 @@ export function getMonthCalendarData(yearBs: number = 2083, monthIndex: number =
     const eventData = monthFestivals[d];
 
     // Is today check:
-    // Matches if current system BS matches, or fallback to Ashwin 11 for 2083
+    // Strictly matches current live system BS date
     const isToday =
-      (currentBsYear === yearBs && currentBsMonth === monthIndex && currentBsDate === d) ||
-      (yearBs === 2083 && monthIndex === 6 && d === 11);
+      currentBsYear === yearBs && currentBsMonth === monthIndex && currentBsDate === d;
 
     const isHoliday = dayOfWeek === 6 || eventData?.isHoliday;
 
@@ -511,5 +510,21 @@ export function convertAdToBs(adDate: Date): {
     dayBs,
     formattedEn: `${dayName.en}, ${dayBs} ${monthMeta.en} ${yearBs} B.S.`,
     formattedNe: `${dayName.ne}, ${toNepaliNum(dayBs)} ${monthMeta.ne} ${toNepaliNum(yearBs)} वि.सं.`,
+  };
+}
+
+export function getLiveTodayNepaliDate(): {
+  yearBs: number;
+  monthBs: number;
+  dayBs: number;
+  jsDate: Date;
+  formattedEn: string;
+  formattedNe: string;
+} {
+  const now = new Date();
+  const res = convertAdToBs(now);
+  return {
+    ...res,
+    jsDate: now,
   };
 }
