@@ -92,7 +92,7 @@ Karana: ${result.karana.name}`;
     for (let i = 1; i <= 12; i++) map[i] = [];
     result.planets.forEach((p) => {
       if (map[p.house]) {
-        map[p.house].push(`${p.symbol} ${language === "ne" ? p.sanskrit : p.english}`);
+        map[p.house].push(`${p.symbol} ${language === "ne" ? p.sanskrit : p.name}`);
       }
     });
     return map;
