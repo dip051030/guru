@@ -16,7 +16,6 @@ import {
   ArrowRight,
   RefreshCw,
   Globe,
-  CheckCircle2,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import {
@@ -174,32 +173,32 @@ export default function HamroPatroHero({
   const holidayEntries = festivalEntries.filter((ev) => ev.isHoliday);
 
   return (
-    <section className="relative w-full bg-[#F8FAFC] text-[#0F172A] pt-4 pb-12 border-b border-slate-200">
+    <section className="relative w-full bg-[#F9FAFB] text-[#1F2937] pt-4 pb-12 border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ========================================================================= */}
         {/* 1. TOP LIVE DATE BANNER & SHARP QUICK TOOLS                              */}
         {/* ========================================================================= */}
-        <div className="bg-white border border-slate-200 p-4 sm:p-5 shadow-2xs mb-6 rounded-none">
+        <div className="bg-white border border-gray-200 p-4 sm:p-5 shadow-sm mb-6 rounded-none">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             
-            {/* Left: Prominent Live Nepali Date with Sharp Architectural Style */}
+            {/* Left: Prominent Live Nepali Date with Rich Red Branding */}
             <div>
               <div className="flex flex-wrap items-center gap-2">
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-emerald-50 text-emerald-800 text-[11px] font-bold tracking-wide border border-emerald-300 rounded-none uppercase">
-                  <span className="w-1.5 h-1.5 bg-emerald-600 rounded-none" />
+                  <span className="w-1.5 h-1.5 bg-emerald-600 rounded-none animate-pulse" />
                   {isNe ? "आजको पञ्चाङ्ग" : "Live Panchanga"}
                 </span>
-                <span className="text-xs text-slate-500 font-medium">
+                <span className="text-xs text-gray-500 font-medium">
                   {isNe ? "नेपाल संवत् ११४६ अनलागा पञ्च" : "Nepal Samvat 1146 Analaga Pancha"}
                 </span>
               </div>
 
               <div className="mt-1.5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#B91C1C] tracking-tight">
                   {isNe ? "११ असोज २०८३, आइतवार" : "11 Ashwin 2083, Sunday"}
                 </h1>
-                <span className="text-base sm:text-lg font-semibold text-slate-500">
+                <span className="text-base sm:text-lg font-semibold text-gray-600">
                   / Sep 27, 2026
                 </span>
                 <span className="text-sm font-semibold text-amber-700 hidden sm:inline">
@@ -208,17 +207,17 @@ export default function HamroPatroHero({
               </div>
             </div>
 
-            {/* Right: Sharp Action Buttons */}
+            {/* Right: Sharp Action Buttons with Warm Red / Neutral Hover */}
             <div className="flex flex-wrap items-center gap-2">
               <button
                 onClick={() => setActiveTool(activeTool === "converter" ? null : "converter")}
                 className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-bold border transition-colors rounded-none ${
                   activeTool === "converter"
-                    ? "bg-slate-900 text-white border-slate-900"
-                    : "bg-white text-slate-700 border-slate-300 hover:bg-slate-50 hover:border-slate-900"
+                    ? "bg-[#B91C1C] text-white border-[#B91C1C]"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-red-50 hover:border-[#B91C1C] hover:text-[#B91C1C]"
                 }`}
               >
-                <CalendarIcon className="w-4 h-4 text-slate-900" />
+                <CalendarIcon className="w-4 h-4 text-[#B91C1C]" />
                 <span>{isNe ? "मिति परिवर्तन" : "Date Converter"}</span>
               </button>
 
@@ -226,8 +225,8 @@ export default function HamroPatroHero({
                 onClick={() => setActiveTool(activeTool === "rashifal" ? null : "rashifal")}
                 className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-bold border transition-colors rounded-none ${
                   activeTool === "rashifal"
-                    ? "bg-slate-900 text-white border-slate-900"
-                    : "bg-white text-slate-700 border-slate-300 hover:bg-slate-50 hover:border-slate-900"
+                    ? "bg-[#B91C1C] text-white border-[#B91C1C]"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-red-50 hover:border-[#B91C1C] hover:text-[#B91C1C]"
                 }`}
               >
                 <Sparkles className="w-4 h-4 text-amber-600" />
@@ -238,11 +237,11 @@ export default function HamroPatroHero({
                 onClick={() => setActiveTool(activeTool === "bullion" ? null : "bullion")}
                 className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-bold border transition-colors rounded-none ${
                   activeTool === "bullion"
-                    ? "bg-slate-900 text-white border-slate-900"
-                    : "bg-white text-slate-700 border-slate-300 hover:bg-slate-50 hover:border-slate-900"
+                    ? "bg-[#B91C1C] text-white border-[#B91C1C]"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-red-50 hover:border-[#B91C1C] hover:text-[#B91C1C]"
                 }`}
               >
-                <Coins className="w-4 h-4 text-amber-700" />
+                <Coins className="w-4 h-4 text-amber-600" />
                 <span>{isNe ? "मूल्य सूची" : "Bullion Rates"}</span>
               </button>
 
@@ -250,32 +249,32 @@ export default function HamroPatroHero({
                 onClick={() => setActiveTool(activeTool === "forex" ? null : "forex")}
                 className={`inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-bold border transition-colors rounded-none ${
                   activeTool === "forex"
-                    ? "bg-slate-900 text-white border-slate-900"
-                    : "bg-white text-slate-700 border-slate-300 hover:bg-slate-50 hover:border-slate-900"
+                    ? "bg-[#B91C1C] text-white border-[#B91C1C]"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-red-50 hover:border-[#B91C1C] hover:text-[#B91C1C]"
                 }`}
               >
-                <TrendingUp className="w-4 h-4 text-blue-700" />
+                <TrendingUp className="w-4 h-4 text-blue-600" />
                 <span>{isNe ? "विनिमय दर" : "Forex Rate"}</span>
               </button>
             </div>
           </div>
 
           {/* Sub-strip: Today's Festival Alert Banner */}
-          <div className="mt-3.5 pt-3 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
-            <div className="flex items-center gap-2 text-slate-900">
-              <span className="px-2 py-0.5 bg-red-100 text-red-800 font-bold text-xs uppercase tracking-wider border border-red-300 rounded-none">
+          <div className="mt-3.5 pt-3 border-t border-gray-200 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
+            <div className="flex items-center gap-2 text-gray-900">
+              <span className="px-2 py-0.5 bg-red-100 text-red-800 font-bold text-xs uppercase tracking-wider border border-red-200 rounded-none">
                 {isNe ? "पर्व / उत्सव" : "Festival / Day"}
               </span>
-              <span className="font-bold text-red-700">
+              <span className="font-bold text-[#B91C1C]">
                 {isNe
                   ? "सोह्रश्राद्ध प्रारम्भ (प्रतिपदा श्राद्ध) / विश्व पर्यटन दिवस"
                   : "Sohrashraddha Pratipada / World Tourism Day"}
               </span>
             </div>
 
-            <div className="flex items-center gap-4 text-xs text-slate-500 font-medium">
+            <div className="flex items-center gap-4 text-xs text-gray-500 font-medium">
               <span className="inline-flex items-center gap-1">
-                <Sun className="w-3.5 h-3.5 text-amber-600" />
+                <Sun className="w-3.5 h-3.5 text-amber-500" />
                 {isNe ? "काठमाडौँ सूर्योदय: ०६:०१" : "Kathmandu Sunrise: 06:01 AM"}
               </span>
               <span className="inline-flex items-center gap-1">
@@ -283,7 +282,7 @@ export default function HamroPatroHero({
                 {isNe ? "सूर्यास्त: १७:५८" : "Sunset: 05:58 PM"}
               </span>
               <span className="inline-flex items-center gap-1 hidden md:inline-flex">
-                <MapPin className="w-3.5 h-3.5 text-slate-400" />
+                <MapPin className="w-3.5 h-3.5 text-gray-400" />
                 {isNe ? "काठमाडौँ, नेपाल" : "Kathmandu, Nepal"}
               </span>
             </div>
@@ -291,13 +290,13 @@ export default function HamroPatroHero({
         </div>
 
         {/* ========================================================================= */}
-        {/* SHARP RECTANGULAR QUICK TOOL PANELS                                      */}
+        {/* SHARP RECTANGULAR QUICK TOOL PANELS (Clean Red & Warm Accents)           */}
         {/* ========================================================================= */}
         {activeTool && (
-          <div className="mb-6 bg-white border-2 border-slate-900 p-5 shadow-sm relative rounded-none animate-in fade-in duration-150">
+          <div className="mb-6 bg-white border-2 border-[#B91C1C] p-5 shadow-md relative rounded-none animate-in fade-in duration-150">
             <button
               onClick={() => setActiveTool(null)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-900 p-1 rounded-none hover:bg-slate-100 transition-colors"
+              className="absolute top-4 right-4 text-gray-400 hover:text-[#B91C1C] p-1 rounded-none hover:bg-gray-100 transition-colors"
               aria-label="Close"
             >
               <X className="w-5 h-5" />
@@ -307,8 +306,8 @@ export default function HamroPatroHero({
             {activeTool === "converter" && (
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <CalendarDays className="w-5 h-5 text-slate-900" />
-                  <h3 className="font-black text-base text-slate-900">
+                  <CalendarDays className="w-5 h-5 text-[#B91C1C]" />
+                  <h3 className="font-black text-base text-gray-900">
                     {isNe ? "वास्तविक नेपाली मिति रूपान्तरण (B.S. ↔ A.D.)" : "Official Nepali Date Converter (B.S. ↔ A.D.)"}
                   </h3>
                   <span className="text-[11px] font-bold px-2 py-0.5 bg-emerald-50 text-emerald-800 border border-emerald-300 rounded-none">
@@ -317,13 +316,13 @@ export default function HamroPatroHero({
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 items-end">
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-bold text-gray-700 mb-1">
                       {isNe ? "वर्ष (B.S.)" : "Year (B.S.)"}
                     </label>
                     <select
                       value={convBsYear}
                       onChange={(e) => setConvBsYear(e.target.value)}
-                      className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-none focus:outline-none focus:border-slate-900 font-semibold"
+                      className="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-300 rounded-none focus:outline-none focus:border-[#B91C1C] font-semibold"
                     >
                       {Array.from({ length: 15 }, (_, i) => 2075 + i).map((yr) => (
                         <option key={yr} value={yr}>
@@ -334,13 +333,13 @@ export default function HamroPatroHero({
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-bold text-gray-700 mb-1">
                       {isNe ? "महिना" : "Month"}
                     </label>
                     <select
                       value={convBsMonth}
                       onChange={(e) => setConvBsMonth(e.target.value)}
-                      className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-none focus:outline-none focus:border-slate-900 font-semibold"
+                      className="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-300 rounded-none focus:outline-none focus:border-[#B91C1C] font-semibold"
                     >
                       {MONTH_NAMES_BS.map((m, idx) => (
                         <option key={idx} value={idx + 1}>
@@ -351,7 +350,7 @@ export default function HamroPatroHero({
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 mb-1">
+                    <label className="block text-xs font-bold text-gray-700 mb-1">
                       {isNe ? "गते (दिन)" : "Day (Gate)"}
                     </label>
                     <input
@@ -360,23 +359,23 @@ export default function HamroPatroHero({
                       max="32"
                       value={convBsDay}
                       onChange={(e) => setConvBsDay(e.target.value)}
-                      className="w-full px-3 py-2 text-sm bg-slate-50 border border-slate-300 rounded-none focus:outline-none focus:border-slate-900 font-semibold"
+                      className="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-300 rounded-none focus:outline-none focus:border-[#B91C1C] font-semibold"
                     />
                   </div>
 
                   <button
                     onClick={handleRunConversion}
-                    className="w-full py-2 bg-slate-900 hover:bg-black text-white text-sm font-bold transition-colors rounded-none"
+                    className="w-full py-2 bg-[#B91C1C] hover:bg-[#991B1B] text-white text-sm font-bold transition-colors rounded-none shadow-sm"
                   >
                     {isNe ? "परिवर्तन गर्नुहोस्" : "Convert Date"}
                   </button>
                 </div>
 
-                <div className="mt-3.5 p-3 bg-slate-100 border border-slate-300 rounded-none flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-700">
+                <div className="mt-3.5 p-3 bg-red-50/50 border border-red-200 rounded-none flex items-center justify-between">
+                  <span className="text-xs font-bold text-gray-700">
                     {isNe ? "प्रमाणित नतिजा (इस्वी सन्):" : "Verified Gregorian Result (A.D.):"}
                   </span>
-                  <span className="text-sm font-black text-slate-900">{convertedResult}</span>
+                  <span className="text-sm font-black text-[#B91C1C]">{convertedResult}</span>
                 </div>
               </div>
             )}
@@ -386,7 +385,7 @@ export default function HamroPatroHero({
               <div>
                 <div className="flex items-center gap-2 mb-3">
                   <Sparkles className="w-5 h-5 text-amber-600" />
-                  <h3 className="font-black text-base text-slate-900">
+                  <h3 className="font-black text-base text-gray-900">
                     {isNe ? "आजको दैनिक राशिफल (१२ राशि)" : "Today's Daily Horoscope (12 Signs)"}
                   </h3>
                 </div>
@@ -398,8 +397,8 @@ export default function HamroPatroHero({
                       onClick={() => setSelectedRashi(i)}
                       className={`px-2 py-1.5 text-xs font-bold transition-all text-center rounded-none border ${
                         selectedRashi === i
-                          ? "bg-slate-900 text-white border-slate-900"
-                          : "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200"
+                          ? "bg-[#B91C1C] text-white border-[#B91C1C]"
+                          : "bg-gray-50 hover:bg-gray-100 text-gray-700 border-gray-200"
                       }`}
                     >
                       {r.ne.split(" ")[0]}
@@ -407,24 +406,24 @@ export default function HamroPatroHero({
                   ))}
                 </div>
 
-                <div className="p-4 bg-slate-50 border border-slate-200 rounded-none flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="p-4 bg-gray-50 border border-gray-200 rounded-none flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div>
                     <div className="flex items-center gap-3">
-                      <span className="text-lg font-black text-slate-900">{RASHIS[selectedRashi].ne}</span>
+                      <span className="text-lg font-black text-[#B91C1C]">{RASHIS[selectedRashi].ne}</span>
                       <span className="text-xs font-bold px-2 py-0.5 bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-none">
                         {isNe ? `भाग्यशाली: ${RASHIS[selectedRashi].luck}` : `Luck: ${RASHIS[selectedRashi].luck}`}
                       </span>
                     </div>
-                    <p className="mt-1 text-sm text-slate-800 leading-relaxed font-medium">
+                    <p className="mt-1 text-sm text-gray-800 leading-relaxed font-medium">
                       {RASHIS[selectedRashi].prediction}
                     </p>
-                    <p className="mt-1 text-xs text-slate-600 font-semibold">
+                    <p className="mt-1 text-xs text-gray-600 font-semibold">
                       💡 {isNe ? `आजको उपाय: ${RASHIS[selectedRashi].advice}` : `Remedy: ${RASHIS[selectedRashi].advice}`}
                     </p>
                   </div>
                   <button
                     onClick={() => onOpenInquiry(`राशिफल तथा कुण्डली परामर्श: ${RASHIS[selectedRashi].ne}`)}
-                    className="shrink-0 px-4 py-2 bg-slate-900 text-white text-xs font-bold rounded-none hover:bg-black transition-colors"
+                    className="shrink-0 px-4 py-2 bg-[#B91C1C] text-white text-xs font-bold rounded-none hover:bg-[#991B1B] transition-colors"
                   >
                     {isNe ? "विस्तृत कुण्डली परामर्श" : "Detailed Consultation"}
                   </button>
@@ -436,26 +435,26 @@ export default function HamroPatroHero({
             {activeTool === "bullion" && (
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <Coins className="w-5 h-5 text-amber-700" />
-                  <h3 className="font-black text-base text-slate-900">
+                  <Coins className="w-5 h-5 text-amber-600" />
+                  <h3 className="font-black text-base text-gray-900">
                     {isNe ? "नेपाल सुनचाँदी व्यवसायी महासंघ मूल्य सूची" : "Federation of Nepal Gold & Silver Rates"}
                   </h3>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div className="p-3 bg-amber-50 border border-amber-300 rounded-none">
-                    <span className="text-xs text-slate-700 font-bold">{isNe ? "छापावाल सुन (प्रति तोला)" : "Fine Gold (Per Tola)"}</span>
+                    <span className="text-xs text-gray-700 font-bold">{isNe ? "छापावाल सुन (प्रति तोला)" : "Fine Gold (Per Tola)"}</span>
                     <div className="text-lg font-black text-amber-900 mt-0.5">रु १,५२,३००</div>
                     <span className="text-[11px] text-emerald-700 font-bold">▲ रु ५०० वृद्धि</span>
                   </div>
                   <div className="p-3 bg-amber-50 border border-amber-300 rounded-none">
-                    <span className="text-xs text-slate-700 font-bold">{isNe ? "तेजाबी सुन (प्रति तोला)" : "Tejabi Gold (Per Tola)"}</span>
+                    <span className="text-xs text-gray-700 font-bold">{isNe ? "तेजाबी सुन (प्रति तोला)" : "Tejabi Gold (Per Tola)"}</span>
                     <div className="text-lg font-black text-amber-900 mt-0.5">रु १,५१,६००</div>
                     <span className="text-[11px] text-emerald-700 font-bold">▲ रु ५०० वृद्धि</span>
                   </div>
-                  <div className="p-3 bg-slate-100 border border-slate-300 rounded-none">
-                    <span className="text-xs text-slate-700 font-bold">{isNe ? "चाँदी (प्रति तोला)" : "Silver (Per Tola)"}</span>
-                    <div className="text-lg font-black text-slate-900 mt-0.5">रु १,८५०</div>
-                    <span className="text-[11px] text-slate-500 font-bold">स्थिर (No Change)</span>
+                  <div className="p-3 bg-gray-100 border border-gray-300 rounded-none">
+                    <span className="text-xs text-gray-700 font-bold">{isNe ? "चाँदी (प्रति तोला)" : "Silver (Per Tola)"}</span>
+                    <div className="text-lg font-black text-gray-900 mt-0.5">रु १,८५०</div>
+                    <span className="text-[11px] text-gray-500 font-bold">स्थिर (No Change)</span>
                   </div>
                 </div>
               </div>
@@ -466,20 +465,20 @@ export default function HamroPatroHero({
               <div>
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                   <div className="flex items-center gap-2">
-                    <TrendingUp className="w-5 h-5 text-blue-700" />
-                    <h3 className="font-black text-base text-slate-900">
+                    <TrendingUp className="w-5 h-5 text-blue-600" />
+                    <h3 className="font-black text-base text-gray-900">
                       {isNe ? "नेपाल राष्ट्र बैंक विदेशी विनिमय दर (Live Official API)" : "Nepal Rastra Bank Foreign Exchange Rates (Live)"}
                     </h3>
                   </div>
-                  <div className="text-xs text-slate-500 flex items-center gap-2">
+                  <div className="text-xs text-gray-500 flex items-center gap-2">
                     <span>{forexSource}</span>
-                    {forexDate && <span className="font-bold text-slate-800">({forexDate})</span>}
+                    {forexDate && <span className="font-bold text-gray-800">({forexDate})</span>}
                   </div>
                 </div>
 
                 {forexLoading ? (
-                  <div className="py-6 text-center text-xs text-slate-500 flex items-center justify-center gap-2">
-                    <RefreshCw className="w-4 h-4 animate-spin text-blue-700" />
+                  <div className="py-6 text-center text-xs text-gray-500 flex items-center justify-center gap-2">
+                    <RefreshCw className="w-4 h-4 animate-spin text-blue-600" />
                     <span>राष्ट्र बैंकबाट लाइभ दर प्राप्त गर्दै...</span>
                   </div>
                 ) : (
@@ -490,13 +489,13 @@ export default function HamroPatroHero({
                       { iso3: "GBP", name: "UK Pound", unit: 1, buy: "177.10", sell: "177.90" },
                       { iso3: "AUD", name: "Australian Dollar", unit: 1, buy: "91.10", sell: "91.55" },
                     ]).map((r) => (
-                      <div key={r.iso3} className="p-2.5 bg-slate-50 border border-slate-200 rounded-none">
-                        <div className="font-black text-slate-900 flex items-center justify-between">
+                      <div key={r.iso3} className="p-2.5 bg-gray-50 border border-gray-200 rounded-none">
+                        <div className="font-black text-gray-900 flex items-center justify-between">
                           <span>{r.iso3} ({r.unit})</span>
-                          <span className="text-[10px] text-slate-500 font-normal">{r.name}</span>
+                          <span className="text-[10px] text-gray-500 font-normal">{r.name}</span>
                         </div>
-                        <div className="text-slate-600 mt-1">खरिद: रु {r.buy}</div>
-                        <div className="text-blue-800 font-bold">बिक्री: रु {r.sell}</div>
+                        <div className="text-gray-600 mt-1">खरिद: रु {r.buy}</div>
+                        <div className="text-blue-700 font-bold">बिक्री: रु {r.sell}</div>
                       </div>
                     ))}
                   </div>
@@ -514,31 +513,31 @@ export default function HamroPatroHero({
           {/* ======================================================================= */}
           {/* LEFT 8 COLS: 7-COLUMN MONTHLY CALENDAR GRID                             */}
           {/* ======================================================================= */}
-          <div className="lg:col-span-8 bg-white border border-slate-300 shadow-2xs rounded-none overflow-hidden">
+          <div className="lg:col-span-8 bg-white border border-gray-300 shadow-sm rounded-none overflow-hidden">
             
             {/* Calendar Controls Bar */}
-            <div className="p-4 border-b border-slate-200 bg-slate-50 flex flex-wrap items-center justify-between gap-3">
+            <div className="p-4 border-b border-gray-200 bg-gray-50 flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-2">
                 <button
                   onClick={handlePrevMonth}
-                  className="p-1.5 border border-slate-300 bg-white hover:bg-slate-100 hover:border-slate-900 text-slate-800 transition-colors rounded-none"
+                  className="p-1.5 border border-gray-300 bg-white hover:bg-gray-100 hover:border-[#B91C1C] text-gray-800 transition-colors rounded-none"
                   aria-label="Previous Month"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
 
                 <div className="flex items-center gap-2">
-                  <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+                  <h2 className="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">
                     {isNe ? calendarData.monthName : calendarData.monthNameEn} {isNe ? toNepaliNum(selectedYear) : selectedYear}
                   </h2>
-                  <span className="text-xs font-bold text-slate-600 bg-white border border-slate-300 px-2 py-0.5 rounded-none">
+                  <span className="text-xs font-bold text-gray-600 bg-white border border-gray-300 px-2 py-0.5 rounded-none">
                     {calendarData.adMonthsSpan} {calendarData.yearEn}
                   </span>
                 </div>
 
                 <button
                   onClick={handleNextMonth}
-                  className="p-1.5 border border-slate-300 bg-white hover:bg-slate-100 hover:border-slate-900 text-slate-800 transition-colors rounded-none"
+                  className="p-1.5 border border-gray-300 bg-white hover:bg-gray-100 hover:border-[#B91C1C] text-gray-800 transition-colors rounded-none"
                   aria-label="Next Month"
                 >
                   <ChevronRight className="w-4 h-4" />
@@ -551,8 +550,8 @@ export default function HamroPatroHero({
                   onClick={() => handleMonthChange(6, 2083)}
                   className={`px-3 py-1.5 text-xs font-bold border transition-colors rounded-none ${
                     selectedMonth === 6 && selectedYear === 2083
-                      ? "bg-slate-900 text-white border-slate-900"
-                      : "bg-white text-slate-700 border-slate-300 hover:bg-slate-100"
+                      ? "bg-emerald-600 text-white border-emerald-600"
+                      : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
                   }`}
                 >
                   {isNe ? "आज (Today)" : "Today"}
@@ -562,7 +561,7 @@ export default function HamroPatroHero({
                 <select
                   value={selectedMonth}
                   onChange={(e) => handleMonthChange(parseInt(e.target.value, 10))}
-                  className="px-2.5 py-1.5 text-xs font-bold border border-slate-300 bg-white text-slate-900 rounded-none focus:outline-none focus:border-slate-900"
+                  className="px-2.5 py-1.5 text-xs font-bold border border-gray-300 bg-white text-gray-900 rounded-none focus:outline-none focus:border-[#B91C1C]"
                 >
                   {MONTH_NAMES_BS.map((m, i) => (
                     <option key={i} value={i + 1}>
@@ -575,7 +574,7 @@ export default function HamroPatroHero({
                 <select
                   value={selectedYear}
                   onChange={(e) => handleMonthChange(selectedMonth, parseInt(e.target.value, 10))}
-                  className="px-2.5 py-1.5 text-xs font-bold border border-slate-300 bg-white text-slate-900 rounded-none focus:outline-none focus:border-slate-900"
+                  className="px-2.5 py-1.5 text-xs font-bold border border-gray-300 bg-white text-gray-900 rounded-none focus:outline-none focus:border-[#B91C1C]"
                 >
                   {[2080, 2081, 2082, 2083, 2084, 2085, 2086].map((yr) => (
                     <option key={yr} value={yr}>
@@ -587,12 +586,12 @@ export default function HamroPatroHero({
             </div>
 
             {/* Weekday Column Headers (Sun to Sat) */}
-            <div className="grid grid-cols-7 border-b border-slate-200 bg-slate-100 text-center text-xs font-bold py-2">
+            <div className="grid grid-cols-7 border-b border-gray-200 bg-gray-100 text-center text-xs font-bold py-2">
               {WEEKDAYS.map((wd, idx) => (
                 <div
                   key={idx}
                   className={`flex flex-col items-center justify-center ${
-                    idx === 0 || idx === 6 ? "text-red-600 font-black" : "text-slate-800"
+                    idx === 0 || idx === 6 ? "text-red-600 font-black" : "text-gray-800"
                   }`}
                 >
                   <span className="sm:hidden">{isNe ? wd.shortNe : wd.shortEn}</span>
@@ -601,8 +600,8 @@ export default function HamroPatroHero({
               ))}
             </div>
 
-            {/* 7-Column Calendar Grid Cells - Razor Sharp 1px Grid */}
-            <div className="grid grid-cols-7 divide-x divide-y divide-slate-200 bg-slate-200 border-b border-slate-200">
+            {/* 7-Column Calendar Grid Cells - Razor Sharp Clean Grid */}
+            <div className="grid grid-cols-7 divide-x divide-y divide-gray-200 bg-gray-200 border-b border-gray-200">
               {calendarData.days.map((day, idx) => {
                 const isSelected =
                   selectedDay.bsDay === day.bsDay &&
@@ -617,16 +616,16 @@ export default function HamroPatroHero({
                     type="button"
                     onClick={() => setSelectedDay(day)}
                     className={`relative min-h-[92px] sm:min-h-[112px] p-2 text-left flex flex-col justify-between transition-colors focus:outline-none rounded-none ${
-                      // Today cell styling: Sharp High-Contrast Slate-900
+                      // Today cell: Authentic HamroPatro Vibrant Emerald Green
                       day.isToday
-                        ? "bg-slate-900 text-white font-bold z-10 hover:bg-black"
+                        ? "bg-emerald-600 text-white font-bold z-10 hover:bg-emerald-700 shadow-sm"
                         : isSelected
-                        ? "bg-amber-50 ring-2 ring-slate-900 z-10"
+                        ? "bg-amber-50 ring-2 ring-[#B91C1C] z-10"
                         : day.isCurrentMonth
                         ? day.isHoliday || isSat
-                          ? "bg-red-50/40 hover:bg-red-50 text-slate-900"
-                          : "bg-white hover:bg-slate-50 text-slate-900"
-                        : "bg-slate-100 text-slate-400 opacity-60"
+                          ? "bg-red-50/50 hover:bg-red-50 text-gray-900"
+                          : "bg-white hover:bg-gray-50 text-gray-900"
+                        : "bg-gray-100 text-gray-400 opacity-60"
                     }`}
                   >
                     {/* Top Row: English Day (top-right) & Indicator */}
@@ -640,10 +639,10 @@ export default function HamroPatroHero({
                       <span
                         className={`text-[10px] sm:text-xs font-bold tabular-nums ${
                           day.isToday
-                            ? "text-slate-300"
+                            ? "text-emerald-100"
                             : isSat || isSun || day.isHoliday
                             ? "text-red-600 font-extrabold"
-                            : "text-slate-400"
+                            : "text-gray-400"
                         }`}
                       >
                         {day.adDay}
@@ -658,7 +657,7 @@ export default function HamroPatroHero({
                             ? "text-white"
                             : isSat || day.isHoliday
                             ? "text-red-600"
-                            : "text-slate-900"
+                            : "text-gray-900"
                         }`}
                       >
                         {isNe ? day.bsDayNepali : day.bsDay}
@@ -672,7 +671,7 @@ export default function HamroPatroHero({
                               ? "bg-white/20 text-white border-white/30"
                               : day.isHoliday
                               ? "bg-red-100 text-red-800 border-red-200"
-                              : "bg-slate-100 text-slate-800 border-slate-300"
+                              : "bg-gray-100 text-gray-800 border-gray-300"
                           }`}
                           title={isNe ? day.event : day.eventEn || day.event}
                         >
@@ -685,7 +684,7 @@ export default function HamroPatroHero({
                     <div className="w-full text-center">
                       <span
                         className={`block text-[9px] sm:text-[10.5px] font-semibold tracking-tight truncate ${
-                          day.isToday ? "text-slate-300" : "text-slate-500"
+                          day.isToday ? "text-emerald-100" : "text-gray-500"
                         }`}
                       >
                         {isNe ? day.tithi : day.tithiEn}
@@ -697,24 +696,24 @@ export default function HamroPatroHero({
             </div>
 
             {/* Bottom Legend */}
-            <div className="p-3 bg-slate-50 text-xs text-slate-600 flex flex-wrap items-center justify-between gap-3 font-medium">
+            <div className="p-3 bg-gray-50 text-xs text-gray-600 flex flex-wrap items-center justify-between gap-3 font-medium">
               <div className="flex items-center gap-4">
                 <span className="inline-flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 bg-slate-900 rounded-none" />
-                  <span className="font-bold text-slate-900">{isNe ? "आजको दिन" : "Today"}</span>
+                  <span className="w-2.5 h-2.5 bg-emerald-600 rounded-none" />
+                  <span className="font-bold text-gray-900">{isNe ? "आजको दिन" : "Today"}</span>
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 bg-red-600 rounded-none" />
                   <span className="text-red-700 font-bold">{isNe ? "सार्वजनिक बिदा / शनि" : "Holiday / Saturday"}</span>
                 </span>
                 <span className="inline-flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 bg-slate-300 rounded-none" />
-                  <span className="text-slate-700 font-bold">{isNe ? "पर्व / उत्सव" : "Festival"}</span>
+                  <span className="w-2.5 h-2.5 bg-gray-300 rounded-none" />
+                  <span className="text-gray-700 font-bold">{isNe ? "पर्व / उत्सव" : "Festival"}</span>
                 </span>
               </div>
 
-              <div className="text-slate-500 text-[11px] flex items-center gap-1">
-                <Globe className="w-3.5 h-3.5 text-slate-700" />
+              <div className="text-gray-500 text-[11px] flex items-center gap-1">
+                <Globe className="w-3.5 h-3.5 text-[#B91C1C]" />
                 <span>{isNe ? "प्रमाणित पञ्चाङ्ग तथा खगोलिय गणना" : "Official Ephemeris & Astronomical Engine"}</span>
               </div>
             </div>
@@ -726,27 +725,27 @@ export default function HamroPatroHero({
           <div className="lg:col-span-4 space-y-4">
             
             {/* Selected Day Panchanga Card */}
-            <div className="bg-white border border-slate-300 p-5 shadow-2xs rounded-none">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-200">
+            <div className="bg-white border border-gray-300 p-5 shadow-sm rounded-none">
+              <div className="flex items-center justify-between pb-3 border-b border-gray-200">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-slate-900 rounded-none" />
-                  <h3 className="font-black text-xs text-slate-900 uppercase tracking-wider">
+                  <div className="w-2 h-2 bg-[#B91C1C] rounded-none" />
+                  <h3 className="font-black text-xs text-gray-900 uppercase tracking-wider">
                     {isNe ? "छानिएको दिनको पञ्चाङ्ग" : "Selected Day Panchanga"}
                   </h3>
                 </div>
-                <span className="text-[11px] font-bold px-2 py-0.5 bg-slate-100 text-slate-800 border border-slate-300 rounded-none">
+                <span className="text-[11px] font-bold px-2 py-0.5 bg-gray-100 text-gray-800 border border-gray-300 rounded-none">
                   {selectedDay.isToday ? (isNe ? "आज" : "Today") : `${selectedDay.adMonth} ${selectedDay.adDay}`}
                 </span>
               </div>
 
               {/* Date & Day Banner */}
               <div className="mt-3.5">
-                <div className="text-2xl font-black text-slate-900 tracking-tight">
+                <div className="text-2xl font-black text-[#B91C1C] tracking-tight">
                   {isNe
                     ? `${selectedDay.bsDayNepali} ${MONTH_NAMES_BS[selectedDay.bsMonth - 1]?.ne || ""} ${toNepaliNum(selectedDay.bsYear)}`
                     : `${selectedDay.bsDay} ${MONTH_NAMES_BS[selectedDay.bsMonth - 1]?.en || ""} ${selectedDay.bsYear}`}
                 </div>
-                <div className="text-xs text-slate-600 font-bold mt-0.5">
+                <div className="text-xs text-gray-600 font-bold mt-0.5">
                   {WEEKDAYS[selectedDay.dayOfWeek][isNe ? "ne" : "en"]} • {selectedDay.adMonth} {selectedDay.adDay}, {selectedDay.adYear}
                 </div>
               </div>
@@ -761,29 +760,29 @@ export default function HamroPatroHero({
 
               {/* Sharp Panchanga Matrix */}
               <div className="mt-4 grid grid-cols-2 gap-1.5 text-xs">
-                <div className="p-2.5 bg-slate-50 border border-slate-200 rounded-none">
-                  <span className="text-slate-500 font-semibold block text-[11px]">{isNe ? "तिथि" : "Tithi"}</span>
-                  <span className="font-bold text-slate-900">{isNe ? selectedDay.tithi : selectedDay.tithiEn}</span>
+                <div className="p-2.5 bg-gray-50 border border-gray-200 rounded-none">
+                  <span className="text-gray-500 font-semibold block text-[11px]">{isNe ? "तिथि" : "Tithi"}</span>
+                  <span className="font-bold text-gray-900">{isNe ? selectedDay.tithi : selectedDay.tithiEn}</span>
                 </div>
-                <div className="p-2.5 bg-slate-50 border border-slate-200 rounded-none">
-                  <span className="text-slate-500 font-semibold block text-[11px]">{isNe ? "नक्षत्र" : "Nakshatra"}</span>
-                  <span className="font-bold text-slate-900">{selectedDay.nakshatra}</span>
+                <div className="p-2.5 bg-gray-50 border border-gray-200 rounded-none">
+                  <span className="text-gray-500 font-semibold block text-[11px]">{isNe ? "नक्षत्र" : "Nakshatra"}</span>
+                  <span className="font-bold text-gray-900">{selectedDay.nakshatra}</span>
                 </div>
-                <div className="p-2.5 bg-slate-50 border border-slate-200 rounded-none">
-                  <span className="text-slate-500 font-semibold block text-[11px]">{isNe ? "योग" : "Yoga"}</span>
-                  <span className="font-bold text-slate-900">{selectedDay.yoga}</span>
+                <div className="p-2.5 bg-gray-50 border border-gray-200 rounded-none">
+                  <span className="text-gray-500 font-semibold block text-[11px]">{isNe ? "योग" : "Yoga"}</span>
+                  <span className="font-bold text-gray-900">{selectedDay.yoga}</span>
                 </div>
-                <div className="p-2.5 bg-slate-50 border border-slate-200 rounded-none">
-                  <span className="text-slate-500 font-semibold block text-[11px]">{isNe ? "चन्द्र राशि" : "Moon Sign"}</span>
-                  <span className="font-bold text-slate-900">{selectedDay.moonSign}</span>
+                <div className="p-2.5 bg-gray-50 border border-gray-200 rounded-none">
+                  <span className="text-gray-500 font-semibold block text-[11px]">{isNe ? "चन्द्र राशि" : "Moon Sign"}</span>
+                  <span className="font-bold text-gray-900">{selectedDay.moonSign}</span>
                 </div>
-                <div className="p-2.5 bg-slate-50 border border-slate-200 rounded-none">
-                  <span className="text-slate-500 font-semibold block text-[11px]">{isNe ? "सूर्योदय" : "Sunrise"}</span>
-                  <span className="font-bold text-slate-900">{selectedDay.sunrise}</span>
+                <div className="p-2.5 bg-gray-50 border border-gray-200 rounded-none">
+                  <span className="text-gray-500 font-semibold block text-[11px]">{isNe ? "सूर्योदय" : "Sunrise"}</span>
+                  <span className="font-bold text-gray-900">{selectedDay.sunrise}</span>
                 </div>
-                <div className="p-2.5 bg-slate-50 border border-slate-200 rounded-none">
-                  <span className="text-slate-500 font-semibold block text-[11px]">{isNe ? "सूर्यास्त" : "Sunset"}</span>
-                  <span className="font-bold text-slate-900">{selectedDay.sunset}</span>
+                <div className="p-2.5 bg-gray-50 border border-gray-200 rounded-none">
+                  <span className="text-gray-500 font-semibold block text-[11px]">{isNe ? "सूर्यास्त" : "Sunset"}</span>
+                  <span className="font-bold text-gray-900">{selectedDay.sunset}</span>
                 </div>
               </div>
 
@@ -802,7 +801,7 @@ export default function HamroPatroHero({
                     `साइत तथा पञ्चाङ्ग परामर्श: ${selectedDay.bsDayNepali} ${MONTH_NAMES_BS[selectedDay.bsMonth - 1]?.ne} (${isNe ? selectedDay.tithi : selectedDay.tithiEn})`
                   )
                 }
-                className="mt-4 w-full py-2.5 bg-slate-900 hover:bg-black text-white font-bold text-xs transition-colors rounded-none flex items-center justify-center gap-1.5"
+                className="mt-4 w-full py-2.5 bg-[#B91C1C] hover:bg-[#991B1B] text-white font-bold text-xs transition-colors rounded-none flex items-center justify-center gap-1.5 shadow-sm"
               >
                 <span>{isNe ? "यस दिनको विशेष साइत परामर्श लिनुहोस्" : "Book Muhurta Consultation for this Day"}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -810,14 +809,14 @@ export default function HamroPatroHero({
             </div>
 
             {/* 3 Tabs: पर्वहरू / साइतहरू / आगामी बिदा */}
-            <div className="bg-white border border-slate-300 rounded-none shadow-2xs overflow-hidden">
-              <div className="flex border-b border-slate-200 bg-slate-50">
+            <div className="bg-white border border-gray-300 rounded-none shadow-sm overflow-hidden">
+              <div className="flex border-b border-gray-200 bg-gray-50">
                 <button
                   onClick={() => setSidebarTab("festivals")}
                   className={`flex-1 py-2.5 text-xs font-bold transition-all border-b-2 rounded-none ${
                     sidebarTab === "festivals"
-                      ? "border-slate-900 text-slate-900 bg-white"
-                      : "border-transparent text-slate-500 hover:text-slate-900"
+                      ? "border-[#B91C1C] text-[#B91C1C] bg-white"
+                      : "border-transparent text-gray-500 hover:text-gray-900"
                   }`}
                 >
                   {isNe ? "पर्वहरू" : "Festivals"}
@@ -827,8 +826,8 @@ export default function HamroPatroHero({
                   onClick={() => setSidebarTab("muhurta")}
                   className={`flex-1 py-2.5 text-xs font-bold transition-all border-b-2 rounded-none ${
                     sidebarTab === "muhurta"
-                      ? "border-slate-900 text-slate-900 bg-white"
-                      : "border-transparent text-slate-500 hover:text-slate-900"
+                      ? "border-[#B91C1C] text-[#B91C1C] bg-white"
+                      : "border-transparent text-gray-500 hover:text-gray-900"
                   }`}
                 >
                   {isNe ? "साइतहरू" : "Muhurtas"}
@@ -838,8 +837,8 @@ export default function HamroPatroHero({
                   onClick={() => setSidebarTab("holidays")}
                   className={`flex-1 py-2.5 text-xs font-bold transition-all border-b-2 rounded-none ${
                     sidebarTab === "holidays"
-                      ? "border-slate-900 text-slate-900 bg-white"
-                      : "border-transparent text-slate-500 hover:text-slate-900"
+                      ? "border-[#B91C1C] text-[#B91C1C] bg-white"
+                      : "border-transparent text-gray-500 hover:text-gray-900"
                   }`}
                 >
                   {isNe ? "आगामी बिदा" : "Holidays"}
@@ -859,21 +858,21 @@ export default function HamroPatroHero({
                           );
                           if (target) setSelectedDay(target);
                         }}
-                        className="p-2.5 border border-slate-200 hover:border-slate-900 hover:bg-slate-50 transition-colors cursor-pointer flex items-start gap-3 rounded-none"
+                        className="p-2.5 border border-gray-200 hover:border-[#B91C1C] hover:bg-red-50/30 transition-colors cursor-pointer flex items-start gap-3 rounded-none"
                       >
-                        <div className="shrink-0 w-8 h-8 bg-slate-100 flex flex-col items-center justify-center border border-slate-300 rounded-none">
-                          <span className="text-[9px] text-slate-500 leading-none font-bold">
+                        <div className="shrink-0 w-8 h-8 bg-gray-100 flex flex-col items-center justify-center border border-gray-300 rounded-none">
+                          <span className="text-[9px] text-gray-500 leading-none font-bold">
                             {isNe ? calendarData.monthName.slice(0, 3) : calendarData.monthNameEn.slice(0, 3)}
                           </span>
-                          <span className="text-xs font-black text-slate-900 leading-none mt-0.5">
+                          <span className="text-xs font-black text-[#B91C1C] leading-none mt-0.5">
                             {isNe ? toNepaliNum(ev.day) : ev.day}
                           </span>
                         </div>
                         <div>
-                          <div className="text-xs font-bold text-slate-900 line-clamp-1">
+                          <div className="text-xs font-bold text-gray-900 line-clamp-1">
                             {isNe ? ev.event : ev.eventEn}
                           </div>
-                          <div className="text-[11px] text-slate-500 mt-0.5">
+                          <div className="text-[11px] text-gray-500 mt-0.5">
                             {ev.isHoliday ? (
                               <span className="text-red-700 font-bold">{isNe ? "सार्वजनिक बिदा" : "Public Holiday"}</span>
                             ) : (
@@ -884,7 +883,7 @@ export default function HamroPatroHero({
                       </div>
                     ))
                   ) : (
-                    <div className="text-center py-6 text-xs text-slate-400">
+                    <div className="text-center py-6 text-xs text-gray-400">
                       {isNe ? "यस महिनाको पर्व विवरण उपलब्ध छैन" : "No specific festivals recorded for this month"}
                     </div>
                   )}
@@ -894,43 +893,43 @@ export default function HamroPatroHero({
               {/* Tab 2: Muhurtas List */}
               {sidebarTab === "muhurta" && (
                 <div className="p-3 space-y-2 max-h-[360px] overflow-y-auto text-xs">
-                  <div className="p-3 bg-slate-50 border border-slate-200 rounded-none">
-                    <div className="font-bold text-slate-900 flex items-center justify-between">
+                  <div className="p-3 bg-gray-50 border border-gray-200 rounded-none">
+                    <div className="font-bold text-[#B91C1C] flex items-center justify-between">
                       <span>{isNe ? "गृहप्रवेश उत्तम साइत" : "Griha Pravesh Muhurta"}</span>
                       <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-bold text-[10px] border border-emerald-300 rounded-none">
                         {isNe ? "उत्तम" : "Excellent"}
                       </span>
                     </div>
-                    <div className="text-slate-800 mt-1 font-semibold">
+                    <div className="text-gray-800 mt-1 font-semibold">
                       {isNe ? `${calendarData.monthName} ११ गते (अमृत वेला विन्डो)` : `${calendarData.monthNameEn} 11 (Amrit Bela Window)`}
                     </div>
-                    <div className="text-slate-500 text-[11px] mt-0.5">समय: बिहान ०७:३० देखि ०९:१५ सम्म</div>
+                    <div className="text-gray-500 text-[11px] mt-0.5">समय: बिहान ०७:३० देखि ०९:१५ सम्म</div>
                   </div>
 
-                  <div className="p-3 bg-slate-50 border border-slate-200 rounded-none">
-                    <div className="font-bold text-slate-900 flex items-center justify-between">
+                  <div className="p-3 bg-gray-50 border border-gray-200 rounded-none">
+                    <div className="font-bold text-[#B91C1C] flex items-center justify-between">
                       <span>{isNe ? "विवाह / व्रतबन्ध साइत" : "Marriage / Vivah Muhurta"}</span>
                       <span className="px-2 py-0.5 bg-amber-100 text-amber-900 font-bold text-[10px] border border-amber-300 rounded-none">
                         {isNe ? "शुभ योग" : "Auspicious"}
                       </span>
                     </div>
-                    <div className="text-slate-800 mt-1 font-semibold">
+                    <div className="text-gray-800 mt-1 font-semibold">
                       {isNe ? `${calendarData.monthName} २६ गते (उत्तम लग्न)` : `${calendarData.monthNameEn} 26 (Auspicious Lagna)`}
                     </div>
-                    <div className="text-slate-500 text-[11px] mt-0.5">साइत: बिहान ०८:२५ बजे उत्तम योग</div>
+                    <div className="text-gray-500 text-[11px] mt-0.5">साइत: बिहान ०८:२५ बजे उत्तम योग</div>
                   </div>
 
-                  <div className="p-3 bg-slate-50 border border-slate-200 rounded-none">
-                    <div className="font-bold text-slate-900 flex items-center justify-between">
+                  <div className="p-3 bg-gray-50 border border-gray-200 rounded-none">
+                    <div className="font-bold text-[#B91C1C] flex items-center justify-between">
                       <span>{isNe ? "सवारी साधन खरिद साइत" : "Vehicle Purchase Muhurta"}</span>
                       <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-bold text-[10px] border border-emerald-300 rounded-none">
                         {isNe ? "शुभ" : "Auspicious"}
                       </span>
                     </div>
-                    <div className="text-slate-800 mt-1 font-semibold">
+                    <div className="text-gray-800 mt-1 font-semibold">
                       {isNe ? `${calendarData.monthName} ३१ गते` : `${calendarData.monthNameEn} 31`}
                     </div>
-                    <div className="text-slate-500 text-[11px] mt-0.5">समय: दिउँसो ११:४० देखि ०१:१५ सम्म</div>
+                    <div className="text-gray-500 text-[11px] mt-0.5">समय: दिउँसो ११:४० देखि ०१:१५ सम्म</div>
                   </div>
                 </div>
               )}
@@ -947,13 +946,13 @@ export default function HamroPatroHero({
                             {isNe ? `${calendarData.monthName} ${toNepaliNum(ev.day)}` : `${calendarData.monthNameEn} ${ev.day}`}
                           </span>
                         </div>
-                        <div className="text-slate-600 text-[11px] mt-1">
+                        <div className="text-gray-600 text-[11px] mt-1">
                           {isNe ? "नेपाल सरकार राजपत्र अनुसार आधिकारिक सार्वजनिक बिदा" : "Official Nepal Govt Public Holiday"}
                         </div>
                       </div>
                     ))
                   ) : (
-                    <div className="text-center py-6 text-xs text-slate-400">
+                    <div className="text-center py-6 text-xs text-gray-400">
                       {isNe ? "यस महिनामा सार्वजनिक बिदा छैन (शनिबार बाहेक)" : "No official gazetted public holidays this month"}
                     </div>
                   )}
@@ -961,23 +960,23 @@ export default function HamroPatroHero({
               )}
             </div>
 
-            {/* Guru Neel Hari Authority Card */}
-            <div className="bg-[#0F172A] text-white p-4 sm:p-5 border border-slate-800 rounded-none">
+            {/* Guru Neel Hari Authority Card - Deep Regal Maroon & Warm Gold */}
+            <div className="bg-gradient-to-br from-[#3D0A14] to-[#1F040A] text-white p-4 sm:p-5 border border-red-900/60 rounded-none shadow-sm">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-slate-800 flex items-center justify-center font-black text-sm border border-slate-700 rounded-none text-amber-400">
+                <div className="w-10 h-10 bg-[#B91C1C] flex items-center justify-center font-black text-sm border border-amber-400 rounded-none text-white">
                   गुरू
                 </div>
                 <div>
                   <h4 className="font-bold text-sm text-white">
                     {isNe ? "ज्योतिषाचार्य गुरु नील हरि" : "Jyotishacharya Guru Neel Hari"}
                   </h4>
-                  <p className="text-[11px] text-slate-400 font-medium">
+                  <p className="text-[11px] text-amber-300 font-medium">
                     {isNe ? "३४+ वर्ष वैदिक पञ्चाङ्ग तथा साइत अनुसन्धान" : "34+ Years Vedic Ephemeris & Muhurta Research"}
                   </p>
                 </div>
               </div>
 
-              <p className="text-xs text-slate-300 mt-3 leading-relaxed">
+              <p className="text-xs text-gray-200 mt-3 leading-relaxed">
                 {isNe
                   ? "विवाह, व्रतबन्ध, गृहप्रवेश वा नयाँ व्यवसायको लागि तपाईंको व्यक्तिगत चिना अनुसारको निर्दोष साइत प्राप्त गर्नुहोस्।"
                   : "Receive infallible auspicious timings (Muhurtas) for weddings, housewarming, or commercial ventures calibrated to your natal Kundali."}
@@ -985,7 +984,7 @@ export default function HamroPatroHero({
 
               <button
                 onClick={() => onOpenInquiry("गुरु नील हरिसँग व्यक्तिगत साइत तथा कुण्डली परामर्श")}
-                className="mt-3.5 w-full py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-black rounded-none transition-colors flex items-center justify-center gap-1.5"
+                className="mt-3.5 w-full py-2 bg-amber-500 hover:bg-amber-400 text-gray-950 text-xs font-black rounded-none transition-colors flex items-center justify-center gap-1.5 shadow-sm"
               >
                 <span>{isNe ? "प्रत्यक्ष परामर्श बुक गर्नुहोस्" : "Book Direct Consultation"}</span>
                 <ArrowRight className="w-3.5 h-3.5" />

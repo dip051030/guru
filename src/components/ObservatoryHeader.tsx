@@ -93,7 +93,7 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
 
           <button
             onClick={() => onOpenInquiry(t.header.bookConsultation)}
-            className="px-5 py-2.5 rounded-none bg-slate-900 text-white text-xs lg:text-sm font-bold hover:bg-black transition-colors flex items-center gap-2 shadow-2xs"
+            className="px-5 py-2.5 rounded-none bg-[#B91C1C] hover:bg-[#991B1B] text-white text-xs lg:text-sm font-bold transition-colors flex items-center gap-2 shadow-sm"
           >
             <Calendar className="w-4 h-4" />
             <span>{t.header.bookConsultation}</span>
