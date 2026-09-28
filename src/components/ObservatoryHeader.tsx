@@ -100,6 +100,12 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
             )}
           </Link>
           <Link
+            href="/#horoscope-section"
+            className="text-stone-700 hover:text-[#C85A17] transition-colors py-1 relative"
+          >
+            {t.header.horoscope}
+          </Link>
+          <Link
             href="/ephemeris"
             className={`transition-colors py-1 relative ${
               pathname?.startsWith("/ephemeris")
@@ -193,6 +199,13 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
             className={`py-1 ${pathname === "/" ? "text-terracotta font-bold" : "hover:text-terracotta"}`}
           >
             {t.header.home}
+          </Link>
+          <Link
+            href="/#horoscope-section"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-1 hover:text-terracotta"
+          >
+            {t.header.horoscope}
           </Link>
           <Link
             href="/ephemeris"

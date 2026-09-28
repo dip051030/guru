@@ -246,12 +246,15 @@ export default function HamroPatroHero({
               </button>
 
               <button
-                onClick={() => setActiveTool(activeTool === "rashifal" ? null : "rashifal")}
-                className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold border transition-all duration-200 rounded-none ${
-                  activeTool === "rashifal"
-                    ? "bg-[#C85A17] text-white border-[#C85A17] shadow-xs"
-                    : "bg-white text-stone-700 border-stone-200/70 hover:border-[#C85A17]/60 hover:text-[#C85A17] hover:bg-orange-50/30"
-                }`}
+                onClick={() => {
+                  const el = document.getElementById("horoscope-section");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth" });
+                  } else {
+                    setActiveTool(activeTool === "rashifal" ? null : "rashifal");
+                  }
+                }}
+                className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold border transition-all duration-200 rounded-none bg-white text-stone-700 border-stone-200/70 hover:border-[#C85A17]/60 hover:text-[#C85A17] hover:bg-orange-50/30"
               >
                 <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D97706]" />
                 <span>{isNe ? "राशिफल" : "Horoscope"}</span>
