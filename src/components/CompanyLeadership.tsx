@@ -29,9 +29,9 @@ export default function CompanyLeadership({ onOpenInquiry }: LeadershipProps) {
       sub: language === "ne" ? "व्यापारिक विकृति रहित" : "Zero Commercial Rackets",
     },
     {
-      value: language === "ne" ? "बालुवाटार" : "Baluwatar",
-      label: language === "ne" ? "काठमाडौँ केन्द्र" : "Kathmandu Sanctum",
-      sub: language === "ne" ? "प्रत्यक्ष र अनलाइन सेवा" : "In-Person & Encrypted Video",
+      value: language === "ne" ? "युके केन्द्र" : "UK Centre",
+      label: language === "ne" ? "सनातन केन्द्र युके" : "Sanatan Kendra UK",
+      sub: language === "ne" ? "प्रत्यक्ष र अनलाइन सेवा" : "In-Person & Global Online",
     },
   ];
 
@@ -66,7 +66,7 @@ export default function CompanyLeadership({ onOpenInquiry }: LeadershipProps) {
                       {t.about.title}
                     </span>
                     <span className="font-mono text-[10px] text-[#C85A17] tracking-widest uppercase mt-1 font-bold">
-                      {language === "ne" ? "मुख्य ज्योतिषाचार्य" : "Chief Jyotishacharya"}
+                      CEO | CHIEF CONSULTANT
                     </span>
                   </div>
                 </div>
@@ -74,12 +74,12 @@ export default function CompanyLeadership({ onOpenInquiry }: LeadershipProps) {
                 {/* Floating Auspicious Badge */}
                 <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-none bg-[#C85A17] text-white text-xs font-mono font-bold shadow-xs flex items-center gap-1.5 whitespace-nowrap animate-float-subtle">
                   <Award className="w-3.5 h-3.5" />
-                  <span>{language === "ne" ? "वैदिक महर्षि परम्परा" : "Vedic Maharshi Lineage"}</span>
+                  <span>{language === "ne" ? "वैदिक सनातन केन्द्र युके" : "Vedic Sanatan Kendra UK"}</span>
                 </div>
               </div>
 
               <div className="mt-8 text-xs font-mono text-stone-500">
-                <span>{language === "ne" ? "काठमाडौँ उपत्यका • नेपाल" : "Kathmandu Valley • Nepal"}</span>
+                <span>{language === "ne" ? "वैदिक सनातन केन्द्र युके • www.gurunilhari.com" : "Vedic Sanatan Kendra UK • www.gurunilhari.com"}</span>
               </div>
             </div>
 

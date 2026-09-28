@@ -20,7 +20,7 @@ export default function Practitioners({ onOpenInquiry }: PractitionersProps) {
               <span>THE SCHOLAR & MASTER ASTROLOGER</span>
             </div>
             <h2 className="font-serif text-3xl md:text-5xl text-textHeading font-normal tracking-tight">
-              Guru Neel Hari
+              Guru Nilhari
             </h2>
             <p className="mt-3 text-textBody text-sm md:text-base max-w-2xl font-light">
               Master Vedic Astrologer, ephemeris mathematician, and spiritual
@@ -46,7 +46,7 @@ export default function Practitioners({ onOpenInquiry }: PractitionersProps) {
               <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-border">
                 <div>
                   <h3 className="font-serif text-3xl text-textHeading font-semibold">
-                    Guru Neel Hari
+                    Guru Nilhari
                   </h3>
                   <p className="font-mono text-xs uppercase tracking-widest text-secondary mt-1">
                     VEDIC JYOTISH MASTER & ASTRONOMICAL RESEARCHER
@@ -55,7 +55,7 @@ export default function Practitioners({ onOpenInquiry }: PractitionersProps) {
 
                 <div className="flex items-center gap-3">
                   <button
-                    onClick={() => onOpenInquiry("Private Consultation with Guru Neel Hari")}
+                    onClick={() => onOpenInquiry("Private Consultation with Guru Nilhari")}
                     className="px-5 py-2.5 border border-primary bg-primary text-textInverted text-xs font-mono tracking-wider uppercase hover:bg-primary-dark transition-colors flex items-center gap-2 shadow-soft"
                   >
                     <Mail className="w-3.5 h-3.5" />
@@ -66,7 +66,7 @@ export default function Practitioners({ onOpenInquiry }: PractitionersProps) {
 
               <div className="mt-8 space-y-4 text-sm text-textBody font-light leading-relaxed">
                 <p>
-                  <strong className="font-semibold text-foreground">Guru Neel Hari</strong> is a
+                  <strong className="font-semibold text-foreground">Guru Nilhari</strong> is a
                   renowned authority in classical Vedic Jyotish and computational astrometry.
                   Raised in the venerable scholarly traditions of the Kathmandu Valley, he has
                   dedicated decades to the study and preservation of the ancient Siddhantic texts,
@@ -75,14 +75,14 @@ export default function Practitioners({ onOpenInquiry }: PractitionersProps) {
                 </p>
                 <p>
                   Recognizing that astrology loses its sanctity when decoupled from empirical
-                  astronomical reality, Guru Neel Hari pioneered the synthesis of classical
+                  astronomical reality, Guru Nilhari pioneered the synthesis of classical
                   sidereal mathematics with modern high-precision astronomical computation. He
                   oversaw the algorithmic architecture of the **Nepali Patra Engine**, delivering
                   unimpeachable Bikram Sambat date conversion and Panchanga calculations for
                   institutions worldwide.
                 </p>
                 <p>
-                  Today, Guru Neel Hari serves as a trusted advisor to founders, executives, and
+                  Today, Guru Nilhari serves as a trusted advisor to founders, executives, and
                   discerning seekers across the globe. His consultations offer an unvarnished,
                   deeply compassionate examination of karma, dharma, and temporal opportunity—free
                   from superstition, automated clichés, or superficial generalities.
@@ -142,7 +142,7 @@ export default function Practitioners({ onOpenInquiry }: PractitionersProps) {
                 karmic path with wisdom, dignity, and grace.&rdquo;
               </p>
               <div className="pt-2 border-t border-border font-serif text-xs text-textHeading italic">
-                — Guru Neel Hari
+                — Guru Nilhari
               </div>
             </motion.div>
 

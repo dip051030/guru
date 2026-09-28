@@ -25,20 +25,23 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Guru Neel Hari | Neel Hari Vedic Jyotish Kendra, Kathmandu",
+  title: "गुरु निलहरि (Guru Nilhari) | Vedic Sanatan Kendra UK",
   description:
-    "Official consultancy of Guru Neel Hari. Authentic Vedic Jyotish, Janma Kundali analysis, Vivaha Milan, auspicious Muhurta timing, and Nepali Patro calendar consultation in Kathmandu, Nepal.",
+    "Official portal of Guru Nilhari (CEO | Chief Consultant). Vedic Sanatan Kendra UK - Astrology (Jyotish & Horoscope), Gemstone Identification (Ratna Consultation), Vastu Shastra (Home & Office Harmony), and Karmakanda (Vedic Rituals & Puja). Direct UK & Global Online Consultations: +44 7838 820518 | www.gurunilhari.com.",
   keywords: [
-    "Guru Neel Hari",
-    "गुरु नील हरि",
-    "Neel Hari Jyotish",
+    "Guru Nilhari",
+    "गुरु निलहरि",
+    "Vedic Sanatan Kendra UK",
+    "वैदिक सनातन केन्द्र युके",
+    "gurunilhari.com",
+    "Astrology Jyotish",
+    "Gemstone Identification Ratna",
+    "Vastu Shastra UK",
+    "Vedic Karmakanda Puja",
     "Nepali Patro",
     "Janma Kundali",
-    "Vedic Astrology Nepal",
-    "Vivaha Muhurta",
-    "Kathmandu Astrologer",
   ],
-  authors: [{ name: "Guru Neel Hari" }],
+  authors: [{ name: "Guru Nilhari" }],
 };
 
 export default function RootLayout({

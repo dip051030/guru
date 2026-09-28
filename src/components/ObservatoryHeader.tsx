@@ -60,10 +60,15 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
         </div>
 
         <div className="flex items-center gap-6 text-[11px]">
-          <div className="flex items-center gap-1.5 text-stone-600">
+          <a
+            href="https://wa.me/447838820518"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-stone-600 hover:text-[#C85A17] transition-colors"
+          >
             <Phone className="w-3.5 h-3.5 text-[#D97706]" />
             <span>{t.header.contact}</span>
-          </div>
+          </a>
           <span className="text-stone-300">|</span>
           <span className="text-[#D97706] font-bold">{t.header.location}</span>
         </div>

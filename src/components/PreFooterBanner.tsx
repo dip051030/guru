@@ -42,7 +42,9 @@ export default function PreFooterBanner({ onOpenInquiry }: PreFooterBannerProps)
           </button>
 
           <a
-            href="tel:+97714412345"
+            href="https://wa.me/447838820518"
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full sm:w-auto px-8 py-3.5 rounded-none bg-white/5 hover:bg-white/10 border border-white/20 text-white font-bold text-sm md:text-base transition-all flex items-center justify-center gap-2.5"
           >
             <Phone className="w-4 h-4 text-[#F59E0B]" />

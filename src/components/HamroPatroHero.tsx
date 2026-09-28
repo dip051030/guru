@@ -1018,30 +1018,30 @@ export default function HamroPatroHero({
               )}
             </div>
 
-            {/* Guru Neel Hari Authority Card - Warm Saffron & Dark Charcoal */}
+            {/* Guru Nilhari Authority Card - Warm Saffron & Dark Charcoal */}
             <div className="bg-[#181411] text-white p-4 sm:p-5 border border-stone-700 rounded-none shadow-sm">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-[#C85A17] flex items-center justify-center font-black text-sm rounded-none text-white shadow-sm">
-                  गुरू
+                  गुरु
                 </div>
                 <div>
                   <h4 className="font-bold text-sm text-white">
-                    {isNe ? "ज्योतिषाचार्य गुरु नील हरि" : "Jyotishacharya Guru Neel Hari"}
+                    {isNe ? "गुरु निलहरि (Guru Nilhari)" : "Guru Nilhari (CEO | Chief Consultant)"}
                   </h4>
                   <p className="text-[11px] text-[#D97706] font-medium">
-                    {isNe ? "३४+ वर्ष वैदिक पञ्चाङ्ग तथा साइत अनुसन्धान" : "34+ Years Vedic Ephemeris & Muhurta Research"}
+                    {isNe ? "वैदिक सनातन केन्द्र युके • ३ दशकको साधना" : "Vedic Sanatan Kendra UK • 3+ Decades Mastery"}
                   </p>
                 </div>
               </div>
 
               <p className="text-xs text-stone-300 mt-3 leading-relaxed">
                 {isNe
-                  ? "विवाह, व्रतबन्ध, गृहप्रवेश वा नयाँ व्यवसायको लागि तपाईंको व्यक्तिगत चिना अनुसारको निर्दोष साइत प्राप्त गर्नुहोस्।"
-                  : "Receive infallible auspicious timings (Muhurtas) for weddings, housewarming, or commercial ventures calibrated to your natal Kundali."}
+                  ? "ज्योतिष तथा कुण्डली, रत्न पहिचान, वास्तु शास्त्र र वैदिक कर्मकाण्डका लागि प्रामाणिक मार्गदर्शन प्राप्त गर्नुहोस्।"
+                  : "Authentic consultation across Astrology (Horoscope), Gemstone Identification, Vastu Shastra, and sacred Vedic Karmakanda."}
               </p>
 
               <button
-                onClick={() => onOpenInquiry("गुरु नील हरिसँग व्यक्तिगत साइत तथा कुण्डली परामर्श")}
+                onClick={() => onOpenInquiry("गुरु निलहरिसँग परामर्श (Vedic Sanatan Kendra UK)")}
                 className="mt-3.5 w-full py-2.5 bg-[#C85A17] hover:bg-[#A6440C] text-white text-xs font-black rounded-none transition-colors flex items-center justify-center gap-1.5 shadow-sm"
               >
                 <span>{isNe ? "प्रत्यक्ष परामर्श बुक गर्नुहोस्" : "Book Direct Consultation"}</span>

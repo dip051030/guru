@@ -49,7 +49,7 @@ export default function EphemerisConsole() {
   }, [selectedDate, selectedTime, latitude, longitude]);
 
   const handleCopySummary = () => {
-    const text = `नील हरि वैदिक ज्योतिष केन्द्र - कुण्डली तथा पञ्चाङ्ग विवरण:
+    const text = `गुरु निलहरि | वैदिक सनातन केन्द्र युके - कुण्डली तथा पञ्चाङ्ग विवरण (www.gurunilhari.com):
 नेपाली मिति: ${result.bikramSambat.formattedNepali} (${result.bikramSambat.formatted})
 अंग्रेजी मिति: ${result.gregorianDate}
 तिथि: ${result.tithi.sanskritName}

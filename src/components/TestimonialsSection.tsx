@@ -26,8 +26,8 @@ export default function TestimonialsSection() {
       rating: 5,
       text:
         language === "ne"
-          ? "विवाह कुण्डली मिलान र नवमांश विश्लेषणका लागि हामी गुरु नील हरिकहाँ पुगेका थियौं। उहाँले कुनै डर-त्रास नदेखाई दुवैको स्वभाव, गुण र ग्रह स्थितिको यथार्थ विश्लेषण गरिदिनुभयो। आज हाम्रो वैवाहिक जीवन अत्यन्त सुखमय छ।"
-          : "We consulted Guru Neel Hari for our marriage kundali matching and Navamsha analysis. Without instilling any artificial fear, he accurately decoded both horoscopes and temperaments. Our married life has been deeply harmonious.",
+          ? "विवाह कुण्डली मिलान र नवमांश विश्लेषणका लागि हामी गुरु निलहरिकहाँ पुगेका थियौं। उहाँले कुनै डर-त्रास नदेखाई दुवैको स्वभाव, गुण र ग्रह स्थितिको यथार्थ विश्लेषण गरिदिनुभयो। आज हाम्रो वैवाहिक जीवन अत्यन्त सुखमय छ।"
+          : "We consulted Guru Nilhari for our marriage kundali matching and Navamsha analysis. Without instilling any artificial fear, he accurately decoded both horoscopes and temperaments. Our married life has been deeply harmonious.",
       service: language === "ne" ? "विवाह कुण्डली मिलान" : "Matrimonial Matching",
     },
     {

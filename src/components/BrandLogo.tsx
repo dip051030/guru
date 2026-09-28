@@ -144,15 +144,18 @@ export default function BrandLogo({
         </svg>
       </div>
 
-      {/* Clean Minimal Typography Lockup - No Spam Subheadings */}
+      {/* Clean Minimal Typography Lockup - Guru Nilhari */}
       {showText && (
-        <div className="flex items-center text-left">
+        <div className="flex flex-col text-left">
           <span
             className={`font-serif tracking-tight font-bold leading-none ${
               size === "sm" ? "text-base" : size === "md" ? "text-xl" : "text-2xl"
             } ${textStyles.title}`}
           >
-            गुरु नील हरि
+            गुरु निलहरि
+          </span>
+          <span className={`text-[9px] font-mono tracking-widest uppercase mt-1 font-bold ${textStyles.sub}`}>
+            Vedic Sanatan Kendra UK
           </span>
         </div>
       )}

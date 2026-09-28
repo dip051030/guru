@@ -473,7 +473,7 @@ export default function ObservatoryDashboard() {
 
             <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-xs font-mono text-textMuted">
               <span>स्थान: काठमाडौँ (२७°४३′ उत्तर, ८५°१९′ पूर्व)</span>
-              <span className="text-secondary font-semibold">नील हरि वैदिक ज्योतिष केन्द्र</span>
+              <span className="text-secondary font-semibold">वैदिक सनातन केन्द्र युके (Guru Nilhari)</span>
             </div>
           </div>
         </div>

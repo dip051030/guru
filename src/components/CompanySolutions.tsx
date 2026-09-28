@@ -4,10 +4,10 @@ import React from "react";
 import {
   Compass,
   Calendar,
-  ShieldCheck,
+  Sparkles,
   HeartHandshake,
-  TrendingUp,
-  Activity,
+  Home,
+  Flame,
   ArrowRight,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
@@ -22,51 +22,69 @@ export default function CompanySolutions({ onOpenInquiry }: SolutionsProps) {
   const SERVICES = [
     {
       icon: Compass,
-      title: language === "ne" ? "जन्म कुण्डली विश्लेषण" : "Natal Kundali Analysis",
+      tag: "PILLAR 01",
+      tagNe: "स्तम्भ ०१",
+      title: language === "ne" ? "ज्योतिष तथा कुण्डली (Astrology)" : "Astrology (Jyotish & Horoscope)",
+      sub: "Jyotish & Horoscope",
       desc:
         language === "ne"
-          ? "व्यक्तिगत जीवन, करियर, विवाह, स्वास्थ्य आदिका लागि विस्तृत विश्लेषण।"
-          : "Comprehensive analysis of personal destiny, career trajectories, matrimonial prospects, and vitality.",
+          ? "जन्म कुण्डली विश्लेषण, विंशोत्तरी दशा, करियर, विवाह तथा जीवनका महत्वपूर्ण निर्णयहरूको प्रामाणिक शास्त्रसम्मत मार्गदर्शन।"
+          : "Comprehensive natal chart mapping, planetary dashas, career pathways, and matrimonial life guidance.",
+    },
+    {
+      icon: Sparkles,
+      tag: "PILLAR 02",
+      tagNe: "स्तम्भ ०२",
+      title: language === "ne" ? "रत्न पहिचान (Gemstone Identification)" : "Gemstone Identification",
+      sub: "Ratna Consultation",
+      desc:
+        language === "ne"
+          ? "ग्रह अनुकूलताका लागि प्रामाणिक प्राकृतिक रत्न पहिचान, परीक्षण र निष्पक्ष शास्त्रीय परामर्श (रत्न बिक्री होइन, सत्य परीक्षण)।"
+          : "Certified gemological identification, testing, and impartial astrological compatibility analysis.",
+    },
+    {
+      icon: Home,
+      tag: "PILLAR 03",
+      tagNe: "स्तम्भ ०३",
+      title: language === "ne" ? "वास्तु शास्त्र (Vastu Shastra)" : "Vastu Shastra",
+      sub: "Home & Office Harmony",
+      desc:
+        language === "ne"
+          ? "घर, आवास, व्यापारिक प्रतिष्ठान तथा कार्यालयका लागि पञ्चतत्व सन्तुलन, दिशा शोधन र समृद्धिदायक वास्तु परामर्श।"
+          : "Spatial 5-element harmonization, architectural alignment, and energetic optimization for residences & workspaces.",
+    },
+    {
+      icon: Flame,
+      tag: "PILLAR 04",
+      tagNe: "स्तम्भ ०४",
+      title: language === "ne" ? "कर्मकाण्ड (Karmakanda)" : "Karmakanda",
+      sub: "Vedic Rituals & Puja",
+      desc:
+        language === "ne"
+          ? "रुद्राभिषेक, ग्रह शान्ति, वास्तु पूजा, सत्यनारायण कथा तथा शास्त्रीय वैदिक विधि अनुसार यज्ञ-अनुष्ठान।"
+          : "Authentic Vedic rituals, Graha Shanti havans, Rudrabhishek, and consecrated spiritual ceremonies.",
     },
     {
       icon: Calendar,
-      title: language === "ne" ? "पञ्चाङ्ग गणना" : "Ephemeris & Panchanga",
+      tag: "COMPLEMENTARY",
+      tagNe: "पूरक सेवा",
+      title: language === "ne" ? "नेपाली पात्रो तथा पञ्चाङ्ग" : "Nepali Patro & Panchanga",
+      sub: "Ephemeris & Timings",
       desc:
         language === "ne"
-          ? "दैनिक, मासिक र वार्षिक पञ्चाङ्ग, तिथि, नक्षत्र, योग र करण।"
-          : "Daily, monthly, and seasonal ephemeris, lunar tithi, nakshatras, yogas, and karanas.",
-    },
-    {
-      icon: ShieldCheck,
-      title: language === "ne" ? "ग्रह शान्ति तथा दोष निवारण" : "Graha Shanti & Remedial Rituals",
-      desc:
-        language === "ne"
-          ? "कालसर्प, मङ्गल दोष, साढेसाती आदिका लागि शास्त्रीय वैदिक उपायहरू।"
-          : "Authentic Vedic remedies, mantra recitation, and havan for Manglik, Kaal Sarp, and Sade Sati.",
+          ? "दैनिक, मासिक र वार्षिक पञ्चाङ्ग, तिथि, नक्षत्र, योग, करण र चाडपर्व निर्णयको प्रामाणिक दृक-गणित।"
+          : "High-precision solar & lunar ephemeris, tithis, nakshatras, yogas, and authentic festival dates.",
     },
     {
       icon: HeartHandshake,
-      title: language === "ne" ? "विवाह मिलान" : "Matrimonial Compatibility",
+      tag: "COMPLEMENTARY",
+      tagNe: "पूरक सेवा",
+      title: language === "ne" ? "विवाह मिलान तथा शुभ साइत" : "Matrimonial Muhurta",
+      sub: "Compatibility & Auspicious Timing",
       desc:
         language === "ne"
-          ? "गुण मिलान, भकूट मिलान र वैवाहिक जीवनको सुखद भविष्य।"
-          : "In-depth Ashtakoota and Navamsha compatibility for enduring marital happiness.",
-    },
-    {
-      icon: TrendingUp,
-      title: language === "ne" ? "करियर तथा व्यवसाय" : "Enterprise & Career Strategy",
-      desc:
-        language === "ne"
-          ? "उचित क्षेत्र छनोट र दीर्घकालीन व्यापार सफलताको मार्गदर्शन।"
-          : "Auspicious venture timing (Muhurta), executive counsel, and business expansion.",
-    },
-    {
-      icon: Activity,
-      title: language === "ne" ? "स्वास्थ्य तथा जीवनशैली" : "Vitality & Spiritual Wellbeing",
-      desc:
-        language === "ne"
-          ? "ग्रह प्रभाव अनुसार स्वास्थ्य, मानसिक शान्ति र सन्तुलित जीवनशैली।"
-          : "Ayurvedic planetary constitution analysis and lifestyle harmony.",
+          ? "अष्टकूट गुण मिलान, नाडी तथा मांगलिक विचार र विवाह, गृहप्रवेश, व्यापारको शुभ लग्न साइत।"
+          : "In-depth Ashtakoota compatibility, Navamsha synastry, and consecrated Muhurta timing for life milestones.",
     },
   ];
 
@@ -103,14 +121,22 @@ export default function CompanySolutions({ onOpenInquiry }: SolutionsProps) {
                 className="bg-white rounded-none p-7 border border-stone-200/70 shadow-2xs hover:border-[#C85A17]/70 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
-                  {/* Square Saffron Icon Badge */}
-                  <div className="w-12 h-12 rounded-none bg-orange-50/80 text-[#C85A17] border border-orange-200/60 flex items-center justify-center mb-5 group-hover:bg-[#C85A17] group-hover:text-white transition-all duration-300">
-                    <Icon className="w-5 h-5" />
+                  <div className="flex items-center justify-between gap-2 mb-4">
+                    {/* Square Saffron Icon Badge */}
+                    <div className="w-12 h-12 rounded-none bg-orange-50/80 text-[#C85A17] border border-orange-200/60 flex items-center justify-center group-hover:bg-[#C85A17] group-hover:text-white transition-all duration-300">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <span className="text-[10px] font-mono font-bold tracking-widest uppercase px-2 py-0.5 bg-stone-100 text-stone-600 border border-stone-200/60">
+                      {language === "ne" ? service.tagNe : service.tag}
+                    </span>
                   </div>
 
                   <h3 className="font-serif text-xl font-bold text-[#181411] group-hover:text-[#C85A17] transition-colors duration-200">
                     {service.title}
                   </h3>
+                  <div className="text-xs font-mono text-[#D97706] font-bold mt-1">
+                    {service.sub}
+                  </div>
                   <p className="mt-2.5 text-sm text-stone-600 leading-relaxed font-light">
                     {service.desc}
                   </p>

@@ -40,15 +40,15 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
             </div>
 
             <span className="text-[11px] font-mono tracking-widest uppercase text-secondary mb-2">
-              NEEL HARI VEDIC JYOTISH KENDRA
+              VEDIC SANATAN KENDRA UK
             </span>
 
             <h1 className="font-serif text-3xl md:text-4xl text-foreground font-normal tracking-tight">
-              Guru Neel Hari
+              Guru Nilhari
             </h1>
 
             <p className="font-serif text-sm text-textMuted mt-2 italic">
-              शुभम् भवतु • काठमाडौँ, नेपाल
+              शुभम् भवतु • वैदिक सनातन केन्द्र युके
             </p>
           </motion.div>
 

@@ -102,8 +102,8 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
                 <MapPin className="w-4 h-4 text-[#C85A17] shrink-0 mt-0.5" />
                 <span>
                   {language === "ne"
-                    ? "बालुवाटार, काठमाडौँ, नेपाल (सभामुख निवास नजिक)"
-                    : "Baluwatar, Kathmandu, Nepal (Near Speaker's Residence)"}
+                    ? "वैदिक सनातन केन्द्र युके (Vedic Sanatan Kendra UK)"
+                    : "Vedic Sanatan Kendra UK • United Kingdom & Nepal"}
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
@@ -111,12 +111,35 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
                 <span>{t.footer.hours}</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#C85A17] shrink-0" />
-                <span>+९७७ १ ४४१२३४५ / ९८५१०१२३४५</span>
+                <a
+                  href="https://wa.me/447838820518"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 hover:text-[#F59E0B] transition-colors"
+                >
+                  <Phone className="w-4 h-4 text-[#F59E0B] shrink-0" />
+                  <span>+44 7838 820518 (Direct / WhatsApp)</span>
+                </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#C85A17] shrink-0" />
-                <span>contact@guruneelhari.com</span>
+                <a
+                  href="https://www.gurunilhari.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 hover:text-[#F59E0B] transition-colors"
+                >
+                  <Phone className="w-4 h-4 text-[#F59E0B] opacity-0 shrink-0" />
+                  <span className="text-[#F59E0B] font-bold">www.gurunilhari.com</span>
+                </a>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <a
+                  href="mailto:contact@gurunilhari.com"
+                  className="flex items-center gap-2.5 hover:text-white transition-colors"
+                >
+                  <Mail className="w-4 h-4 text-[#C85A17] shrink-0" />
+                  <span>contact@gurunilhari.com</span>
+                </a>
               </div>
             </div>
           </div>

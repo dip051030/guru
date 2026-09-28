@@ -50,7 +50,7 @@ export default function Home() {
       {/* 5. Contrast Deep Navy Section: Vedic Dignity, 4 Pillars & Golden Quote */}
       <AntiSlopManifesto />
 
-      {/* 6. Jyotishacharya Guru Neel Hari Profile */}
+      {/* 6. Guru Nilhari (CEO | Chief Consultant) Profile */}
       <CompanyLeadership onOpenInquiry={handleOpenInquiry} />
 
       {/* 7. Client Testimonials & Trust Metrics */}

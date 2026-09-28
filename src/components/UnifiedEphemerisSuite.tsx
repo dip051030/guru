@@ -84,7 +84,7 @@ export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemeri
   const handleCopySummary = () => {
     const text =
       language === "ne"
-        ? `नील हरि वैदिक ज्योतिष केन्द्र - कुण्डली तथा पञ्चाङ्ग विवरण:
+        ? `गुरु निलहरि | वैदिक सनातन केन्द्र युके - कुण्डली तथा पञ्चाङ्ग विवरण (www.gurunilhari.com):
 नेपाली मिति: ${result.bikramSambat.formattedNepali} (${result.bikramSambat.formatted})
 अंग्रेजी मिति: ${result.gregorianDate}
 जन्म लग्न: ${result.ascendant.sanskritSign} (${result.ascendant.degreeInSign}°)
@@ -94,7 +94,7 @@ export default function UnifiedEphemerisSuite({ onOpenInquiry }: UnifiedEphemeri
 तिथि: ${result.tithi.sanskritName}
 योग: ${result.yoga.name}
 करण: ${result.karana.name}`
-        : `Neel Hari Vedic Jyotish Kendra - Natal & Ephemeris Summary:
+        : `Guru Nilhari | Vedic Sanatan Kendra UK - Natal & Ephemeris Summary (www.gurunilhari.com):
 Bikram Sambat: ${result.bikramSambat.formatted}
 Gregorian Date: ${result.gregorianDate}
 Ascendant (Lagna): ${result.ascendant.sanskritSign} (${result.ascendant.degreeInSign}°)

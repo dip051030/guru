@@ -33,29 +33,29 @@ export default function InquiryDrawer({
 
   const CONSULTATION_TYPES = [
     {
-      id: "kundali",
-      title: language === "ne" ? "विस्तृत जन्म कुण्डली तथा विंशोत्तरी दशा" : "Comprehensive Natal Chart & Vimshottari Dasha",
-      desc: language === "ne" ? "करियर, स्वास्थ्य, आर्थिक योग, अनुकूल समय र सात्विक उपाय।" : "Career, health, financial yogas, auspicious timing, and sattvic remedies.",
+      id: "astrology",
+      title: language === "ne" ? "ज्योतिष तथा कुण्डली (Astrology - Jyotish & Horoscope)" : "Astrology (Jyotish & Horoscope)",
+      desc: language === "ne" ? "विस्तृत जन्म कुण्डली, विंशोत्तरी दशा, करियर, विवाह र भविष्य फल।" : "Comprehensive natal chart analysis, planetary dashas, career, and matrimonial guidance.",
     },
     {
-      id: "marriage",
-      title: language === "ne" ? "विवाह कुण्डली मिलान तथा शुभ लग्न साइत" : "Matrimonial Compatibility & Wedding Muhurta",
-      desc: language === "ne" ? "अष्टकूट गुण मिलान, नाडी/मङ्गल विचार र पाणिग्रहण साइत।" : "Ashtakoota score, Nadi/Mangal analysis, and auspicious lagna timing.",
-    },
-    {
-      id: "business",
-      title: language === "ne" ? "नयाँ व्यवसाय, लगानी तथा सम्झौता साइत" : "Enterprise Timing, Investment & Legal Muhurta",
-      desc: language === "ne" ? "उद्योग शिलान्यास, कम्पनी दर्ता र वित्तीय वृद्धिको शुभ मुहूर्त।" : "Groundbreaking, company registration, and financial expansion timing.",
+      id: "gemstone",
+      title: language === "ne" ? "रत्न पहिचान (Gemstone Identification - Ratna Consultation)" : "Gemstone Identification (Ratna Consultation)",
+      desc: language === "ne" ? "ग्रह अनुकूलताका लागि प्रामाणिक वैज्ञानिक रत्न पहिचान र निष्पक्ष परीक्षण।" : "Certified gemological identification, testing, and astrological suitability analysis.",
     },
     {
       id: "vastu",
-      title: language === "ne" ? "गृह प्रवेश, जग्गा खरिद तथा वास्तु परामर्श" : "Griha Pravesh & Vedic Vastu Consultation",
-      desc: language === "ne" ? "भूमि परीक्षण, पञ्चतत्व सन्तुलन र वास्तु शान्ति साइत।" : "Land testing, 5-element spatial balance, and consecration timing.",
+      title: language === "ne" ? "वास्तु शास्त्र (Vastu Shastra - Home & Office Harmony)" : "Vastu Shastra (Home & Office Harmony)",
+      desc: language === "ne" ? "घर, भवन तथा कार्यालयका लागि पञ्चतत्व सन्तुलन, दिशा शोधन र वास्तु परामर्श।" : "Residential and commercial architectural alignment, energetic balance, and remedial Vastu.",
+    },
+    {
+      id: "karmakanda",
+      title: language === "ne" ? "कर्मकाण्ड (Karmakanda - Vedic Rituals & Puja)" : "Karmakanda (Vedic Rituals & Puja)",
+      desc: language === "ne" ? "रुद्राभिषेक, ग्रह शान्ति, वास्तु पूजा, सत्यनारायण कथा तथा वैदिक अनुष्ठान।" : "Authentic Vedic rituals, Graha Shanti, Rudrabhishek, and consecrated havans.",
     },
     {
       id: "patro",
-      title: language === "ne" ? "नेपाली पात्रो, तिथि तथा पञ्चाङ्ग परामर्श" : "Nepali Patro & Calendar Ephemeris Consultation",
-      desc: language === "ne" ? "चाडपर्व निर्णय, संस्कार कर्म तथा क्यालेन्डर इन्जिन सहयोग।" : "Festival dates, Vedic rites of passage, and calendar engine collaboration.",
+      title: language === "ne" ? "नेपाली पात्रो, तिथि तथा पञ्चाङ्ग परामर्श" : "Nepali Patro & Ephemeris Consultation",
+      desc: language === "ne" ? "चाडपर्व निर्णय, संस्कार कर्म तथा शुभ मुहूर्त निर्धारण।" : "Festival dates, Vedic rites of passage, and auspicious Muhurta timing.",
     },
   ];
 
@@ -121,7 +121,7 @@ export default function InquiryDrawer({
                     <div className="flex items-center justify-between pb-6 border-b border-stone-200">
                       <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#C85A17] font-bold">
                         <Compass className="w-4 h-4 text-[#D97706]" />
-                        <span>{language === "ne" ? "नील हरि वैदिक ज्योतिष केन्द्र // परामर्श बुकिङ" : "NEEL HARI VEDIC ATELIER // CONSULTATION"}</span>
+                        <span>{language === "ne" ? "वैदिक सनातन केन्द्र युके // परामर्श बुकिङ" : "VEDIC SANATAN KENDRA UK // CONSULTATION"}</span>
                       </div>
 
                       <Dialog.Close asChild>
@@ -146,22 +146,22 @@ export default function InquiryDrawer({
                           {language === "ne" ? (
                             <>
                               आदरणीय <strong className="font-semibold text-[#181411]">{fullName}</strong> ज्यू,
-                              तपाईंको परामर्श अनुरोध नील हरि वैदिक ज्योतिष केन्द्रमा दर्ता भएको छ।
+                              तपाईंको परामर्श अनुरोध वैदिक सनातन केन्द्र युके (Guru Nilhari) मा दर्ता भएको छ।
                               हाम्रो सचिवालयले तपाईंको सम्पर्क नम्बर <span className="font-mono text-[#C85A17] font-bold">{phone}</span> वा
                               इमेलमा २४ घण्टाभित्र सम्पर्क गरी परामर्शको निश्चित समय र आवश्यक तयारीबारे जानकारी गराउनेछ।
                             </>
                           ) : (
                             <>
                               Dear <strong className="font-semibold text-[#181411]">{fullName}</strong>,
-                              your consultation request has been registered at Neel Hari Vedic Jyotish Kendra.
-                              Our sanctum coordinator will contact you at <span className="font-mono text-[#C85A17] font-bold">{phone}</span> within 24 hours to confirm your scheduled appointment time.
+                              your consultation request has been registered at Vedic Sanatan Kendra UK (Guru Nilhari).
+                              Our coordinator will contact you at <span className="font-mono text-[#C85A17] font-bold">{phone}</span> within 24 hours to confirm your scheduled appointment time.
                             </>
                           )}
                         </Dialog.Description>
 
                         <div className="mt-8 p-4 rounded-none border border-stone-300 bg-stone-50 font-mono text-xs text-stone-600 text-left w-full space-y-1.5">
-                          <div>{language === "ne" ? "बुकिङ दर्ता नं" : "Booking Reference"}: NHK-{(Math.random() * 9000 + 1000).toFixed(0)}</div>
-                          <div>{language === "ne" ? "माध्यम" : "Mode"}: {meetingMode === "online" ? (language === "ne" ? "अनलाइन भिडियो (Zoom/WhatsApp)" : "Encrypted Video (Zoom/WhatsApp)") : (language === "ne" ? "प्रत्यक्ष भेट (बालुवाटार, काठमाडौँ)" : "In-Person (Baluwatar, Kathmandu)")}</div>
+                          <div>{language === "ne" ? "बुकिङ दर्ता नं" : "Booking Reference"}: VSK-{(Math.random() * 9000 + 1000).toFixed(0)}</div>
+                          <div>{language === "ne" ? "माध्यम" : "Mode"}: {meetingMode === "online" ? (language === "ne" ? "अनलाइन भिडियो (Zoom/WhatsApp)" : "Online Video (Zoom/WhatsApp)") : (language === "ne" ? "प्रत्यक्ष भेट (सनातन केन्द्र युके)" : "In-Person (Sanatan Kendra UK)")}</div>
                           <div>{language === "ne" ? "गोपनीयता" : "Privacy"}: {language === "ne" ? "१००% व्यक्तिगत र मर्यादित" : "100% Strictly Confidential"}</div>
                         </div>
 
@@ -176,10 +176,10 @@ export default function InquiryDrawer({
                       <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-6">
                         <div>
                           <Dialog.Title className="font-serif text-2xl text-[#181411] font-bold">
-                            {language === "ne" ? "गुरु नील हरिसँग परामर्श" : "Consultation with Guru Neel Hari"}
+                            {language === "ne" ? "गुरु निलहरिसँग परामर्श" : "Consultation with Guru Nilhari"}
                           </Dialog.Title>
                           <Dialog.Description className="mt-1 text-xs text-stone-500 font-light">
-                            {language === "ne" ? "कुण्डली तथा जन्म विवरणका आधारमा प्रत्यक्ष वा अनलाइन ज्योतिषीय परामर्श।" : "In-person or encrypted video consultation based on precise natal coordinates."}
+                            {language === "ne" ? "वैदिक सनातन केन्द्र युके • प्रत्यक्ष भेटघाट वा विश्वव्यापी अनलाइन भिडियो परामर्श।" : "Vedic Sanatan Kendra UK • Direct UK in-person or encrypted video consultation worldwide."}
                           </Dialog.Description>
                         </div>
 
@@ -217,7 +217,7 @@ export default function InquiryDrawer({
                               <MapPin className="w-4 h-4 text-[#D97706] shrink-0" />
                               <div className="text-xs font-mono">
                                 <div className="font-semibold">{language === "ne" ? "प्रत्यक्ष भेट" : "In-Person"}</div>
-                                <div className="text-[10px] text-stone-500">{language === "ne" ? "बालुवाटार, काठमाडौँ" : "Baluwatar, Kathmandu"}</div>
+                                <div className="text-[10px] text-stone-500">{language === "ne" ? "सनातन केन्द्र युके" : "Sanatan Kendra UK"}</div>
                               </div>
                             </button>
                           </div>
@@ -284,7 +284,7 @@ export default function InquiryDrawer({
                               required
                               value={phone}
                               onChange={(e) => setPhone(e.target.value)}
-                              placeholder="+977 98XXXXXXXX"
+                              placeholder="+44 7XXX XXXXXX / +977 98XXXXXXXX"
                               className="w-full px-3 py-2.5 rounded-none border border-stone-300 bg-[#FDFBF7] text-[#181411] font-mono text-xs focus:outline-none focus:border-[#C85A17]"
                             />
                           </div>
