@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Calendar, Phone, Menu, X, ArrowRight } from "lucide-react";
 import { getNepaliDate, getDailyMuhurtaTimings, toNepaliNumber } from "@/utils/astronomy";
 import { useLanguage } from "@/context/LanguageContext";
@@ -12,6 +14,7 @@ interface HeaderProps {
 }
 
 export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
+  const pathname = usePathname();
   const { t, language } = useLanguage();
   const [nepaliDateStr, setNepaliDateStr] = useState<string>("");
   const [muhurtaInfo, setMuhurtaInfo] = useState<{ sunrise: string; sunset: string } | null>(null);
@@ -77,28 +80,77 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
       {/* Main Navigation Bar */}
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
         {/* Brand Logo with luxury vector lockup */}
-        <a href="#" className="flex items-center group">
+        <Link href="/" className="flex items-center group">
           <BrandLogo variant="dark" size="md" />
-        </a>
+        </Link>
 
         {/* Center Nav Links */}
         <nav className="hidden lg:flex items-center gap-7 text-sm font-sans text-stone-800 font-medium">
-          <a href="#" className="text-[#C85A17] font-bold hover:text-[#A6440C] transition-colors py-1 relative">
+          <Link
+            href="/"
+            className={`transition-colors py-1 relative ${
+              pathname === "/"
+                ? "text-[#C85A17] font-bold"
+                : "text-stone-700 hover:text-[#C85A17]"
+            }`}
+          >
             {t.header.home}
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#C85A17] rounded-none" />
-          </a>
-          <a href="#services" className="hover:text-[#C85A17] transition-colors py-1">
-            {t.header.services}
-          </a>
-          <a href="#kundali" className="hover:text-[#C85A17] transition-colors py-1">
+            {pathname === "/" && (
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#C85A17] rounded-none" />
+            )}
+          </Link>
+          <Link
+            href="/ephemeris"
+            className={`transition-colors py-1 relative ${
+              pathname?.startsWith("/ephemeris")
+                ? "text-[#C85A17] font-bold"
+                : "text-stone-700 hover:text-[#C85A17]"
+            }`}
+          >
             {t.header.kundali}
-          </a>
-          <a href="#about-guru" className="hover:text-[#C85A17] transition-colors py-1">
+            {pathname?.startsWith("/ephemeris") && (
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#C85A17] rounded-none" />
+            )}
+          </Link>
+          <Link
+            href="/services"
+            className={`transition-colors py-1 relative ${
+              pathname?.startsWith("/services")
+                ? "text-[#C85A17] font-bold"
+                : "text-stone-700 hover:text-[#C85A17]"
+            }`}
+          >
+            {t.header.services}
+            {pathname?.startsWith("/services") && (
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#C85A17] rounded-none" />
+            )}
+          </Link>
+          <Link
+            href="/about"
+            className={`transition-colors py-1 relative ${
+              pathname?.startsWith("/about")
+                ? "text-[#C85A17] font-bold"
+                : "text-stone-700 hover:text-[#C85A17]"
+            }`}
+          >
             {t.header.aboutGuru}
-          </a>
-          <a href="#contact" className="hover:text-[#C85A17] transition-colors py-1">
+            {pathname?.startsWith("/about") && (
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#C85A17] rounded-none" />
+            )}
+          </Link>
+          <Link
+            href="/contact"
+            className={`transition-colors py-1 relative ${
+              pathname?.startsWith("/contact")
+                ? "text-[#C85A17] font-bold"
+                : "text-stone-700 hover:text-[#C85A17]"
+            }`}
+          >
             {t.header.contactNav}
-          </a>
+            {pathname?.startsWith("/contact") && (
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#C85A17] rounded-none" />
+            )}
+          </Link>
         </nav>
 
         {/* Right Action Button & Language Switcher */}
@@ -135,41 +187,41 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
           <div className="pb-3 border-b border-border text-xs text-textMuted font-mono">
             {nepaliDateStr}
           </div>
-          <a
-            href="#"
+          <Link
+            href="/"
             onClick={() => setMobileMenuOpen(false)}
-            className="text-terracotta font-semibold py-1"
+            className={`py-1 ${pathname === "/" ? "text-terracotta font-bold" : "hover:text-terracotta"}`}
           >
             {t.header.home}
-          </a>
-          <a
-            href="#services"
+          </Link>
+          <Link
+            href="/ephemeris"
             onClick={() => setMobileMenuOpen(false)}
-            className="py-1 hover:text-terracotta"
-          >
-            {t.header.services}
-          </a>
-          <a
-            href="#kundali"
-            onClick={() => setMobileMenuOpen(false)}
-            className="py-1 hover:text-terracotta"
+            className={`py-1 ${pathname?.startsWith("/ephemeris") ? "text-terracotta font-bold" : "hover:text-terracotta"}`}
           >
             {t.header.kundali}
-          </a>
-          <a
-            href="#about-guru"
+          </Link>
+          <Link
+            href="/services"
             onClick={() => setMobileMenuOpen(false)}
-            className="py-1 hover:text-terracotta"
+            className={`py-1 ${pathname?.startsWith("/services") ? "text-terracotta font-bold" : "hover:text-terracotta"}`}
+          >
+            {t.header.services}
+          </Link>
+          <Link
+            href="/about"
+            onClick={() => setMobileMenuOpen(false)}
+            className={`py-1 ${pathname?.startsWith("/about") ? "text-terracotta font-bold" : "hover:text-terracotta"}`}
           >
             {t.header.aboutGuru}
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            href="/contact"
             onClick={() => setMobileMenuOpen(false)}
-            className="py-1 hover:text-terracotta"
+            className={`py-1 ${pathname?.startsWith("/contact") ? "text-terracotta font-bold" : "hover:text-terracotta"}`}
           >
             {t.header.contactNav}
-          </a>
+          </Link>
 
           <button
             onClick={() => {

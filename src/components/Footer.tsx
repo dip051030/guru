@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import BrandLogo from "./BrandLogo";
@@ -18,7 +19,9 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-stone-800/60">
           {/* Brand Column (Col 1 to 5) */}
           <div className="lg:col-span-5 flex flex-col gap-4">
-            <BrandLogo variant="light" size="lg" />
+            <Link href="/" className="inline-block">
+              <BrandLogo variant="light" size="lg" />
+            </Link>
 
             <p className="text-sm text-stone-400 max-w-md font-light leading-relaxed mt-2">
               {t.footer.tagline}
@@ -35,21 +38,21 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
               {t.footer.quickLinks}
             </span>
             <div className="flex flex-col gap-2.5 text-xs font-mono text-stone-400">
-              <a href="#" className="hover:text-white transition-colors">
+              <Link href="/" className="hover:text-white transition-colors">
                 {t.header.home}
-              </a>
-              <a href="#kundali" className="hover:text-white transition-colors">
+              </Link>
+              <Link href="/ephemeris" className="hover:text-white transition-colors">
                 {t.header.kundali}
-              </a>
-              <a href="#services" className="hover:text-white transition-colors">
+              </Link>
+              <Link href="/services" className="hover:text-white transition-colors">
                 {t.header.services}
-              </a>
-              <a href="#philosophy" className="hover:text-white transition-colors">
-                {language === "ne" ? "वैदिक मूल्यमान्यता" : "Ethical Manifesto"}
-              </a>
-              <a href="#about-guru" className="hover:text-white transition-colors">
+              </Link>
+              <Link href="/about" className="hover:text-white transition-colors">
                 {t.header.aboutGuru}
-              </a>
+              </Link>
+              <Link href="/contact" className="hover:text-white transition-colors">
+                {t.header.contactNav}
+              </Link>
             </div>
           </div>
 
