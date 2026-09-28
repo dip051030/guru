@@ -29,6 +29,7 @@ import {
   convertBsToAd,
   getLiveTodayNepaliDate,
 } from "@/utils/nepaliCalendar";
+import HoroscopeExplorer from "./HoroscopeExplorer";
 
 interface HamroPatroHeroProps {
   onScrollToConsole?: () => void;
@@ -187,23 +188,6 @@ export default function HamroPatroHero({
       isMounted = false;
     };
   }, []);
-
-  // 12 Rashi Horoscope Data
-  const [selectedRashi, setSelectedRashi] = useState<number>(0);
-  const RASHIS = [
-    { ne: "मेष (Aries)", luck: "८५%", prediction: "कार्यक्षेत्रमा नयाँ अवसर प्राप्त हुनेछ। पारिवारिक सुख र आर्थिक लाभको योग छ।", advice: "सूर्यलाई जल चढाउनुहोस्।" },
-    { ne: "वृष (Taurus)", luck: "७८%", prediction: "धन आगमन र व्यापारिक साझेदारीमा प्रगति हुनेछ। बोलीमा मधुरता राख्नुहोला।", advice: "सेतो वस्तु दान गर्नुहोस्।" },
-    { ne: "मिथुन (Gemini)", luck: "९०%", prediction: "अधुरा काम बन्नेछन्, बौद्धिक क्षेत्रमा सफलता मिल्नेछ। यात्राको योग बन्नेछ।", advice: "गायलाई हरियो घाँस दिनुहोस्।" },
-    { ne: "कर्कट (Cancer)", luck: "७२%", prediction: "पारिवारिक जिम्मेवारी बढ्नेछ। स्वास्थ्यमा सामान्य ध्यान दिनु आवश्यक छ।", advice: "शिवजीको पूजा गर्नुहोस्।" },
-    { ne: "सिंह (Leo)", luck: "९२%", prediction: "मान-प्रतिष्ठा र पदोन्नतिको शुभ योग छ। महत्वपूर्ण निर्णय लिन उपयुक्त समय।", advice: "पहेलो वा सुनौलो वस्तु धारण गर्नुहोस्।" },
-    { ne: "कन्या (Virgo)", luck: "८८%", prediction: "आर्थिक स्थिरता र पराक्रममा वृद्धि। रोकिएका कामहरू द्रुत गतिमा अघि बढ्नेछन्।", advice: "विष्णु सहस्रनाम पाठ गर्नुहोस्।" },
-    { ne: "तुला (Libra)", luck: "८०%", prediction: "प्रेम सम्बन्ध सुदृढ हुनेछ र कला, सिर्जनात्मक कार्यमा सफलता प्राप्त हुनेछ।", advice: "लक्ष्मीजीको स्तोत्र पढ्नुहोस्।" },
-    { ne: "वृश्चिक (Scorpio)", luck: "७६%", prediction: "सावधानीपूर्वक गरिएको लगानीबाट भविष्यमा राम्रो प्रतिफल प्राप्त हुनेछ।", advice: "हनुमान चालिसा पाठ गर्नुहोस्।" },
-    { ne: "धनु (Sagittarius)", luck: "८४%", prediction: "गुरुको कृपाले आध्यात्मिक प्रगति र विद्या क्षेत्रमा विशेष उपलब्धि मिल्नेछ।", advice: "पहेलो चन्दन लगाउनुहोस्।" },
-    { ne: "मकर (Capricorn)", luck: "७५%", prediction: "कर्मक्षेत्रमा निरन्तर मिहिनेतले उच्च प्रशंसा पाउनेछ। धैर्य कायम राख्नुहोस्।", advice: "शनि मन्त्र जप गर्नुहोस्।" },
-    { ne: "कुम्भ (Aquarius)", luck: "८२%", prediction: "नयाँ मित्रको साथ र सामाजिक सम्मान प्राप्त हुनेछ। आयका नयाँ स्रोत खुल्नेछन्।", advice: "असाहयलाई भोजन गराउनुहोस्।" },
-    { ne: "मीन (Pisces)", luck: "८९%", prediction: "शुभ समाचार सुन्न पाइनेछ। वैदेशिक कार्य र दीर्घकालीन योजना सफल हुनेछ।", advice: "केसरको तिलक लगाउनुहोस्।" },
-  ];
 
   // Dynamic Festivals for currently selected month
   const currentMonthFestivals = FESTIVALS_BY_MONTH[selectedMonth] || {};
@@ -420,54 +404,10 @@ export default function HamroPatroHero({
               </div>
             )}
 
-            {/* Tool 2: Rashifal (Daily Horoscope) */}
+            {/* Tool 2: Comprehensive Horoscope Explorer (Daily, Weekly, Yearly) */}
             {activeTool === "rashifal" && (
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Sparkles className="w-5 h-5 text-[#C5994E]" />
-                  <h3 className="font-black text-sm sm:text-base text-[#12213A]">
-                    {isNe ? "आजको दैनिक राशिफल (१२ राशि)" : "Today's Daily Horoscope (12 Signs)"}
-                  </h3>
-                </div>
-                
-                <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-12 gap-1 mb-3 sm:mb-4">
-                  {RASHIS.map((r, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setSelectedRashi(i)}
-                      className={`px-1.5 py-1 text-xs font-bold transition-all text-center rounded-none border ${
-                        selectedRashi === i
-                          ? "bg-[#12213A] text-white border-[#12213A]"
-                          : "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200"
-                      }`}
-                    >
-                      {r.ne.split(" ")[0]}
-                    </button>
-                  ))}
-                </div>
-
-                <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-none flex flex-col md:flex-row md:items-center justify-between gap-3">
-                  <div>
-                    <div className="flex items-center gap-2 sm:gap-3">
-                      <span className="text-base sm:text-lg font-black text-[#12213A]">{RASHIS[selectedRashi].ne}</span>
-                      <span className="text-xs font-bold px-2 py-0.5 bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-none">
-                        {isNe ? `भाग्यशाली: ${RASHIS[selectedRashi].luck}` : `Luck: ${RASHIS[selectedRashi].luck}`}
-                      </span>
-                    </div>
-                    <p className="mt-1 text-xs sm:text-sm text-slate-800 leading-relaxed font-medium">
-                      {RASHIS[selectedRashi].prediction}
-                    </p>
-                    <p className="mt-1 text-[11px] text-slate-600 font-semibold">
-                      💡 {isNe ? `आजको उपाय: ${RASHIS[selectedRashi].advice}` : `Remedy: ${RASHIS[selectedRashi].advice}`}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => onOpenInquiry(`राशिफल तथा कुण्डली परामर्श: ${RASHIS[selectedRashi].ne}`)}
-                    className="shrink-0 px-3.5 py-1.5 sm:px-4 sm:py-2 bg-[#12213A] text-white text-xs font-bold rounded-none hover:bg-[#0B1526] transition-colors"
-                  >
-                    {isNe ? "विस्तृत कुण्डली परामर्श" : "Detailed Consultation"}
-                  </button>
-                </div>
+              <div className="pt-1">
+                <HoroscopeExplorer onOpenInquiry={onOpenInquiry} />
               </div>
             )}
 

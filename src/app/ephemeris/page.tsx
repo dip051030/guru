@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, Calendar, Compass, Sparkles, Orbit, Clock } from "lucide-react";
 import ObservatoryHeader from "@/components/ObservatoryHeader";
 import UnifiedEphemerisSuite from "@/components/UnifiedEphemerisSuite";
+import HoroscopeExplorer from "@/components/HoroscopeExplorer";
 import PreFooterBanner from "@/components/PreFooterBanner";
 import InquiryDrawer from "@/components/InquiryDrawer";
 import Footer from "@/components/Footer";
@@ -73,6 +74,29 @@ export default function EphemerisPage() {
 
       {/* Main Unified Calculation Suite */}
       <UnifiedEphemerisSuite onOpenInquiry={handleOpenInquiry} />
+
+      {/* Complete 12-Rashi Daily, Weekly, Yearly Horoscope Section */}
+      <section className="w-full py-16 px-6 lg:px-12 bg-[#FAF7F2] border-b border-stone-200">
+        <div className="max-w-[1300px] mx-auto">
+          <div className="mb-6 text-center max-w-2xl mx-auto">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#C85A17] font-bold">
+              {language === "ne" ? "राशिफल तथा खगोलीय भविष्यफल" : "HOROSCOPE & TRANSIT FORECAST"}
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-serif text-stone-900 mt-1">
+              {language === "ne"
+                ? "दैनिक, साप्ताहिक तथा वार्षिक १२ राशिको फल"
+                : "Daily, Weekly & Annual Forecast for 12 Zodiac Signs"}
+            </h2>
+            <p className="text-xs sm:text-sm text-stone-600 font-light mt-1">
+              {language === "ne"
+                ? "ग्रह-गोचर, भाग्य प्रतिशत, शुभ अंक, शुभ रङ्ग र दैनिक सात्विक उपाय सहित।"
+                : "Decoded with transit energy, luck percentages, lucky attributes, and auspicious Vedic remedies."}
+            </p>
+          </div>
+
+          <HoroscopeExplorer onOpenInquiry={handleOpenInquiry} />
+        </div>
+      </section>
 
       {/* Pre-Footer Banner */}
       <PreFooterBanner onOpenInquiry={handleOpenInquiry} />
