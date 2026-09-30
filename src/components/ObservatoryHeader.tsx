@@ -132,6 +132,19 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
             )}
           </Link>
           <Link
+            href="/store"
+            className={`transition-colors py-1 relative ${
+              pathname?.startsWith("/store")
+                ? "text-[#C85A17] font-bold"
+                : "text-stone-700 hover:text-[#C85A17]"
+            }`}
+          >
+            {t.header.store}
+            {pathname?.startsWith("/store") && (
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#C85A17] rounded-none" />
+            )}
+          </Link>
+          <Link
             href="/about"
             className={`transition-colors py-1 relative ${
               pathname?.startsWith("/about")
@@ -220,6 +233,13 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
             className={`py-1 ${pathname?.startsWith("/services") ? "text-terracotta font-bold" : "hover:text-terracotta"}`}
           >
             {t.header.services}
+          </Link>
+          <Link
+            href="/store"
+            onClick={() => setMobileMenuOpen(false)}
+            className={`py-1 ${pathname?.startsWith("/store") ? "text-terracotta font-bold" : "hover:text-terracotta"}`}
+          >
+            {t.header.store}
           </Link>
           <Link
             href="/about"

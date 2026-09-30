@@ -16,6 +16,7 @@ export interface Translations {
     services: string;
     kundali: string;
     horoscope: string;
+    store: string;
     aboutGuru: string;
     research: string;
     contactNav: string;
@@ -141,6 +142,7 @@ const TRANSLATIONS: Record<Language, Translations> = {
       services: "सेवाहरू",
       kundali: "कुण्डली गणना",
       horoscope: "राशिफल",
+      store: "स्टोर",
       aboutGuru: "गुरु परिचय",
       research: "अनुसन्धान",
       contactNav: "सम्पर्क",
@@ -264,6 +266,7 @@ const TRANSLATIONS: Record<Language, Translations> = {
       services: "Services",
       kundali: "Ephemeris & Kundali",
       horoscope: "Horoscope",
+      store: "Store",
       aboutGuru: "About Guru",
       research: "Advisory & Research",
       contactNav: "Contact",
