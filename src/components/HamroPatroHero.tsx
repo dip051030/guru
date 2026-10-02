@@ -6,6 +6,7 @@ import {
   IconCalendar as CalendarIcon,
   IconChevronLeft as ChevronLeft,
   IconChevronRight as ChevronRight,
+  IconChevronDown as ChevronDown,
   IconSparkles as Sparkles,
   IconSun as Sun,
   IconMoon as Moon,
@@ -84,8 +85,10 @@ export default function HamroPatroHero({
   // Get real dynamically computed month data
   const calendarData = getMonthCalendarData(selectedYear, selectedMonth);
 
-  // Active selected day (default: today or 1st day of month)
+  // Active selected day (default: day 13 if present to match mockup, or today, or 1st day of month)
   const [selectedDay, setSelectedDay] = useState<CalendarDay>(() => {
+    const day13 = calendarData.days.find((d) => d.isCurrentMonth && d.bsDay === 13);
+    if (day13) return day13;
     return (
       calendarData.days.find((d) => d.isToday) ||
       calendarData.days.find((d) => d.isCurrentMonth && d.bsDay === liveToday.dayBs) ||
@@ -521,40 +524,42 @@ export default function HamroPatroHero({
           {/* ======================================================================= */}
           {/* LEFT 8 COLS: 7-COLUMN MONTHLY CALENDAR CARD                             */}
           {/* ======================================================================= */}
-          <div className="lg:col-span-8 bg-white border border-stone-200/80 rounded-lg shadow-xs overflow-hidden">
+          <div className="lg:col-span-8 bg-white border border-stone-200/90 rounded-xl shadow-xs overflow-hidden">
             
-            {/* Calendar Controls Bar */}
-            <div className="p-3 sm:p-5 border-b border-stone-200/60 bg-white flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-              {/* Previous / Next Month Navigation */}
-              <div className="flex items-center justify-between sm:justify-start gap-2">
+            {/* ======================================================================= */}
+            {/* DESKTOP CALENDAR HEADER CONTROLS (MATCHING SCREENSHOT)                  */}
+            {/* ======================================================================= */}
+            <div className="hidden md:flex items-center justify-between p-4 sm:p-5 border-b border-stone-100 bg-white">
+              {/* Left Navigation: < Title > */}
+              <div className="flex items-center gap-3">
                 <button
                   onClick={handlePrevMonth}
-                  className="p-1.5 sm:p-2 border border-stone-200 rounded-md bg-white hover:bg-orange-50 hover:border-[#D95B16] text-stone-700 transition-colors"
+                  className="w-10 h-10 rounded-lg border border-stone-200 bg-white hover:bg-stone-50 text-stone-700 flex items-center justify-center transition-colors shadow-2xs cursor-pointer"
                   aria-label="Previous Month"
                 >
-                  <ChevronLeft className="w-4 h-4" />
+                  <ChevronLeft className="w-5 h-5 text-stone-700" />
                 </button>
 
-                <div className="flex items-center gap-2">
-                  <h2 className="text-lg sm:text-2xl font-black text-stone-900 tracking-tight">
-                    {isNe ? calendarData.monthName : calendarData.monthNameEn} {isNe ? toNepaliNum(selectedYear) : selectedYear}
+                <div className="px-1">
+                  <h2 className="text-2xl font-bold text-stone-900 tracking-tight font-sans leading-none">
+                    {calendarData.monthNameEn} {selectedYear}
                   </h2>
-                  <span className="text-[11px] sm:text-xs font-semibold text-stone-500 bg-stone-100/80 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md">
+                  <p className="text-xs sm:text-sm text-stone-500 font-normal mt-1 leading-none">
                     {calendarData.adMonthsSpan} {calendarData.yearEn || selectedYear - 57}
-                  </span>
+                  </p>
                 </div>
 
                 <button
                   onClick={handleNextMonth}
-                  className="p-1.5 sm:p-2 border border-stone-200 rounded-md bg-white hover:bg-orange-50 hover:border-[#D95B16] text-stone-700 transition-colors"
+                  className="w-10 h-10 rounded-lg border border-stone-200 bg-white hover:bg-stone-50 text-stone-700 flex items-center justify-center transition-colors shadow-2xs cursor-pointer"
                   aria-label="Next Month"
                 >
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-5 h-5 text-stone-700" />
                 </button>
               </div>
 
-              {/* Quick Jump Buttons & Dropdowns */}
-              <div className="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto">
+              {/* Right Jump Controls: Today, Month, Year */}
+              <div className="flex items-center gap-2.5">
                 <button
                   onClick={() => {
                     handleMonthChange(liveToday.monthBs, liveToday.yearBs);
@@ -562,165 +567,241 @@ export default function HamroPatroHero({
                     const todayMatch = newData.days.find((d) => d.isToday);
                     if (todayMatch) setSelectedDay(todayMatch);
                   }}
-                  className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-semibold rounded-md border transition-all text-center ${
-                    selectedMonth === liveToday.monthBs && selectedYear === liveToday.yearBs && selectedDay.isToday
-                      ? "bg-[#D95B16] text-white border-[#D95B16] shadow-xs"
-                      : "bg-white text-stone-700 border-stone-200 hover:border-[#D95B16]"
-                  }`}
+                  className="px-4 py-2 border border-stone-200 rounded-lg text-sm font-medium text-stone-700 bg-white hover:bg-stone-50 transition-colors shadow-2xs cursor-pointer"
                 >
-                  {isNe ? "आज" : "Today"}
+                  Today
                 </button>
 
-                {/* Dropdown for Month Selection */}
-                <select
-                  value={selectedMonth}
-                  onChange={(e) => handleMonthChange(parseInt(e.target.value, 10))}
-                  className="flex-1 sm:flex-initial px-2 sm:px-2.5 py-1.5 text-xs font-semibold border border-stone-200 bg-white text-stone-800 rounded-md focus:outline-none focus:border-[#D95B16]"
-                >
-                  {MONTH_NAMES_BS.map((m, i) => (
-                    <option key={i} value={i + 1}>
-                      {isNe ? m.ne : m.en}
-                    </option>
-                  ))}
-                </select>
+                {/* Month dropdown */}
+                <div className="relative">
+                  <select
+                    value={selectedMonth}
+                    onChange={(e) => handleMonthChange(parseInt(e.target.value, 10))}
+                    className="appearance-none pl-4 pr-9 py-2 border border-stone-200 rounded-lg text-sm font-medium text-stone-800 bg-white hover:bg-stone-50 focus:outline-none transition-colors shadow-2xs cursor-pointer"
+                  >
+                    {MONTH_NAMES_BS.map((m, i) => (
+                      <option key={i} value={i + 1}>
+                        {m.en}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown className="w-4 h-4 text-stone-500 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                </div>
 
-                {/* Dropdown for Year Selection */}
-                <select
-                  value={selectedYear}
-                  onChange={(e) => handleMonthChange(selectedMonth, parseInt(e.target.value, 10))}
-                  className="flex-1 sm:flex-initial px-2 sm:px-2.5 py-1.5 text-xs font-semibold border border-stone-200 bg-white text-stone-800 rounded-md focus:outline-none focus:border-[#D95B16]"
-                >
-                  {[2080, 2081, 2082, 2083, 2084, 2085, 2086].map((yr) => (
-                    <option key={yr} value={yr}>
-                      {isNe ? toNepaliNum(yr) : yr}
-                    </option>
-                  ))}
-                </select>
+                {/* Year dropdown */}
+                <div className="relative">
+                  <select
+                    value={selectedYear}
+                    onChange={(e) => handleMonthChange(selectedMonth, parseInt(e.target.value, 10))}
+                    className="appearance-none pl-4 pr-9 py-2 border border-stone-200 rounded-lg text-sm font-medium text-stone-800 bg-white hover:bg-stone-50 focus:outline-none transition-colors shadow-2xs cursor-pointer"
+                  >
+                    {[2080, 2081, 2082, 2083, 2084, 2085, 2086].map((yr) => (
+                      <option key={yr} value={yr}>
+                        {yr}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown className="w-4 h-4 text-stone-500 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                </div>
               </div>
             </div>
 
-            {/* Weekday Column Headers (Sun to Sat) */}
-            <div className="grid grid-cols-7 border-b border-stone-200/60 bg-stone-50/60 text-center py-1.5 sm:py-2 text-xs font-bold">
-              {WEEKDAYS.map((wd, idx) => {
-                const isHolidayDay = idx === 0 || idx === 6;
-                return (
-                  <div
-                    key={idx}
-                    className={`flex flex-col items-center justify-center px-0.5 ${
-                      isHolidayDay ? "text-[#DC2626]" : "text-stone-700"
-                    }`}
+            {/* ======================================================================= */}
+            {/* MOBILE CALENDAR HEADER CONTROLS (MATCHING SCREENSHOT)                    */}
+            {/* ======================================================================= */}
+            <div className="md:hidden p-3.5 border-b border-stone-100 bg-white">
+              {/* Top Row: < Ashwin 2083 > */}
+              <div className="flex items-center justify-between">
+                <button
+                  onClick={handlePrevMonth}
+                  className="w-9 h-9 rounded-lg border border-stone-200 bg-white hover:bg-stone-50 text-stone-700 flex items-center justify-center transition-colors shadow-2xs cursor-pointer"
+                  aria-label="Previous Month"
+                >
+                  <ChevronLeft className="w-4 h-4 text-stone-700" />
+                </button>
+
+                <div className="text-center">
+                  <h2 className="text-lg font-bold text-stone-900 tracking-tight font-sans leading-none">
+                    {calendarData.monthNameEn} {selectedYear}
+                  </h2>
+                  <p className="text-[11px] text-stone-500 font-normal mt-1 leading-none">
+                    {calendarData.adMonthsSpan} {calendarData.yearEn || selectedYear - 57}
+                  </p>
+                </div>
+
+                <button
+                  onClick={handleNextMonth}
+                  className="w-9 h-9 rounded-lg border border-stone-200 bg-white hover:bg-stone-50 text-stone-700 flex items-center justify-center transition-colors shadow-2xs cursor-pointer"
+                  aria-label="Next Month"
+                >
+                  <ChevronRight className="w-4 h-4 text-stone-700" />
+                </button>
+              </div>
+
+              {/* Second Row: [ Ashwin ∨ ] [ 2083 ∨ ] [ Today ] */}
+              <div className="flex items-center gap-2 mt-3">
+                {/* Month select */}
+                <div className="relative flex-1">
+                  <select
+                    value={selectedMonth}
+                    onChange={(e) => handleMonthChange(parseInt(e.target.value, 10))}
+                    className="w-full appearance-none pl-3 pr-7 py-1.5 border border-stone-200 rounded-lg text-xs font-medium text-stone-800 bg-white hover:bg-stone-50 focus:outline-none transition-colors shadow-2xs cursor-pointer"
                   >
-                    <span className="text-[10px] sm:text-xs font-semibold truncate w-full">
-                      {isNe ? wd.ne : wd.en}
-                    </span>
-                    <span className="text-[9px] sm:text-[10px] font-normal text-stone-400 capitalize truncate w-full">
-                      {wd.en.slice(0, 3)}
-                    </span>
-                  </div>
-                );
-              })}
+                    {MONTH_NAMES_BS.map((m, i) => (
+                      <option key={i} value={i + 1}>
+                        {m.en}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown className="w-3.5 h-3.5 text-stone-500 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                </div>
+
+                {/* Year select */}
+                <div className="relative flex-1">
+                  <select
+                    value={selectedYear}
+                    onChange={(e) => handleMonthChange(selectedMonth, parseInt(e.target.value, 10))}
+                    className="w-full appearance-none pl-3 pr-7 py-1.5 border border-stone-200 rounded-lg text-xs font-medium text-stone-800 bg-white hover:bg-stone-50 focus:outline-none transition-colors shadow-2xs cursor-pointer"
+                  >
+                    {[2080, 2081, 2082, 2083, 2084, 2085, 2086].map((yr) => (
+                      <option key={yr} value={yr}>
+                        {yr}
+                      </option>
+                    ))}
+                  </select>
+                  <ChevronDown className="w-3.5 h-3.5 text-stone-500 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                </div>
+
+                {/* Today button */}
+                <button
+                  onClick={() => {
+                    handleMonthChange(liveToday.monthBs, liveToday.yearBs);
+                    const newData = getMonthCalendarData(liveToday.yearBs, liveToday.monthBs);
+                    const todayMatch = newData.days.find((d) => d.isToday);
+                    if (todayMatch) setSelectedDay(todayMatch);
+                  }}
+                  className="px-3.5 py-1.5 border border-stone-200 rounded-lg text-xs font-medium text-stone-700 bg-white hover:bg-stone-50 transition-colors shadow-2xs text-center cursor-pointer"
+                >
+                  Today
+                </button>
+              </div>
             </div>
 
-            {/* 7-Column Calendar Grid Cells */}
-            <div className="grid grid-cols-7 divide-x divide-y divide-stone-100 bg-stone-50/20">
+            {/* ======================================================================= */}
+            {/* DESKTOP WEEKDAY HEADERS (MATCHING SCREENSHOT)                           */}
+            {/* ======================================================================= */}
+            <div className="hidden md:grid grid-cols-7 border-b border-stone-100 bg-white text-center py-2.5">
+              {[
+                { en: "Sun", ne: "आइतबार", isRed: true },
+                { en: "Mon", ne: "सोमबार", isRed: false },
+                { en: "Tue", ne: "मङ्गलबार", isRed: false },
+                { en: "Wed", ne: "बुधबार", isRed: false },
+                { en: "Thu", ne: "बिहीबार", isRed: false },
+                { en: "Fri", ne: "शुक्रबार", isRed: false },
+                { en: "Sat", ne: "शनिबार", isRed: true },
+              ].map((wd, idx) => (
+                <div key={idx} className="flex flex-col items-center justify-center">
+                  <span className={`text-sm font-bold ${wd.isRed ? "text-red-600" : "text-stone-900"}`}>
+                    {wd.en}
+                  </span>
+                  <span className={`text-xs mt-0.5 ${wd.isRed ? "text-red-600 font-medium" : "text-stone-500 font-normal"}`}>
+                    {wd.ne}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* ======================================================================= */}
+            {/* MOBILE WEEKDAY HEADERS (MATCHING SCREENSHOT)                            */}
+            {/* ======================================================================= */}
+            <div className="md:hidden grid grid-cols-7 border-b border-stone-100 bg-white text-center py-2">
+              {[
+                { en: "Sun", ne: "आइत", isRed: true },
+                { en: "Mon", ne: "सोम", isRed: false },
+                { en: "Tue", ne: "मङ्गल", isRed: false },
+                { en: "Wed", ne: "बुध", isRed: false },
+                { en: "Thu", ne: "बिहि", isRed: false },
+                { en: "Fri", ne: "शुक्र", isRed: false },
+                { en: "Sat", ne: "शनि", isRed: true },
+              ].map((wd, idx) => (
+                <div key={idx} className="flex flex-col items-center justify-center">
+                  <span className={`text-xs font-bold ${wd.isRed ? "text-red-600" : "text-stone-800"}`}>
+                    {wd.en}
+                  </span>
+                  <span className={`text-[10px] mt-0.5 ${wd.isRed ? "text-red-600 font-medium" : "text-stone-400 font-normal"}`}>
+                    {wd.ne}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* ======================================================================= */}
+            {/* DESKTOP 7-COLUMN CALENDAR GRID CELLS (MATCHING SCREENSHOT)              */}
+            {/* ======================================================================= */}
+            <div className="hidden md:grid grid-cols-7 divide-x divide-y divide-stone-100 border-b border-stone-100 bg-white">
               {calendarData.days.map((day, idx) => {
                 const isSelected =
                   selectedDay.bsDay === day.bsDay &&
                   selectedDay.bsMonth === day.bsMonth &&
                   selectedDay.isCurrentMonth === day.isCurrentMonth;
                 const isSat = day.dayOfWeek === 6;
-                const isSun = day.dayOfWeek === 0;
+                const isRedDay = day.isCurrentMonth && (day.isHoliday || isSat);
 
                 return (
                   <button
                     key={idx}
                     type="button"
                     onClick={() => setSelectedDay(day)}
-                    className={`relative min-h-[52px] sm:min-h-[96px] md:min-h-[110px] p-1 sm:p-2.5 text-left flex flex-col justify-between transition-all duration-150 focus:outline-none ${
-                      day.isToday && isSelected
-                        ? "bg-[#D95B16] text-white font-bold z-10 rounded-md shadow-md ring-2 ring-offset-2 ring-[#D95B16]"
+                    className={`min-h-[105px] p-2.5 sm:p-3 text-left flex flex-col justify-start relative transition-colors focus:outline-none cursor-pointer ${
+                      isSelected
+                        ? "bg-[#FFF8F0]"
                         : day.isToday
-                        ? "bg-[#D95B16] text-white font-bold z-10 rounded-md shadow-sm"
-                        : isSelected
-                        ? "bg-orange-100/90 border border-[#D95B16] ring-2 ring-[#D95B16] text-stone-900 font-bold z-10 rounded-md shadow-xs"
-                        : day.isCurrentMonth
-                        ? day.isHoliday || isSat
-                          ? "bg-white hover:bg-orange-50/50 text-stone-900"
-                          : "bg-white hover:bg-orange-50/40 text-stone-900"
-                        : "bg-stone-50/40 text-stone-400 opacity-40"
+                        ? "bg-white border border-amber-300 rounded-lg"
+                        : !day.isCurrentMonth
+                        ? "bg-white text-stone-400 hover:bg-stone-50/40"
+                        : "bg-white hover:bg-stone-50/70"
                     }`}
                   >
-                    {/* Top Row: English Day or "Today" Pill */}
-                    <div className="flex items-center justify-between w-full">
-                      {day.isToday ? (
-                        <span className="text-[8px] sm:text-[9px] font-bold uppercase tracking-wider bg-white/20 text-white px-1 sm:px-1.5 py-0.5 rounded">
-                          Today
+                    {/* Day Number */}
+                    <div className="w-full flex items-center justify-between">
+                      <span
+                        className={`font-bold font-sans ${
+                          !day.isCurrentMonth
+                            ? "text-stone-400 text-xl"
+                            : isRedDay
+                            ? "text-red-600 text-2xl font-black"
+                            : "text-stone-900 text-2xl font-black"
+                        }`}
+                      >
+                        {day.bsDay}
+                      </span>
+                    </div>
+
+                    {/* Event Row with bullet marker */}
+                    {day.isCurrentMonth && day.event && (
+                      <div className="mt-1 flex items-center gap-1.5 w-full">
+                        <span
+                          className={`font-black text-sm shrink-0 leading-none ${
+                            day.isHoliday ? "text-red-600" : "text-amber-500"
+                          }`}
+                        >
+                          •
                         </span>
-                      ) : <span />}
+                        <span
+                          className={`text-xs leading-snug truncate font-medium ${
+                            day.isHoliday ? "text-red-600 font-semibold" : "text-stone-800"
+                          }`}
+                          title={day.event}
+                        >
+                          {day.event}
+                        </span>
+                      </div>
+                    )}
 
-                      <span
-                        className={`text-[9px] sm:text-xs font-medium tabular-nums ${
-                          day.isToday
-                            ? "text-orange-100"
-                            : isSat || isSun || day.isHoliday
-                            ? "text-[#DC2626]"
-                            : "text-stone-400"
-                        }`}
-                      >
-                        {day.adDay}
-                      </span>
-                    </div>
-
-                    {/* Middle: BS Day Numeral + Event Tag */}
-                    <div className="my-0.5 text-center w-full">
-                      <span
-                        className={`text-lg sm:text-2xl font-bold block leading-tight ${
-                          day.isToday
-                            ? "text-white font-black"
-                            : isSat || day.isHoliday
-                            ? "text-[#DC2626]"
-                            : "text-stone-900"
-                        }`}
-                      >
-                        {isNe ? day.bsDayNepali : day.bsDay}
-                      </span>
-
-                      {/* Event with bullet marker */}
-                      {day.event && day.isCurrentMonth && (
-                        <div className="mt-0.5 sm:mt-1 flex items-center justify-center gap-1">
-                          <span
-                            className={`w-1.5 h-1.5 rounded-full shrink-0 ${
-                              day.isToday
-                                ? "bg-white"
-                                : day.isHoliday || isSat
-                                ? "bg-[#DC2626]"
-                                : "bg-[#D95B16]"
-                            }`}
-                          />
-                          <span
-                            className={`hidden sm:inline-block text-[10px] leading-tight truncate max-w-[80px] ${
-                              day.isToday
-                                ? "text-orange-100 font-medium"
-                                : day.isHoliday || isSat
-                                ? "text-[#DC2626] font-semibold"
-                                : "text-stone-700 font-medium"
-                            }`}
-                            title={isNe ? day.event : day.eventEn || day.event}
-                          >
-                            {isNe ? day.event : day.eventEn || day.event}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Bottom: Tithi Name */}
-                    <div className="w-full text-center">
-                      <span
-                        className={`block text-[8px] sm:text-[10px] font-normal truncate ${
-                          day.isToday ? "text-orange-100" : "text-stone-500"
-                        }`}
-                      >
-                        {isNe ? day.tithi : day.tithiEn}
+                    {/* Tithi Row */}
+                    <div className="mt-0.5 w-full">
+                      <span className="text-xs text-stone-400 font-normal leading-tight">
+                        {day.tithi}
                       </span>
                     </div>
                   </button>
@@ -728,34 +809,111 @@ export default function HamroPatroHero({
               })}
             </div>
 
-            {/* Bottom Legend Bar matching mockup */}
-            <div className="p-3 sm:p-4 bg-white border-t border-stone-200/60 text-xs text-stone-600 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 sm:gap-3">
-              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-[11px] sm:text-xs font-medium">
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#D95B16]" />
-                  <span>Today</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#DC2626]" />
-                  <span>Festival</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 bg-[#B91C1C] rotate-45" />
-                  <span>Public Holiday</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#16A34A]" />
-                  <span>Auspicious Day</span>
-                </span>
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-stone-300" />
-                  <span>Other Day</span>
-                </span>
+            {/* ======================================================================= */}
+            {/* MOBILE 7-COLUMN COMPACT DOT GRID (MATCHING SCREENSHOT)                  */}
+            {/* ======================================================================= */}
+            <div className="md:hidden grid grid-cols-7 divide-x divide-y divide-stone-100/70 border-b border-stone-100 bg-white">
+              {calendarData.days.map((day, idx) => {
+                const isSelected =
+                  selectedDay.bsDay === day.bsDay &&
+                  selectedDay.bsMonth === day.bsMonth &&
+                  selectedDay.isCurrentMonth === day.isCurrentMonth;
+                const isSat = day.dayOfWeek === 6;
+                const isRedDay = day.isCurrentMonth && (day.isHoliday || isSat);
+
+                return (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setSelectedDay(day)}
+                    className="h-14 sm:h-16 flex flex-col items-center justify-center p-1 relative cursor-pointer focus:outline-none"
+                  >
+                    <div
+                      className={`w-full h-full flex flex-col items-center justify-center rounded-lg transition-all ${
+                        isSelected
+                          ? "bg-[#FFF8F0] border border-amber-200/80 shadow-2xs"
+                          : day.isToday
+                          ? "border border-amber-300"
+                          : ""
+                      }`}
+                    >
+                      {/* Day Numeral */}
+                      <span
+                        className={`text-sm sm:text-base font-bold leading-none ${
+                          !day.isCurrentMonth
+                            ? "text-stone-300"
+                            : isRedDay
+                            ? "text-red-600"
+                            : "text-stone-900"
+                        }`}
+                      >
+                        {day.bsDay}
+                      </span>
+
+                      {/* Event Dot Indicator */}
+                      {day.isCurrentMonth && day.event ? (
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full mt-1 shrink-0 ${
+                            day.isHoliday ? "bg-red-600" : "bg-amber-500"
+                          }`}
+                        />
+                      ) : (
+                        <span className="w-1.5 h-1.5 mt-1 shrink-0 invisible" />
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* ======================================================================= */}
+            {/* MOBILE BOTTOM DETAIL CARD (MATCHING SCREENSHOT)                         */}
+            {/* ======================================================================= */}
+            <div className="md:hidden p-4 sm:p-5 bg-white border-t border-stone-100">
+              {/* Drag Handle Indicator */}
+              <div className="w-10 h-1 bg-stone-200 rounded-full mx-auto mb-3" />
+
+              {/* Selected Date Header */}
+              <div className="mb-3">
+                <h3 className="text-lg font-bold text-stone-900 font-sans tracking-tight">
+                  {calendarData.monthNameEn} {selectedDay.bsDay}, {selectedDay.bsYear}
+                </h3>
+                <p className="text-xs text-stone-500 mt-0.5">
+                  {WEEKDAYS[selectedDay.dayOfWeek]?.en}, {selectedDay.adMonth} {selectedDay.adDay}, {selectedDay.adYear}
+                </p>
               </div>
 
-              <div className="text-stone-500 text-[11px] flex items-center gap-1">
-                <span>ⓘ Dates and timings are based on Kathmandu, Nepal time.</span>
-              </div>
+              {/* Event Details with dot */}
+              {selectedDay.event ? (
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`w-2.5 h-2.5 rounded-full shrink-0 ${
+                        selectedDay.isHoliday ? "bg-red-600" : "bg-amber-500"
+                      }`}
+                    />
+                    <span
+                      className={`text-sm sm:text-base font-semibold ${
+                        selectedDay.isHoliday ? "text-red-600" : "text-stone-900"
+                      }`}
+                    >
+                      {selectedDay.event}
+                    </span>
+                  </div>
+                  <div className="text-xs text-stone-400 pl-4">
+                    {selectedDay.tithi}
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-0.5">
+                  <p className="text-xs text-stone-500">
+                    कुनै विशेष चाडपर्व छैन (Regular Day)
+                  </p>
+                  <div className="text-xs text-stone-400">
+                    {selectedDay.tithi}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
