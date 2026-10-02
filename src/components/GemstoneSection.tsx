@@ -1,7 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
-import { Gem, ShieldCheck, CheckCircle2, ArrowRight, ShoppingBag, Sparkles, Filter } from "lucide-react";
+import {
+  IconGem,
+  IconShield,
+  IconCheckCircle,
+  IconArrowRight,
+  IconShoppingBag,
+  IconSparkles,
+  IconFilter,
+} from "@/components/icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface GemstoneSectionProps {
@@ -173,15 +181,15 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 text-[#C85A17] font-mono text-xs uppercase tracking-widest font-bold mb-3">
-            <Gem className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-amber-500/10 border border-amber-500/30 text-[#D95B16] rounded-full font-mono text-xs uppercase tracking-widest font-bold mb-3">
+            <IconGem size={14} />
             <span>AUTHENTIC RATNA PARIKSHAN</span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-black text-stone-900 tracking-tight">
             रत्न तथा जेमस्टोन
           </h2>
-          <span className="block text-xs sm:text-sm font-mono text-[#C85A17] font-bold tracking-widest uppercase mt-1">
+          <span className="block text-xs sm:text-sm font-mono text-[#D95B16] font-bold tracking-widest uppercase mt-1">
             Gemstone Consultation & Certified Collection
           </span>
           <p className="mt-3 text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
@@ -190,10 +198,10 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
         </div>
 
         {/* FUNCTION A: Astrological Gemstone Consultation Card */}
-        <div className="bg-white border border-stone-200 p-6 sm:p-8 mb-12 shadow-2xs">
+        <div className="bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-8 mb-12 shadow-sm">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div className="max-w-2xl">
-              <span className="text-xs font-mono uppercase tracking-widest text-[#C85A17] font-bold block mb-1">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#D95B16] font-bold block mb-1">
                 {isNe ? "भाग १: ज्योतिषीय परामर्श (Consultation)" : "PART A: ASTROLOGICAL CONSULTATION"}
               </span>
               <h3 className="text-xl sm:text-2xl font-serif font-bold text-stone-900">
@@ -208,7 +216,7 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
 
             <button
               onClick={() => onOpenInquiry("ज्योतिषीय रत्न परामर्श (Astrological Gemstone Consultation)")}
-              className="px-6 py-3.5 bg-[#C85A17] hover:bg-[#A6440C] text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-xs shrink-0"
+              className="px-6 py-3.5 bg-[#D95B16] hover:bg-[#B8480C] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md shrink-0 active:scale-95"
             >
               {isNe ? "रत्न परामर्श लिनुहोस्" : "Get Gemstone Consultation"}
             </button>
@@ -218,7 +226,7 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
         {/* FUNCTION B: Product Catalogue (Gemstones & Jewellery) */}
         <div className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-[#C85A17] font-bold block mb-1">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#D95B16] font-bold block mb-1">
               {isNe ? "भाग २: प्रमाणित रत्न संग्रह (Store Catalogue)" : "PART B: CERTIFIED GEMSTONE COLLECTION"}
             </span>
             <h3 className="text-xl sm:text-2xl font-serif font-bold text-stone-900">
@@ -231,10 +239,10 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
 
           <a
             href="#store"
-            className="text-xs font-mono font-bold text-[#C85A17] hover:underline flex items-center gap-1"
+            className="text-xs font-mono font-bold text-[#D95B16] hover:underline flex items-center gap-1.5"
           >
             <span>{isNe ? "सम्पूर्ण स्टोर हेर्नुहोस्" : "Browse All Products"}</span>
-            <span>→</span>
+            <IconArrowRight size={14} />
           </a>
         </div>
 
@@ -243,22 +251,22 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
           {GEMSTONES_CATALOGUE.map((g) => (
             <div
               key={g.id}
-              className="bg-white border border-stone-200/90 p-5 flex flex-col justify-between hover:border-[#C85A17] transition-all hover:shadow-md group"
+              className="bg-white border border-stone-200/90 rounded-2xl p-6 flex flex-col justify-between hover:border-[#D95B16] transition-all hover:shadow-lg shadow-sm group"
             >
               <div>
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between mb-4">
                   <div
-                    className="w-10 h-10 flex items-center justify-center font-serif text-lg text-white shadow-2xs"
+                    className="w-12 h-12 rounded-xl flex items-center justify-center font-serif text-lg text-white shadow-xs"
                     style={{ backgroundColor: g.colorHex }}
                   >
                     💎
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold">
+                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold">
                     {g.availability}
                   </span>
                 </div>
 
-                <h4 className="font-serif font-bold text-stone-900 text-lg group-hover:text-[#C85A17] transition-colors">
+                <h4 className="font-serif font-bold text-stone-900 text-lg group-hover:text-[#D95B16] transition-colors">
                   {g.nameNe}
                 </h4>
                 <span className="text-xs font-mono text-stone-500 block mb-2">
@@ -270,7 +278,7 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
                 </p>
 
                 {/* Specs Box */}
-                <div className="p-3 bg-stone-50 border border-stone-200/70 text-[11px] font-mono text-stone-700 space-y-1 mb-4">
+                <div className="p-3.5 bg-stone-50 border border-stone-200/70 rounded-xl text-[11px] font-mono text-stone-700 space-y-1.5 mb-4">
                   <div className="flex justify-between">
                     <span className="text-stone-600 font-bold">{isNe ? "स्वामी ग्रह:" : "Planet:"}</span>
                     <span className="font-bold text-stone-900">{isNe ? g.rulingPlanetNe : g.rulingPlanetEn}</span>
@@ -295,12 +303,12 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
                   <span className="block text-[10px] font-mono uppercase text-stone-600 font-bold">
                     {isNe ? "अनुमानित मूल्य" : "Price Range"}
                   </span>
-                  <span className="text-xs font-mono font-bold text-[#C85A17]">{g.priceEstimate}</span>
+                  <span className="text-xs font-mono font-bold text-[#D95B16]">{g.priceEstimate}</span>
                 </div>
 
                 <button
                   onClick={() => onOpenInquiry(`रत्न खरिद वा सोधपुछ: ${g.nameNe}`)}
-                  className="px-3.5 py-1.5 bg-[#181411] hover:bg-[#C85A17] text-white text-xs font-mono font-bold transition-colors"
+                  className="px-3.5 py-1.5 rounded-lg bg-[#181411] hover:bg-[#D95B16] text-white text-xs font-mono font-bold transition-colors active:scale-95 shadow-xs"
                 >
                   {isNe ? "सोधपुछ / खरिद" : "Enquire / Buy"}
                 </button>
@@ -310,9 +318,9 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
         </div>
 
         {/* UK Hallmarking & Medical Disclaimer Notice (Section 20 of spec) */}
-        <div className="mt-10 p-4 bg-stone-100/90 border border-stone-200 text-xs font-sans text-stone-600 leading-relaxed">
+        <div className="mt-10 p-5 bg-stone-100/90 border border-stone-200/90 rounded-2xl text-xs font-sans text-stone-600 leading-relaxed shadow-xs">
           <p className="font-light">
-            <strong className="text-stone-800 font-mono uppercase">UK Legal & Hallmarking Notice:</strong>{" "}
+            <strong className="text-stone-800 font-mono uppercase font-bold">UK Legal & Hallmarking Notice:</strong>{" "}
             {isNe
               ? "रत्न तथा बहुमूल्य धातुबाट निर्मित औंठी वा लकेटहरू बेलायतको Hallmarking ऐन र उपभोक्ता संरक्षण मापदण्ड अनुरूप प्रमाणित हुन्छन्। रत्न सम्बन्धी परामर्श परम्परागत तथा सात्विक मार्गदर्शन हो, यसले चिकित्सा वा कानुनी सल्लाहलाई प्रतिस्थापन गर्दैन।"
               : "Precious gemstone jewellery items comply with applicable UK Hallmarking guidance and consumer protection standards. Astrological gemstone advice is provided as traditional complementary guidance and not as medical or financial guarantees."}

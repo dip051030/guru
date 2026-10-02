@@ -116,10 +116,17 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
             {language === "ne" ? "पञ्चाङ्ग" : "Panchanga"}
           </Link>
           <Link
-            href="/#horoscope-section"
-            className="text-stone-700 hover:text-[#D95B16] transition-colors py-1 relative"
+            href="/horoscope"
+            className={`transition-colors py-1 relative ${
+              pathname?.startsWith("/horoscope")
+                ? "text-[#D95B16] font-bold"
+                : "text-stone-700 hover:text-[#D95B16]"
+            }`}
           >
             {t.header.horoscope}
+            {pathname?.startsWith("/horoscope") && (
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#D95B16] rounded-full" />
+            )}
           </Link>
           <Link
             href="/ephemeris"
@@ -239,9 +246,9 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
             {language === "ne" ? "नेपाली पात्रो (पञ्चाङ्ग)" : "Nepali Patro (Panchanga)"}
           </Link>
           <Link
-            href="/#horoscope-section"
+            href="/horoscope"
             onClick={() => setMobileMenuOpen(false)}
-            className="py-2 px-3 rounded-lg hover:bg-stone-50 transition-colors"
+            className={`py-2 px-3 rounded-lg transition-colors ${pathname?.startsWith("/horoscope") ? "bg-orange-50 text-[#D95B16] font-bold" : "hover:bg-stone-50"}`}
           >
             {t.header.horoscope}
           </Link>

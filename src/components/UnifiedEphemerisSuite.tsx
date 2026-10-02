@@ -7,18 +7,13 @@ import {
   toNepaliNumber,
 } from "@/utils/astronomy";
 import {
-  Calendar,
-  Compass,
-  Sparkles,
-  Clock,
-  ArrowRight,
-  Share2,
-  RefreshCw,
-  PhoneCall,
-  Grid,
-  Table,
-  CheckCircle2,
-} from "lucide-react";
+  IconCalendar,
+  IconCompass,
+  IconSparkles,
+  IconClock,
+  IconArrowRight,
+  IconExternalLink,
+} from "@/components/icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface UnifiedEphemerisProps {
@@ -157,14 +152,14 @@ Karana: ${result.karana.name}`;
                     ? "गणना गर्नुहोस्"
                     : "Enter Coordinates"}
                 </span>
-                <ArrowRight className="w-4 h-4 text-orange-200" />
+                <IconArrowRight className="w-4 h-4 text-orange-200" />
               </button>
 
               <button
                 onClick={handleCopySummary}
-                className="px-4 py-3 rounded-none border border-stone-300 bg-stone-50 text-[#181411] hover:text-[#C85A17] hover:border-[#C85A17] text-xs font-mono transition-colors flex items-center gap-1.5"
+                className="px-4 py-3 rounded-xl border border-stone-200 bg-stone-50 text-[#181411] hover:text-[#D95B16] hover:border-[#D95B16] text-xs font-mono transition-colors flex items-center gap-1.5"
               >
-                <Share2 className="w-3.5 h-3.5 text-[#D97706]" />
+                <IconExternalLink className="w-3.5 h-3.5 text-[#D95B16]" />
                 <span>
                   {copiedNotice
                     ? language === "ne"
@@ -180,7 +175,7 @@ Karana: ${result.karana.name}`;
 
           {/* Center Column: Traditional North-Indian Diamond Kundali Chart */}
           <div className="lg:col-span-4 flex justify-center">
-            <div className="w-full max-w-[340px] aspect-square bg-[#FDFBF7] border border-stone-200/80 rounded-none p-3 shadow-2xs relative hover:border-[#C85A17]/60 transition-all duration-300">
+            <div className="w-full max-w-[340px] aspect-square bg-[#FAF7F2] border border-stone-200/90 rounded-2xl p-3 shadow-2xs relative hover:border-[#D95B16]/60 transition-all duration-300">
               <div className="absolute inset-3 pointer-events-none">
                 <svg className="w-full h-full stroke-gold/60 stroke-[1.2]">
                   <line x1="0" y1="0" x2="100%" y2="100%" />
@@ -304,9 +299,9 @@ Karana: ${result.karana.name}`;
 
           {/* Right Column: 4 Feature Items */}
           <div className="lg:col-span-4 flex flex-col gap-3">
-            <div className="p-3.5 rounded-none border border-stone-200/70 bg-white flex items-center gap-3.5 hover:border-[#C85A17]/70 hover:translate-x-1 transition-all duration-200 shadow-2xs group">
-              <div className="w-10 h-10 rounded-none border border-orange-200/60 bg-orange-50 flex items-center justify-center text-[#C85A17] shrink-0 group-hover:bg-[#C85A17] group-hover:text-white transition-colors duration-200">
-                <Compass className="w-4 h-4" />
+            <div className="p-3.5 rounded-xl border border-stone-200/90 bg-white flex items-center gap-3.5 hover:border-[#D95B16]/70 hover:translate-x-1 transition-all duration-200 shadow-2xs group">
+              <div className="w-10 h-10 rounded-xl border border-orange-200/60 bg-orange-50 flex items-center justify-center text-[#D95B16] shrink-0 group-hover:bg-[#D95B16] group-hover:text-white transition-colors duration-200">
+                <IconCompass className="w-4 h-4" />
               </div>
               <div>
                 <h4 className="font-serif text-sm font-bold text-[#181411]">
@@ -318,9 +313,9 @@ Karana: ${result.karana.name}`;
               </div>
             </div>
 
-            <div className="p-3.5 rounded-none border border-stone-200/70 bg-white flex items-center gap-3.5 hover:border-[#C85A17]/70 hover:translate-x-1 transition-all duration-200 shadow-2xs group">
-              <div className="w-10 h-10 rounded-none border border-orange-200/60 bg-orange-50 flex items-center justify-center text-[#C85A17] shrink-0 group-hover:bg-[#C85A17] group-hover:text-white transition-colors duration-200">
-                <Calendar className="w-4 h-4" />
+            <div className="p-3.5 rounded-xl border border-stone-200/90 bg-white flex items-center gap-3.5 hover:border-[#D95B16]/70 hover:translate-x-1 transition-all duration-200 shadow-2xs group">
+              <div className="w-10 h-10 rounded-xl border border-orange-200/60 bg-orange-50 flex items-center justify-center text-[#D95B16] shrink-0 group-hover:bg-[#D95B16] group-hover:text-white transition-colors duration-200">
+                <IconCalendar className="w-4 h-4" />
               </div>
               <div>
                 <h4 className="font-serif text-sm font-bold text-[#181411]">
@@ -332,9 +327,9 @@ Karana: ${result.karana.name}`;
               </div>
             </div>
 
-            <div className="p-3.5 rounded-none border border-stone-200/70 bg-white flex items-center gap-3.5 hover:border-[#C85A17]/70 hover:translate-x-1 transition-all duration-200 shadow-2xs group">
-              <div className="w-10 h-10 rounded-none border border-orange-200/60 bg-orange-50 flex items-center justify-center text-[#C85A17] shrink-0 group-hover:bg-[#C85A17] group-hover:text-white transition-colors duration-200">
-                <Clock className="w-4 h-4" />
+            <div className="p-3.5 rounded-xl border border-stone-200/90 bg-white flex items-center gap-3.5 hover:border-[#D95B16]/70 hover:translate-x-1 transition-all duration-200 shadow-2xs group">
+              <div className="w-10 h-10 rounded-xl border border-orange-200/60 bg-orange-50 flex items-center justify-center text-[#D95B16] shrink-0 group-hover:bg-[#D95B16] group-hover:text-white transition-colors duration-200">
+                <IconClock className="w-4 h-4" />
               </div>
               <div>
                 <h4 className="font-serif text-sm font-bold text-[#181411]">
@@ -346,9 +341,9 @@ Karana: ${result.karana.name}`;
               </div>
             </div>
 
-            <div className="p-3.5 rounded-none border border-stone-200/70 bg-white flex items-center gap-3.5 hover:border-[#C85A17]/70 hover:translate-x-1 transition-all duration-200 shadow-2xs group">
-              <div className="w-10 h-10 rounded-none border border-orange-200/60 bg-orange-50 flex items-center justify-center text-[#C85A17] shrink-0 group-hover:bg-[#C85A17] group-hover:text-white transition-colors duration-200">
-                <Sparkles className="w-4 h-4" />
+            <div className="p-3.5 rounded-xl border border-stone-200/90 bg-white flex items-center gap-3.5 hover:border-[#D95B16]/70 hover:translate-x-1 transition-all duration-200 shadow-2xs group">
+              <div className="w-10 h-10 rounded-xl border border-orange-200/60 bg-orange-50 flex items-center justify-center text-[#D95B16] shrink-0 group-hover:bg-[#D95B16] group-hover:text-white transition-colors duration-200">
+                <IconSparkles className="w-4 h-4" />
               </div>
               <div>
                 <h4 className="font-serif text-sm font-bold text-[#181411]">
@@ -364,7 +359,7 @@ Karana: ${result.karana.name}`;
 
         {/* Collapsible Clean Form Drawer for Instant Recalculation */}
         {showInputDrawer && (
-          <div className="mt-8 p-6 rounded-none border border-[#C85A17]/70 bg-white shadow-xs animate-fade-in">
+          <div className="mt-8 p-6 rounded-2xl border border-[#D95B16]/70 bg-white shadow-xs animate-fade-in">
             <div className="flex items-center justify-between pb-4 border-b border-stone-200/60">
               <div className="flex items-center gap-3">
                 <span className="font-serif text-base font-bold text-[#181411]">

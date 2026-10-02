@@ -2,7 +2,12 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Calendar, Compass, Sparkles, Orbit, Clock } from "lucide-react";
+import {
+  IconArrowLeft,
+  IconCalendar,
+  IconKundali,
+  IconSparkles,
+} from "@/components/icons/CustomIcons";
 import ObservatoryHeader from "@/components/ObservatoryHeader";
 import UnifiedEphemerisSuite from "@/components/UnifiedEphemerisSuite";
 import HoroscopeExplorer from "@/components/HoroscopeExplorer";
@@ -27,12 +32,12 @@ export default function EphemerisPage() {
 
       {/* Breadcrumb & Subpage Hero Banner */}
       <section className="w-full bg-[#131B2E] text-white border-b border-stone-800/80 pt-10 pb-12 px-6 lg:px-12 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#C85A17_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#D95B16_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
         
         <div className="max-w-[1400px] mx-auto relative z-10">
           <div className="flex items-center gap-2 text-xs font-mono text-stone-400 mb-4">
-            <Link href="/" className="hover:text-amber-400 flex items-center gap-1 transition-colors">
-              <ArrowLeft className="w-3.5 h-3.5" />
+            <Link href="/" className="hover:text-amber-400 flex items-center gap-1.5 transition-colors">
+              <IconArrowLeft size={14} />
               <span>{language === "ne" ? "गृहपृष्ठ" : "Home"}</span>
             </Link>
             <span className="text-stone-600">/</span>
@@ -43,8 +48,8 @@ export default function EphemerisPage() {
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono text-xs uppercase tracking-widest mb-3">
-                <Orbit className="w-3.5 h-3.5 text-amber-400" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-amber-500/10 border border-amber-500/30 text-amber-300 rounded-full font-mono text-xs uppercase tracking-widest mb-3">
+                <IconKundali size={14} className="text-amber-400" />
                 <span>{language === "ne" ? "दृक्-सिद्ध पञ्चाङ्ग इन्जिन" : "Drik-Ganita Ephemeris Engine"}</span>
               </div>
               <h1 className="text-3xl md:text-5xl font-serif text-white tracking-tight">
@@ -62,9 +67,9 @@ export default function EphemerisPage() {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => handleOpenInquiry(t.header.bookConsultation)}
-                className="px-6 py-3 bg-[#C85A17] hover:bg-[#A6440C] text-white font-bold text-sm flex items-center gap-2 border border-[#C85A17] transition-all shadow-md shrink-0"
+                className="px-6 py-3.5 bg-[#D95B16] hover:bg-[#B8480C] text-white font-bold text-sm flex items-center gap-2.5 rounded-xl border border-[#D95B16] transition-all shadow-md shrink-0 active:scale-95"
               >
-                <Calendar className="w-4 h-4 text-orange-200" />
+                <IconCalendar size={18} className="text-orange-200" />
                 <span>{language === "ne" ? "कुण्डली परामर्श लिनुहोस्" : "Book Chart Consultation"}</span>
               </button>
             </div>
@@ -79,7 +84,7 @@ export default function EphemerisPage() {
       <section className="w-full py-16 px-6 lg:px-12 bg-[#FAF7F2] border-b border-stone-200">
         <div className="max-w-[1300px] mx-auto">
           <div className="mb-6 text-center max-w-2xl mx-auto">
-            <span className="font-mono text-xs uppercase tracking-widest text-[#C85A17] font-bold">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#D95B16] font-bold">
               {language === "ne" ? "राशिफल तथा खगोलीय भविष्यफल" : "HOROSCOPE & TRANSIT FORECAST"}
             </span>
             <h2 className="text-2xl sm:text-3xl font-serif text-stone-900 mt-1">

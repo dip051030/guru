@@ -2,14 +2,15 @@
 
 import React from "react";
 import {
-  Compass,
-  Calendar,
-  Sparkles,
-  HeartHandshake,
-  Home,
-  Flame,
-  ArrowRight,
-} from "lucide-react";
+  IconCompass as Compass,
+  IconCalendar as Calendar,
+  IconSparkles as Sparkles,
+  IconHeartHandshake as HeartHandshake,
+  IconHome as Home,
+  IconFlame as Flame,
+  IconArrowRight as ArrowRight,
+  IconGem as Gem,
+} from "./icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface SolutionsProps {
@@ -32,7 +33,7 @@ export default function CompanySolutions({ onOpenInquiry }: SolutionsProps) {
           : "Comprehensive natal chart mapping, planetary dashas, career pathways, and matrimonial life guidance.",
     },
     {
-      icon: Sparkles,
+      icon: Gem,
       tag: "PILLAR 02",
       tagNe: "स्तम्भ ०२",
       title: language === "ne" ? "रत्न पहिचान (Gemstone Identification)" : "Gemstone Identification",
@@ -89,52 +90,48 @@ export default function CompanySolutions({ onOpenInquiry }: SolutionsProps) {
   ];
 
   return (
-    <section id="services" className="w-full py-16 md:py-24 border-b border-stone-200 bg-[#FDFBF7]">
-      <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
-        {/* Section Header with Lotus emblem */}
+    <section id="services" className="w-full py-16 md:py-20 border-b border-stone-200/80 bg-[#FAF7F2]">
+      <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-12">
+        {/* Section Header */}
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-12">
-          {/* Sharp Saffron Emblem Box */}
-          <div className="w-10 h-10 rounded-none bg-orange-50 border border-orange-200 flex items-center justify-center text-[#C85A17] mb-3">
-            <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-              <path d="M12 2C13 4.5 15.5 7 19 8C16 10 14 13.5 14 17C13 15 11 15 10 17C10 13.5 8 10 5 8C8.5 7 11 4.5 12 2Z" opacity="0.8" />
-            </svg>
+          <div className="w-11 h-11 rounded-2xl bg-orange-50 border border-orange-200 flex items-center justify-center text-[#D95B16] mb-3 shadow-2xs">
+            <Sparkles className="w-5 h-5" />
           </div>
 
-          <span className="text-xs font-mono tracking-widest text-[#D97706] uppercase font-bold">
+          <span className="text-xs font-mono tracking-widest text-[#D95B16] uppercase font-bold">
             {t.solutions.badge}
           </span>
-          <h2 className="font-serif text-3xl md:text-4xl text-[#181411] font-bold tracking-tight mt-2">
+          <h2 className="font-serif text-3xl md:text-4xl text-stone-900 font-bold tracking-tight mt-2">
             {t.solutions.title}
           </h2>
-          <p className="mt-3 text-stone-600 text-sm md:text-base font-light">
+          <p className="mt-3 text-stone-600 text-sm md:text-base font-light leading-relaxed">
             {t.solutions.desc}
           </p>
         </div>
 
-        {/* 6-Card Services Grid - Sharp Architectural Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {/* 6-Card Services Grid - Modern Rounded 2XL Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {SERVICES.map((service, index) => {
             const Icon = service.icon;
             return (
               <div
                 key={index}
-                className="bg-white rounded-none p-7 border border-stone-200/70 shadow-2xs hover:border-[#C85A17]/70 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+                className="bg-white rounded-2xl p-6 sm:p-7 border border-stone-200/80 shadow-xs hover:border-[#D95B16]/60 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-4">
-                    {/* Square Saffron Icon Badge */}
-                    <div className="w-12 h-12 rounded-none bg-orange-50/80 text-[#C85A17] border border-orange-200/60 flex items-center justify-center group-hover:bg-[#C85A17] group-hover:text-white transition-all duration-300">
-                      <Icon className="w-5 h-5" />
+                    <div className="w-12 h-12 rounded-xl bg-orange-50 text-[#D95B16] border border-orange-200/60 flex items-center justify-center group-hover:bg-[#D95B16] group-hover:text-white transition-all duration-300 shadow-2xs">
+                      <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-[10px] font-mono font-bold tracking-widest uppercase px-2 py-0.5 bg-stone-100 text-stone-600 border border-stone-200/60">
+                    <span className="text-[10px] font-mono font-bold tracking-widest uppercase px-2.5 py-1 rounded-lg bg-stone-100/80 text-stone-600 border border-stone-200/60">
                       {language === "ne" ? service.tagNe : service.tag}
                     </span>
                   </div>
 
-                  <h3 className="font-serif text-xl font-bold text-[#181411] group-hover:text-[#C85A17] transition-colors duration-200">
+                  <h3 className="font-serif text-xl font-bold text-stone-900 group-hover:text-[#D95B16] transition-colors duration-200">
                     {service.title}
                   </h3>
-                  <div className="text-xs font-mono text-[#D97706] font-bold mt-1">
+                  <div className="text-xs font-mono text-[#D95B16] font-bold mt-1">
                     {service.sub}
                   </div>
                   <p className="mt-2.5 text-sm text-stone-600 leading-relaxed font-light">
@@ -142,16 +139,16 @@ export default function CompanySolutions({ onOpenInquiry }: SolutionsProps) {
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-stone-200/60 flex items-center justify-between">
+                <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
                   <button
                     onClick={() => onOpenInquiry(service.title)}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#C85A17] group-hover:translate-x-1.5 transition-transform duration-200"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#D95B16] hover:text-[#B8470B] group-hover:translate-x-1 transition-all duration-200"
                   >
                     <span>{t.solutions.learnMore}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
-                  <span className="text-[10px] font-mono text-stone-400 font-bold">
-                    {index + 1 < 10 ? `०${index + 1}` : index + 1}
+                  <span className="text-[11px] font-mono text-stone-400 font-bold">
+                    {index + 1 < 10 ? `0${index + 1}` : index + 1}
                   </span>
                 </div>
               </div>

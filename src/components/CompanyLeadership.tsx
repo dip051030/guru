@@ -45,43 +45,43 @@ export default function CompanyLeadership({ onOpenInquiry }: LeadershipProps) {
   ];
 
   return (
-    <section id="about-guru" className="w-full py-20 md:py-28 border-b border-stone-200 bg-[#FDFBF7] relative">
+    <section id="about-guru" className="w-full py-20 md:py-28 border-b border-stone-200 bg-[#FAF7F2] relative">
       <div className="max-w-[1300px] mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none bg-orange-50 border border-orange-200 text-[#C85A17] text-xs font-mono tracking-widest uppercase mb-3 font-bold">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-[#D95B16] text-xs font-mono tracking-widest uppercase mb-3 font-bold">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t.about.badge}</span>
           </div>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#181411] font-bold tracking-tight">
             {t.about.title}
           </h2>
-          <p className="mt-2 text-[#D97706] font-mono text-sm md:text-base font-bold">
+          <p className="mt-2 text-[#D95B16] font-mono text-sm md:text-base font-bold">
             {t.about.subtitle}
           </p>
         </div>
 
-        {/* Content Card with Sharp Frame & Bio */}
-        <div className="bg-white rounded-none p-8 md:p-12 lg:p-14 border border-stone-200/70 shadow-2xs">
+        {/* Content Card with Rounded Frame & Bio */}
+        <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-14 border border-stone-200/90 shadow-sm">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Left: Classical Sharp Geometric Frame */}
+            {/* Left: Classical Geometric Frame */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center text-center">
               <div className="relative">
-                {/* Sharp Geometric Frame */}
-                <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-none bg-stone-50/80 border border-stone-200/80 p-2 shadow-2xs flex items-center justify-center relative hover:border-[#C85A17]/60 transition-colors duration-300">
-                  <div className="w-full h-full rounded-none bg-white border border-stone-200/50 flex flex-col items-center justify-center p-4">
+                {/* Geometric Frame */}
+                <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-2xl bg-stone-50/80 border border-stone-200/80 p-2 shadow-xs flex items-center justify-center relative hover:border-[#D95B16]/60 transition-colors duration-300">
+                  <div className="w-full h-full rounded-xl bg-white border border-stone-200/50 flex flex-col items-center justify-center p-4">
                     <BrandLogo showText={false} size="lg" variant="dark" />
                     <span className="font-serif text-base font-bold text-[#181411] mt-3">
                       {t.about.title}
                     </span>
-                    <span className="font-mono text-[10px] text-[#C85A17] tracking-widest uppercase mt-1 font-bold">
+                    <span className="font-mono text-[10px] text-[#D95B16] tracking-widest uppercase mt-1 font-bold">
                       CEO | CHIEF CONSULTANT
                     </span>
                   </div>
                 </div>
 
                 {/* Floating Auspicious Badge */}
-                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-none bg-[#C85A17] text-white text-xs font-mono font-bold shadow-xs flex items-center gap-1.5 whitespace-nowrap animate-float-subtle">
+                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full bg-[#D95B16] text-white text-xs font-mono font-bold shadow-md flex items-center gap-1.5 whitespace-nowrap animate-float-subtle">
                   <Award className="w-3.5 h-3.5" />
                   <span>{language === "ne" ? "वैदिक सनातन केन्द्र युके" : "Vedic Sanatan Kendra UK"}</span>
                 </div>
@@ -109,10 +109,10 @@ export default function CompanyLeadership({ onOpenInquiry }: LeadershipProps) {
               </div>
 
               {/* 4 Stat Badges Grid */}
-              <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-6 border-t border-stone-200/60">
+              <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-stone-200/60">
                 {HIGHLIGHTS.map((item, idx) => (
-                  <div key={idx} className="p-3 rounded-none bg-stone-50/70 border border-stone-200/60 text-center hover:border-[#C85A17]/50 hover:-translate-y-0.5 transition-all duration-200">
-                    <div className="font-serif text-base lg:text-lg font-bold text-[#C85A17]">
+                  <div key={idx} className="p-3.5 rounded-xl bg-stone-50/70 border border-stone-200/80 text-center hover:border-[#D95B16]/50 hover:-translate-y-0.5 transition-all duration-200">
+                    <div className="font-serif text-base lg:text-lg font-bold text-[#D95B16]">
                       {item.value}
                     </div>
                     <div className="text-xs font-bold text-[#181411] mt-0.5">
@@ -129,7 +129,7 @@ export default function CompanyLeadership({ onOpenInquiry }: LeadershipProps) {
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <button
                   onClick={() => onOpenInquiry(t.about.bookWithGuru)}
-                  className="px-7 py-3 rounded-none bg-[#C85A17] hover:bg-[#A6440C] text-white font-bold text-sm shadow-sm transition-all flex items-center gap-2 border border-[#C85A17]"
+                  className="px-7 py-3.5 rounded-xl bg-[#D95B16] hover:bg-[#B8480C] text-white font-bold text-sm shadow-md transition-all flex items-center gap-2 border border-[#D95B16] active:scale-95"
                 >
                   <Calendar className="w-4 h-4 text-orange-200" />
                   <span>{t.about.bookWithGuru}</span>

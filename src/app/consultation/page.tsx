@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Calendar, ShieldCheck, Sparkles, Phone } from "lucide-react";
+import { IconArrowLeft, IconCalendar, IconPhone } from "@/components/icons/CustomIcons";
 import ObservatoryHeader from "@/components/ObservatoryHeader";
 import OnlineConsultationSection from "@/components/OnlineConsultationSection";
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
@@ -29,12 +29,12 @@ export default function ConsultationPage() {
 
       {/* Hero Banner */}
       <section className="w-full bg-[#131B2E] text-white border-b border-stone-800/80 pt-10 pb-12 px-6 lg:px-12 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#C85A17_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#D95B16_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
         <div className="max-w-[1400px] mx-auto relative z-10">
           <div className="flex items-center gap-2 text-xs font-mono text-stone-400 mb-4">
-            <Link href="/" className="hover:text-amber-400 flex items-center gap-1 transition-colors">
-              <ArrowLeft className="w-3.5 h-3.5" />
+            <Link href="/" className="hover:text-amber-400 flex items-center gap-1.5 transition-colors">
+              <IconArrowLeft size={14} />
               <span>{isNe ? "गृहपृष्ठ" : "Home"}</span>
             </Link>
             <span className="text-stone-600">/</span>
@@ -45,8 +45,8 @@ export default function ConsultationPage() {
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono text-xs uppercase tracking-widest mb-3">
-                <Calendar className="w-3.5 h-3.5 text-amber-400" />
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-500/10 border border-amber-500/30 text-amber-300 rounded-full font-mono text-xs uppercase tracking-widest mb-3">
+                <IconCalendar size={14} className="text-amber-400" />
                 <span>{isNe ? "वैदिक सनातन केन्द्र युके" : "Vedic Sanatan Kendra UK"}</span>
               </div>
               <h1 className="text-3xl md:text-5xl font-serif text-white tracking-tight">
@@ -66,9 +66,9 @@ export default function ConsultationPage() {
               href="https://wa.me/447838820518"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-[#C85A17] hover:bg-[#A6440C] text-white font-bold text-sm flex items-center gap-2 border border-[#C85A17] transition-all shadow-md shrink-0 self-start md:self-auto font-mono uppercase tracking-wider"
+              className="px-6 py-3.5 bg-[#D95B16] hover:bg-[#B8480C] text-white font-bold text-sm flex items-center gap-2 rounded-xl border border-[#D95B16] transition-all shadow-md shrink-0 self-start md:self-auto font-mono uppercase tracking-wider active:scale-95"
             >
-              <Phone className="w-4 h-4 text-orange-200" />
+              <IconPhone size={16} className="text-orange-200" />
               <span>+44 7838 820518 (WhatsApp)</span>
             </a>
           </div>

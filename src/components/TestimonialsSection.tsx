@@ -1,7 +1,5 @@
-"use client";
-
-import React, { useState } from "react";
-import { Star, Quote, ChevronLeft, ChevronRight, Sparkles, CheckCircle2 } from "lucide-react";
+import React from "react";
+import { IconStar, IconQuote, IconSparkles, IconCheckCircle } from "@/components/icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface Testimonial {
@@ -57,12 +55,12 @@ export default function TestimonialsSection() {
   ];
 
   return (
-    <section className="w-full py-20 md:py-28 border-b border-stone-200 bg-[#FDFBF7] relative">
+    <section className="w-full py-20 md:py-28 border-b border-stone-200 bg-[#FAF7F2] relative">
       <div className="max-w-[1300px] mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none bg-orange-50 border border-orange-200 text-[#C85A17] text-xs font-mono tracking-widest uppercase mb-3 font-bold">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-[#D95B16] text-xs font-mono tracking-widest uppercase mb-3 font-bold">
+            <IconSparkles className="w-3.5 h-3.5" />
             <span>{t.testimonials.badge}</span>
           </div>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#181411] font-bold tracking-tight">
@@ -73,22 +71,22 @@ export default function TestimonialsSection() {
           </p>
         </div>
 
-        {/* 3 Testimonials Grid - Sharp Architectural Cards */}
+        {/* 3 Testimonials Grid - Rounded-2xl Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {TESTIMONIALS.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-none p-7 lg:p-8 border border-stone-200/70 shadow-2xs flex flex-col justify-between relative hover:border-[#C85A17]/70 hover:-translate-y-1 transition-all duration-300"
+              className="bg-white rounded-2xl p-7 lg:p-8 border border-stone-200/90 shadow-xs flex flex-col justify-between relative hover:border-[#D95B16]/70 hover:-translate-y-1 transition-all duration-300"
             >
               <div>
                 {/* Header: Stars & Quote Icon */}
-                <div className="flex items-center justify-between pb-4 border-b border-stone-200/60">
+                <div className="flex items-center justify-between pb-4 border-b border-stone-100">
                   <div className="flex items-center gap-1 text-[#D97706]">
                     {[...Array(item.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-[#D97706] text-[#D97706]" />
+                      <IconStar key={i} className="w-4 h-4 fill-[#D97706] text-[#D97706]" />
                     ))}
                   </div>
-                  <Quote className="w-6 h-6 text-orange-200/80" />
+                  <IconQuote className="w-6 h-6 text-orange-200" />
                 </div>
 
                 {/* Body Text */}
@@ -98,7 +96,7 @@ export default function TestimonialsSection() {
               </div>
 
               {/* Footer: User Details */}
-              <div className="mt-6 pt-4 border-t border-stone-200/60 flex items-center justify-between">
+              <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
                 <div>
                   <h4 className="font-serif font-bold text-[#181411] text-base">
                     {item.name}
@@ -107,7 +105,7 @@ export default function TestimonialsSection() {
                     {item.role} • {item.location}
                   </p>
                 </div>
-                <div className="text-[11px] font-mono px-2.5 py-1 rounded-none bg-orange-50/80 border border-orange-200/60 text-[#C85A17] font-bold">
+                <div className="text-[11px] font-mono px-2.5 py-1 rounded-full bg-orange-50 text-[#D95B16] font-bold border border-orange-200/60">
                   {item.service}
                 </div>
               </div>
@@ -116,19 +114,19 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Trust Badges Bar */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-stone-500 text-center font-bold">
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-stone-600 text-center font-bold">
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+            <IconCheckCircle className="w-4 h-4 text-emerald-600" />
             <span>{t.testimonials.verifiedReviews}</span>
           </div>
           <span>•</span>
           <div className="flex items-center gap-2">
-            <Star className="w-4 h-4 fill-[#D97706] text-[#D97706]" />
+            <IconStar className="w-4 h-4 fill-[#D97706] text-[#D97706]" />
             <span>{t.testimonials.avgRating}</span>
           </div>
           <span>•</span>
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[#C85A17]" />
+            <IconSparkles className="w-4 h-4 text-[#D95B16]" />
             <span>{t.testimonials.consultationsDelivered}</span>
           </div>
         </div>

@@ -9,15 +9,15 @@ import {
   toNepaliNumber,
 } from "@/utils/astronomy";
 import {
-  Calendar,
-  Compass,
-  RefreshCw,
-  Download,
-  Share2,
-  Table,
-  Grid,
-  Printer,
-} from "lucide-react";
+  IconCalendar as Calendar,
+  IconCompass as Compass,
+  IconRefresh as RefreshCw,
+  IconArrowRight as Download,
+  IconExternalLink as Share2,
+  IconBookOpen as Table,
+  IconLayers as Grid,
+  IconAward as Printer,
+} from "@/components/icons/CustomIcons";
 
 const PRESET_LOCATIONS = [
   { name: "काठमाडौँ (Kathmandu, Nepal)", lat: 27.7172, lng: 85.324 },

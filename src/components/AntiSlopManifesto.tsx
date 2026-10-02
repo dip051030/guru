@@ -70,7 +70,7 @@ export default function AntiSlopManifesto() {
       <div className="max-w-[1300px] mx-auto px-6 lg:px-12 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none bg-orange-500/10 text-[#F59E0B] border border-orange-500/30 text-xs font-mono tracking-widest uppercase mb-3 font-bold">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-500/10 text-[#F59E0B] border border-orange-500/30 text-xs font-mono tracking-widest uppercase mb-3 font-bold">
             <Sparkles className="w-3.5 h-3.5 text-[#F59E0B]" />
             <span>{t.manifesto.badge}</span>
           </div>
@@ -84,16 +84,16 @@ export default function AntiSlopManifesto() {
 
         {/* 2-Column Content: Left Pillars, Right Featured Quote */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
-          {/* Left Column: 4 Sharp Pillars */}
+          {/* Left Column: 4 Rounded Pillars */}
           <div className="lg:col-span-6 space-y-4">
             {PILLARS.map((pillar) => {
               const Icon = pillar.icon;
               return (
                 <div
                   key={pillar.num}
-                  className="flex items-start gap-4 p-5 rounded-none bg-white/[0.03] border border-white/[0.08] hover:border-[#C85A17]/80 hover:translate-x-1 transition-all duration-200"
+                  className="flex items-start gap-4 p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-[#D95B16]/80 hover:translate-x-1 transition-all duration-200"
                 >
-                  <div className="w-10 h-10 rounded-none bg-[#C85A17]/15 border border-[#C85A17]/30 flex items-center justify-center shrink-0 mt-0.5 text-[#F59E0B]">
+                  <div className="w-11 h-11 rounded-xl bg-[#D95B16]/15 border border-[#D95B16]/30 flex items-center justify-center shrink-0 mt-0.5 text-[#F59E0B]">
                     <Icon className="w-5 h-5" />
                   </div>
                   <div>
@@ -114,9 +114,9 @@ export default function AntiSlopManifesto() {
             })}
           </div>
 
-          {/* Right Column: Featured Quote with Sharp Border */}
+          {/* Right Column: Featured Quote with Rounded Border */}
           <div className="lg:col-span-6 flex flex-col justify-between">
-            <div className="relative rounded-none p-8 md:p-10 bg-white/[0.03] border border-orange-500/20 flex-1 flex flex-col justify-between hover:border-orange-500/40 transition-colors duration-300">
+            <div className="relative rounded-2xl p-8 md:p-10 bg-white/[0.03] border border-orange-500/20 flex-1 flex flex-col justify-between hover:border-orange-500/40 transition-colors duration-300">
               <div className="text-orange-500/20 font-serif text-7xl leading-none select-none pointer-events-none mb-2">
                 “
               </div>
@@ -163,7 +163,7 @@ export default function AntiSlopManifesto() {
                   sub: language === "ne" ? "गोपनीयता" : "Privacy Shield",
                 },
               ].map((badge, idx) => (
-                <div key={idx} className="p-3 rounded-none bg-white/[0.03] border border-white/10">
+                <div key={idx} className="p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#D95B16]/40 transition-colors">
                   <div className="font-mono text-xs md:text-sm font-bold text-[#F59E0B]">
                     {badge.title}
                   </div>

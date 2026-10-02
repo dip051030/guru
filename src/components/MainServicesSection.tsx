@@ -278,6 +278,32 @@ export default function MainServicesSection({ onOpenInquiry }: MainServicesSecti
 
         </div>
 
+        {/* Explore All Services Subpage CTA */}
+        <div className="mt-14 p-6 sm:p-8 bg-[#FAF7F2] border border-stone-200/90 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#D95B16] font-bold">
+              <Sparkles className="w-4 h-4" />
+              <span>{isNe ? "विस्तृत सेवा विवरण तथा साइत" : "COMPLETE SERVICE PORTFOLIO & MUHURTA"}</span>
+            </div>
+            <h4 className="text-xl sm:text-2xl font-serif font-bold text-stone-900 mt-1">
+              {isNe ? "सबै वैदिक सेवाहरू, व्यावसायिक साइत र संस्थागत समाधान" : "Explore All Services, Auspicious Muhurtas & Corporate Solutions"}
+            </h4>
+            <p className="text-xs sm:text-sm text-stone-600 font-light mt-1">
+              {isNe
+                ? "विवाह, गृहप्रवेश, पास्नी, शिलान्यास साइत तथा संस्थागत परामर्शको पूर्ण विवरण हेर्नुहोस्।"
+                : "Detailed guidelines for matrimony, housewarming, corporate commissioning, and electional timings."}
+            </p>
+          </div>
+
+          <Link
+            href="/services"
+            className="px-6 py-3.5 bg-[#D95B16] hover:bg-[#B8480C] text-white text-xs sm:text-sm font-semibold rounded-xl flex items-center gap-2 shrink-0 shadow-xs transition-colors"
+          >
+            <span>{isNe ? "विस्तृत सेवा पृष्ठ हेर्नुहोस्" : "View Full Services Page"}</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
       </div>
     </section>
   );

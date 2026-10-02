@@ -1,7 +1,15 @@
 "use client";
 
 import React from "react";
-import { BookOpen, UserCheck, MapPin, Layers, Lightbulb, Shield, Heart } from "lucide-react";
+import {
+  IconBookOpen,
+  IconCheckCircle,
+  IconMapPin,
+  IconLayers,
+  IconSparkles,
+  IconShield,
+  IconHeart,
+} from "@/components/icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function WhyChooseUsSection() {
@@ -10,42 +18,42 @@ export default function WhyChooseUsSection() {
 
   const reasons = [
     {
-      icon: BookOpen,
+      icon: IconBookOpen,
       titleNe: "परम्परागत ज्ञान",
       titleEn: "Traditional Vedic Knowledge",
       descNe: "प्राचीन सूर्यसिद्धान्त, दृक्-गणित र प्रामाणिक शास्त्रहरूमा आधारित शुद्ध गणना तथा विश्लेषण।",
       descEn: "Grounded strictly in authentic Shastras, Surya Siddhanta, and rigorous astronomical mathematics.",
     },
     {
-      icon: UserCheck,
+      icon: IconCheckCircle,
       titleNe: "व्यक्तिगत परामर्श",
       titleEn: "Personalised Consultation",
       descNe: "काल्पनिक डर वा व्यापारिक दबाबबिना, तपाईंको व्यक्तिगत कुण्डली अनुसार सात्विक र गोप्य मार्गदर्शन।",
       descEn: "100% confidential, tailor-made guidance free from commercial fear-mongering.",
     },
     {
-      icon: MapPin,
+      icon: IconMapPin,
       titleNe: "UK Based Service",
       titleEn: "UK-Based Service for Families",
       descNe: "बेलायतमा बसोबास गर्ने नेपाली तथा सनातन धर्मावलम्बीहरूका लागि स्थानीय समय र सुविधामा समर्पित।",
       descEn: "Direct in-person sessions in the United Kingdom alongside global remote video consultations.",
     },
     {
-      icon: Layers,
+      icon: IconLayers,
       titleNe: "सेवा र सामग्री एउटै स्थानमा",
       titleEn: "Services & Products in One Place",
       descNe: "परामर्शदेखि पूजाका लागि आवश्यक सम्पूर्ण प्रामाणिक हवन, रुद्राक्ष तथा रत्न सामग्री एकै ठाउँबाट।",
       descEn: "From personalized consultation to certified puja kits, gemstones, and yantras under one roof.",
     },
     {
-      icon: Lightbulb,
+      icon: IconSparkles,
       titleNe: "सरल र स्पष्ट मार्गदर्शन",
       titleEn: "Simple & Clear Guidance",
       descNe: "जटिल ज्योतिषीय शब्दहरूलाई आधुनिक जीवनशैलीमा सजिलै बुझिने र व्यवहारमा उतार्न सकिने भाषामा प्रस्तुत।",
       descEn: "Vedic wisdom translated into clear, actionable, and pragmatic solutions for modern lifestyles.",
     },
     {
-      icon: Heart,
+      icon: IconHeart,
       titleNe: "सनातन परम्पराप्रति सम्मान",
       titleEn: "Respect for Sanatan Traditions",
       descNe: "धर्म, संस्कृति, कुलपरम्परा र आध्यात्मिक मर्यादाको पूर्ण संरक्षण गर्दै सात्विक सेवा प्रवाह।",
@@ -59,10 +67,14 @@ export default function WhyChooseUsSection() {
         
         {/* Section Header conforming to Rule */}
         <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-amber-500/10 border border-amber-500/30 text-[#D95B16] rounded-full font-mono text-xs uppercase tracking-widest font-bold mb-3">
+            <IconShield size={14} />
+            <span>SATTVIC EXCELLENCE</span>
+          </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-black text-stone-900 tracking-tight">
             हामीलाई किन रोज्ने?
           </h2>
-          <span className="block text-xs sm:text-sm font-mono text-[#C85A17] font-bold tracking-widest uppercase mt-1">
+          <span className="block text-xs sm:text-sm font-mono text-[#D95B16] font-bold tracking-widest uppercase mt-1">
             Why Choose Vedic Sanatan Kendra UK & Guru Nilhari?
           </span>
           <p className="mt-3 text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
@@ -77,17 +89,17 @@ export default function WhyChooseUsSection() {
             return (
               <div
                 key={idx}
-                className="bg-white border border-stone-200/90 p-6 sm:p-7 flex flex-col justify-between hover:border-[#C85A17] transition-all hover:shadow-xs group"
+                className="bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-7 flex flex-col justify-between hover:border-[#D95B16] transition-all hover:shadow-lg shadow-sm group"
               >
                 <div>
-                  <div className="w-11 h-11 bg-amber-50 border border-amber-200 text-[#C85A17] flex items-center justify-center mb-4 group-hover:bg-[#C85A17] group-hover:text-white transition-colors">
-                    <Icon className="w-5 h-5" />
+                  <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200/80 text-[#D95B16] flex items-center justify-center mb-4 group-hover:bg-[#D95B16] group-hover:text-white transition-colors shadow-xs">
+                    <Icon size={22} />
                   </div>
 
                   <h3 className="text-lg font-serif font-bold text-stone-900 leading-snug">
                     {r.titleNe}
                   </h3>
-                  <span className="text-xs font-mono text-[#C85A17] font-bold block mb-2.5">
+                  <span className="text-xs font-mono text-[#D95B16] font-bold block mb-2.5">
                     {r.titleEn}
                   </span>
 

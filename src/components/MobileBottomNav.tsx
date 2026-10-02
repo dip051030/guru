@@ -39,7 +39,7 @@ export default function MobileBottomNav({ onOpenInquiry }: MobileBottomNavProps)
 
         {/* 2. Services */}
         <Link
-          href="/#services"
+          href="/services"
           className={`flex flex-col items-center justify-center py-1 transition-colors ${
             pathname === "/services" ? "text-amber-400 font-bold" : "text-stone-300 hover:text-white"
           }`}
@@ -52,7 +52,7 @@ export default function MobileBottomNav({ onOpenInquiry }: MobileBottomNavProps)
 
         {/* 3. Store */}
         <Link
-          href="/#store"
+          href="/store"
           className={`flex flex-col items-center justify-center py-1 transition-colors ${
             pathname === "/store" ? "text-amber-400 font-bold" : "text-stone-300 hover:text-white"
           }`}
@@ -68,7 +68,7 @@ export default function MobileBottomNav({ onOpenInquiry }: MobileBottomNavProps)
           onClick={() => onOpenInquiry(isNe ? "परामर्श बुक गर्नुहोस्" : "Book a Consultation")}
           className="flex flex-col items-center justify-center py-1 text-white hover:text-amber-300 transition-colors"
         >
-          <div className="w-8 h-8 rounded-full bg-[#C85A17] flex items-center justify-center -mt-3 shadow-md border-2 border-[#0E1A2E]">
+          <div className="w-8 h-8 rounded-full bg-[#D95B16] flex items-center justify-center -mt-3 shadow-md border-2 border-[#0E1A2E]">
             <Calendar className="w-4 h-4 text-white" />
           </div>
           <span className="text-[10px] font-sans font-bold leading-tight mt-0.5 text-amber-400">
@@ -78,7 +78,7 @@ export default function MobileBottomNav({ onOpenInquiry }: MobileBottomNavProps)
 
         {/* 5. Contact */}
         <Link
-          href="/#contact"
+          href="/contact"
           className={`flex flex-col items-center justify-center py-1 transition-colors ${
             pathname === "/contact" ? "text-amber-400 font-bold" : "text-stone-300 hover:text-white"
           }`}

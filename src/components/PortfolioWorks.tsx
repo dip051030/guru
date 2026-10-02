@@ -2,7 +2,7 @@
 
 import React from "react";
 import { CaseStudy } from "./CaseStudyModal";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { IconExternalLink as ArrowUpRight, IconSparkles as Sparkles } from "@/components/icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 
 export const RESEARCH_STUDIES: CaseStudy[] = [

@@ -2,16 +2,16 @@
 
 import React, { useState } from "react";
 import {
-  Calendar,
-  ArrowRight,
-  ShieldCheck,
-  Award,
-  Sparkles,
-  Compass,
-  Star,
-  MapPin,
-  CheckCircle2,
-} from "lucide-react";
+  IconCalendar as Calendar,
+  IconArrowRight as ArrowRight,
+  IconShield as ShieldCheck,
+  IconAward as Award,
+  IconSparkles as Sparkles,
+  IconCompass as Compass,
+  IconStar as Star,
+  IconMapPin as MapPin,
+  IconCheckCircle as CheckCircle2,
+} from "@/components/icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface HeroProps {

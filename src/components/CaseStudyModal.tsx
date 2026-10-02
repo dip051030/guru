@@ -3,7 +3,14 @@
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, CheckCircle2, ArrowRight, Code2, Database, Shield } from "lucide-react";
+import {
+  IconClose as X,
+  IconCheckCircle as CheckCircle2,
+  IconArrowRight as ArrowRight,
+  IconCode as Code2,
+  IconDatabase as Database,
+  IconShield as Shield,
+} from "@/components/icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 
 export interface CaseStudy {

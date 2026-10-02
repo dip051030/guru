@@ -1,7 +1,16 @@
 "use client";
 
 import React from "react";
-import { User, Mail, Award, BookOpen, Terminal, Sparkles, Shield, Compass } from "lucide-react";
+import {
+  IconUser as User,
+  IconMail as Mail,
+  IconAward as Award,
+  IconBookOpen as BookOpen,
+  IconTerminal as Terminal,
+  IconSparkles as Sparkles,
+  IconShield as Shield,
+  IconCompass as Compass,
+} from "@/components/icons/CustomIcons";
 import { motion } from "framer-motion";
 
 interface PractitionersProps {

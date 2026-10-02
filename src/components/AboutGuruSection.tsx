@@ -1,6 +1,5 @@
-"use client";
-
 import React from "react";
+import Link from "next/link";
 import {
   IconCheckCircle as CheckCircle2,
   IconStar as Award,
@@ -137,13 +136,13 @@ export default function AboutGuruSection({ onOpenInquiry }: AboutGuruSectionProp
                 <span>{isNe ? "परामर्श लिनुहोस्" : "Book Consultation"}</span>
               </button>
 
-              <a
-                href="#services"
+              <Link
+                href="/about"
                 className="px-6 py-3 bg-white border border-stone-300 hover:border-[#D95B16] text-stone-800 hover:text-[#D95B16] text-xs sm:text-sm font-semibold rounded-xl flex items-center gap-2 transition-all shadow-2xs"
               >
-                <span>{isNe ? "सेवाहरू हेर्नुहोस्" : "Explore Services"}</span>
+                <span>{isNe ? "गुरुको परिचय तथा संस्थाबारे" : "Full Bio & About Us"}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
-              </a>
+              </Link>
             </div>
           </div>
 

@@ -2,7 +2,16 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ShoppingBag, Flame, Sparkles, Gem, ShieldCheck, ArrowRight, Check, HeartHandshake } from "lucide-react";
+import {
+  IconShoppingBag,
+  IconFlame,
+  IconSparkles,
+  IconGem,
+  IconShield,
+  IconArrowRight,
+  IconCheck,
+  IconHeartHandshake,
+} from "@/components/icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface SpiritualStoreSectionProps {
@@ -149,15 +158,15 @@ export default function SpiritualStoreSection({ onOpenInquiry }: SpiritualStoreS
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 text-[#C85A17] font-mono text-xs uppercase tracking-widest font-bold mb-3">
-            <ShoppingBag className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-amber-500/10 border border-amber-500/30 text-[#D95B16] rounded-full font-mono text-xs uppercase tracking-widest font-bold mb-3">
+            <IconShoppingBag size={14} />
             <span>AUTHENTIC SPIRITUAL STORE</span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-black text-stone-900 tracking-tight">
             धार्मिक तथा ज्योतिषीय सामग्री
           </h2>
-          <span className="block text-xs sm:text-sm font-mono text-[#C85A17] font-bold tracking-widest uppercase mt-1">
+          <span className="block text-xs sm:text-sm font-mono text-[#D95B16] font-bold tracking-widest uppercase mt-1">
             Spiritual & Astrology Store
           </span>
           <p className="mt-3 text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
@@ -173,10 +182,10 @@ export default function SpiritualStoreSection({ onOpenInquiry }: SpiritualStoreS
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`shrink-0 px-3.5 py-1.5 text-xs font-mono font-bold transition-all border ${
+                className={`shrink-0 px-4 py-2 text-xs font-mono font-bold transition-all border rounded-full ${
                   isSelected
-                    ? "bg-[#C85A17] text-white border-[#C85A17] shadow-xs"
-                    : "bg-[#FAF7F2] text-stone-700 border-stone-200 hover:border-[#C85A17] hover:text-[#C85A17]"
+                    ? "bg-[#D95B16] text-white border-[#D95B16] shadow-sm"
+                    : "bg-[#FAF7F2] text-stone-700 border-stone-200/90 hover:border-[#D95B16] hover:text-[#D95B16]"
                 }`}
               >
                 <span>{isNe ? cat.nameNe : cat.nameEn}</span>
@@ -190,17 +199,17 @@ export default function SpiritualStoreSection({ onOpenInquiry }: SpiritualStoreS
           {filteredProducts.map((p) => (
             <div
               key={p.id}
-              className="bg-[#FAF7F2] border border-stone-200/90 p-5 flex flex-col justify-between hover:border-[#C85A17] hover:bg-white transition-all hover:shadow-md group"
+              className="bg-[#FAF7F2] border border-stone-200/90 rounded-2xl p-5 flex flex-col justify-between hover:border-[#D95B16] hover:bg-white transition-all hover:shadow-lg shadow-sm group"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-3xl">{p.icon}</span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 bg-amber-100 text-amber-900 font-bold border border-amber-200">
+                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold border border-amber-200">
                     {isNe ? p.badgeNe : p.badgeEn}
                   </span>
                 </div>
 
-                <h4 className="font-serif font-bold text-stone-900 text-base leading-snug group-hover:text-[#C85A17] transition-colors">
+                <h4 className="font-serif font-bold text-stone-900 text-base leading-snug group-hover:text-[#D95B16] transition-colors">
                   {p.nameNe}
                 </h4>
                 <span className="text-[11px] font-mono text-stone-500 block mb-2">
@@ -222,7 +231,7 @@ export default function SpiritualStoreSection({ onOpenInquiry }: SpiritualStoreS
 
                 <button
                   onClick={() => onOpenInquiry(`स्टोर सामग्री अर्डर वा सोधपुछ: ${p.nameNe} (${p.price})`)}
-                  className="px-3.5 py-1.5 bg-[#181411] hover:bg-[#C85A17] text-white text-xs font-mono font-bold transition-colors"
+                  className="px-3.5 py-1.5 rounded-lg bg-[#181411] hover:bg-[#D95B16] text-white text-xs font-mono font-bold transition-colors active:scale-95 shadow-xs"
                 >
                   {isNe ? "खरिद / सोधपुछ" : "Enquire / Buy"}
                 </button>
@@ -232,9 +241,11 @@ export default function SpiritualStoreSection({ onOpenInquiry }: SpiritualStoreS
         </div>
 
         {/* UK Delivery & Service Guarantee */}
-        <div className="mt-12 p-6 bg-stone-50 border border-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-sans text-stone-700">
-          <div className="flex items-center gap-3">
-            <ShieldCheck className="w-6 h-6 text-[#C85A17] shrink-0" />
+        <div className="mt-12 p-6 bg-stone-50 border border-stone-200 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-sans text-stone-700 shadow-xs">
+          <div className="flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0 text-[#D95B16]">
+              <IconShield size={20} />
+            </div>
             <div>
               <span className="font-bold text-stone-900 font-serif text-sm block">
                 {isNe ? "प्रामाणिक र शुद्ध वैदिक सामग्रीको ग्यारेन्टी" : "100% Certified Pure Vedic Materials"}
@@ -249,7 +260,7 @@ export default function SpiritualStoreSection({ onOpenInquiry }: SpiritualStoreS
 
           <button
             onClick={() => onOpenInquiry("सम्पूर्ण स्टोर क्याटलग सोधपुछ")}
-            className="px-5 py-2.5 bg-white border border-stone-300 hover:border-[#C85A17] text-stone-900 hover:text-[#C85A17] font-mono text-xs font-bold uppercase transition-colors shrink-0"
+            className="px-5 py-2.5 bg-white border border-stone-300 hover:border-[#D95B16] text-stone-900 hover:text-[#D95B16] rounded-xl font-mono text-xs font-bold uppercase transition-colors shrink-0 shadow-xs active:scale-95"
           >
             {isNe ? "सबै सामग्री सूची हेर्नुहोस्" : "View Full Catalogue"}
           </button>

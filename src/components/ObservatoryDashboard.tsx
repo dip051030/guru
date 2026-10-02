@@ -4,13 +4,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { animate, stagger } from "animejs";
 import {
-  Compass,
-  Orbit,
-  Sparkles,
-  ArrowUpRight,
-  RotateCw,
-  Radio,
-} from "lucide-react";
+  IconCompass as Compass,
+  IconKundali as Orbit,
+  IconSparkles as Sparkles,
+  IconExternalLink as ArrowUpRight,
+  IconRefresh as RotateCw,
+  IconActivity as Radio,
+} from "@/components/icons/CustomIcons";
 
 // Institutional accreditations & calculation standards
 const KENDRA_STANDARDS = [
