@@ -88,7 +88,7 @@ export default function ContactPage() {
           
           {/* Left: Contact Coordinates Card (5 cols) */}
           <div className="lg:col-span-5 flex flex-col gap-6">
-            <div className="p-8 bg-white border border-stone-200/90 rounded-2xl shadow-sm">
+            <div className="p-8 bg-white border border-stone-200/90 rounded-lg shadow-sm">
               <span className="font-mono text-xs uppercase tracking-widest text-[#D95B16] font-bold">
                 {language === "ne" ? "प्रत्यक्ष सम्पर्क विवरण" : "DIRECT COORDINATES"}
               </span>
@@ -98,7 +98,7 @@ export default function ContactPage() {
 
               <div className="space-y-5 text-sm font-sans">
                 <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 bg-amber-50 border border-amber-200/80 rounded-xl flex items-center justify-center shrink-0 mt-0.5 text-[#D95B16] shadow-xs">
+                  <div className="w-11 h-11 bg-amber-50 border border-amber-200/80 rounded-md flex items-center justify-center shrink-0 mt-0.5 text-[#D95B16] shadow-xs">
                     <IconMapPin size={20} />
                   </div>
                   <div>
@@ -192,7 +192,7 @@ export default function ContactPage() {
                   href="https://wa.me/447838820518"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3.5 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-sm rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all font-sans active:scale-95"
+                  className="w-full py-3.5 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-sm rounded-md flex items-center justify-center gap-2 shadow-sm transition-all font-sans active:scale-95"
                 >
                   <IconWhatsApp size={18} />
                   <span>{language === "ne" ? "ह्वाट्सएपमा सिधै सन्देश पठाउनुहोस्" : "Direct WhatsApp Connect"}</span>
@@ -201,8 +201,8 @@ export default function ContactPage() {
             </div>
 
             {/* Privacy Badge */}
-            <div className="p-6 bg-white border border-stone-200/90 rounded-2xl flex items-center gap-4 shadow-xs">
-              <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0 text-[#D95B16]">
+            <div className="p-6 bg-white border border-stone-200/90 rounded-lg flex items-center gap-4 shadow-xs">
+              <div className="w-12 h-12 rounded-md bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0 text-[#D95B16]">
                 <IconShield size={24} />
               </div>
               <div>
@@ -220,7 +220,7 @@ export default function ContactPage() {
 
           {/* Right: Booking Form (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="p-8 md:p-10 bg-white border border-stone-200/90 rounded-2xl shadow-sm">
+            <div className="p-8 md:p-10 bg-white border border-stone-200/90 rounded-lg shadow-sm">
               <span className="font-mono text-xs uppercase tracking-widest text-[#D95B16] font-bold">
                 {language === "ne" ? "परामर्श फारम" : "BOOKING INTAKE"}
               </span>
@@ -234,7 +234,7 @@ export default function ContactPage() {
               </p>
 
               {submitted ? (
-                <div className="p-8 bg-emerald-50 border border-emerald-200 rounded-2xl text-center shadow-xs">
+                <div className="p-8 bg-emerald-50 border border-emerald-200 rounded-lg text-center shadow-xs">
                   <IconCheckCircle size={48} className="text-emerald-600 mx-auto mb-3" />
                   <h3 className="font-serif font-bold text-stone-900 text-xl">
                     {language === "ne" ? "अनुरोध प्राप्त भयो!" : "Appointment Request Received"}
@@ -246,7 +246,7 @@ export default function ContactPage() {
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="mt-6 px-6 py-2.5 rounded-xl bg-stone-900 text-white text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#D95B16] transition-colors active:scale-95 shadow-xs"
+                    className="mt-6 px-6 py-2.5 rounded-md bg-stone-900 text-white text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#D95B16] transition-colors active:scale-95 shadow-xs"
                   >
                     {language === "ne" ? "अर्को अनुरोध पठाउनुहोस्" : "Submit Another Request"}
                   </button>

@@ -42,10 +42,10 @@ export default function MainServicesSection({ onOpenInquiry }: MainServicesSecti
         <div className="space-y-12">
 
           {/* 1. Vedic Astrology */}
-          <div id="service-astrology" className="bg-white border border-stone-200/80 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xs">
+          <div id="service-astrology" className="bg-white border border-stone-200/80 rounded-lg p-6 sm:p-8 lg:p-10 shadow-xs">
             <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8">
               <div className="lg:max-w-xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 border border-orange-200/70 text-[#D95B16] text-xs font-mono font-bold uppercase mb-3 rounded-lg">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 border border-orange-200/70 text-[#D95B16] text-xs font-mono font-bold uppercase mb-3 rounded-md">
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>SERVICE 01</span>
                 </div>
@@ -61,14 +61,14 @@ export default function MainServicesSection({ onOpenInquiry }: MainServicesSecti
 
                 <button
                   onClick={() => onOpenInquiry("वैदिक ज्योतिष शास्त्र (Vedic Astrology)")}
-                  className="px-6 py-3 bg-[#D95B16] hover:bg-[#B8470B] text-white text-xs sm:text-sm font-semibold rounded-xl transition-all shadow-xs"
+                  className="px-6 py-3 bg-[#D95B16] hover:bg-[#B8470B] text-white text-xs sm:text-sm font-semibold rounded-md transition-all shadow-xs"
                 >
                   {isNe ? "ज्योतिष परामर्श लिनुहोस्" : "Book Astrology Consultation"}
                 </button>
               </div>
 
               {/* Service Features Checklist */}
-              <div className="lg:w-1/2 bg-stone-50/80 p-6 rounded-xl border border-stone-200/70">
+              <div className="lg:w-1/2 bg-stone-50/80 p-6 rounded-md border border-stone-200/70">
                 <h4 className="text-xs font-mono uppercase tracking-wider text-stone-700 font-bold mb-4">
                   {isNe ? "उपलब्ध ज्योतिषीय सेवाहरू:" : "Included Advisory Services:"}
                 </h4>
@@ -94,10 +94,10 @@ export default function MainServicesSection({ onOpenInquiry }: MainServicesSecti
           </div>
 
           {/* 2. Vastu Shastra */}
-          <div id="service-vastu" className="bg-white border border-stone-200/80 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xs">
+          <div id="service-vastu" className="bg-white border border-stone-200/80 rounded-lg p-6 sm:p-8 lg:p-10 shadow-xs">
             <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8">
               <div className="lg:max-w-xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 border border-orange-200/70 text-[#D95B16] text-xs font-mono font-bold uppercase mb-3 rounded-lg">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 border border-orange-200/70 text-[#D95B16] text-xs font-mono font-bold uppercase mb-3 rounded-md">
                   <Compass className="w-3.5 h-3.5" />
                   <span>SERVICE 02</span>
                 </div>
@@ -114,14 +114,14 @@ export default function MainServicesSection({ onOpenInquiry }: MainServicesSecti
                 <div className="flex flex-wrap items-center gap-3">
                   <button
                     onClick={() => onOpenInquiry("वास्तु शास्त्र (Vastu Shastra)")}
-                    className="px-6 py-3 bg-[#D95B16] hover:bg-[#B8470B] text-white text-xs sm:text-sm font-semibold rounded-xl transition-all shadow-xs"
+                    className="px-6 py-3 bg-[#D95B16] hover:bg-[#B8470B] text-white text-xs sm:text-sm font-semibold rounded-md transition-all shadow-xs"
                   >
                     {isNe ? "वास्तु परामर्श लिनुहोस्" : "Book Vastu Consultation"}
                   </button>
 
                   <a
                     href="#store"
-                    className="px-4 py-3 bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5"
+                    className="px-4 py-3 bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-semibold rounded-md transition-colors flex items-center gap-1.5"
                   >
                     <ShoppingBag className="w-3.5 h-3.5 text-[#D95B16]" />
                     <span>{isNe ? "वास्तु यन्त्र तथा सामग्री" : "Vastu Products"}</span>
@@ -130,7 +130,7 @@ export default function MainServicesSection({ onOpenInquiry }: MainServicesSecti
               </div>
 
               {/* Service Features Checklist */}
-              <div className="lg:w-1/2 bg-stone-50/80 p-6 rounded-xl border border-stone-200/70">
+              <div className="lg:w-1/2 bg-stone-50/80 p-6 rounded-md border border-stone-200/70">
                 <h4 className="text-xs font-mono uppercase tracking-wider text-stone-700 font-bold mb-4">
                   {isNe ? "वास्तु परामर्शका क्षेत्रहरू:" : "Vastu Assessment Domains:"}
                 </h4>
@@ -156,10 +156,10 @@ export default function MainServicesSection({ onOpenInquiry }: MainServicesSecti
           </div>
 
           {/* 3. Karmakanda & Puja Services + SERVICE -> PRODUCT CONNECTION (Section 11) */}
-          <div id="service-karmakanda" className="bg-white border border-stone-200/80 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xs">
+          <div id="service-karmakanda" className="bg-white border border-stone-200/80 rounded-lg p-6 sm:p-8 lg:p-10 shadow-xs">
             <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8">
               <div className="lg:max-w-xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 border border-orange-200/70 text-[#D95B16] text-xs font-mono font-bold uppercase mb-3 rounded-lg">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 border border-orange-200/70 text-[#D95B16] text-xs font-mono font-bold uppercase mb-3 rounded-md">
                   <Flame className="w-3.5 h-3.5" />
                   <span>SERVICE 03</span>
                 </div>
@@ -174,7 +174,7 @@ export default function MainServicesSection({ onOpenInquiry }: MainServicesSecti
                 </p>
 
                 {/* Service -> Product Connection (Section 11 of spec) */}
-                <div className="mb-6 p-4 bg-orange-50/60 border border-orange-200/60 rounded-xl text-xs font-sans text-stone-800">
+                <div className="mb-6 p-4 bg-orange-50/60 border border-orange-200/60 rounded-md text-xs font-sans text-stone-800">
                   <div className="flex items-center gap-2 font-bold text-[#D95B16] mb-1">
                     <ShoppingBag className="w-4 h-4" />
                     <span>{isNe ? "पूजा सामग्री सेवा जडान (Service → Store):" : "Required Materials Included:"}</span>
@@ -194,14 +194,14 @@ export default function MainServicesSection({ onOpenInquiry }: MainServicesSecti
 
                 <button
                   onClick={() => onOpenInquiry("कर्मकाण्ड तथा पूजा (Karmakanda & Puja Services)")}
-                  className="px-6 py-3 bg-[#D95B16] hover:bg-[#B8470B] text-white text-xs sm:text-sm font-semibold rounded-xl transition-all shadow-xs"
+                  className="px-6 py-3 bg-[#D95B16] hover:bg-[#B8470B] text-white text-xs sm:text-sm font-semibold rounded-md transition-all shadow-xs"
                 >
                   {isNe ? "पूजा / कर्मकाण्ड बुक गर्नुहोस्" : "Book Ritual Service"}
                 </button>
               </div>
 
               {/* Service Features Checklist */}
-              <div className="lg:w-1/2 bg-stone-50/80 p-6 rounded-xl border border-stone-200/70">
+              <div className="lg:w-1/2 bg-stone-50/80 p-6 rounded-md border border-stone-200/70">
                 <h4 className="text-xs font-mono uppercase tracking-wider text-stone-700 font-bold mb-4">
                   {isNe ? "प्रमुख धार्मिक संस्कार तथा पूजा:" : "Sacred Rituals & Ceremonies:"}
                 </h4>
@@ -227,10 +227,10 @@ export default function MainServicesSection({ onOpenInquiry }: MainServicesSecti
           </div>
 
           {/* 4. Colour Therapy / Wellness (Section 9 of spec) */}
-          <div id="service-colour" className="bg-white border border-stone-200/80 rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xs">
+          <div id="service-colour" className="bg-white border border-stone-200/80 rounded-lg p-6 sm:p-8 lg:p-10 shadow-xs">
             <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8">
               <div className="lg:max-w-xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 border border-orange-200/70 text-[#D95B16] text-xs font-mono font-bold uppercase mb-3 rounded-lg">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 border border-orange-200/70 text-[#D95B16] text-xs font-mono font-bold uppercase mb-3 rounded-md">
                   <Palette className="w-3.5 h-3.5" />
                   <span>SERVICE 04</span>
                 </div>
@@ -246,14 +246,14 @@ export default function MainServicesSection({ onOpenInquiry }: MainServicesSecti
 
                 <button
                   onClick={() => onOpenInquiry("रङ्ग थेरापी (Colour Therapy & Wellness)")}
-                  className="px-6 py-3 bg-[#D95B16] hover:bg-[#B8470B] text-white text-xs sm:text-sm font-semibold rounded-xl transition-all shadow-xs"
+                  className="px-6 py-3 bg-[#D95B16] hover:bg-[#B8470B] text-white text-xs sm:text-sm font-semibold rounded-md transition-all shadow-xs"
                 >
                   {isNe ? "Colour Consultation Book गर्नुहोस्" : "Book Colour Consultation"}
                 </button>
               </div>
 
               {/* Service Features Checklist */}
-              <div className="lg:w-1/2 bg-stone-50/80 p-6 rounded-xl border border-stone-200/70">
+              <div className="lg:w-1/2 bg-stone-50/80 p-6 rounded-md border border-stone-200/70">
                 <h4 className="text-xs font-mono uppercase tracking-wider text-stone-700 font-bold mb-4">
                   {isNe ? "परामर्शका मुख्य पक्षहरू:" : "Consultation Dimensions:"}
                 </h4>
@@ -279,7 +279,7 @@ export default function MainServicesSection({ onOpenInquiry }: MainServicesSecti
         </div>
 
         {/* Explore All Services Subpage CTA */}
-        <div className="mt-14 p-6 sm:p-8 bg-[#FAF7F2] border border-stone-200/90 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
+        <div className="mt-14 p-6 sm:p-8 bg-[#FAF7F2] border border-stone-200/90 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#D95B16] font-bold">
               <Sparkles className="w-4 h-4" />
@@ -297,7 +297,7 @@ export default function MainServicesSection({ onOpenInquiry }: MainServicesSecti
 
           <Link
             href="/services"
-            className="px-6 py-3.5 bg-[#D95B16] hover:bg-[#B8480C] text-white text-xs sm:text-sm font-semibold rounded-xl flex items-center gap-2 shrink-0 shadow-xs transition-colors"
+            className="px-6 py-3.5 bg-[#D95B16] hover:bg-[#B8480C] text-white text-xs sm:text-sm font-semibold rounded-md flex items-center gap-2 shrink-0 shadow-xs transition-colors"
           >
             <span>{isNe ? "विस्तृत सेवा पृष्ठ हेर्नुहोस्" : "View Full Services Page"}</span>
             <ArrowRight className="w-4 h-4" />

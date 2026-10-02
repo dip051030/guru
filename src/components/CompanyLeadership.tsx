@@ -62,14 +62,14 @@ export default function CompanyLeadership({ onOpenInquiry }: LeadershipProps) {
         </div>
 
         {/* Content Card with Rounded Frame & Bio */}
-        <div className="bg-white rounded-2xl p-8 md:p-12 lg:p-14 border border-stone-200/90 shadow-sm">
+        <div className="bg-white rounded-lg p-8 md:p-12 lg:p-14 border border-stone-200/90 shadow-sm">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left: Classical Geometric Frame */}
             <div className="lg:col-span-5 flex flex-col items-center justify-center text-center">
               <div className="relative">
                 {/* Geometric Frame */}
-                <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-2xl bg-stone-50/80 border border-stone-200/80 p-2 shadow-xs flex items-center justify-center relative hover:border-[#D95B16]/60 transition-colors duration-300">
-                  <div className="w-full h-full rounded-xl bg-white border border-stone-200/50 flex flex-col items-center justify-center p-4">
+                <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-lg bg-stone-50/80 border border-stone-200/80 p-2 shadow-xs flex items-center justify-center relative hover:border-[#D95B16]/60 transition-colors duration-300">
+                  <div className="w-full h-full rounded-md bg-white border border-stone-200/50 flex flex-col items-center justify-center p-4">
                     <BrandLogo showText={false} size="lg" variant="dark" />
                     <span className="font-serif text-base font-bold text-[#181411] mt-3">
                       {t.about.title}
@@ -111,7 +111,7 @@ export default function CompanyLeadership({ onOpenInquiry }: LeadershipProps) {
               {/* 4 Stat Badges Grid */}
               <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-stone-200/60">
                 {HIGHLIGHTS.map((item, idx) => (
-                  <div key={idx} className="p-3.5 rounded-xl bg-stone-50/70 border border-stone-200/80 text-center hover:border-[#D95B16]/50 hover:-translate-y-0.5 transition-all duration-200">
+                  <div key={idx} className="p-3.5 rounded-md bg-stone-50/70 border border-stone-200/80 text-center hover:border-[#D95B16]/50 hover:-translate-y-0.5 transition-all duration-200">
                     <div className="font-serif text-base lg:text-lg font-bold text-[#D95B16]">
                       {item.value}
                     </div>
@@ -129,7 +129,7 @@ export default function CompanyLeadership({ onOpenInquiry }: LeadershipProps) {
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <button
                   onClick={() => onOpenInquiry(t.about.bookWithGuru)}
-                  className="px-7 py-3.5 rounded-xl bg-[#D95B16] hover:bg-[#B8480C] text-white font-bold text-sm shadow-md transition-all flex items-center gap-2 border border-[#D95B16] active:scale-95"
+                  className="px-7 py-3.5 rounded-md bg-[#D95B16] hover:bg-[#B8480C] text-white font-bold text-sm shadow-md transition-all flex items-center gap-2 border border-[#D95B16] active:scale-95"
                 >
                   <Calendar className="w-4 h-4 text-orange-200" />
                   <span>{t.about.bookWithGuru}</span>

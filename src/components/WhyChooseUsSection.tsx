@@ -89,10 +89,10 @@ export default function WhyChooseUsSection() {
             return (
               <div
                 key={idx}
-                className="bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-7 flex flex-col justify-between hover:border-[#D95B16] transition-all hover:shadow-lg shadow-sm group"
+                className="bg-white border border-stone-200/90 rounded-lg p-6 sm:p-7 flex flex-col justify-between hover:border-[#D95B16] transition-all hover:shadow-lg shadow-sm group"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200/80 text-[#D95B16] flex items-center justify-center mb-4 group-hover:bg-[#D95B16] group-hover:text-white transition-colors shadow-xs">
+                  <div className="w-12 h-12 rounded-md bg-amber-50 border border-amber-200/80 text-[#D95B16] flex items-center justify-center mb-4 group-hover:bg-[#D95B16] group-hover:text-white transition-colors shadow-xs">
                     <Icon size={22} />
                   </div>
 

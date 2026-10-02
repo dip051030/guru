@@ -201,7 +201,7 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
 
           <button
             onClick={() => onOpenInquiry(t.header.bookConsultation)}
-            className="px-5 py-2.5 rounded-xl bg-[#D95B16] hover:bg-[#B8470B] text-white text-xs lg:text-sm font-semibold transition-all flex items-center gap-2 shadow-xs hover:shadow-sm"
+            className="px-5 py-2.5 rounded-md bg-[#D95B16] hover:bg-[#B8470B] text-white text-xs lg:text-sm font-semibold transition-all flex items-center gap-2 shadow-xs hover:shadow-sm"
           >
             <Calendar className="w-4 h-4 text-orange-100" />
             <span>{t.header.bookConsultation}</span>
@@ -213,7 +213,7 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
           <LanguageToggle variant="header" />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2.5 text-stone-800 rounded-xl border border-stone-200/90 hover:bg-stone-50 active:scale-95 transition-all"
+            className="p-2.5 text-stone-800 rounded-md border border-stone-200/90 hover:bg-stone-50 active:scale-95 transition-all"
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5 text-[#D95B16]" /> : <Menu className="w-5 h-5" />}
@@ -293,7 +293,7 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
               setMobileMenuOpen(false);
               onOpenInquiry(t.header.bookConsultation);
             }}
-            className="mt-2 w-full py-3 rounded-xl bg-[#D95B16] text-white text-center font-semibold text-sm hover:bg-[#B8470B] transition-colors shadow-xs"
+            className="mt-2 w-full py-3 rounded-md bg-[#D95B16] text-white text-center font-semibold text-sm hover:bg-[#B8470B] transition-colors shadow-xs"
           >
             {t.header.bookConsultation}
           </button>

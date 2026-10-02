@@ -66,9 +66,9 @@ export default function OnlineConsultationSection() {
         </div>
 
         {/* Booking Card */}
-        <div className="bg-[#FAF7F2] border border-stone-200/90 rounded-2xl p-6 sm:p-10 shadow-sm">
+        <div className="bg-[#FAF7F2] border border-stone-200/90 rounded-lg p-6 sm:p-10 shadow-sm">
           {isSubmitted ? (
-            <div className="p-8 bg-white border border-emerald-300 rounded-2xl text-center max-w-md mx-auto shadow-xs">
+            <div className="p-8 bg-white border border-emerald-300 rounded-lg text-center max-w-md mx-auto shadow-xs">
               <IconCheckCircle size={48} className="text-emerald-600 mx-auto mb-4" />
               <h3 className="font-serif font-bold text-stone-900 text-xl">
                 {isNe ? "परामर्श अनुरोध प्राप्त भयो!" : "Consultation Request Received!"}
@@ -80,7 +80,7 @@ export default function OnlineConsultationSection() {
               </p>
               <button
                 onClick={() => setIsSubmitted(false)}
-                className="mt-6 px-6 py-3 rounded-xl bg-stone-900 text-white text-xs font-mono font-bold uppercase hover:bg-[#D95B16] transition-colors active:scale-95 shadow-xs"
+                className="mt-6 px-6 py-3 rounded-md bg-stone-900 text-white text-xs font-mono font-bold uppercase hover:bg-[#D95B16] transition-colors active:scale-95 shadow-xs"
               >
                 {isNe ? "अर्को परामर्श बुक गर्नुहोस्" : "Book Another Slot"}
               </button>
@@ -96,7 +96,7 @@ export default function OnlineConsultationSection() {
                 <select
                   value={service}
                   onChange={(e) => setService(e.target.value)}
-                  className="w-full px-4 py-3 bg-white border border-stone-300 rounded-xl text-sm font-sans focus:outline-hidden focus:border-[#D95B16] transition-colors"
+                  className="w-full px-4 py-3 bg-white border border-stone-300 rounded-md text-sm font-sans focus:outline-hidden focus:border-[#D95B16] transition-colors"
                   required
                 >
                   <option value="astrology">वैदिक ज्योतिष शास्त्र (Vedic Astrology)</option>
@@ -120,7 +120,7 @@ export default function OnlineConsultationSection() {
                     required
                     value={preferredDate}
                     onChange={(e) => setPreferredDate(e.target.value)}
-                    className="w-full px-4 py-3 bg-white border border-stone-300 rounded-xl text-sm font-mono focus:outline-hidden focus:border-[#D95B16] transition-colors"
+                    className="w-full px-4 py-3 bg-white border border-stone-300 rounded-md text-sm font-mono focus:outline-hidden focus:border-[#D95B16] transition-colors"
                   />
                 </div>
 
@@ -131,7 +131,7 @@ export default function OnlineConsultationSection() {
                   <select
                     value={preferredTime}
                     onChange={(e) => setPreferredTime(e.target.value)}
-                    className="w-full px-4 py-3 bg-white border border-stone-300 rounded-xl text-sm font-sans focus:outline-hidden focus:border-[#D95B16] transition-colors"
+                    className="w-full px-4 py-3 bg-white border border-stone-300 rounded-md text-sm font-sans focus:outline-hidden focus:border-[#D95B16] transition-colors"
                   >
                     <option value="morning">बिहान (Morning: 09:00 - 12:00 GMT)</option>
                     <option value="afternoon">दिउँसो (Afternoon: 12:00 - 16:00 GMT)</option>
@@ -147,7 +147,7 @@ export default function OnlineConsultationSection() {
                   ४. भेटघाटको माध्यम (Consultation Mode) *
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <label className={`p-4 border rounded-xl cursor-pointer flex items-center gap-3 transition-colors ${
+                  <label className={`p-4 border rounded-md cursor-pointer flex items-center gap-3 transition-colors ${
                     mode === "online" ? "border-[#D95B16] bg-white shadow-xs" : "border-stone-200 bg-stone-50"
                   }`}>
                     <input
@@ -167,7 +167,7 @@ export default function OnlineConsultationSection() {
                     </div>
                   </label>
 
-                  <label className={`p-4 border rounded-xl cursor-pointer flex items-center gap-3 transition-colors ${
+                  <label className={`p-4 border rounded-md cursor-pointer flex items-center gap-3 transition-colors ${
                     mode === "in-person" ? "border-[#D95B16] bg-white shadow-xs" : "border-stone-200 bg-stone-50"
                   }`}>
                     <input
@@ -201,7 +201,7 @@ export default function OnlineConsultationSection() {
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="उदा: सुवास न्यौपाने"
-                    className="w-full px-4 py-3 bg-white border border-stone-300 rounded-xl text-sm font-sans focus:outline-hidden focus:border-[#D95B16] transition-colors"
+                    className="w-full px-4 py-3 bg-white border border-stone-300 rounded-md text-sm font-sans focus:outline-hidden focus:border-[#D95B16] transition-colors"
                   />
                 </div>
 
@@ -215,7 +215,7 @@ export default function OnlineConsultationSection() {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+44 ... वा +977 ..."
-                    className="w-full px-4 py-3 bg-white border border-stone-300 rounded-xl text-sm font-mono focus:outline-hidden focus:border-[#D95B16] transition-colors"
+                    className="w-full px-4 py-3 bg-white border border-stone-300 rounded-md text-sm font-mono focus:outline-hidden focus:border-[#D95B16] transition-colors"
                   />
                 </div>
 
@@ -228,7 +228,7 @@ export default function OnlineConsultationSection() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@example.com"
-                    className="w-full px-4 py-3 bg-white border border-stone-300 rounded-xl text-sm font-sans focus:outline-hidden focus:border-[#D95B16] transition-colors"
+                    className="w-full px-4 py-3 bg-white border border-stone-300 rounded-md text-sm font-sans focus:outline-hidden focus:border-[#D95B16] transition-colors"
                   />
                 </div>
               </div>
@@ -247,14 +247,14 @@ export default function OnlineConsultationSection() {
                       ? "जन्म मिति, समय, स्थान वा तपाईंले परामर्श लिन चाहेको मुख्य विषय उल्लेख गर्नुहोस्..."
                       : "Birth date, exact birth time, place of birth, or specific topics for consultation..."
                   }
-                  className="w-full px-4 py-3 bg-white border border-stone-300 rounded-xl text-sm font-sans focus:outline-hidden focus:border-[#D95B16] transition-colors"
+                  className="w-full px-4 py-3 bg-white border border-stone-300 rounded-md text-sm font-sans focus:outline-hidden focus:border-[#D95B16] transition-colors"
                 />
               </div>
 
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full py-4 bg-[#D95B16] hover:bg-[#B8480C] text-white font-mono text-sm font-bold uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2 active:scale-95"
+                className="w-full py-4 bg-[#D95B16] hover:bg-[#B8480C] text-white font-mono text-sm font-bold uppercase tracking-wider rounded-md transition-all shadow-md flex items-center justify-center gap-2 active:scale-95"
               >
                 <IconCalendar size={18} className="text-orange-200" />
                 <span>{isNe ? "परामर्श बुक गर्नुहोस् (Book Consultation)" : "Book Consultation"}</span>

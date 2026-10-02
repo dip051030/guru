@@ -134,7 +134,7 @@ export default function InquiryDrawer({
 
                       <Dialog.Close asChild>
                         <button
-                          className="p-2 rounded-xl border border-stone-200 hover:border-[#D95B16] text-[#181411] transition-colors"
+                          className="p-2 rounded-md border border-stone-200 hover:border-[#D95B16] text-[#181411] transition-colors"
                           aria-label="Close"
                         >
                           <IconClose className="w-5 h-5" />
@@ -144,7 +144,7 @@ export default function InquiryDrawer({
 
                     {submitted ? (
                       <div className="py-14 flex flex-col items-center text-center">
-                        <div className="w-16 h-16 rounded-2xl border-2 border-orange-200 bg-orange-50 flex items-center justify-center mb-6">
+                        <div className="w-16 h-16 rounded-md border-2 border-orange-200 bg-orange-50 flex items-center justify-center mb-6">
                           <IconCheckCircle className="w-8 h-8 text-[#D95B16]" />
                         </div>
                         <Dialog.Title className="font-serif text-3xl text-[#181411] font-bold">
@@ -167,7 +167,7 @@ export default function InquiryDrawer({
                           )}
                         </Dialog.Description>
 
-                        <div className="mt-8 p-4 rounded-xl border border-stone-200 bg-stone-50 font-mono text-xs text-stone-600 text-left w-full space-y-1.5">
+                        <div className="mt-8 p-4 rounded-md border border-stone-200 bg-stone-50 font-mono text-xs text-stone-600 text-left w-full space-y-1.5">
                           <div>{language === "ne" ? "बुकिङ दर्ता नं" : "Booking Reference"}: VSK-{(Math.random() * 9000 + 1000).toFixed(0)}</div>
                           <div>{language === "ne" ? "माध्यम" : "Mode"}: {meetingMode === "online" ? (language === "ne" ? "अनलाइन भिडियो (Zoom/WhatsApp)" : "Online Video (Zoom/WhatsApp)") : (language === "ne" ? "प्रत्यक्ष भेट (सनातन केन्द्र युके)" : "In-Person (Sanatan Kendra UK)")}</div>
                           <div>{language === "ne" ? "गोपनीयता" : "Privacy"}: {language === "ne" ? "१००% व्यक्तिगत र मर्यादित" : "100% Strictly Confidential"}</div>
@@ -175,7 +175,7 @@ export default function InquiryDrawer({
 
                         <button
                           onClick={handleReset}
-                          className="mt-8 px-8 py-3.5 rounded-xl bg-[#D95B16] text-white text-xs font-mono uppercase tracking-widest hover:bg-[#B8480C] transition-colors font-bold shadow-xs"
+                          className="mt-8 px-8 py-3.5 rounded-md bg-[#D95B16] text-white text-xs font-mono uppercase tracking-widest hover:bg-[#B8480C] transition-colors font-bold shadow-xs"
                         >
                           {language === "ne" ? "बन्द गरी मुख्य पृष्ठमा फर्कनुहोस्" : "Return to Home Page"}
                         </button>
@@ -200,7 +200,7 @@ export default function InquiryDrawer({
                             <button
                               type="button"
                               onClick={() => setMeetingMode("online")}
-                              className={`p-3 rounded-xl border text-left flex items-center gap-2.5 transition-colors ${
+                              className={`p-3 rounded-md border text-left flex items-center gap-2.5 transition-colors ${
                                 meetingMode === "online"
                                   ? "border-[#D95B16] bg-orange-50 text-[#D95B16] font-bold"
                                   : "border-stone-200 bg-white text-stone-700 hover:border-stone-300"
@@ -216,7 +216,7 @@ export default function InquiryDrawer({
                             <button
                               type="button"
                               onClick={() => setMeetingMode("in_person")}
-                              className={`p-3 rounded-xl border text-left flex items-center gap-2.5 transition-colors ${
+                              className={`p-3 rounded-md border text-left flex items-center gap-2.5 transition-colors ${
                                 meetingMode === "in_person"
                                   ? "border-[#D95B16] bg-orange-50 text-[#D95B16] font-bold"
                                   : "border-stone-200 bg-white text-stone-700 hover:border-stone-300"
@@ -240,7 +240,7 @@ export default function InquiryDrawer({
                             {CONSULTATION_TYPES.map((type) => (
                               <label
                                 key={type.id}
-                                className={`p-3.5 rounded-xl border flex flex-col cursor-pointer transition-colors ${
+                                className={`p-3.5 rounded-md border flex flex-col cursor-pointer transition-colors ${
                                   selectedType === type.id
                                     ? "border-[#D95B16] bg-orange-50/50"
                                     : "border-stone-200 bg-white hover:border-[#D95B16]"
@@ -279,7 +279,7 @@ export default function InquiryDrawer({
                               value={fullName}
                               onChange={(e) => setFullName(e.target.value)}
                               placeholder={language === "ne" ? "तपाईंको पूरा नाम" : "Your full name"}
-                              className="w-full px-3 py-2.5 rounded-xl border border-stone-200 bg-[#FAF7F2] text-[#181411] font-mono text-xs focus:outline-none focus:border-[#D95B16]"
+                              className="w-full px-3 py-2.5 rounded-md border border-stone-200 bg-[#FAF7F2] text-[#181411] font-mono text-xs focus:outline-none focus:border-[#D95B16]"
                             />
                           </div>
 
@@ -293,7 +293,7 @@ export default function InquiryDrawer({
                               value={phone}
                               onChange={(e) => setPhone(e.target.value)}
                               placeholder="+44 7XXX XXXXXX / +977 98XXXXXXXX"
-                              className="w-full px-3 py-2.5 rounded-xl border border-stone-200 bg-[#FAF7F2] text-[#181411] font-mono text-xs focus:outline-none focus:border-[#D95B16]"
+                              className="w-full px-3 py-2.5 rounded-md border border-stone-200 bg-[#FAF7F2] text-[#181411] font-mono text-xs focus:outline-none focus:border-[#D95B16]"
                             />
                           </div>
                         </div>
@@ -308,7 +308,7 @@ export default function InquiryDrawer({
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
                               placeholder="your@email.com"
-                              className="w-full px-3 py-2.5 rounded-xl border border-stone-200 bg-[#FAF7F2] text-[#181411] font-mono text-xs focus:outline-none focus:border-[#D95B16]"
+                              className="w-full px-3 py-2.5 rounded-md border border-stone-200 bg-[#FAF7F2] text-[#181411] font-mono text-xs focus:outline-none focus:border-[#D95B16]"
                             />
                           </div>
 
@@ -321,7 +321,7 @@ export default function InquiryDrawer({
                               value={dob}
                               onChange={(e) => setDob(e.target.value)}
                               placeholder={language === "ne" ? "उदा: २०४८-०५-१४ वा 1991-08-30" : "e.g. 1992-05-15"}
-                              className="w-full px-3 py-2.5 rounded-xl border border-stone-200 bg-[#FAF7F2] text-[#181411] font-mono text-xs focus:outline-none focus:border-[#D95B16]"
+                              className="w-full px-3 py-2.5 rounded-md border border-stone-200 bg-[#FAF7F2] text-[#181411] font-mono text-xs focus:outline-none focus:border-[#D95B16]"
                             />
                           </div>
                         </div>
@@ -336,7 +336,7 @@ export default function InquiryDrawer({
                               value={tob}
                               onChange={(e) => setTob(e.target.value)}
                               placeholder={language === "ne" ? "उदा: बिहान ०६:४५ वा 18:30" : "e.g. 06:45 AM or 18:30"}
-                              className="w-full px-3 py-2.5 rounded-xl border border-stone-200 bg-[#FAF7F2] text-[#181411] font-mono text-xs focus:outline-none focus:border-[#D95B16]"
+                              className="w-full px-3 py-2.5 rounded-md border border-stone-200 bg-[#FAF7F2] text-[#181411] font-mono text-xs focus:outline-none focus:border-[#D95B16]"
                             />
                           </div>
 
@@ -349,7 +349,7 @@ export default function InquiryDrawer({
                               value={pob}
                               onChange={(e) => setPob(e.target.value)}
                               placeholder={language === "ne" ? "उदा: काठमाडौँ वा पोखरा" : "e.g. Kathmandu or Sydney"}
-                              className="w-full px-3 py-2.5 rounded-xl border border-stone-200 bg-[#FAF7F2] text-[#181411] font-mono text-xs focus:outline-none focus:border-[#D95B16]"
+                              className="w-full px-3 py-2.5 rounded-md border border-stone-200 bg-[#FAF7F2] text-[#181411] font-mono text-xs focus:outline-none focus:border-[#D95B16]"
                             />
                           </div>
                         </div>
@@ -363,19 +363,19 @@ export default function InquiryDrawer({
                             value={question}
                             onChange={(e) => setQuestion(e.target.value)}
                             placeholder={language === "ne" ? "कुण्डली, विवाह, व्यापार, अध्ययन वा स्वास्थ्य सम्बन्धी मुख्य प्रश्नहरू यहाँ लेख्नुहोस्..." : "Please describe your primary questions regarding career, marriage, business, or life..."}
-                            className="w-full px-3 py-2.5 rounded-xl border border-stone-200 bg-[#FAF7F2] text-[#181411] font-mono text-xs focus:outline-none focus:border-[#D95B16] resize-none"
+                            className="w-full px-3 py-2.5 rounded-md border border-stone-200 bg-[#FAF7F2] text-[#181411] font-mono text-xs focus:outline-none focus:border-[#D95B16] resize-none"
                           />
                         </div>
 
                         {errorMsg && (
-                          <div className="text-xs font-mono text-[#D95B16] bg-orange-50 p-2.5 border border-[#D95B16]/30 rounded-xl">
+                          <div className="text-xs font-mono text-[#D95B16] bg-orange-50 p-2.5 border border-[#D95B16]/30 rounded-md">
                             {errorMsg}
                           </div>
                         )}
 
                         <button
                           type="submit"
-                          className="w-full py-4 rounded-xl bg-[#D95B16] text-white font-mono text-xs uppercase tracking-widest font-bold hover:bg-[#B8480C] transition-all duration-200 flex items-center justify-center gap-2 shadow-xs"
+                          className="w-full py-4 rounded-md bg-[#D95B16] text-white font-mono text-xs uppercase tracking-widest font-bold hover:bg-[#B8480C] transition-all duration-200 flex items-center justify-center gap-2 shadow-xs"
                         >
                           <IconSend className="w-3.5 h-3.5" />
                           <span>{language === "ne" ? "परामर्श अनुरोध पठाउनुहोस्" : "Submit Consultation Request"}</span>

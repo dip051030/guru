@@ -199,7 +199,7 @@ export default function HeroThesis({
           {/* Right Column: Aesthetic Celestial Astrolabe & Diamond Kundali Visualizer */}
           <div className="lg:col-span-5 relative flex justify-center">
             {/* Visual Container with Multi-layer Shadow & Parchment Tone */}
-            <div className="relative w-full max-w-[480px] bg-gradient-to-b from-[#FFFDF9] to-[#F7EFE1] rounded-3xl p-6 sm:p-8 border border-[#E2D5C0] shadow-card">
+            <div className="relative w-full max-w-[480px] bg-gradient-to-b from-[#FFFDF9] to-[#F7EFE1] rounded-lg p-6 sm:p-8 border border-[#E2D5C0] shadow-card">
               {/* Top Bar of the Visualizer */}
               <div className="flex items-center justify-between pb-4 border-b border-[#E8DEC9]">
                 <div className="flex items-center gap-2">
@@ -215,7 +215,7 @@ export default function HeroThesis({
               </div>
 
               {/* The Diamond Kundali Chart with Interactive House Cells */}
-              <div className="mt-6 relative aspect-square w-full max-w-[340px] mx-auto bg-[#FFFDF8] border-2 border-gold/70 rounded-2xl p-3 shadow-inner flex items-center justify-center">
+              <div className="mt-6 relative aspect-square w-full max-w-[340px] mx-auto bg-[#FFFDF8] border-2 border-gold/70 rounded-lg p-3 shadow-inner flex items-center justify-center">
                 {/* Background Sacred Geometric Lines */}
                 <svg className="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] stroke-gold/60 stroke-[1.2] pointer-events-none">
                   <line x1="0" y1="0" x2="100%" y2="100%" />

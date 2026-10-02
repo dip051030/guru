@@ -676,12 +676,12 @@ export default function HoroscopeExplorer({
   const rashi = RASHI_DATA[selectedRashiIdx];
 
   return (
-    <div className={`w-full bg-white border border-stone-200/90 rounded-2xl shadow-xs overflow-hidden ${className}`}>
+    <div className={`w-full bg-white border border-stone-200/90 rounded-lg shadow-xs overflow-hidden ${className}`}>
       
       {/* 1. Header Toolbar with Eye-Pleasing Period Switcher */}
       <div className="bg-[#FAF7F2] border-b border-stone-200/90 px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-[#D95B16] text-white flex items-center justify-center font-serif text-lg font-bold">
+          <div className="w-8 h-8 rounded-md bg-[#D95B16] text-white flex items-center justify-center font-serif text-lg font-bold">
             {rashi.glyph}
           </div>
           <div>
@@ -702,10 +702,10 @@ export default function HoroscopeExplorer({
         </div>
 
         {/* Segmented Period Toggle (Daily / Weekly / Yearly) */}
-        <div className="inline-flex p-1 bg-stone-200/60 border border-stone-300/70 rounded-xl self-start sm:self-auto">
+        <div className="inline-flex p-1 bg-stone-200/60 border border-stone-300/70 rounded-md self-start sm:self-auto">
           <button
             onClick={() => setActivePeriod("daily")}
-            className={`px-3 sm:px-4 py-1.5 text-xs font-mono font-bold rounded-lg transition-all ${
+            className={`px-3 sm:px-4 py-1.5 text-xs font-mono font-bold rounded-md transition-all ${
               activePeriod === "daily"
                 ? "bg-[#D95B16] text-white shadow-xs"
                 : "text-stone-700 hover:text-stone-900 hover:bg-stone-200/40"
@@ -780,7 +780,7 @@ export default function HoroscopeExplorer({
         {/* Sign Header & Meta Badges */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-stone-100">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-amber-50 border border-amber-200 rounded-2xl text-[#D95B16] flex items-center justify-center text-3xl font-serif shrink-0 shadow-2xs">
+            <div className="w-14 h-14 bg-amber-50 border border-amber-200 rounded-lg text-[#D95B16] flex items-center justify-center text-3xl font-serif shrink-0 shadow-2xs">
               {rashi.glyph}
             </div>
             <div>
@@ -804,7 +804,7 @@ export default function HoroscopeExplorer({
           </div>
 
           {/* Quick Metrics (Lucky Num / Color / Direction / Luck Rate) */}
-          <div className="flex items-center gap-3 sm:gap-4 flex-wrap bg-[#FAF7F2] p-3 border border-stone-200/70 rounded-xl">
+          <div className="flex items-center gap-3 sm:gap-4 flex-wrap bg-[#FAF7F2] p-3 border border-stone-200/70 rounded-md">
             <div className="text-center px-2">
               <span className="block text-[10px] font-mono uppercase text-stone-600 font-bold">
                 {isNe ? "शुभ अंक" : "Lucky No"}
@@ -847,7 +847,7 @@ export default function HoroscopeExplorer({
           {/* ========================================================================= */}
           {activePeriod === "daily" && (
             <div className="space-y-6 animate-fade-in">
-              <div className="bg-[#FAF7F2] p-5 sm:p-6 border border-stone-200 rounded-2xl">
+              <div className="bg-[#FAF7F2] p-5 sm:p-6 border border-stone-200 rounded-lg">
                 <div className="flex items-center gap-2 mb-2 text-[#D95B16] font-bold text-xs font-mono uppercase tracking-wider">
                   <IconSun className="w-4 h-4" />
                   <span>{isNe ? "आजको मुख्य भविष्यवाणी (Daily Reading)" : "Today's Core Reading"}</span>
@@ -874,7 +874,7 @@ export default function HoroscopeExplorer({
               </div>
 
               {/* Vedic Remedy (सात्विक उपाय) */}
-              <div className="p-4 sm:p-5 bg-amber-50/70 border border-amber-200/80 rounded-2xl flex items-start gap-3.5">
+              <div className="p-4 sm:p-5 bg-amber-50/70 border border-amber-200/80 rounded-lg flex items-start gap-3.5">
                 <IconSparkles className="w-5 h-5 text-[#D95B16] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-mono uppercase font-bold text-[#D95B16] tracking-wider">
@@ -896,7 +896,7 @@ export default function HoroscopeExplorer({
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 
                 {/* Career & Finance */}
-                <div className="p-5 bg-[#FAF7F2] border border-stone-200 rounded-2xl">
+                <div className="p-5 bg-[#FAF7F2] border border-stone-200 rounded-lg">
                   <div className="flex items-center gap-2 text-stone-700 font-mono text-xs font-bold uppercase tracking-wider mb-2">
                     <IconBriefcase className="w-4 h-4 text-[#D95B16]" />
                     <span>{isNe ? "कार्य तथा आर्थिक" : "Career & Wealth"}</span>
@@ -907,7 +907,7 @@ export default function HoroscopeExplorer({
                 </div>
 
                 {/* Love & Relationships */}
-                <div className="p-5 bg-[#FAF7F2] border border-stone-200 rounded-2xl">
+                <div className="p-5 bg-[#FAF7F2] border border-stone-200 rounded-lg">
                   <div className="flex items-center gap-2 text-stone-700 font-mono text-xs font-bold uppercase tracking-wider mb-2">
                     <IconHeart className="w-4 h-4 text-[#D95B16]" />
                     <span>{isNe ? "परिवार तथा सम्बन्ध" : "Love & Harmony"}</span>
@@ -918,7 +918,7 @@ export default function HoroscopeExplorer({
                 </div>
 
                 {/* Health & Vitality */}
-                <div className="p-5 bg-[#FAF7F2] border border-stone-200 rounded-2xl">
+                <div className="p-5 bg-[#FAF7F2] border border-stone-200 rounded-lg">
                   <div className="flex items-center gap-2 text-stone-700 font-mono text-xs font-bold uppercase tracking-wider mb-2">
                     <IconActivity className="w-4 h-4 text-[#D95B16]" />
                     <span>{isNe ? "स्वास्थ्य तथा उर्जा" : "Health & Vitality"}</span>
@@ -930,7 +930,7 @@ export default function HoroscopeExplorer({
               </div>
 
               {/* Best Days Bar */}
-              <div className="p-4 bg-stone-50 border border-stone-200 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
+              <div className="p-4 bg-stone-50 border border-stone-200 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
                 <div className="flex items-center gap-2 text-stone-700">
                   <IconCalendar className="w-4 h-4 text-[#D95B16]" />
                   <span className="font-bold">{isNe ? "साताको उत्तम शुभ बारहरू:" : "Most Auspicious Days of the Week:"}</span>
@@ -950,7 +950,7 @@ export default function HoroscopeExplorer({
           {/* ========================================================================= */}
           {activePeriod === "yearly" && (
             <div className="space-y-5 animate-fade-in">
-              <div className="p-5 sm:p-6 bg-[#181411] text-white rounded-2xl">
+              <div className="p-5 sm:p-6 bg-[#181411] text-white rounded-lg">
                 <div className="flex items-center gap-2 text-amber-400 font-mono text-xs font-bold uppercase tracking-widest mb-2">
                   <IconAward className="w-4 h-4" />
                   <span>{isNe ? rashi.yearly.yearNe : rashi.yearly.yearEn}</span>
@@ -967,7 +967,7 @@ export default function HoroscopeExplorer({
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-4 bg-[#FAF7F2] border border-stone-200 rounded-2xl">
+                <div className="p-4 bg-[#FAF7F2] border border-stone-200 rounded-lg">
                   <span className="text-[10px] font-mono uppercase text-stone-500 font-bold block mb-1">
                     {isNe ? "विशेष फलदायी महिनाहरू" : "MOST FAVORABLE MONTHS"}
                   </span>
@@ -979,7 +979,7 @@ export default function HoroscopeExplorer({
                   </p>
                 </div>
 
-                <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-2xl">
+                <div className="p-4 bg-amber-50/70 border border-amber-200 rounded-lg">
                   <span className="text-[10px] font-mono uppercase text-[#D95B16] font-bold block mb-1">
                     {isNe ? "वार्षिक सात्विक अनुष्ठान तथा उपाय" : "ANNUAL SACRED VEDIC PROTOCOL"}
                   </span>

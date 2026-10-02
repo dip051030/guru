@@ -199,7 +199,7 @@ export default function SpiritualStoreSection({ onOpenInquiry }: SpiritualStoreS
           {filteredProducts.map((p) => (
             <div
               key={p.id}
-              className="bg-[#FAF7F2] border border-stone-200/90 rounded-2xl p-5 flex flex-col justify-between hover:border-[#D95B16] hover:bg-white transition-all hover:shadow-lg shadow-sm group"
+              className="bg-[#FAF7F2] border border-stone-200/90 rounded-lg p-5 flex flex-col justify-between hover:border-[#D95B16] hover:bg-white transition-all hover:shadow-lg shadow-sm group"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
@@ -231,7 +231,7 @@ export default function SpiritualStoreSection({ onOpenInquiry }: SpiritualStoreS
 
                 <button
                   onClick={() => onOpenInquiry(`स्टोर सामग्री अर्डर वा सोधपुछ: ${p.nameNe} (${p.price})`)}
-                  className="px-3.5 py-1.5 rounded-lg bg-[#181411] hover:bg-[#D95B16] text-white text-xs font-mono font-bold transition-colors active:scale-95 shadow-xs"
+                  className="px-3.5 py-1.5 rounded-md bg-[#181411] hover:bg-[#D95B16] text-white text-xs font-mono font-bold transition-colors active:scale-95 shadow-xs"
                 >
                   {isNe ? "खरिद / सोधपुछ" : "Enquire / Buy"}
                 </button>
@@ -241,9 +241,9 @@ export default function SpiritualStoreSection({ onOpenInquiry }: SpiritualStoreS
         </div>
 
         {/* UK Delivery & Service Guarantee */}
-        <div className="mt-12 p-6 bg-stone-50 border border-stone-200 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-sans text-stone-700 shadow-xs">
+        <div className="mt-12 p-6 bg-stone-50 border border-stone-200 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-sans text-stone-700 shadow-xs">
           <div className="flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0 text-[#D95B16]">
+            <div className="w-10 h-10 rounded-md bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0 text-[#D95B16]">
               <IconShield size={20} />
             </div>
             <div>
@@ -260,7 +260,7 @@ export default function SpiritualStoreSection({ onOpenInquiry }: SpiritualStoreS
 
           <button
             onClick={() => onOpenInquiry("सम्पूर्ण स्टोर क्याटलग सोधपुछ")}
-            className="px-5 py-2.5 bg-white border border-stone-300 hover:border-[#D95B16] text-stone-900 hover:text-[#D95B16] rounded-xl font-mono text-xs font-bold uppercase transition-colors shrink-0 shadow-xs active:scale-95"
+            className="px-5 py-2.5 bg-white border border-stone-300 hover:border-[#D95B16] text-stone-900 hover:text-[#D95B16] rounded-md font-mono text-xs font-bold uppercase transition-colors shrink-0 shadow-xs active:scale-95"
           >
             {isNe ? "सबै सामग्री सूची हेर्नुहोस्" : "View Full Catalogue"}
           </button>

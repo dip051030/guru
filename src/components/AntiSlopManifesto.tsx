@@ -91,9 +91,9 @@ export default function AntiSlopManifesto() {
               return (
                 <div
                   key={pillar.num}
-                  className="flex items-start gap-4 p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-[#D95B16]/80 hover:translate-x-1 transition-all duration-200"
+                  className="flex items-start gap-4 p-5 rounded-lg bg-white/[0.03] border border-white/[0.08] hover:border-[#D95B16]/80 hover:translate-x-1 transition-all duration-200"
                 >
-                  <div className="w-11 h-11 rounded-xl bg-[#D95B16]/15 border border-[#D95B16]/30 flex items-center justify-center shrink-0 mt-0.5 text-[#F59E0B]">
+                  <div className="w-11 h-11 rounded-md bg-[#D95B16]/15 border border-[#D95B16]/30 flex items-center justify-center shrink-0 mt-0.5 text-[#F59E0B]">
                     <Icon className="w-5 h-5" />
                   </div>
                   <div>
@@ -116,7 +116,7 @@ export default function AntiSlopManifesto() {
 
           {/* Right Column: Featured Quote with Rounded Border */}
           <div className="lg:col-span-6 flex flex-col justify-between">
-            <div className="relative rounded-2xl p-8 md:p-10 bg-white/[0.03] border border-orange-500/20 flex-1 flex flex-col justify-between hover:border-orange-500/40 transition-colors duration-300">
+            <div className="relative rounded-lg p-8 md:p-10 bg-white/[0.03] border border-orange-500/20 flex-1 flex flex-col justify-between hover:border-orange-500/40 transition-colors duration-300">
               <div className="text-orange-500/20 font-serif text-7xl leading-none select-none pointer-events-none mb-2">
                 “
               </div>
@@ -163,7 +163,7 @@ export default function AntiSlopManifesto() {
                   sub: language === "ne" ? "गोपनीयता" : "Privacy Shield",
                 },
               ].map((badge, idx) => (
-                <div key={idx} className="p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#D95B16]/40 transition-colors">
+                <div key={idx} className="p-3 rounded-md bg-white/[0.03] border border-white/10 hover:border-[#D95B16]/40 transition-colors">
                   <div className="font-mono text-xs md:text-sm font-bold text-[#F59E0B]">
                     {badge.title}
                   </div>

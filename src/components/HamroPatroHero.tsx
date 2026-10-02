@@ -259,7 +259,7 @@ export default function HamroPatroHero({
           {/* Right Side: Guru Quote + 4 Quick Action Tools */}
           <div className="flex flex-col items-start lg:items-end gap-3.5">
             {/* Elegant Guru Quote Card */}
-            <div className="w-full lg:max-w-md bg-white/90 backdrop-blur-sm border border-stone-200/90 rounded-2xl p-3.5 sm:p-4 shadow-xs">
+            <div className="w-full lg:max-w-md bg-white/90 backdrop-blur-sm border border-stone-200/90 rounded-lg p-3.5 sm:p-4 shadow-xs">
               <div className="flex items-start gap-2.5">
                 <span className="text-2xl text-[#D95B16] font-serif leading-none select-none">“</span>
                 <div className="flex-1">
@@ -282,7 +282,7 @@ export default function HamroPatroHero({
             <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 w-full lg:w-auto">
               <button
                 onClick={() => setActiveTool(activeTool === "converter" ? null : "converter")}
-                className={`flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-xl border transition-all shadow-xs ${
+                className={`flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-md border transition-all shadow-xs ${
                   activeTool === "converter"
                     ? "bg-[#D95B16] text-white border-[#D95B16]"
                     : "bg-white text-stone-700 border-stone-200 hover:border-[#D95B16] hover:text-[#D95B16]"
@@ -301,7 +301,7 @@ export default function HamroPatroHero({
                     setActiveTool(activeTool === "rashifal" ? null : "rashifal");
                   }
                 }}
-                className={`flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-xl border transition-all shadow-xs ${
+                className={`flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-md border transition-all shadow-xs ${
                   activeTool === "rashifal"
                     ? "bg-[#D95B16] text-white border-[#D95B16]"
                     : "bg-white text-stone-700 border-stone-200 hover:border-[#D95B16] hover:text-[#D95B16]"
@@ -313,7 +313,7 @@ export default function HamroPatroHero({
 
               <button
                 onClick={() => setActiveTool(activeTool === "bullion" ? null : "bullion")}
-                className={`flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-xl border transition-all shadow-xs ${
+                className={`flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-md border transition-all shadow-xs ${
                   activeTool === "bullion"
                     ? "bg-[#D95B16] text-white border-[#D95B16]"
                     : "bg-white text-stone-700 border-stone-200 hover:border-[#D95B16] hover:text-[#D95B16]"
@@ -325,7 +325,7 @@ export default function HamroPatroHero({
 
               <button
                 onClick={() => setActiveTool(activeTool === "forex" ? null : "forex")}
-                className={`flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-xl border transition-all shadow-xs ${
+                className={`flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-md border transition-all shadow-xs ${
                   activeTool === "forex"
                     ? "bg-[#D95B16] text-white border-[#D95B16]"
                     : "bg-white text-stone-700 border-stone-200 hover:border-[#D95B16] hover:text-[#D95B16]"
@@ -342,10 +342,10 @@ export default function HamroPatroHero({
         {/* EXPANDABLE QUICK TOOL MODAL / DRAWER                                     */}
         {/* ========================================================================= */}
         {activeTool && (
-          <div className="mb-6 bg-white border border-[#D95B16]/50 p-5 rounded-2xl shadow-sm relative animate-fade-in">
+          <div className="mb-6 bg-white border border-[#D95B16]/50 p-4 sm:p-5 rounded-lg shadow-sm relative animate-fade-in">
             <button
               onClick={() => setActiveTool(null)}
-              className="absolute top-4 right-4 text-stone-400 hover:text-[#D95B16] p-1.5 rounded-lg hover:bg-orange-50 transition-colors"
+              className="absolute top-4 right-4 text-stone-400 hover:text-[#D95B16] p-1.5 rounded-md hover:bg-orange-50 transition-colors"
               aria-label="Close"
             >
               <X className="w-5 h-5" />
@@ -368,7 +368,7 @@ export default function HamroPatroHero({
                     <select
                       value={convBsYear}
                       onChange={(e) => setConvBsYear(e.target.value)}
-                      className="w-full px-3 py-2 text-sm bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-[#D95B16]"
+                      className="w-full px-3 py-2 text-sm bg-stone-50 border border-stone-200 rounded-md focus:outline-none focus:border-[#D95B16]"
                     >
                       {Array.from({ length: 15 }, (_, i) => 2075 + i).map((yr) => (
                         <option key={yr} value={yr}>
@@ -385,7 +385,7 @@ export default function HamroPatroHero({
                     <select
                       value={convBsMonth}
                       onChange={(e) => setConvBsMonth(e.target.value)}
-                      className="w-full px-3 py-2 text-sm bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-[#D95B16]"
+                      className="w-full px-3 py-2 text-sm bg-stone-50 border border-stone-200 rounded-md focus:outline-none focus:border-[#D95B16]"
                     >
                       {MONTH_NAMES_BS.map((m, idx) => (
                         <option key={idx} value={idx + 1}>
@@ -405,19 +405,19 @@ export default function HamroPatroHero({
                       max="32"
                       value={convBsDay}
                       onChange={(e) => setConvBsDay(e.target.value)}
-                      className="w-full px-3 py-2 text-sm bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-[#D95B16]"
+                      className="w-full px-3 py-2 text-sm bg-stone-50 border border-stone-200 rounded-md focus:outline-none focus:border-[#D95B16]"
                     />
                   </div>
 
                   <button
                     onClick={handleRunConversion}
-                    className="w-full py-2.5 bg-[#D95B16] hover:bg-[#B8470B] text-white text-sm font-semibold rounded-xl transition-all shadow-xs"
+                    className="w-full py-2.5 bg-[#D95B16] hover:bg-[#B8470B] text-white text-sm font-semibold rounded-md transition-all shadow-xs"
                   >
                     {isNe ? "रूपान्तरण गर्नुहोस्" : "Convert Date"}
                   </button>
                 </div>
 
-                <div className="mt-3 p-3 bg-orange-50/70 border border-orange-200/70 rounded-xl flex items-center justify-between text-xs sm:text-sm">
+                <div className="mt-3 p-3 bg-orange-50/70 border border-orange-200/70 rounded-md flex items-center justify-between text-xs sm:text-sm">
                   <span className="font-semibold text-stone-700">
                     {isNe ? "प्रमाणित नतिजा (इस्वी सन्):" : "Verified Gregorian Result (A.D.):"}
                   </span>
@@ -454,7 +454,7 @@ export default function HamroPatroHero({
                       { id: 304, name: "असली चाँदी दर (१ तोला)", nameEn: "Silver (Per Tola)", rateFormattedNe: "रु ४,६५५", rateFormatted: "Rs. 4,655" },
                       { id: 305, name: "असली चाँदी दर (१० ग्राम)", nameEn: "Silver (10 Grams)", rateFormattedNe: "रु ३,९९१", rateFormatted: "Rs. 3,991" },
                     ]).map((item, idx) => (
-                      <div key={idx} className="p-3 bg-stone-50/70 border border-stone-200/80 rounded-xl">
+                      <div key={idx} className="p-3 bg-stone-50/70 border border-stone-200/80 rounded-md">
                         <span className="text-xs text-stone-600 font-semibold block truncate">
                           {isNe ? item.name : item.nameEn || item.name}
                         </span>
@@ -497,7 +497,7 @@ export default function HamroPatroHero({
                       { iso3: "GBP", name: "UK Pound", unit: 1, buy: "202.64", sell: "203.43" },
                       { iso3: "AUD", name: "Australian Dollar", unit: 1, buy: "107.55", sell: "107.97" },
                     ]).map((r) => (
-                      <div key={r.iso3} className="p-2.5 bg-stone-50/70 border border-stone-200/80 rounded-xl">
+                      <div key={r.iso3} className="p-2.5 bg-stone-50/70 border border-stone-200/80 rounded-md">
                         <div className="font-bold text-stone-900 flex items-center justify-between">
                           <span>{r.iso3} ({r.unit})</span>
                           <span className="text-[10px] text-stone-500 font-normal">{r.name}</span>
@@ -521,32 +521,32 @@ export default function HamroPatroHero({
           {/* ======================================================================= */}
           {/* LEFT 8 COLS: 7-COLUMN MONTHLY CALENDAR CARD                             */}
           {/* ======================================================================= */}
-          <div className="lg:col-span-8 bg-white border border-stone-200/80 rounded-2xl shadow-xs overflow-hidden">
+          <div className="lg:col-span-8 bg-white border border-stone-200/80 rounded-lg shadow-xs overflow-hidden">
             
             {/* Calendar Controls Bar */}
-            <div className="p-4 sm:p-5 border-b border-stone-200/60 bg-white flex flex-wrap items-center justify-between gap-3">
+            <div className="p-3 sm:p-5 border-b border-stone-200/60 bg-white flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               {/* Previous / Next Month Navigation */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-between sm:justify-start gap-2">
                 <button
                   onClick={handlePrevMonth}
-                  className="p-2 border border-stone-200 rounded-xl bg-white hover:bg-orange-50 hover:border-[#D95B16] text-stone-700 transition-colors"
+                  className="p-1.5 sm:p-2 border border-stone-200 rounded-md bg-white hover:bg-orange-50 hover:border-[#D95B16] text-stone-700 transition-colors"
                   aria-label="Previous Month"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
 
                 <div className="flex items-center gap-2">
-                  <h2 className="text-xl sm:text-2xl font-black text-stone-900 tracking-tight">
+                  <h2 className="text-lg sm:text-2xl font-black text-stone-900 tracking-tight">
                     {isNe ? calendarData.monthName : calendarData.monthNameEn} {isNe ? toNepaliNum(selectedYear) : selectedYear}
                   </h2>
-                  <span className="text-xs font-semibold text-stone-500 bg-stone-100/80 px-2.5 py-1 rounded-lg">
+                  <span className="text-[11px] sm:text-xs font-semibold text-stone-500 bg-stone-100/80 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md">
                     {calendarData.adMonthsSpan} {calendarData.yearEn || selectedYear - 57}
                   </span>
                 </div>
 
                 <button
                   onClick={handleNextMonth}
-                  className="p-2 border border-stone-200 rounded-xl bg-white hover:bg-orange-50 hover:border-[#D95B16] text-stone-700 transition-colors"
+                  className="p-1.5 sm:p-2 border border-stone-200 rounded-md bg-white hover:bg-orange-50 hover:border-[#D95B16] text-stone-700 transition-colors"
                   aria-label="Next Month"
                 >
                   <ChevronRight className="w-4 h-4" />
@@ -554,7 +554,7 @@ export default function HamroPatroHero({
               </div>
 
               {/* Quick Jump Buttons & Dropdowns */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto">
                 <button
                   onClick={() => {
                     handleMonthChange(liveToday.monthBs, liveToday.yearBs);
@@ -562,7 +562,7 @@ export default function HamroPatroHero({
                     const todayMatch = newData.days.find((d) => d.isToday);
                     if (todayMatch) setSelectedDay(todayMatch);
                   }}
-                  className={`px-3 py-1.5 text-xs font-semibold rounded-lg border transition-all ${
+                  className={`flex-1 sm:flex-initial px-3 py-1.5 text-xs font-semibold rounded-md border transition-all text-center ${
                     selectedMonth === liveToday.monthBs && selectedYear === liveToday.yearBs && selectedDay.isToday
                       ? "bg-[#D95B16] text-white border-[#D95B16] shadow-xs"
                       : "bg-white text-stone-700 border-stone-200 hover:border-[#D95B16]"
@@ -575,7 +575,7 @@ export default function HamroPatroHero({
                 <select
                   value={selectedMonth}
                   onChange={(e) => handleMonthChange(parseInt(e.target.value, 10))}
-                  className="px-2.5 py-1.5 text-xs font-semibold border border-stone-200 bg-white text-stone-800 rounded-lg focus:outline-none focus:border-[#D95B16]"
+                  className="flex-1 sm:flex-initial px-2 sm:px-2.5 py-1.5 text-xs font-semibold border border-stone-200 bg-white text-stone-800 rounded-md focus:outline-none focus:border-[#D95B16]"
                 >
                   {MONTH_NAMES_BS.map((m, i) => (
                     <option key={i} value={i + 1}>
@@ -588,7 +588,7 @@ export default function HamroPatroHero({
                 <select
                   value={selectedYear}
                   onChange={(e) => handleMonthChange(selectedMonth, parseInt(e.target.value, 10))}
-                  className="px-2.5 py-1.5 text-xs font-semibold border border-stone-200 bg-white text-stone-800 rounded-lg focus:outline-none focus:border-[#D95B16]"
+                  className="flex-1 sm:flex-initial px-2 sm:px-2.5 py-1.5 text-xs font-semibold border border-stone-200 bg-white text-stone-800 rounded-md focus:outline-none focus:border-[#D95B16]"
                 >
                   {[2080, 2081, 2082, 2083, 2084, 2085, 2086].map((yr) => (
                     <option key={yr} value={yr}>
@@ -600,21 +600,21 @@ export default function HamroPatroHero({
             </div>
 
             {/* Weekday Column Headers (Sun to Sat) */}
-            <div className="grid grid-cols-7 border-b border-stone-200/60 bg-stone-50/60 text-center py-2 text-xs font-bold">
+            <div className="grid grid-cols-7 border-b border-stone-200/60 bg-stone-50/60 text-center py-1.5 sm:py-2 text-xs font-bold">
               {WEEKDAYS.map((wd, idx) => {
                 const isHolidayDay = idx === 0 || idx === 6;
                 return (
                   <div
                     key={idx}
-                    className={`flex flex-col items-center justify-center ${
+                    className={`flex flex-col items-center justify-center px-0.5 ${
                       isHolidayDay ? "text-[#DC2626]" : "text-stone-700"
                     }`}
                   >
-                    <span className="text-[11px] sm:text-xs font-semibold">
+                    <span className="text-[10px] sm:text-xs font-semibold truncate w-full">
                       {isNe ? wd.ne : wd.en}
                     </span>
-                    <span className="text-[10px] font-normal text-stone-400 capitalize">
-                      {wd.en}
+                    <span className="text-[9px] sm:text-[10px] font-normal text-stone-400 capitalize truncate w-full">
+                      {wd.en.slice(0, 3)}
                     </span>
                   </div>
                 );
@@ -636,13 +636,13 @@ export default function HamroPatroHero({
                     key={idx}
                     type="button"
                     onClick={() => setSelectedDay(day)}
-                    className={`relative min-h-[64px] sm:min-h-[96px] md:min-h-[110px] p-1 sm:p-2.5 text-left flex flex-col justify-between transition-all duration-150 focus:outline-none ${
+                    className={`relative min-h-[52px] sm:min-h-[96px] md:min-h-[110px] p-1 sm:p-2.5 text-left flex flex-col justify-between transition-all duration-150 focus:outline-none ${
                       day.isToday && isSelected
-                        ? "bg-[#D95B16] text-white font-bold z-10 rounded-lg shadow-md ring-2 ring-offset-2 ring-[#D95B16]"
+                        ? "bg-[#D95B16] text-white font-bold z-10 rounded-md shadow-md ring-2 ring-offset-2 ring-[#D95B16]"
                         : day.isToday
-                        ? "bg-[#D95B16] text-white font-bold z-10 rounded-lg shadow-sm"
+                        ? "bg-[#D95B16] text-white font-bold z-10 rounded-md shadow-sm"
                         : isSelected
-                        ? "bg-orange-100/90 border border-[#D95B16] ring-2 ring-[#D95B16] text-stone-900 font-bold z-10 rounded-lg shadow-xs"
+                        ? "bg-orange-100/90 border border-[#D95B16] ring-2 ring-[#D95B16] text-stone-900 font-bold z-10 rounded-md shadow-xs"
                         : day.isCurrentMonth
                         ? day.isHoliday || isSat
                           ? "bg-white hover:bg-orange-50/50 text-stone-900"
@@ -653,7 +653,7 @@ export default function HamroPatroHero({
                     {/* Top Row: English Day or "Today" Pill */}
                     <div className="flex items-center justify-between w-full">
                       {day.isToday ? (
-                        <span className="text-[9px] font-bold uppercase tracking-wider bg-white/20 text-white px-1.5 py-0.5 rounded">
+                        <span className="text-[8px] sm:text-[9px] font-bold uppercase tracking-wider bg-white/20 text-white px-1 sm:px-1.5 py-0.5 rounded">
                           Today
                         </span>
                       ) : <span />}
@@ -674,7 +674,7 @@ export default function HamroPatroHero({
                     {/* Middle: BS Day Numeral + Event Tag */}
                     <div className="my-0.5 text-center w-full">
                       <span
-                        className={`text-xl sm:text-2xl font-bold block leading-tight ${
+                        className={`text-lg sm:text-2xl font-bold block leading-tight ${
                           day.isToday
                             ? "text-white font-black"
                             : isSat || day.isHoliday
@@ -687,7 +687,7 @@ export default function HamroPatroHero({
 
                       {/* Event with bullet marker */}
                       {day.event && day.isCurrentMonth && (
-                        <div className="mt-1 flex items-center justify-center gap-1">
+                        <div className="mt-0.5 sm:mt-1 flex items-center justify-center gap-1">
                           <span
                             className={`w-1.5 h-1.5 rounded-full shrink-0 ${
                               day.isToday
@@ -716,7 +716,7 @@ export default function HamroPatroHero({
                     {/* Bottom: Tithi Name */}
                     <div className="w-full text-center">
                       <span
-                        className={`block text-[8.5px] sm:text-[10px] font-normal truncate ${
+                        className={`block text-[8px] sm:text-[10px] font-normal truncate ${
                           day.isToday ? "text-orange-100" : "text-stone-500"
                         }`}
                       >
@@ -729,8 +729,8 @@ export default function HamroPatroHero({
             </div>
 
             {/* Bottom Legend Bar matching mockup */}
-            <div className="p-3 sm:p-4 bg-white border-t border-stone-200/60 text-xs text-stone-600 flex flex-wrap items-center justify-between gap-3">
-              <div className="flex flex-wrap items-center gap-4 text-xs font-medium">
+            <div className="p-3 sm:p-4 bg-white border-t border-stone-200/60 text-xs text-stone-600 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 sm:gap-3">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-[11px] sm:text-xs font-medium">
                 <span className="inline-flex items-center gap-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#D95B16]" />
                   <span>Today</span>
@@ -765,7 +765,7 @@ export default function HamroPatroHero({
           <div className="lg:col-span-4 space-y-5">
             
             {/* Card 1: TODAY'S PANCHANGA */}
-            <div className="bg-white border border-stone-200/80 rounded-2xl p-5 shadow-xs">
+            <div className="bg-white border border-stone-200/80 rounded-lg p-5 shadow-xs">
               {/* Header with red bar & Today tag */}
               <div className="flex items-center justify-between pb-3 border-b border-stone-200/60">
                 <div className="flex items-center gap-2">
@@ -794,7 +794,7 @@ export default function HamroPatroHero({
               </div>
 
               {/* Festival / Occasion Strip */}
-              <div className="mt-3 p-3 bg-orange-50/50 border border-orange-200/60 rounded-xl flex items-center justify-between text-xs">
+              <div className="mt-3 p-3 bg-orange-50/50 border border-orange-200/60 rounded-md flex items-center justify-between text-xs">
                 <div className="flex items-center gap-2">
                   <Flame className="w-4 h-4 text-[#D95B16]" />
                   <span className="font-bold text-stone-900">
@@ -808,7 +808,7 @@ export default function HamroPatroHero({
 
               {/* 2x2 Grid of Panchang Parameters */}
               <div className="mt-4 grid grid-cols-2 gap-2.5 text-xs">
-                <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-xl">
+                <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md">
                   <div className="flex items-center gap-1.5 text-stone-500 font-medium text-[11px]">
                     <Sparkles className="w-3 h-3 text-[#D95B16]" />
                     <span>Tithi</span>
@@ -818,7 +818,7 @@ export default function HamroPatroHero({
                   </div>
                 </div>
 
-                <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-xl">
+                <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md">
                   <div className="flex items-center gap-1.5 text-stone-500 font-medium text-[11px]">
                     <Sun className="w-3 h-3 text-amber-500" />
                     <span>Nakshatra</span>
@@ -828,7 +828,7 @@ export default function HamroPatroHero({
                   </div>
                 </div>
 
-                <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-xl">
+                <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md">
                   <div className="flex items-center gap-1.5 text-stone-500 font-medium text-[11px]">
                     <Globe className="w-3 h-3 text-indigo-500" />
                     <span>Yoga</span>
@@ -838,7 +838,7 @@ export default function HamroPatroHero({
                   </div>
                 </div>
 
-                <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-xl">
+                <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md">
                   <div className="flex items-center gap-1.5 text-stone-500 font-medium text-[11px]">
                     <Moon className="w-3 h-3 text-indigo-400" />
                     <span>Moon Sign</span>
@@ -848,7 +848,7 @@ export default function HamroPatroHero({
                   </div>
                 </div>
 
-                <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-xl">
+                <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md">
                   <div className="flex items-center gap-1.5 text-stone-500 font-medium text-[11px]">
                     <span>☼</span>
                     <span>Sunrise</span>
@@ -858,7 +858,7 @@ export default function HamroPatroHero({
                   </div>
                 </div>
 
-                <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-xl">
+                <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md">
                   <div className="flex items-center gap-1.5 text-stone-500 font-medium text-[11px]">
                     <span>☽</span>
                     <span>Sunset</span>
@@ -870,7 +870,7 @@ export default function HamroPatroHero({
               </div>
 
               {/* Auspicious Muhurta Strip */}
-              <div className="mt-3.5 p-3 bg-emerald-50/60 border border-emerald-200/80 rounded-xl flex items-center justify-between text-xs text-emerald-900">
+              <div className="mt-3.5 p-3 bg-emerald-50/60 border border-emerald-200/80 rounded-md flex items-center justify-between text-xs text-emerald-900">
                 <div className="flex items-center gap-2">
                   <Leaf className="w-4 h-4 text-emerald-600 shrink-0" />
                   <div>
@@ -890,7 +890,7 @@ export default function HamroPatroHero({
                     `पञ्चाङ्ग तथा मुहूर्त परामर्श: ${selectedDay.bsDayNepali} ${MONTH_NAMES_BS[selectedDay.bsMonth - 1]?.ne} (${isNe ? selectedDay.tithi : selectedDay.tithiEn})`
                   )
                 }
-                className="mt-4 w-full py-2.5 bg-[#D95B16] hover:bg-[#B8470B] text-white font-semibold text-xs sm:text-sm rounded-xl transition-all shadow-xs flex items-center justify-center gap-2"
+                className="mt-4 w-full py-2.5 bg-[#D95B16] hover:bg-[#B8470B] text-white font-semibold text-xs sm:text-sm rounded-md transition-all shadow-xs flex items-center justify-center gap-2"
               >
                 <CalendarIcon className="w-4 h-4" />
                 <span>{isNe ? "यस दिनको विशेष साइत परामर्श" : "Book Muhurta Consultation for This Day"}</span>
@@ -898,7 +898,7 @@ export default function HamroPatroHero({
             </div>
 
             {/* Card 2: Tabbed Events (Festivals | Muhurtas | Holidays) */}
-            <div className="bg-white border border-stone-200/80 rounded-2xl p-5 shadow-xs overflow-hidden">
+            <div className="bg-white border border-stone-200/80 rounded-lg p-5 shadow-xs overflow-hidden">
               <div className="flex items-center justify-between pb-3 border-b border-stone-200/60">
                 <div className="flex items-center gap-4 text-xs font-semibold">
                   <button
@@ -987,11 +987,11 @@ export default function HamroPatroHero({
 
                 {sidebarTab === "muhurta" && (
                   <div className="space-y-2 py-2">
-                    <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-xl">
+                    <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md">
                       <div className="font-bold text-stone-900 text-xs">गृहप्रवेश उत्तम साइत (Griha Pravesh)</div>
                       <div className="text-[11px] text-stone-600 mt-0.5">Ashwin 11 • बिहान ०७:३० देखि ०९:१५</div>
                     </div>
-                    <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-xl">
+                    <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md">
                       <div className="font-bold text-stone-900 text-xs">विवाह / लग्न साइत (Vivah Muhurta)</div>
                       <div className="text-[11px] text-stone-600 mt-0.5">Ashwin 26 • बिहान ०८:२५ उत्तम योग</div>
                     </div>
@@ -1032,7 +1032,7 @@ export default function HamroPatroHero({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-6">
           
           {/* Card 1: Monthly Highlights */}
-          <div className="bg-white border border-stone-200/80 rounded-2xl p-5 shadow-xs">
+          <div className="bg-white border border-stone-200/80 rounded-lg p-5 shadow-xs">
             <div className="flex items-center gap-2 pb-3 border-b border-stone-200/60 text-xs font-bold text-stone-900">
               <CalendarIcon className="w-4 h-4 text-[#D95B16]" />
               <span>{isNe ? "महिनाका मुख्य आकर्षण" : "Monthly Highlights"}</span>
@@ -1067,7 +1067,7 @@ export default function HamroPatroHero({
           </div>
 
           {/* Card 2: Useful Tools */}
-          <div className="bg-white border border-stone-200/80 rounded-2xl p-5 shadow-xs">
+          <div className="bg-white border border-stone-200/80 rounded-lg p-5 shadow-xs">
             <div className="flex items-center gap-2 pb-3 border-b border-stone-200/60 text-xs font-bold text-stone-900">
               <Layers className="w-4 h-4 text-[#D95B16]" />
               <span>{isNe ? "उपयोगी औजारहरू" : "Useful Tools"}</span>
@@ -1075,7 +1075,7 @@ export default function HamroPatroHero({
             <div className="mt-3.5 grid grid-cols-2 gap-2 text-xs">
               <button
                 onClick={() => setActiveTool("converter")}
-                className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-xl hover:border-[#D95B16] hover:bg-orange-50/50 text-left transition-all"
+                className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md hover:border-[#D95B16] hover:bg-orange-50/50 text-left transition-all"
               >
                 <CalendarDays className="w-4 h-4 text-[#D95B16] mb-1" />
                 <span className="font-semibold text-stone-800 block text-[11px]">
@@ -1088,7 +1088,7 @@ export default function HamroPatroHero({
                   const el = document.getElementById("horoscope-section");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-xl hover:border-[#D95B16] hover:bg-orange-50/50 text-left transition-all"
+                className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md hover:border-[#D95B16] hover:bg-orange-50/50 text-left transition-all"
               >
                 <Moon className="w-4 h-4 text-[#D95B16] mb-1" />
                 <span className="font-semibold text-stone-800 block text-[11px]">
@@ -1098,7 +1098,7 @@ export default function HamroPatroHero({
 
               <button
                 onClick={() => setActiveTool("bullion")}
-                className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-xl hover:border-[#D95B16] hover:bg-orange-50/50 text-left transition-all"
+                className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md hover:border-[#D95B16] hover:bg-orange-50/50 text-left transition-all"
               >
                 <Coins className="w-4 h-4 text-[#D95B16] mb-1" />
                 <span className="font-semibold text-stone-800 block text-[11px]">
@@ -1108,7 +1108,7 @@ export default function HamroPatroHero({
 
               <button
                 onClick={() => setActiveTool("forex")}
-                className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-xl hover:border-[#D95B16] hover:bg-orange-50/50 text-left transition-all"
+                className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md hover:border-[#D95B16] hover:bg-orange-50/50 text-left transition-all"
               >
                 <TrendingUp className="w-4 h-4 text-[#D95B16] mb-1" />
                 <span className="font-semibold text-stone-800 block text-[11px]">
@@ -1119,7 +1119,7 @@ export default function HamroPatroHero({
           </div>
 
           {/* Card 3: Related Services */}
-          <div className="bg-white border border-stone-200/80 rounded-2xl p-5 shadow-xs">
+          <div className="bg-white border border-stone-200/80 rounded-lg p-5 shadow-xs">
             <div className="flex items-center gap-2 pb-3 border-b border-stone-200/60 text-xs font-bold text-stone-900">
               <Sparkles className="w-4 h-4 text-[#D95B16]" />
               <span>{isNe ? "सम्बन्धित सेवाहरू" : "Related Services"}</span>
@@ -1127,7 +1127,7 @@ export default function HamroPatroHero({
             <div className="mt-3.5 grid grid-cols-2 gap-2 text-xs">
               <Link
                 href="/ephemeris"
-                className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-xl hover:border-[#D95B16] hover:bg-orange-50/50 text-left transition-all block"
+                className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md hover:border-[#D95B16] hover:bg-orange-50/50 text-left transition-all block"
               >
                 <Star className="w-4 h-4 text-[#D95B16] mb-1" />
                 <span className="font-semibold text-stone-800 block text-[11px]">
@@ -1140,7 +1140,7 @@ export default function HamroPatroHero({
                   const el = document.getElementById("service-muhurta");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-xl hover:border-[#D95B16] hover:bg-orange-50/50 text-left transition-all"
+                className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md hover:border-[#D95B16] hover:bg-orange-50/50 text-left transition-all"
               >
                 <Clock className="w-4 h-4 text-[#D95B16] mb-1" />
                 <span className="font-semibold text-stone-800 block text-[11px]">
@@ -1153,7 +1153,7 @@ export default function HamroPatroHero({
                   const el = document.getElementById("service-karmakanda");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-xl hover:border-[#D95B16] hover:bg-orange-50/50 text-left transition-all"
+                className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md hover:border-[#D95B16] hover:bg-orange-50/50 text-left transition-all"
               >
                 <Flame className="w-4 h-4 text-[#D95B16] mb-1" />
                 <span className="font-semibold text-stone-800 block text-[11px]">
@@ -1166,7 +1166,7 @@ export default function HamroPatroHero({
                   const el = document.getElementById("service-vastu");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-xl hover:border-[#D95B16] hover:bg-orange-50/50 text-left transition-all"
+                className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md hover:border-[#D95B16] hover:bg-orange-50/50 text-left transition-all"
               >
                 <Compass className="w-4 h-4 text-[#D95B16] mb-1" />
                 <span className="font-semibold text-stone-800 block text-[11px]">

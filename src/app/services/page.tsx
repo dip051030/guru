@@ -83,8 +83,8 @@ export default function ServicesPage() {
       {/* 4 Pillars Deep Overview Strip */}
       <section className="w-full bg-[#FAF7F2] border-b border-stone-200 py-8 px-6 lg:px-12">
         <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="p-5 bg-white border border-stone-200/90 rounded-2xl shadow-xs hover:shadow-md transition-shadow flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0">
+          <div className="p-5 bg-white border border-stone-200/90 rounded-lg shadow-xs hover:shadow-md transition-shadow flex items-center gap-3.5">
+            <div className="w-12 h-12 rounded-md bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0">
               <IconBookOpen size={20} className="text-[#D95B16]" />
             </div>
             <div>
@@ -95,8 +95,8 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          <div className="p-5 bg-white border border-stone-200/90 rounded-2xl shadow-xs hover:shadow-md transition-shadow flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0">
+          <div className="p-5 bg-white border border-stone-200/90 rounded-lg shadow-xs hover:shadow-md transition-shadow flex items-center gap-3.5">
+            <div className="w-12 h-12 rounded-md bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0">
               <IconGem size={20} className="text-[#D95B16]" />
             </div>
             <div>
@@ -107,8 +107,8 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          <div className="p-5 bg-white border border-stone-200/90 rounded-2xl shadow-xs hover:shadow-md transition-shadow flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0">
+          <div className="p-5 bg-white border border-stone-200/90 rounded-lg shadow-xs hover:shadow-md transition-shadow flex items-center gap-3.5">
+            <div className="w-12 h-12 rounded-md bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0">
               <IconCompass size={20} className="text-[#D95B16]" />
             </div>
             <div>
@@ -119,8 +119,8 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          <div className="p-5 bg-white border border-stone-200/90 rounded-2xl shadow-xs hover:shadow-md transition-shadow flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0">
+          <div className="p-5 bg-white border border-stone-200/90 rounded-lg shadow-xs hover:shadow-md transition-shadow flex items-center gap-3.5">
+            <div className="w-12 h-12 rounded-md bg-amber-50 border border-amber-200 flex items-center justify-center shrink-0">
               <IconSparkles size={20} className="text-[#D95B16]" />
             </div>
             <div>
@@ -154,8 +154,8 @@ export default function ServicesPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-8 border border-stone-200/90 rounded-2xl bg-[#FAF7F2] shadow-xs hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl bg-white border border-stone-200 flex items-center justify-center mb-5 text-[#D95B16] shadow-xs">
+            <div className="p-8 border border-stone-200/90 rounded-lg bg-[#FAF7F2] shadow-xs hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 rounded-md bg-white border border-stone-200 flex items-center justify-center mb-5 text-[#D95B16] shadow-xs">
                 <IconShield size={24} />
               </div>
               <h3 className="font-serif font-bold text-stone-900 text-lg mb-2">
@@ -168,8 +168,8 @@ export default function ServicesPage() {
               </p>
             </div>
 
-            <div className="p-8 border border-stone-200/90 rounded-2xl bg-[#FAF7F2] shadow-xs hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl bg-white border border-stone-200 flex items-center justify-center mb-5 text-[#D95B16] shadow-xs">
+            <div className="p-8 border border-stone-200/90 rounded-lg bg-[#FAF7F2] shadow-xs hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 rounded-md bg-white border border-stone-200 flex items-center justify-center mb-5 text-[#D95B16] shadow-xs">
                 <IconCheckCircle size={24} />
               </div>
               <h3 className="font-serif font-bold text-stone-900 text-lg mb-2">
@@ -182,8 +182,8 @@ export default function ServicesPage() {
               </p>
             </div>
 
-            <div className="p-8 border border-stone-200/90 rounded-2xl bg-[#FAF7F2] shadow-xs hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl bg-white border border-stone-200 flex items-center justify-center mb-5 text-[#D95B16] shadow-xs">
+            <div className="p-8 border border-stone-200/90 rounded-lg bg-[#FAF7F2] shadow-xs hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 rounded-md bg-white border border-stone-200 flex items-center justify-center mb-5 text-[#D95B16] shadow-xs">
                 <IconPhone size={24} />
               </div>
               <h3 className="font-serif font-bold text-stone-900 text-lg mb-2">

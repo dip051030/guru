@@ -198,7 +198,7 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
         </div>
 
         {/* FUNCTION A: Astrological Gemstone Consultation Card */}
-        <div className="bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-8 mb-12 shadow-sm">
+        <div className="bg-white border border-stone-200/90 rounded-lg p-6 sm:p-8 mb-12 shadow-sm">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div className="max-w-2xl">
               <span className="text-xs font-mono uppercase tracking-widest text-[#D95B16] font-bold block mb-1">
@@ -216,7 +216,7 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
 
             <button
               onClick={() => onOpenInquiry("ज्योतिषीय रत्न परामर्श (Astrological Gemstone Consultation)")}
-              className="px-6 py-3.5 bg-[#D95B16] hover:bg-[#B8480C] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md shrink-0 active:scale-95"
+              className="px-6 py-3.5 bg-[#D95B16] hover:bg-[#B8480C] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-md transition-all shadow-md shrink-0 active:scale-95"
             >
               {isNe ? "रत्न परामर्श लिनुहोस्" : "Get Gemstone Consultation"}
             </button>
@@ -251,12 +251,12 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
           {GEMSTONES_CATALOGUE.map((g) => (
             <div
               key={g.id}
-              className="bg-white border border-stone-200/90 rounded-2xl p-6 flex flex-col justify-between hover:border-[#D95B16] transition-all hover:shadow-lg shadow-sm group"
+              className="bg-white border border-stone-200/90 rounded-lg p-6 flex flex-col justify-between hover:border-[#D95B16] transition-all hover:shadow-lg shadow-sm group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center font-serif text-lg text-white shadow-xs"
+                    className="w-12 h-12 rounded-md flex items-center justify-center font-serif text-lg text-white shadow-xs"
                     style={{ backgroundColor: g.colorHex }}
                   >
                     💎
@@ -278,7 +278,7 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
                 </p>
 
                 {/* Specs Box */}
-                <div className="p-3.5 bg-stone-50 border border-stone-200/70 rounded-xl text-[11px] font-mono text-stone-700 space-y-1.5 mb-4">
+                <div className="p-3.5 bg-stone-50 border border-stone-200/70 rounded-md text-[11px] font-mono text-stone-700 space-y-1.5 mb-4">
                   <div className="flex justify-between">
                     <span className="text-stone-600 font-bold">{isNe ? "स्वामी ग्रह:" : "Planet:"}</span>
                     <span className="font-bold text-stone-900">{isNe ? g.rulingPlanetNe : g.rulingPlanetEn}</span>
@@ -308,7 +308,7 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
 
                 <button
                   onClick={() => onOpenInquiry(`रत्न खरिद वा सोधपुछ: ${g.nameNe}`)}
-                  className="px-3.5 py-1.5 rounded-lg bg-[#181411] hover:bg-[#D95B16] text-white text-xs font-mono font-bold transition-colors active:scale-95 shadow-xs"
+                  className="px-3.5 py-1.5 rounded-md bg-[#181411] hover:bg-[#D95B16] text-white text-xs font-mono font-bold transition-colors active:scale-95 shadow-xs"
                 >
                   {isNe ? "सोधपुछ / खरिद" : "Enquire / Buy"}
                 </button>
@@ -318,7 +318,7 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
         </div>
 
         {/* UK Hallmarking & Medical Disclaimer Notice (Section 20 of spec) */}
-        <div className="mt-10 p-5 bg-stone-100/90 border border-stone-200/90 rounded-2xl text-xs font-sans text-stone-600 leading-relaxed shadow-xs">
+        <div className="mt-10 p-5 bg-stone-100/90 border border-stone-200/90 rounded-lg text-xs font-sans text-stone-600 leading-relaxed shadow-xs">
           <p className="font-light">
             <strong className="text-stone-800 font-mono uppercase font-bold">UK Legal & Hallmarking Notice:</strong>{" "}
             {isNe

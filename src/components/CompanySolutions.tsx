@@ -94,7 +94,7 @@ export default function CompanySolutions({ onOpenInquiry }: SolutionsProps) {
       <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-12">
-          <div className="w-11 h-11 rounded-2xl bg-orange-50 border border-orange-200 flex items-center justify-center text-[#D95B16] mb-3 shadow-2xs">
+          <div className="w-11 h-11 rounded-md bg-orange-50 border border-orange-200 flex items-center justify-center text-[#D95B16] mb-3 shadow-2xs">
             <Sparkles className="w-5 h-5" />
           </div>
 
@@ -109,21 +109,21 @@ export default function CompanySolutions({ onOpenInquiry }: SolutionsProps) {
           </p>
         </div>
 
-        {/* 6-Card Services Grid - Modern Rounded 2XL Cards */}
+        {/* 6-Card Services Grid - Modern Crisp Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {SERVICES.map((service, index) => {
             const Icon = service.icon;
             return (
               <div
                 key={index}
-                className="bg-white rounded-2xl p-6 sm:p-7 border border-stone-200/80 shadow-xs hover:border-[#D95B16]/60 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+                className="bg-white rounded-lg p-6 sm:p-7 border border-stone-200/80 shadow-xs hover:border-[#D95B16]/60 hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-orange-50 text-[#D95B16] border border-orange-200/60 flex items-center justify-center group-hover:bg-[#D95B16] group-hover:text-white transition-all duration-300 shadow-2xs">
+                    <div className="w-12 h-12 rounded-md bg-orange-50 text-[#D95B16] border border-orange-200/60 flex items-center justify-center group-hover:bg-[#D95B16] group-hover:text-white transition-all duration-300 shadow-2xs">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-[10px] font-mono font-bold tracking-widest uppercase px-2.5 py-1 rounded-lg bg-stone-100/80 text-stone-600 border border-stone-200/60">
+                    <span className="text-[10px] font-mono font-bold tracking-widest uppercase px-2.5 py-1 rounded-md bg-stone-100/80 text-stone-600 border border-stone-200/60">
                       {language === "ne" ? service.tagNe : service.tag}
                     </span>
                   </div>

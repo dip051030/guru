@@ -95,10 +95,10 @@ export default function MuhurtaSection({ onOpenInquiry }: MuhurtaSectionProps) {
             return (
               <div
                 key={idx}
-                className="p-6 bg-[#FAF7F2] border border-stone-200/90 rounded-2xl flex flex-col justify-between hover:border-[#D95B16] transition-all hover:bg-white hover:shadow-lg shadow-sm group"
+                className="p-6 bg-[#FAF7F2] border border-stone-200/90 rounded-lg flex flex-col justify-between hover:border-[#D95B16] transition-all hover:bg-white hover:shadow-lg shadow-sm group"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-white border border-stone-200/90 text-[#D95B16] flex items-center justify-center mb-4 shadow-xs group-hover:bg-[#D95B16] group-hover:text-white transition-colors">
+                  <div className="w-12 h-12 rounded-md bg-white border border-stone-200/90 text-[#D95B16] flex items-center justify-center mb-4 shadow-xs group-hover:bg-[#D95B16] group-hover:text-white transition-colors">
                     <Icon size={22} />
                   </div>
                   <h3 className="font-serif font-bold text-stone-900 text-lg leading-snug">
@@ -127,7 +127,7 @@ export default function MuhurtaSection({ onOpenInquiry }: MuhurtaSectionProps) {
         </div>
 
         {/* Bottom Banner */}
-        <div className="bg-[#0E1A2E] text-white p-6 sm:p-8 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-6 border border-stone-800 shadow-md">
+        <div className="bg-[#0E1A2E] text-white p-6 sm:p-8 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-6 border border-stone-800 shadow-md">
           <div>
             <h4 className="text-lg sm:text-xl font-serif font-bold text-white">
               {isNe ? "कुनै विशेष कार्यका लागि शुभ साइत आवश्यक छ?" : "Need an Auspicious Muhurta for an Upcoming Milestone?"}
@@ -141,7 +141,7 @@ export default function MuhurtaSection({ onOpenInquiry }: MuhurtaSectionProps) {
 
           <button
             onClick={() => onOpenInquiry("शुभ मुहूर्त परामर्श (Auspicious Muhurta)")}
-            className="px-6 py-3.5 bg-[#D95B16] hover:bg-[#B8480C] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md shrink-0 active:scale-95"
+            className="px-6 py-3.5 bg-[#D95B16] hover:bg-[#B8480C] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-md transition-all shadow-md shrink-0 active:scale-95"
           >
             {isNe ? "मुहूर्त परामर्श लिनुहोस्" : "Book Muhurta Consultation"}
           </button>

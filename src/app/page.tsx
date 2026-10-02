@@ -138,9 +138,9 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {/* Store Preview Card */}
-            <div className="bg-white rounded-2xl p-7 lg:p-8 border border-stone-200/90 shadow-xs flex flex-col justify-between">
+            <div className="bg-white rounded-lg p-7 lg:p-8 border border-stone-200/90 shadow-xs flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-xl bg-orange-50 text-[#D95B16] flex items-center justify-center mb-5">
+                <div className="w-12 h-12 rounded-md bg-orange-50 text-[#D95B16] flex items-center justify-center mb-5">
                   <IconShoppingBag className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl sm:text-2xl font-serif font-bold text-stone-900 mb-2">
@@ -168,7 +168,7 @@ export default function Home() {
               </div>
               <Link
                 href="/store"
-                className="w-full py-3 bg-[#D95B16] hover:bg-[#B8480C] text-white text-xs sm:text-sm font-semibold rounded-xl flex items-center justify-center gap-2 shadow-xs transition-colors"
+                className="w-full py-3 bg-[#D95B16] hover:bg-[#B8480C] text-white text-xs sm:text-sm font-semibold rounded-md flex items-center justify-center gap-2 shadow-xs transition-colors"
               >
                 <span>{isNe ? "सामग्री सूची हेर्नुहोस्" : "Browse Spiritual Store"}</span>
                 <IconArrowRight className="w-4 h-4" />
@@ -176,9 +176,9 @@ export default function Home() {
             </div>
 
             {/* Gemstone Preview Card */}
-            <div className="bg-white rounded-2xl p-7 lg:p-8 border border-stone-200/90 shadow-xs flex flex-col justify-between">
+            <div className="bg-white rounded-lg p-7 lg:p-8 border border-stone-200/90 shadow-xs flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-xl bg-orange-50 text-[#D95B16] flex items-center justify-center mb-5">
+                <div className="w-12 h-12 rounded-md bg-orange-50 text-[#D95B16] flex items-center justify-center mb-5">
                   <IconGem className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl sm:text-2xl font-serif font-bold text-stone-900 mb-2">
@@ -206,7 +206,7 @@ export default function Home() {
               </div>
               <Link
                 href="/store"
-                className="w-full py-3 bg-[#0E1A2E] hover:bg-[#131B2E] text-white text-xs sm:text-sm font-semibold rounded-xl flex items-center justify-center gap-2 shadow-xs transition-colors"
+                className="w-full py-3 bg-[#0E1A2E] hover:bg-[#131B2E] text-white text-xs sm:text-sm font-semibold rounded-md flex items-center justify-center gap-2 shadow-xs transition-colors"
               >
                 <span>{isNe ? "नवरत्न सूची तथा परामर्श" : "View 9 Gemstones & Consult"}</span>
                 <IconArrowRight className="w-4 h-4" />

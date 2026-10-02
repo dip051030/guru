@@ -102,10 +102,10 @@ export default function QuickServiceCards({ onOpenInquiry, onSelectService }: Qu
             return (
               <div
                 key={s.id}
-                className="bg-white border border-stone-200/80 rounded-2xl p-6 flex flex-col justify-between hover:border-[#D95B16] transition-all hover:shadow-sm group"
+                className="bg-white border border-stone-200/80 rounded-lg p-6 flex flex-col justify-between hover:border-[#D95B16] transition-all hover:shadow-sm group"
               >
                 <div>
-                  <div className="w-12 h-12 bg-orange-50/80 border border-orange-200/60 text-[#D95B16] rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#D95B16] group-hover:text-white transition-all shadow-2xs">
+                  <div className="w-12 h-12 bg-orange-50/80 border border-orange-200/60 text-[#D95B16] rounded-md flex items-center justify-center mb-4 group-hover:bg-[#D95B16] group-hover:text-white transition-all shadow-2xs">
                     <Icon className="w-6 h-6" />
                   </div>
 
@@ -132,7 +132,7 @@ export default function QuickServiceCards({ onOpenInquiry, onSelectService }: Qu
 
                   <button
                     onClick={() => onOpenInquiry(`${s.titleNe} (${s.titleEn})`)}
-                    className="px-3.5 py-1.5 bg-orange-50 text-[#D95B16] border border-orange-200/70 hover:bg-[#D95B16] hover:text-white rounded-lg transition-all text-xs font-semibold shadow-2xs"
+                    className="px-3.5 py-1.5 bg-orange-50 text-[#D95B16] border border-orange-200/70 hover:bg-[#D95B16] hover:text-white rounded-md transition-all text-xs font-semibold shadow-2xs"
                   >
                     {isNe ? "परामर्श लिनुहोस्" : "Book"}
                   </button>

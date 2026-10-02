@@ -76,7 +76,7 @@ export default function TestimonialsSection() {
           {TESTIMONIALS.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-2xl p-7 lg:p-8 border border-stone-200/90 shadow-xs flex flex-col justify-between relative hover:border-[#D95B16]/70 hover:-translate-y-1 transition-all duration-300"
+              className="bg-white rounded-lg p-7 lg:p-8 border border-stone-200/90 shadow-xs flex flex-col justify-between relative hover:border-[#D95B16]/70 hover:-translate-y-1 transition-all duration-300"
             >
               <div>
                 {/* Header: Stars & Quote Icon */}
