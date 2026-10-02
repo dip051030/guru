@@ -7,6 +7,7 @@ interface BrandLogoProps {
   size?: "sm" | "md" | "lg";
   variant?: "light" | "dark" | "gold";
   showText?: boolean;
+  hideTextOnMobile?: boolean;
 }
 
 export default function BrandLogo({
@@ -14,6 +15,7 @@ export default function BrandLogo({
   size = "md",
   variant = "dark",
   showText = true,
+  hideTextOnMobile = true,
 }: BrandLogoProps) {
   // Dimensions based on size
   const iconSizes = {
@@ -51,9 +53,9 @@ export default function BrandLogo({
         />
       </div>
 
-      {/* Clean Typography Lockup */}
+      {/* Clean Typography Lockup (Hidden on mobile, visible on sm and up) */}
       {showText && (
-        <div className="flex flex-col text-left">
+        <div className={`${hideTextOnMobile ? "hidden sm:flex" : "flex"} flex-col text-left`}>
           <span
             className={`font-serif tracking-tight font-black leading-none ${
               size === "sm" ? "text-sm sm:text-base" : size === "md" ? "text-lg sm:text-xl" : "text-xl sm:text-2xl"
