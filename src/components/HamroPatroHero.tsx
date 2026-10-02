@@ -556,9 +556,14 @@ export default function HamroPatroHero({
               {/* Quick Jump Buttons & Dropdowns */}
               <div className="flex items-center gap-2">
                 <button
-                  onClick={() => handleMonthChange(liveToday.monthBs, liveToday.yearBs)}
+                  onClick={() => {
+                    handleMonthChange(liveToday.monthBs, liveToday.yearBs);
+                    const newData = getMonthCalendarData(liveToday.yearBs, liveToday.monthBs);
+                    const todayMatch = newData.days.find((d) => d.isToday);
+                    if (todayMatch) setSelectedDay(todayMatch);
+                  }}
                   className={`px-3 py-1.5 text-xs font-semibold rounded-lg border transition-all ${
-                    selectedMonth === liveToday.monthBs && selectedYear === liveToday.yearBs
+                    selectedMonth === liveToday.monthBs && selectedYear === liveToday.yearBs && selectedDay.isToday
                       ? "bg-[#D95B16] text-white border-[#D95B16] shadow-xs"
                       : "bg-white text-stone-700 border-stone-200 hover:border-[#D95B16]"
                   }`}
@@ -632,15 +637,16 @@ export default function HamroPatroHero({
                     type="button"
                     onClick={() => setSelectedDay(day)}
                     className={`relative min-h-[64px] sm:min-h-[96px] md:min-h-[110px] p-1 sm:p-2.5 text-left flex flex-col justify-between transition-all duration-150 focus:outline-none ${
-                      // Today cell: Solid Vibrant Saffron with Today badge
-                      day.isToday
+                      day.isToday && isSelected
+                        ? "bg-[#D95B16] text-white font-bold z-10 rounded-lg shadow-md ring-2 ring-offset-2 ring-[#D95B16]"
+                        : day.isToday
                         ? "bg-[#D95B16] text-white font-bold z-10 rounded-lg shadow-sm"
                         : isSelected
-                        ? "bg-orange-50/80 ring-2 ring-[#D95B16] z-10 rounded-lg"
+                        ? "bg-orange-100/90 border border-[#D95B16] ring-2 ring-[#D95B16] text-stone-900 font-bold z-10 rounded-lg shadow-xs"
                         : day.isCurrentMonth
                         ? day.isHoliday || isSat
-                          ? "bg-white hover:bg-orange-50/40 text-stone-900"
-                          : "bg-white hover:bg-orange-50/30 text-stone-900"
+                          ? "bg-white hover:bg-orange-50/50 text-stone-900"
+                          : "bg-white hover:bg-orange-50/40 text-stone-900"
                         : "bg-stone-50/40 text-stone-400 opacity-40"
                     }`}
                   >
@@ -765,7 +771,9 @@ export default function HamroPatroHero({
                 <div className="flex items-center gap-2">
                   <span className="w-1 h-3.5 bg-[#D95B16] rounded-full" />
                   <h3 className="font-bold text-xs text-stone-900 uppercase tracking-wider">
-                    {isNe ? "आजको पञ्चाङ्ग" : "TODAY'S PANCHANGA"}
+                    {selectedDay.isToday
+                      ? (isNe ? "आजको पञ्चाङ्ग" : "TODAY'S PANCHANGA")
+                      : (isNe ? "पञ्चाङ्ग विवरण" : "PANCHANGA DETAILS")}
                   </h3>
                 </div>
                 <span className="text-[11px] font-semibold px-2 py-0.5 bg-orange-50 text-[#D95B16] border border-orange-200/70 rounded-md">
