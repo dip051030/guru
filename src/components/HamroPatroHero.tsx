@@ -85,12 +85,13 @@ export default function HamroPatroHero({
   // Get real dynamically computed month data
   const calendarData = getMonthCalendarData(selectedYear, selectedMonth);
 
-  // Active selected day (default: day 13 if present to match mockup, or today, or 1st day of month)
+  // Active selected day (default: today if present, or day 13, or 1st day of month)
   const [selectedDay, setSelectedDay] = useState<CalendarDay>(() => {
+    const todayMatch = calendarData.days.find((d) => d.isToday);
+    if (todayMatch) return todayMatch;
     const day13 = calendarData.days.find((d) => d.isCurrentMonth && d.bsDay === 13);
     if (day13) return day13;
     return (
-      calendarData.days.find((d) => d.isToday) ||
       calendarData.days.find((d) => d.isCurrentMonth && d.bsDay === liveToday.dayBs) ||
       calendarData.days.find((d) => d.isCurrentMonth && d.bsDay === 1) ||
       calendarData.days[10]
@@ -754,27 +755,36 @@ export default function HamroPatroHero({
                     onClick={() => setSelectedDay(day)}
                     className={`min-h-[105px] p-2.5 sm:p-3 text-left flex flex-col justify-start relative transition-colors focus:outline-none cursor-pointer ${
                       isSelected
-                        ? "bg-[#FFF8F0]"
+                        ? day.isToday
+                          ? "bg-[#FFF6EB] ring-2 ring-inset ring-amber-400/90"
+                          : "bg-[#FFF8F0]"
                         : day.isToday
-                        ? "bg-white border border-amber-300 rounded-lg"
+                        ? "bg-amber-50/40 ring-1.5 ring-inset ring-amber-300/80 hover:bg-amber-50/70"
                         : !day.isCurrentMonth
                         ? "bg-white text-stone-400 hover:bg-stone-50/40"
                         : "bg-white hover:bg-stone-50/70"
                     }`}
                   >
-                    {/* Day Number */}
+                    {/* Day Number and Subtle Today Badge */}
                     <div className="w-full flex items-center justify-between">
-                      <span
-                        className={`font-bold font-sans ${
-                          !day.isCurrentMonth
-                            ? "text-stone-400 text-xl"
-                            : isRedDay
-                            ? "text-red-600 text-2xl font-black"
-                            : "text-stone-900 text-2xl font-black"
-                        }`}
-                      >
-                        {day.bsDay}
-                      </span>
+                      <div className="flex items-center gap-1.5">
+                        <span
+                          className={`font-bold font-sans ${
+                            !day.isCurrentMonth
+                              ? "text-stone-400 text-xl"
+                              : isRedDay
+                              ? "text-red-600 text-2xl font-black"
+                              : "text-stone-900 text-2xl font-black"
+                          }`}
+                        >
+                          {day.bsDay}
+                        </span>
+                        {day.isToday && (
+                          <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold tracking-wide bg-amber-500/15 text-amber-900 border border-amber-500/30 leading-none">
+                            {isNe ? "आज" : "TODAY"}
+                          </span>
+                        )}
+                      </div>
                     </div>
 
                     {/* Event Row with bullet marker */}
@@ -829,14 +839,24 @@ export default function HamroPatroHero({
                     className="h-14 sm:h-16 flex flex-col items-center justify-center p-1 relative cursor-pointer focus:outline-none"
                   >
                     <div
-                      className={`w-full h-full flex flex-col items-center justify-center rounded-lg transition-all ${
+                      className={`w-full h-full flex flex-col items-center justify-center rounded-lg transition-all relative ${
                         isSelected
-                          ? "bg-[#FFF8F0] border border-amber-200/80 shadow-2xs"
+                          ? day.isToday
+                            ? "bg-[#FFF6EB] ring-2 ring-amber-400 shadow-2xs"
+                            : "bg-[#FFF8F0] border border-amber-200/80 shadow-2xs"
                           : day.isToday
-                          ? "border border-amber-300"
+                          ? "bg-amber-50/60 ring-1.5 ring-amber-300/80"
                           : ""
                       }`}
                     >
+                      {/* Subtle Today Dot Indicator */}
+                      {day.isToday && (
+                        <span
+                          className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-amber-500 ring-2 ring-white"
+                          title={isNe ? "आज" : "Today"}
+                        />
+                      )}
+
                       {/* Day Numeral */}
                       <span
                         className={`text-sm sm:text-base font-bold leading-none ${
@@ -874,13 +894,20 @@ export default function HamroPatroHero({
               <div className="w-10 h-1 bg-stone-200 rounded-full mx-auto mb-3" />
 
               {/* Selected Date Header */}
-              <div className="mb-3">
-                <h3 className="text-lg font-bold text-stone-900 font-sans tracking-tight">
-                  {calendarData.monthNameEn} {selectedDay.bsDay}, {selectedDay.bsYear}
-                </h3>
-                <p className="text-xs text-stone-500 mt-0.5">
-                  {WEEKDAYS[selectedDay.dayOfWeek]?.en}, {selectedDay.adMonth} {selectedDay.adDay}, {selectedDay.adYear}
-                </p>
+              <div className="mb-3 flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-bold text-stone-900 font-sans tracking-tight">
+                    {calendarData.monthNameEn} {selectedDay.bsDay}, {selectedDay.bsYear}
+                  </h3>
+                  <p className="text-xs text-stone-500 mt-0.5">
+                    {WEEKDAYS[selectedDay.dayOfWeek]?.en}, {selectedDay.adMonth} {selectedDay.adDay}, {selectedDay.adYear}
+                  </p>
+                </div>
+                {selectedDay.isToday && (
+                  <span className="text-[11px] font-semibold px-2 py-0.5 bg-amber-50 text-amber-800 border border-amber-200/80 rounded-md">
+                    {isNe ? "आज" : "Today"}
+                  </span>
+                )}
               </div>
 
               {/* Event Details with dot */}
