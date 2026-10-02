@@ -19,6 +19,7 @@ import MuhurtaSection from "@/components/MuhurtaSection";
 import PreFooterBanner from "@/components/PreFooterBanner";
 import InquiryDrawer from "@/components/InquiryDrawer";
 import Footer from "@/components/Footer";
+import MobileBottomNav from "@/components/MobileBottomNav";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function ServicesPage() {
@@ -32,7 +33,7 @@ export default function ServicesPage() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-background text-foreground relative">
+    <main className="min-h-screen flex flex-col bg-background text-foreground relative pb-16 md:pb-0">
       <ObservatoryHeader onOpenInquiry={handleOpenInquiry} />
 
       {/* Breadcrumb & Subpage Hero Banner */}
@@ -210,6 +211,9 @@ export default function ServicesPage() {
         onClose={() => setInquiryOpen(false)}
         initialTopic={inquiryTopic}
       />
+
+      {/* Fixed Mobile Bottom Nav */}
+      <MobileBottomNav onOpenInquiry={handleOpenInquiry} />
     </main>
   );
 }
