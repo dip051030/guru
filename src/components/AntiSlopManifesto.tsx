@@ -1,7 +1,13 @@
 "use client";
 
 import React from "react";
-import { ShieldCheck, Compass, HeartHandshake, Flame, Sparkles } from "lucide-react";
+import {
+  IconShield as ShieldCheck,
+  IconCompass as Compass,
+  IconHeartHandshake as HeartHandshake,
+  IconFlame as Flame,
+  IconSparkles as Sparkles,
+} from "./icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 import BrandLogo from "./BrandLogo";
 

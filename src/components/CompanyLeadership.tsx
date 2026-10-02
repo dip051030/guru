@@ -1,7 +1,16 @@
 "use client";
 
 import React from "react";
-import { Mail, Compass, Sparkles, Award, Users, ShieldCheck, MapPin, Calendar } from "lucide-react";
+import {
+  IconMail as Mail,
+  IconCompass as Compass,
+  IconSparkles as Sparkles,
+  IconStar as Award,
+  IconUsers as Users,
+  IconShield as ShieldCheck,
+  IconMapPin as MapPin,
+  IconCalendar as Calendar,
+} from "./icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 import BrandLogo from "./BrandLogo";
 

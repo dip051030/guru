@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
-import { Globe } from "lucide-react";
+import { IconGlobe as Globe } from "./icons/CustomIcons";
 
 interface LanguageToggleProps {
   variant?: "header" | "mobile" | "footer";
@@ -45,14 +45,14 @@ export default function LanguageToggle({ variant = "header" }: LanguageTogglePro
   }
 
   return (
-    <div className="inline-flex items-center p-0.5 rounded-none bg-stone-100 border border-stone-300 text-xs">
+    <div className="inline-flex items-center p-0.5 rounded-lg bg-stone-100/90 border border-stone-200 text-xs">
       <button
         onClick={() => setLanguage("ne")}
         aria-label="Switch to Nepali"
-        className={`px-2.5 py-1 rounded-none transition-colors text-xs font-bold ${
+        className={`px-2.5 py-1 rounded-md transition-all text-xs font-semibold ${
           language === "ne"
-            ? "bg-[#C85A17] text-white shadow-2xs"
-            : "text-stone-600 hover:text-[#C85A17]"
+            ? "bg-[#D95B16] text-white shadow-xs"
+            : "text-stone-600 hover:text-[#D95B16]"
         }`}
       >
         नेपाली
@@ -60,10 +60,10 @@ export default function LanguageToggle({ variant = "header" }: LanguageTogglePro
       <button
         onClick={() => setLanguage("en")}
         aria-label="Switch to English"
-        className={`px-2.5 py-1 rounded-none transition-colors text-xs font-bold ${
+        className={`px-2.5 py-1 rounded-md transition-all text-xs font-semibold ${
           language === "en"
-            ? "bg-[#C85A17] text-white shadow-2xs"
-            : "text-stone-600 hover:text-[#C85A17]"
+            ? "bg-[#D95B16] text-white shadow-xs"
+            : "text-stone-600 hover:text-[#D95B16]"
         }`}
       >
         EN

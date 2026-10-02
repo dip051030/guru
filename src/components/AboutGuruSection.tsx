@@ -1,7 +1,15 @@
 "use client";
 
 import React from "react";
-import { CheckCircle2, Award, Phone, Calendar, ArrowRight, ShieldCheck, MapPin } from "lucide-react";
+import {
+  IconCheckCircle as CheckCircle2,
+  IconStar as Award,
+  IconPhone as Phone,
+  IconCalendar as Calendar,
+  IconArrowRight as ArrowRight,
+  IconShield as ShieldCheck,
+  IconMapPin as MapPin,
+} from "./icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface AboutGuruSectionProps {
@@ -30,14 +38,14 @@ export default function AboutGuruSection({ onOpenInquiry }: AboutGuruSectionProp
           
           {/* Left Column: Authority Card (5 cols) */}
           <div className="lg:col-span-5 flex flex-col items-center sm:items-start">
-            <div className="w-full bg-[#0E1A2E] text-white p-8 sm:p-10 border border-stone-800 shadow-xl relative">
+            <div className="w-full bg-[#0E1A2E] text-white p-8 sm:p-10 rounded-2xl border border-stone-800 shadow-xl relative">
               <div className="absolute top-4 right-4">
-                <span className="px-2.5 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono text-[10px] uppercase font-bold tracking-widest">
+                <span className="px-2.5 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono text-[10px] uppercase font-bold tracking-widest rounded-md">
                   UK REGISTERED
                 </span>
               </div>
 
-              <div className="w-20 h-20 bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-serif text-3xl font-black mb-6">
+              <div className="w-20 h-20 bg-amber-500/10 border border-amber-500/30 rounded-2xl flex items-center justify-center text-amber-400 font-serif text-3xl font-black mb-6">
                 ॐ
               </div>
 
@@ -52,7 +60,7 @@ export default function AboutGuruSection({ onOpenInquiry }: AboutGuruSectionProp
                 <span className="text-xs font-mono uppercase tracking-widest text-stone-300 font-bold block">
                   CEO तथा प्रमुख परामर्शदाता
                 </span>
-                <span className="text-[11px] font-mono text-stone-300">
+                <span className="text-[11px] font-mono text-stone-400">
                   CEO & Chief Consultant
                 </span>
               </div>
@@ -60,7 +68,7 @@ export default function AboutGuruSection({ onOpenInquiry }: AboutGuruSectionProp
               <div className="mt-4 pt-4 border-t border-stone-800 text-xs font-sans text-stone-300 space-y-2">
                 <div className="flex items-center gap-2">
                   <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                  <span className="font-bold text-white">वैदिक सनातन केन्द्र युके (Vedic Sanatan Kendra UK)</span>
+                  <span className="font-semibold text-white">वैदिक सनातन केन्द्र युके (Vedic Sanatan Kendra UK)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Phone className="w-3.5 h-3.5 text-amber-400 shrink-0" />
@@ -72,9 +80,9 @@ export default function AboutGuruSection({ onOpenInquiry }: AboutGuruSectionProp
 
               <button
                 onClick={() => onOpenInquiry("गुरु नीलहरीसँग प्रत्यक्ष परामर्श")}
-                className="mt-6 w-full py-3 bg-[#C85A17] hover:bg-[#A6440C] text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-sm"
+                className="mt-6 w-full py-3 bg-[#D95B16] hover:bg-[#B8470B] text-white text-xs sm:text-sm font-semibold rounded-xl transition-all flex items-center justify-center gap-2 shadow-xs"
               >
-                <Calendar className="w-4 h-4 text-orange-200" />
+                <Calendar className="w-4 h-4 text-orange-100" />
                 <span>{isNe ? "परामर्श बुक गर्नुहोस्" : "Book a Consultation"}</span>
               </button>
             </div>
@@ -85,7 +93,7 @@ export default function AboutGuruSection({ onOpenInquiry }: AboutGuruSectionProp
             <h2 className="text-2xl sm:text-4xl font-serif font-black text-stone-900 tracking-tight">
               गुरु नीलहरीको परिचय
             </h2>
-            <span className="block text-xs sm:text-sm font-mono text-[#C85A17] font-bold tracking-widest uppercase mt-1">
+            <span className="block text-xs sm:text-sm font-mono text-[#D95B16] font-semibold tracking-widest uppercase mt-1">
               About Guru Nilhari • Vedic Sanatan Kendra UK
             </span>
 
@@ -93,8 +101,8 @@ export default function AboutGuruSection({ onOpenInquiry }: AboutGuruSectionProp
               गुरु नीलहरी वैदिक सनातन परम्परा, ज्योतिष शास्त्र, वास्तु शास्त्र तथा कर्मकाण्ड सम्बन्धी सेवा र परामर्श प्रदान गर्दै आउनुभएको छ।
             </p>
 
-            <div className="my-5 p-4 bg-[#FAF7F2] border-l-4 border-[#C85A17] text-stone-800">
-              <span className="text-xs font-mono uppercase font-bold text-[#C85A17] block mb-1">
+            <div className="my-5 p-4 bg-[#FAF7F2] border border-stone-200/80 border-l-4 border-l-[#D95B16] rounded-xl text-stone-800">
+              <span className="text-xs font-mono uppercase font-bold text-[#D95B16] block mb-1">
                 {isNe ? "हाम्रो उद्देश्य:" : "Our Core Mission:"}
               </span>
               <p className="text-sm font-serif font-medium leading-relaxed">
@@ -111,10 +119,10 @@ export default function AboutGuruSection({ onOpenInquiry }: AboutGuruSectionProp
               {keyFocus.map((f, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-2.5 p-2.5 bg-stone-50 border border-stone-200 text-xs font-sans text-stone-800"
+                  className="flex items-center gap-2.5 p-3 bg-stone-50/80 border border-stone-200/70 rounded-xl text-xs font-sans text-stone-800"
                 >
-                  <CheckCircle2 className="w-4 h-4 text-[#C85A17] shrink-0" />
-                  <span className="font-bold">{f.ne}</span>
+                  <CheckCircle2 className="w-4 h-4 text-[#D95B16] shrink-0" />
+                  <span className="font-semibold">{f.ne}</span>
                   <span className="text-[11px] text-stone-500 font-mono">({f.en})</span>
                 </div>
               ))}
@@ -123,15 +131,15 @@ export default function AboutGuruSection({ onOpenInquiry }: AboutGuruSectionProp
             <div className="flex flex-wrap items-center gap-3">
               <button
                 onClick={() => onOpenInquiry("गुरु नीलहरीसँग व्यक्तिगत परामर्श")}
-                className="px-6 py-3 bg-[#C85A17] hover:bg-[#A6440C] text-white text-xs sm:text-sm font-bold font-mono uppercase tracking-wider flex items-center gap-2 shadow-xs transition-colors"
+                className="px-6 py-3 bg-[#D95B16] hover:bg-[#B8470B] text-white text-xs sm:text-sm font-semibold rounded-xl flex items-center gap-2 shadow-xs transition-all"
               >
-                <Calendar className="w-4 h-4 text-orange-200" />
+                <Calendar className="w-4 h-4 text-orange-100" />
                 <span>{isNe ? "परामर्श लिनुहोस्" : "Book Consultation"}</span>
               </button>
 
               <a
                 href="#services"
-                className="px-6 py-3 bg-white border border-stone-300 hover:border-[#C85A17] text-stone-800 hover:text-[#C85A17] text-xs sm:text-sm font-bold font-mono uppercase tracking-wider flex items-center gap-2 transition-colors"
+                className="px-6 py-3 bg-white border border-stone-300 hover:border-[#D95B16] text-stone-800 hover:text-[#D95B16] text-xs sm:text-sm font-semibold rounded-xl flex items-center gap-2 transition-all shadow-2xs"
               >
                 <span>{isNe ? "सेवाहरू हेर्नुहोस्" : "Explore Services"}</span>
                 <ArrowRight className="w-3.5 h-3.5" />

@@ -2,7 +2,15 @@
 
 import React from "react";
 import Link from "next/link";
-import { Mail, Phone, MapPin, Clock, ShieldCheck, ShoppingBag, Sparkles } from "lucide-react";
+import {
+  IconMail as Mail,
+  IconPhone as Phone,
+  IconMapPin as MapPin,
+  IconClock as Clock,
+  IconShield as ShieldCheck,
+  IconShoppingBag as ShoppingBag,
+  IconSparkles as Sparkles,
+} from "./icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 import BrandLogo from "./BrandLogo";
 

@@ -3,7 +3,13 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Sparkles, ShoppingBag, Calendar, Phone } from "lucide-react";
+import {
+  IconHome as Home,
+  IconSparkles as Sparkles,
+  IconShoppingBag as ShoppingBag,
+  IconCalendar as Calendar,
+  IconPhone as Phone,
+} from "./icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface MobileBottomNavProps {

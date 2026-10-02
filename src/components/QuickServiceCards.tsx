@@ -1,7 +1,15 @@
 "use client";
 
 import React from "react";
-import { Sparkles, Compass, Flame, Clock, Gem, Palette, ArrowRight } from "lucide-react";
+import {
+  IconSparkles as Sparkles,
+  IconCompass as Compass,
+  IconFlame as Flame,
+  IconClock as Clock,
+  IconGem as Gem,
+  IconSparkles as Palette,
+  IconArrowRight as ArrowRight,
+} from "./icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface QuickServiceCardsProps {
@@ -94,17 +102,17 @@ export default function QuickServiceCards({ onOpenInquiry, onSelectService }: Qu
             return (
               <div
                 key={s.id}
-                className="bg-white border border-stone-200/90 p-6 flex flex-col justify-between hover:border-[#C85A17] transition-all hover:shadow-md group"
+                className="bg-white border border-stone-200/80 rounded-2xl p-6 flex flex-col justify-between hover:border-[#D95B16] transition-all hover:shadow-sm group"
               >
                 <div>
-                  <div className="w-12 h-12 bg-amber-50 border border-amber-200 text-[#C85A17] flex items-center justify-center mb-4 group-hover:bg-[#C85A17] group-hover:text-white transition-colors">
+                  <div className="w-12 h-12 bg-orange-50/80 border border-orange-200/60 text-[#D95B16] rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#D95B16] group-hover:text-white transition-all shadow-2xs">
                     <Icon className="w-6 h-6" />
                   </div>
 
                   <h3 className="text-lg sm:text-xl font-serif font-bold text-stone-900 leading-snug">
                     {s.titleNe}
                   </h3>
-                  <span className="text-[11px] font-mono text-[#C85A17] font-bold block mb-2.5">
+                  <span className="text-[11px] font-mono text-[#D95B16] font-semibold block mb-2.5">
                     {s.titleEn}
                   </span>
 
@@ -116,7 +124,7 @@ export default function QuickServiceCards({ onOpenInquiry, onSelectService }: Qu
                 <div className="pt-6 mt-6 border-t border-stone-100 flex items-center justify-between">
                   <a
                     href={s.anchor}
-                    className="text-xs font-mono font-bold text-stone-700 hover:text-[#C85A17] flex items-center gap-1 transition-colors"
+                    className="text-xs font-semibold text-stone-700 hover:text-[#D95B16] flex items-center gap-1 transition-colors"
                   >
                     <span>{isNe ? "विस्तृत विवरण" : "Learn More"}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -124,7 +132,7 @@ export default function QuickServiceCards({ onOpenInquiry, onSelectService }: Qu
 
                   <button
                     onClick={() => onOpenInquiry(`${s.titleNe} (${s.titleEn})`)}
-                    className="px-3 py-1.5 bg-amber-50 text-[#C85A17] border border-amber-200 hover:bg-[#C85A17] hover:text-white transition-colors text-xs font-mono font-bold"
+                    className="px-3.5 py-1.5 bg-orange-50 text-[#D95B16] border border-orange-200/70 hover:bg-[#D95B16] hover:text-white rounded-lg transition-all text-xs font-semibold shadow-2xs"
                   >
                     {isNe ? "परामर्श लिनुहोस्" : "Book"}
                   </button>

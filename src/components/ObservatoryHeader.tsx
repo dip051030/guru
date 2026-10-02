@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Calendar, Phone, Menu, X, ArrowRight } from "lucide-react";
+import { IconCalendar as Calendar, IconPhone as Phone, IconMenu as Menu, IconClose as X, IconArrowRight as ArrowRight } from "./icons/CustomIcons";
 import { getNepaliDate, getDailyMuhurtaTimings, toNepaliNumber } from "@/utils/astronomy";
 import { useLanguage } from "@/context/LanguageContext";
 import BrandLogo from "./BrandLogo";
@@ -34,46 +34,56 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
   return (
     <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-xs border-b border-stone-200/60 shadow-2xs transition-all duration-300">
       {/* Top Authentic Date Bar */}
-      <div className="hidden lg:flex items-center justify-between px-8 py-1.5 border-b border-stone-200/50 text-xs font-mono text-stone-500 bg-stone-50/70">
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 bg-[#C85A17] rounded-none animate-pulse-subtle" />
-            <span className="text-[#181411] font-bold">{t.header.patro}</span>
-            <span className="text-[#D97706] font-bold">{nepaliDateStr || t.header.loading}</span>
+      <div className="hidden lg:flex items-center justify-between px-8 py-2 border-b border-stone-200/60 text-xs font-sans text-stone-600 bg-[#FAF8F5]">
+        <div className="flex items-center gap-5">
+          <div className="flex items-center gap-1.5">
+            <Calendar className="w-3.5 h-3.5 text-[#D95B16]" />
+            <span className="text-stone-700 font-medium">{t.header.patro}:</span>
+            <span className="text-[#D95B16] font-bold">{nepaliDateStr || t.header.loading}</span>
           </div>
           <span className="text-stone-300">|</span>
-          <div className="flex items-center gap-2 text-stone-600">
-            <span>{t.header.sunrise}</span>
-            <span className="text-[#181411] font-bold">
+          <div className="flex items-center gap-1.5 text-stone-600">
+            <span className="text-amber-500">☼</span>
+            <span>{t.header.sunrise}:</span>
+            <span className="text-stone-800 font-semibold">
               {muhurtaInfo?.sunrise
                 ? language === "ne"
                   ? toNepaliNumber(muhurtaInfo.sunrise)
                   : muhurtaInfo.sunrise
-                : "06:02 AM"}
+                : "06:09 AM"}
             </span>
-            <span>• {t.header.sunset}</span>
-            <span className="text-[#181411] font-bold">
+          </div>
+          <span className="text-stone-300">|</span>
+          <div className="flex items-center gap-1.5 text-stone-600">
+            <span className="text-amber-600">☽</span>
+            <span>{t.header.sunset}:</span>
+            <span className="text-stone-800 font-semibold">
               {muhurtaInfo?.sunset
                 ? language === "ne"
                   ? toNepaliNumber(muhurtaInfo.sunset)
                   : muhurtaInfo.sunset
-                : "05:58 PM"}
+                : "05:57 PM"}
             </span>
+          </div>
+          <span className="text-stone-300">|</span>
+          <div className="flex items-center gap-1 text-stone-600">
+            <span className="text-[#D95B16] font-bold">◉</span>
+            <span>{t.header.location}</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-6 text-[11px]">
+        <div className="flex items-center gap-5 text-xs">
           <a
             href="https://wa.me/447838820518"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-stone-600 hover:text-[#C85A17] transition-colors"
+            className="flex items-center gap-1.5 text-stone-700 hover:text-[#D95B16] transition-colors"
           >
-            <Phone className="w-3.5 h-3.5 text-[#D97706]" />
-            <span>{t.header.contact}</span>
+            <Phone className="w-3.5 h-3.5 text-[#D95B16]" />
+            <span>Contact / WhatsApp: <strong className="font-semibold">+44 7838 820518</strong></span>
           </a>
           <span className="text-stone-300">|</span>
-          <span className="text-[#D97706] font-bold">{t.header.location}</span>
+          <span className="text-stone-700 font-semibold">Vedic Sanatan Kendra UK</span>
         </div>
       </div>
 
@@ -85,23 +95,29 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
         </Link>
 
         {/* Center Nav Links */}
-        <nav className="hidden lg:flex items-center gap-7 text-sm font-sans text-stone-800 font-medium">
+        <nav className="hidden lg:flex items-center gap-7 text-sm font-sans text-stone-700 font-medium">
           <Link
             href="/"
             className={`transition-colors py-1 relative ${
               pathname === "/"
-                ? "text-[#C85A17] font-bold"
-                : "text-stone-700 hover:text-[#C85A17]"
+                ? "text-[#D95B16] font-bold"
+                : "hover:text-[#D95B16]"
             }`}
           >
             {t.header.home}
             {pathname === "/" && (
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#C85A17] rounded-none" />
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#D95B16] rounded-full" />
             )}
           </Link>
           <Link
+            href="/#calendar"
+            className="text-stone-700 hover:text-[#D95B16] transition-colors py-1 relative"
+          >
+            {language === "ne" ? "पञ्चाङ्ग" : "Panchanga"}
+          </Link>
+          <Link
             href="/#horoscope-section"
-            className="text-stone-700 hover:text-[#C85A17] transition-colors py-1 relative"
+            className="text-stone-700 hover:text-[#D95B16] transition-colors py-1 relative"
           >
             {t.header.horoscope}
           </Link>
@@ -109,65 +125,65 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
             href="/ephemeris"
             className={`transition-colors py-1 relative ${
               pathname?.startsWith("/ephemeris")
-                ? "text-[#C85A17] font-bold"
-                : "text-stone-700 hover:text-[#C85A17]"
+                ? "text-[#D95B16] font-bold"
+                : "hover:text-[#D95B16]"
             }`}
           >
             {t.header.kundali}
             {pathname?.startsWith("/ephemeris") && (
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#C85A17] rounded-none" />
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#D95B16] rounded-full" />
             )}
           </Link>
           <Link
             href="/services"
             className={`transition-colors py-1 relative ${
               pathname?.startsWith("/services")
-                ? "text-[#C85A17] font-bold"
-                : "text-stone-700 hover:text-[#C85A17]"
+                ? "text-[#D95B16] font-bold"
+                : "hover:text-[#D95B16]"
             }`}
           >
             {t.header.services}
             {pathname?.startsWith("/services") && (
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#C85A17] rounded-none" />
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#D95B16] rounded-full" />
             )}
           </Link>
           <Link
             href="/store"
             className={`transition-colors py-1 relative ${
               pathname?.startsWith("/store")
-                ? "text-[#C85A17] font-bold"
-                : "text-stone-700 hover:text-[#C85A17]"
+                ? "text-[#D95B16] font-bold"
+                : "hover:text-[#D95B16]"
             }`}
           >
             {t.header.store}
             {pathname?.startsWith("/store") && (
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#C85A17] rounded-none" />
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#D95B16] rounded-full" />
             )}
           </Link>
           <Link
             href="/about"
             className={`transition-colors py-1 relative ${
               pathname?.startsWith("/about")
-                ? "text-[#C85A17] font-bold"
-                : "text-stone-700 hover:text-[#C85A17]"
+                ? "text-[#D95B16] font-bold"
+                : "hover:text-[#D95B16]"
             }`}
           >
             {t.header.aboutGuru}
             {pathname?.startsWith("/about") && (
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#C85A17] rounded-none" />
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#D95B16] rounded-full" />
             )}
           </Link>
           <Link
             href="/contact"
             className={`transition-colors py-1 relative ${
               pathname?.startsWith("/contact")
-                ? "text-[#C85A17] font-bold"
-                : "text-stone-700 hover:text-[#C85A17]"
+                ? "text-[#D95B16] font-bold"
+                : "hover:text-[#D95B16]"
             }`}
           >
             {t.header.contactNav}
             {pathname?.startsWith("/contact") && (
-              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#C85A17] rounded-none" />
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#D95B16] rounded-full" />
             )}
           </Link>
         </nav>
@@ -178,9 +194,9 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
 
           <button
             onClick={() => onOpenInquiry(t.header.bookConsultation)}
-            className="px-5 py-2.5 rounded-none bg-[#C85A17] hover:bg-[#A6440C] text-white text-xs lg:text-sm font-bold transition-colors flex items-center gap-2 shadow-sm border border-[#C85A17]"
+            className="px-5 py-2.5 rounded-xl bg-[#D95B16] hover:bg-[#B8470B] text-white text-xs lg:text-sm font-semibold transition-all flex items-center gap-2 shadow-xs hover:shadow-sm"
           >
-            <Calendar className="w-4 h-4 text-orange-200" />
+            <Calendar className="w-4 h-4 text-orange-100" />
             <span>{t.header.bookConsultation}</span>
           </button>
         </div>
@@ -190,68 +206,77 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
           <LanguageToggle variant="header" />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-stone-900 rounded-none border border-stone-300"
+            className="p-2.5 text-stone-800 rounded-xl border border-stone-200/90 hover:bg-stone-50 active:scale-95 transition-all"
             aria-label="Toggle Menu"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-5 h-5 text-[#D95B16]" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-border bg-white px-6 py-6 flex flex-col gap-4 font-sans text-sm text-foreground">
-          <LanguageToggle variant="mobile" />
-
-          <div className="pb-3 border-b border-border text-xs text-textMuted font-mono">
-            {nepaliDateStr}
+        <div className="md:hidden border-b border-stone-200/80 bg-white/98 backdrop-blur-md px-5 py-5 flex flex-col gap-3 font-sans text-sm text-stone-800 shadow-lg">
+          <div className="flex items-center justify-between pb-3 border-b border-stone-100">
+            <span className="text-xs font-mono text-[#D95B16] font-bold">
+              {nepaliDateStr}
+            </span>
+            <LanguageToggle variant="header" />
           </div>
+
           <Link
             href="/"
             onClick={() => setMobileMenuOpen(false)}
-            className={`py-1 ${pathname === "/" ? "text-terracotta font-bold" : "hover:text-terracotta"}`}
+            className={`py-2 px-3 rounded-lg transition-colors ${pathname === "/" ? "bg-orange-50 text-[#D95B16] font-bold" : "hover:bg-stone-50"}`}
           >
             {t.header.home}
           </Link>
           <Link
+            href="/#calendar"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-2 px-3 rounded-lg hover:bg-stone-50 transition-colors"
+          >
+            {language === "ne" ? "नेपाली पात्रो (पञ्चाङ्ग)" : "Nepali Patro (Panchanga)"}
+          </Link>
+          <Link
             href="/#horoscope-section"
             onClick={() => setMobileMenuOpen(false)}
-            className="py-1 hover:text-terracotta"
+            className="py-2 px-3 rounded-lg hover:bg-stone-50 transition-colors"
           >
             {t.header.horoscope}
           </Link>
           <Link
             href="/ephemeris"
             onClick={() => setMobileMenuOpen(false)}
-            className={`py-1 ${pathname?.startsWith("/ephemeris") ? "text-terracotta font-bold" : "hover:text-terracotta"}`}
+            className={`py-2 px-3 rounded-lg transition-colors ${pathname?.startsWith("/ephemeris") ? "bg-orange-50 text-[#D95B16] font-bold" : "hover:bg-stone-50"}`}
           >
             {t.header.kundali}
           </Link>
           <Link
             href="/services"
             onClick={() => setMobileMenuOpen(false)}
-            className={`py-1 ${pathname?.startsWith("/services") ? "text-terracotta font-bold" : "hover:text-terracotta"}`}
+            className={`py-2 px-3 rounded-lg transition-colors ${pathname?.startsWith("/services") ? "bg-orange-50 text-[#D95B16] font-bold" : "hover:bg-stone-50"}`}
           >
             {t.header.services}
           </Link>
           <Link
             href="/store"
             onClick={() => setMobileMenuOpen(false)}
-            className={`py-1 ${pathname?.startsWith("/store") ? "text-terracotta font-bold" : "hover:text-terracotta"}`}
+            className={`py-2 px-3 rounded-lg transition-colors ${pathname?.startsWith("/store") ? "bg-orange-50 text-[#D95B16] font-bold" : "hover:bg-stone-50"}`}
           >
             {t.header.store}
           </Link>
           <Link
             href="/about"
             onClick={() => setMobileMenuOpen(false)}
-            className={`py-1 ${pathname?.startsWith("/about") ? "text-terracotta font-bold" : "hover:text-terracotta"}`}
+            className={`py-2 px-3 rounded-lg transition-colors ${pathname?.startsWith("/about") ? "bg-orange-50 text-[#D95B16] font-bold" : "hover:bg-stone-50"}`}
           >
             {t.header.aboutGuru}
           </Link>
           <Link
             href="/contact"
             onClick={() => setMobileMenuOpen(false)}
-            className={`py-1 ${pathname?.startsWith("/contact") ? "text-terracotta font-bold" : "hover:text-terracotta"}`}
+            className={`py-2 px-3 rounded-lg transition-colors ${pathname?.startsWith("/contact") ? "bg-orange-50 text-[#D95B16] font-bold" : "hover:bg-stone-50"}`}
           >
             {t.header.contactNav}
           </Link>
@@ -261,7 +286,7 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
               setMobileMenuOpen(false);
               onOpenInquiry(t.header.bookConsultation);
             }}
-            className="mt-2 w-full py-3.5 rounded-none bg-[#C85A17] text-white text-center font-mono text-xs uppercase tracking-widest font-bold border border-[#C85A17] hover:bg-[#A6440C] transition-colors"
+            className="mt-2 w-full py-3 rounded-xl bg-[#D95B16] text-white text-center font-semibold text-sm hover:bg-[#B8470B] transition-colors shadow-xs"
           >
             {t.header.bookConsultation}
           </button>

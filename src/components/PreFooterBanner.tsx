@@ -1,7 +1,14 @@
 "use client";
 
 import React from "react";
-import { Calendar, Phone, Sparkles, Shield, HeartHandshake, CheckCircle } from "lucide-react";
+import {
+  IconCalendar as Calendar,
+  IconPhone as Phone,
+  IconSparkles as Sparkles,
+  IconShield as Shield,
+  IconHeartHandshake as HeartHandshake,
+  IconCheckCircle as CheckCircle,
+} from "./icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 import BrandLogo from "./BrandLogo";
 
