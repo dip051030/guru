@@ -14,7 +14,8 @@ import {
   IconWhatsApp,
   IconPhone,
 } from "@/components/icons/CustomIcons";
-import { TEL_LINK, bookingMessage, openWhatsApp, whatsappLink } from "@/config/contact";
+import { TEL_LINK, bookingMessage, whatsappLink } from "@/config/contact";
+import { sendBookingEmail } from "@/lib/sendBooking";
 import confetti from "canvas-confetti";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -43,6 +44,8 @@ export default function InquiryDrawer({
   const [errorMsg, setErrorMsg] = useState("");
   const [bookingRef, setBookingRef] = useState("");
   const [waMessage, setWaMessage] = useState("");
+  const [sending, setSending] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
 
   const CONSULTATION_TYPES = [
     {
@@ -72,8 +75,9 @@ export default function InquiryDrawer({
     },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (sending) return;
     if (!fullName.trim() || !phone.trim()) {
       setErrorMsg(language === "ne" ? "कृपया आफ्नो पूरा नाम र फोन नम्बर प्रविष्ट गर्नुहोस्।" : "Please enter your full name and phone number.");
       return;
@@ -82,7 +86,8 @@ export default function InquiryDrawer({
 
     const ref = `VSK-${Math.floor(Math.random() * 9000 + 1000)}`;
     const serviceTitle = CONSULTATION_TYPES.find((c) => c.id === selectedType)?.title;
-    const message = bookingMessage(`Namaste Guruji, I would like to book a consultation (${ref}).`, [
+    const fields: [string, string | undefined][] = [
+      ["Booking ref", ref],
       ["Name", fullName],
       ["Phone", phone],
       ["Email", email],
@@ -93,10 +98,22 @@ export default function InquiryDrawer({
       ["Place of birth", pob],
       ["Topic", initialTopic],
       ["Question", question],
-    ]);
+    ];
+    const message = bookingMessage(`Namaste Guruji, I would like to book a consultation (${ref}).`, fields.slice(1));
     setBookingRef(ref);
     setWaMessage(message);
-    openWhatsApp(message);
+
+    setSending(true);
+    const sent = await sendBookingEmail({ source: "Booking drawer", fields, replyTo: email, website: honeypot });
+    setSending(false);
+    if (!sent) {
+      setErrorMsg(
+        language === "ne"
+          ? "माफ गर्नुहोस्, अनुरोध पठाउन सकिएन। कृपया फेरि प्रयास गर्नुहोस् वा तलको ह्वाट्सएप बटन थिच्नुहोस्।"
+          : "Sorry, we couldn't send your request. Please try again, or send it on WhatsApp below."
+      );
+      return;
+    }
 
     try {
       confetti({
@@ -114,6 +131,8 @@ export default function InquiryDrawer({
 
   const handleReset = () => {
     setSubmitted(false);
+    setErrorMsg("");
+    setWaMessage("");
     setFullName("");
     setEmail("");
     setPhone("");
@@ -216,8 +235,8 @@ export default function InquiryDrawer({
                         </div>
                         <p className="mt-2 text-[11px] text-stone-500">
                           {language === "ne"
-                            ? "ह्वाट्सएप नखुलेमा माथिको हरियो बटन थिच्नुहोस्।"
-                            : "If WhatsApp didn't open, tap the green button to send your details."}
+                            ? "छिटो जवाफका लागि विवरण ह्वाट्सएपमा पनि पठाउन सक्नुहुन्छ।"
+                            : "For a quicker reply, you can also send your details on WhatsApp."}
                         </p>
 
                         <button
@@ -417,15 +436,32 @@ export default function InquiryDrawer({
                         {errorMsg && (
                           <div className="text-xs font-mono text-[#D95B16] bg-orange-50 p-2.5 border border-[#D95B16]/30 rounded-md">
                             {errorMsg}
+                            {waMessage && (
+                              <a
+                                href={whatsappLink(waMessage)}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-2 flex items-center justify-center gap-1.5 py-2 rounded-md bg-[#25D366] hover:bg-[#1EBE5D] text-white font-sans font-bold"
+                              >
+                                <IconWhatsApp className="w-4 h-4" weight="fill" />
+                                <span>{language === "ne" ? "ह्वाट्सएपमा पठाउनुहोस्" : "Send on WhatsApp"}</span>
+                              </a>
+                            )}
                           </div>
                         )}
+                        <input type="text" name="website" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
 
                         <button
                           type="submit"
-                          className="w-full py-4 rounded-md bg-[#D95B16] text-white font-mono text-xs uppercase tracking-widest font-bold hover:bg-[#B8480C] transition-all duration-200 flex items-center justify-center gap-2 shadow-xs"
+                          disabled={sending}
+                          className="w-full py-4 rounded-md bg-[#D95B16] text-white font-mono text-xs uppercase tracking-widest font-bold hover:bg-[#B8480C] transition-all duration-200 flex items-center justify-center gap-2 shadow-xs disabled:opacity-60 disabled:cursor-wait"
                         >
                           <IconSend className="w-3.5 h-3.5" />
-                          <span>{language === "ne" ? "ह्वाट्सएप मार्फत अनुरोध पठाउनुहोस्" : "Send Request via WhatsApp"}</span>
+                          <span>
+                            {sending
+                              ? language === "ne" ? "पठाउँदै..." : "Sending..."
+                              : language === "ne" ? "परामर्श अनुरोध पठाउनुहोस्" : "Submit Consultation Request"}
+                          </span>
                         </button>
                       </form>
                     )}

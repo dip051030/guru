@@ -23,7 +23,3 @@ export function bookingMessage(heading: string, fields: [string, string | undefi
   return [heading, "", ...lines].join("\n");
 }
 
-/** Opens WhatsApp with the message. Call from a user event so it isn't popup-blocked. */
-export function openWhatsApp(message: string) {
-  window.open(whatsappLink(message), "_blank", "noopener,noreferrer");
-}

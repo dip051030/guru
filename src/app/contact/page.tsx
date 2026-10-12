@@ -19,7 +19,8 @@ import InquiryDrawer from "@/components/InquiryDrawer";
 import Footer from "@/components/Footer";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import { useLanguage } from "@/context/LanguageContext";
-import { whatsappLink, TEL_LINK, CONTACT_PHONE_DISPLAY, WHATSAPP_GREETING, bookingMessage, openWhatsApp } from "@/config/contact";
+import { whatsappLink, TEL_LINK, CONTACT_PHONE_DISPLAY, WHATSAPP_GREETING, bookingMessage } from "@/config/contact";
+import { optionLabel, sendBookingEmail } from "@/lib/sendBooking";
 
 export default function ContactPage() {
   const { t, language } = useLanguage();
@@ -35,18 +36,32 @@ export default function ContactPage() {
   const [formNotes, setFormNotes] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
+  const [waMessage, setWaMessage] = useState("");
+  const [honeypot, setHoneypot] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    openWhatsApp(
-      bookingMessage("Namaste Guruji, I would like to book an appointment.", [
-        ["Name", formName],
-        ["Phone", formPhone],
-        ["Email", formEmail],
-        ["Service", formService],
-        ["Mode", formMode],
-        ["Notes", formNotes],
-      ])
-    );
+    if (sending) return;
+    const form = e.currentTarget as HTMLFormElement;
+    const fields: [string, string | undefined][] = [
+      ["Name", formName],
+      ["Phone", formPhone],
+      ["Email", formEmail],
+      ["Service", optionLabel(form, formService)],
+      ["Mode", formMode === "remote" ? "Online video" : "In-person (UK)"],
+      ["Notes", formNotes],
+    ];
+    setWaMessage(bookingMessage("Namaste Guruji, I would like to book an appointment.", fields));
+    setSending(true);
+    setSendError(false);
+    const sent = await sendBookingEmail({ source: "Contact page", fields, replyTo: fields.find(([l]) => l === "Email")?.[1], website: honeypot });
+    setSending(false);
+    if (!sent) {
+      setSendError(true);
+      return;
+    }
     setSubmitted(true);
   };
 
@@ -261,6 +276,15 @@ export default function ContactPage() {
                       ? "धन्यवाद। गुरु निलहरिको सचिवालयले +44 7838 820518 मार्फत तपाईंलाई शीघ्र सम्पर्क गर्नेछ।"
                       : "Thank you. Guru Nilhari's office will reach out via WhatsApp/Phone at the earliest to confirm the schedule."}
                   </p>
+                  <a
+                    href={whatsappLink(waMessage)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 mx-auto flex w-fit items-center gap-2 px-5 py-2.5 rounded-md bg-[#25D366] hover:bg-[#1EBE5D] text-white text-sm font-bold transition-colors"
+                  >
+                    <IconWhatsApp size={18} weight="fill" />
+                    <span>{language === "ne" ? "ह्वाट्सएपमा पनि पठाउनुहोस्" : "Also send on WhatsApp"}</span>
+                  </a>
                   <button
                     onClick={() => setSubmitted(false)}
                     className="mt-6 px-6 py-2.5 rounded-md bg-stone-900 text-white text-xs font-mono font-bold uppercase tracking-wider hover:bg-[#D95B16] transition-colors active:scale-95 shadow-xs"
@@ -402,12 +426,31 @@ export default function ContactPage() {
                     />
                   </div>
 
+                  <input type="text" name="website" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
+
+                  {sendError && (
+                    <div className="p-3 text-sm text-red-800 bg-red-50 border border-red-200 rounded-md">
+                      {language === "ne"
+                        ? "माफ गर्नुहोस्, अनुरोध पठाउन सकिएन। फेरि प्रयास गर्नुहोस् वा "
+                        : "Sorry, we couldn't send your request. Please try again, or "}
+                      <a href={whatsappLink(waMessage)} target="_blank" rel="noopener noreferrer" className="font-bold text-[#128C4A] underline">
+                        {language === "ne" ? "ह्वाट्सएपमा पठाउनुहोस्" : "send it on WhatsApp"}
+                      </a>
+                      .
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full py-4 bg-[#D95B16] hover:bg-[#B8480C] text-white font-bold text-sm uppercase tracking-wider font-mono rounded-xl shadow-md transition-all flex items-center justify-center gap-2 active:scale-95"
+                    disabled={sending}
+                    className="w-full py-4 bg-[#D95B16] hover:bg-[#B8480C] text-white font-bold text-sm uppercase tracking-wider font-mono rounded-xl shadow-md transition-all flex items-center justify-center gap-2 active:scale-95 disabled:opacity-60 disabled:cursor-wait"
                   >
                     <IconCalendar size={18} className="text-orange-200" />
-                    <span>{language === "ne" ? "ह्वाट्सएप मार्फत अनुरोध पठाउनुहोस्" : "Send Request via WhatsApp"}</span>
+                    <span>
+                      {sending
+                        ? language === "ne" ? "पठाउँदै..." : "Sending..."
+                        : language === "ne" ? "परामर्श समय सुरक्षित गर्नुहोस्" : "Confirm Consultation Request"}
+                    </span>
                   </button>
                 </form>
               )}
