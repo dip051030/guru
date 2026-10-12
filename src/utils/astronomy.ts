@@ -162,6 +162,23 @@ export function calculateJulianDate(date: Date): number {
 }
 
 /**
+ * Lahiri (Chitrapaksha) ayanamsha in degrees: 23°51'11" at J2000, precessing
+ * ~50.29" per year. Subtract from tropical longitudes to get sidereal ones.
+ */
+export function lahiriAyanamsha(jd: number): number {
+  return 23.8531 + (0.013969 * (jd - 2451545.0)) / 365.25;
+}
+
+const toSidereal = (tropical: number, jd: number) => (((tropical - lahiriAyanamsha(jd)) % 360) + 360) % 360;
+
+/** Sidereal (Lahiri) Moon sign at an instant: 0 = Mesha … 11 = Meena. */
+export function getSiderealMoonSign(date: Date): { index: number; degree: number } {
+  const jd = calculateJulianDate(date);
+  const moon = toSidereal(calculateMoonLongitude(jd), jd);
+  return { index: Math.floor(moon / 30), degree: moon % 30 };
+}
+
+/**
  * Calculates apparent Solar Ecliptic Longitude (degrees [0, 360))
  */
 export function calculateSunLongitude(jd: number): number {
@@ -406,8 +423,10 @@ export function calculatePlanetaryPositions(jd: number): GrahaPosition[] {
  */
 export function evaluatePanchanga(date: Date, latitude = 27.7172, longitude = 85.324): PanchangaResult {
   const jd = calculateJulianDate(date);
-  const sunLong = calculateSunLongitude(jd);
-  const moonLong = calculateMoonLongitude(jd);
+  // Nakshatra, yoga and rashi are sidereal in Vedic reckoning; tithi and
+  // karana depend only on the Sun-Moon difference, so the ayanamsha cancels.
+  const sunLong = toSidereal(calculateSunLongitude(jd), jd);
+  const moonLong = toSidereal(calculateMoonLongitude(jd), jd);
 
   const bs = getNepaliDate(date);
   const tithi = calculateTithi(sunLong, moonLong);

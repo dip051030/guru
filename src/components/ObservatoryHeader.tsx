@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { IconCalendar as Calendar, IconPhone as Phone, IconWhatsApp as WhatsApp, IconMenu as Menu, IconClose as X, IconArrowRight as ArrowRight, IconClock as Clock, IconLocate as Locate } from "./icons/CustomIcons";
+import { IconCalendar as Calendar, IconPhone as Phone, IconWhatsApp as WhatsApp, IconMenu as Menu, IconClose as X, IconArrowRight as ArrowRight, IconClock as Clock, IconLocate as Locate, IconSun as Sun, IconMoon as Moon } from "./icons/CustomIcons";
 import { getNepaliDate, toNepaliNumber } from "@/utils/astronomy";
 import { useLocation } from "@/context/LocationContext";
 import { useLocalClock, useSunTimes } from "@/hooks/useLocalTime";
@@ -41,8 +41,8 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
   return (
     <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-xs border-b border-stone-200/60 shadow-2xs transition-all duration-300">
       {/* Top Authentic Date Bar */}
-      <div className="hidden lg:flex items-center justify-between px-8 py-2 border-b border-stone-200/60 text-xs font-sans text-stone-600 bg-[#FAF8F5]">
-        <div className="flex items-center gap-5">
+      <div className="hidden lg:flex items-center justify-between gap-4 px-8 py-2 border-b border-stone-200/60 text-xs font-sans text-stone-600 bg-[#FAF8F5] whitespace-nowrap">
+        <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5">
             <Calendar className="w-3.5 h-3.5 text-[#D95B16]" />
             <span className="text-stone-700 font-medium">{t.header.patro}</span>
@@ -50,7 +50,7 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
           </div>
           <span className="text-stone-300">|</span>
           <div className="flex items-center gap-1.5 text-stone-600">
-            <span className="text-amber-500">☼</span>
+            <Sun className="w-3.5 h-3.5 text-amber-500" />
             <span>{isDeviceLocation ? (language === "ne" ? `${location.label} सूर्योदय:` : `${location.label} Sunrise:`) : t.header.sunrise}</span>
             <span className="text-stone-800 font-semibold">
               {sunTimes ? (language === "ne" ? toNepaliNumber(sunTimes.sunrise) : sunTimes.sunrise) : "--:--"}
@@ -58,7 +58,7 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
           </div>
           <span className="text-stone-300">|</span>
           <div className="flex items-center gap-1.5 text-stone-600">
-            <span className="text-amber-600">☽</span>
+            <Moon className="w-3.5 h-3.5 text-amber-600" />
             <span>{t.header.sunset}</span>
             <span className="text-stone-800 font-semibold">
               {sunTimes ? (language === "ne" ? toNepaliNumber(sunTimes.sunset) : sunTimes.sunset) : "--:--"}
@@ -82,11 +82,6 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
               </button>
             )}
           </div>
-          <span className="text-stone-300">|</span>
-          <div className="flex items-center gap-1 text-stone-600">
-            <span className="text-[#D95B16] font-bold">◉</span>
-            <span>{t.header.location}</span>
-          </div>
         </div>
 
         <div className="flex items-center gap-5 text-xs">
@@ -106,8 +101,8 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
             <WhatsApp className="w-3.5 h-3.5 text-[#25D366]" weight="fill" />
             <span>WhatsApp</span>
           </a>
-          <span className="text-stone-300">|</span>
-          <span className="text-stone-700 font-semibold">Vedic Sanatan Kendra UK</span>
+          <span className="hidden min-[1400px]:inline text-stone-300">|</span>
+          <span className="hidden min-[1400px]:inline text-stone-700 font-semibold">Vedic Sanatan Kendra UK</span>
         </div>
       </div>
 

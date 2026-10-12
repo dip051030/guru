@@ -10,6 +10,7 @@ import {
   IconSparkles as Sparkles,
   IconSun as Sun,
   IconMoon as Moon,
+  IconWarning as Warning,
   IconCoins as Coins,
   IconTrendingUp as TrendingUp,
   IconMapPin as MapPin,
@@ -1050,7 +1051,7 @@ export default function HamroPatroHero({
 
                 <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md">
                   <div className="flex items-center gap-1.5 text-stone-500 font-medium text-[11px]">
-                    <span>☼</span>
+                    <Sun className="w-3 h-3 text-amber-500" />
                     <span>Sunrise</span>
                   </div>
                   <div className="font-bold text-stone-900 mt-0.5">
@@ -1060,7 +1061,7 @@ export default function HamroPatroHero({
 
                 <div className="p-2.5 bg-stone-50/70 border border-stone-200/60 rounded-md">
                   <div className="flex items-center gap-1.5 text-stone-500 font-medium text-[11px]">
-                    <span>☽</span>
+                    <Moon className="w-3 h-3 text-indigo-400" />
                     <span>Sunset</span>
                   </div>
                   <div className="font-bold text-stone-900 mt-0.5">
@@ -1107,7 +1108,7 @@ export default function HamroPatroHero({
                   </div>
                   <div className="p-3 bg-red-50/60 border border-red-200/80 rounded-md text-red-900">
                     <div className="flex items-center gap-1.5 font-semibold text-[11px] text-red-700">
-                      <span aria-hidden>⚠</span>
+                      <Warning className="w-3.5 h-3.5 text-red-600 shrink-0" weight="fill" />
                       <span>{isNe ? "राहु काल (नयाँ काम नथाल्नुहोस्)" : "Rahu Kaal (avoid new starts)"}</span>
                     </div>
                     <div className="mt-1 font-bold">{timeRange(muhurtaTimes.rahuKaal)}</div>

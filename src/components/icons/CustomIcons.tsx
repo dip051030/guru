@@ -55,6 +55,7 @@ import {
   DownloadSimple,
   Export,
   NavigationArrow,
+  Warning,
   IconWeight,
 } from '@phosphor-icons/react';
 
@@ -339,4 +340,9 @@ export function IconShare({ size = 20, className = '', weight = 'regular', ...pr
 // 55. Locate Me Icon -> Phosphor NavigationArrow
 export function IconLocate({ size = 20, className = '', weight = 'regular', ...props }: IconProps) {
   return <NavigationArrow size={size} className={className} weight={weight} {...(props as any)} />;
+}
+
+// 56. Warning Icon -> Phosphor Warning
+export function IconWarning({ size = 20, className = '', weight = 'regular', ...props }: IconProps) {
+  return <Warning size={size} className={className} weight={weight} {...(props as any)} />;
 }

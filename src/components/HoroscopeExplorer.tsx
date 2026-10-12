@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IconSparkles,
   IconCalendar,
@@ -13,6 +13,21 @@ import {
   IconAward,
 } from "@/components/icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
+import ZodiacIcon from "@/components/icons/ZodiacIcon";
+import { getSiderealMoonSign, toNepaliNumber } from "@/utils/astronomy";
+import { getChandraGochar } from "@/utils/rashifal";
+
+const NE_DIGITS = "०१२३४५६७८९";
+const toLatinDigits = (s: string) => s.replace(/[०-९]/g, (d) => String(NE_DIGITS.indexOf(d)));
+
+/** "९ / 1" → "९, १" (ne) or "9, 1" (en): one script, not mixed. */
+function formatLuckyNumbers(raw: string, isNe: boolean) {
+  const nums = raw.split("/").map((n) => toLatinDigits(n.trim()));
+  return nums.map((n) => (isNe ? toNepaliNumber(n) : n)).join(", ");
+}
+
+/** First colour of a pair, e.g. "गाढा रातो र सुनौलो" → "गाढा रातो". */
+const firstColour = (s: string) => s.split(/\s+(?:र|&|and)\s+/)[0];
 
 interface HoroscopeExplorerProps {
   onOpenInquiry?: (topic?: string) => void;
@@ -24,7 +39,6 @@ type Period = "daily" | "weekly" | "yearly";
 
 interface RashiInfo {
   id: string;
-  glyph: string;
   neName: string;
   enName: string;
   elementNe: string;
@@ -75,7 +89,6 @@ interface RashiInfo {
 export const RASHI_DATA: RashiInfo[] = [
   {
     id: "aries",
-    glyph: "♈",
     neName: "मेष",
     enName: "Aries",
     elementNe: "अग्नि (Fire)",
@@ -124,7 +137,6 @@ export const RASHI_DATA: RashiInfo[] = [
   },
   {
     id: "taurus",
-    glyph: "♉",
     neName: "वृष",
     enName: "Taurus",
     elementNe: "पृथ्वी (Earth)",
@@ -173,7 +185,6 @@ export const RASHI_DATA: RashiInfo[] = [
   },
   {
     id: "gemini",
-    glyph: "♊",
     neName: "मिथुन",
     enName: "Gemini",
     elementNe: "वायु (Air)",
@@ -222,7 +233,6 @@ export const RASHI_DATA: RashiInfo[] = [
   },
   {
     id: "cancer",
-    glyph: "♋",
     neName: "कर्कट",
     enName: "Cancer",
     elementNe: "जल (Water)",
@@ -271,7 +281,6 @@ export const RASHI_DATA: RashiInfo[] = [
   },
   {
     id: "leo",
-    glyph: "♌",
     neName: "सिंह",
     enName: "Leo",
     elementNe: "अग्नि (Fire)",
@@ -320,7 +329,6 @@ export const RASHI_DATA: RashiInfo[] = [
   },
   {
     id: "virgo",
-    glyph: "♍",
     neName: "कन्या",
     enName: "Virgo",
     elementNe: "पृथ्वी (Earth)",
@@ -369,7 +377,6 @@ export const RASHI_DATA: RashiInfo[] = [
   },
   {
     id: "libra",
-    glyph: "♎",
     neName: "तुला",
     enName: "Libra",
     elementNe: "वायु (Air)",
@@ -418,7 +425,6 @@ export const RASHI_DATA: RashiInfo[] = [
   },
   {
     id: "scorpio",
-    glyph: "♏",
     neName: "वृश्चिक",
     enName: "Scorpio",
     elementNe: "जल (Water)",
@@ -467,7 +473,6 @@ export const RASHI_DATA: RashiInfo[] = [
   },
   {
     id: "sagittarius",
-    glyph: "♐",
     neName: "धनु",
     enName: "Sagittarius",
     elementNe: "अग्नि (Fire)",
@@ -516,7 +521,6 @@ export const RASHI_DATA: RashiInfo[] = [
   },
   {
     id: "capricorn",
-    glyph: "♑",
     neName: "मकर",
     enName: "Capricorn",
     elementNe: "पृथ्वी (Earth)",
@@ -565,7 +569,6 @@ export const RASHI_DATA: RashiInfo[] = [
   },
   {
     id: "aquarius",
-    glyph: "♒",
     neName: "कुम्भ",
     enName: "Aquarius",
     elementNe: "वायु (Air)",
@@ -614,7 +617,6 @@ export const RASHI_DATA: RashiInfo[] = [
   },
   {
     id: "pisces",
-    glyph: "♓",
     neName: "मीन",
     enName: "Pisces",
     elementNe: "जल (Water)",
@@ -675,14 +677,27 @@ export default function HoroscopeExplorer({
 
   const rashi = RASHI_DATA[selectedRashiIdx];
 
+  // Today's Moon sign (sidereal), computed on the client so it reflects the
+  // visitor's current moment; refreshed every 10 minutes.
+  const [moonSign, setMoonSign] = useState<number | null>(null);
+  useEffect(() => {
+    const update = () => setMoonSign(getSiderealMoonSign(new Date()).index);
+    update();
+    const id = setInterval(update, 10 * 60 * 1000);
+    return () => clearInterval(id);
+  }, []);
+  const gochar = moonSign === null ? null : getChandraGochar(selectedRashiIdx, moonSign);
+  const moonRashi = moonSign === null ? null : RASHI_DATA[moonSign];
+  const luckText = gochar ? (isNe ? `${toNepaliNumber(gochar.score)}%` : `${gochar.score}%`) : "—";
+
   return (
     <div className={`w-full bg-white border border-stone-200/90 rounded-lg shadow-xs overflow-hidden ${className}`}>
       
       {/* 1. Header Toolbar with Eye-Pleasing Period Switcher */}
       <div className="bg-[#FAF7F2] border-b border-stone-200/90 px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-md bg-[#D95B16] text-white flex items-center justify-center font-serif text-lg font-bold">
-            {rashi.glyph}
+          <div className="w-8 h-8 rounded-md bg-[#D95B16] text-white flex items-center justify-center">
+            <ZodiacIcon sign={rashi.id} size={18} strokeWidth={2} />
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -690,13 +705,13 @@ export default function HoroscopeExplorer({
                 {isNe ? "राशिफल तथा ग्रह गोचर विश्लेषण" : "Vedic Horoscope & Planetary Forecast"}
               </h3>
               <span className="hidden md:inline-block px-2 py-0.5 bg-amber-100 text-amber-900 text-[10px] font-mono font-bold rounded-md">
-                {isNe ? "सूर्यसिद्धान्त" : "Surya-Siddhanta"}
+                {isNe ? "लाहिडी अयनांश" : "Lahiri Ayanamsha"}
               </span>
             </div>
             <p className="text-[11px] sm:text-xs text-stone-500 font-mono">
               {isNe
-                ? "लाहिडी अयनांश तथा पारम्परिक दृक्-पद्धतिमा आधारित १२ राशिको भविष्यफल"
-                : "12 Signs decoded through authentic Lahiri Ayanamsha and Drik-Ganita transits"}
+                ? "दैनिक फल आजको चन्द्र गोचरबाट गणना गरिएको (दृक् गणित)"
+                : "Daily results computed from today's Moon transit (Drik Ganita)"}
             </p>
           </div>
         </div>
@@ -751,11 +766,11 @@ export default function HoroscopeExplorer({
                     : "bg-white text-stone-700 border-stone-200/80 hover:border-[#D95B16] hover:bg-amber-50/30"
                 }`}
               >
-                <span className={`text-base sm:text-lg font-serif leading-none ${
-                  isSelected ? "text-amber-400" : "text-[#D95B16] group-hover:scale-110 transition-transform"
-                }`}>
-                  {r.glyph}
-                </span>
+                <ZodiacIcon
+                  sign={r.id}
+                  size={20}
+                  className={isSelected ? "text-amber-400" : "text-[#D95B16] group-hover:scale-110 transition-transform"}
+                />
                 <span className="text-[11px] sm:text-xs font-bold font-serif leading-tight">
                   {isNe ? r.neName : r.enName}
                 </span>
@@ -780,8 +795,8 @@ export default function HoroscopeExplorer({
         {/* Sign Header & Meta Badges */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-stone-100">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-amber-50 border border-amber-200 rounded-lg text-[#D95B16] flex items-center justify-center text-3xl font-serif shrink-0 shadow-2xs">
-              {rashi.glyph}
+            <div className="w-14 h-14 bg-amber-50 border border-amber-200 rounded-lg text-[#D95B16] flex items-center justify-center shrink-0 shadow-2xs">
+              <ZodiacIcon sign={rashi.id} size={32} />
             </div>
             <div>
               <div className="flex items-center gap-2.5 flex-wrap">
@@ -809,7 +824,7 @@ export default function HoroscopeExplorer({
               <span className="block text-[10px] font-mono uppercase text-stone-600 font-bold">
                 {isNe ? "शुभ अंक" : "Lucky No"}
               </span>
-              <span className="text-sm font-mono font-bold text-stone-900">{rashi.luckyNum}</span>
+              <span className="text-sm font-mono font-bold text-stone-900">{formatLuckyNumbers(rashi.luckyNum, isNe)}</span>
             </div>
             <div className="h-6 w-px bg-stone-300" />
             <div className="text-center px-2">
@@ -817,7 +832,7 @@ export default function HoroscopeExplorer({
                 {isNe ? "शुभ रङ्ग" : "Lucky Color"}
               </span>
               <span className="text-xs font-serif font-bold text-stone-900">
-                {isNe ? rashi.luckyColorNe.split(" ")[0] : rashi.luckyColorEn.split(" ")[0]}
+                {isNe ? firstColour(rashi.luckyColorNe) : firstColour(rashi.luckyColorEn)}
               </span>
             </div>
             <div className="h-6 w-px bg-stone-300" />
@@ -832,9 +847,9 @@ export default function HoroscopeExplorer({
             <div className="h-6 w-px bg-stone-300" />
             <div className="text-center px-2">
               <span className="block text-[10px] font-mono uppercase text-stone-600 font-bold">
-                {isNe ? "भाग्य प्रतिशत" : "Luck Meter"}
+                {isNe ? "आजको अनुकूलता" : "Today"}
               </span>
-              <span className="text-sm font-mono font-black text-[#D95B16]">{rashi.daily.luck}</span>
+              <span className={`text-sm font-mono font-black ${gochar && !gochar.favourable ? "text-stone-600" : "text-[#D95B16]"}`}>{luckText}</span>
             </div>
           </div>
         </div>
@@ -850,27 +865,52 @@ export default function HoroscopeExplorer({
               <div className="bg-[#FAF7F2] p-5 sm:p-6 border border-stone-200 rounded-lg">
                 <div className="flex items-center gap-2 mb-2 text-[#D95B16] font-bold text-xs font-mono uppercase tracking-wider">
                   <IconSun className="w-4 h-4" />
-                  <span>{isNe ? "आजको मुख्य भविष्यवाणी (Daily Reading)" : "Today's Core Reading"}</span>
+                  <span>{isNe ? "आजको राशिफल (चन्द्र गोचर)" : "Today's Reading (Moon transit)"}</span>
                 </div>
-                <p className="text-base sm:text-lg font-serif text-stone-900 leading-relaxed font-normal">
-                  {isNe ? rashi.daily.overviewNe : rashi.daily.overviewEn}
-                </p>
+                {gochar && moonRashi ? (
+                  <>
+                    <div className="flex flex-wrap items-center gap-2 mb-3 text-xs text-stone-600">
+                      <span className="inline-flex items-center gap-1.5 px-2 py-1 bg-white border border-stone-200 rounded-md">
+                        <ZodiacIcon sign={moonRashi.id} size={14} className="text-[#D95B16]" />
+                        {isNe ? `चन्द्रमा ${moonRashi.neName} राशिमा` : `Moon in ${moonRashi.enName}`}
+                      </span>
+                      <span className="px-2 py-1 bg-white border border-stone-200 rounded-md">
+                        {isNe
+                          ? `${rashi.neName}बाट ${toNepaliNumber(gochar.house)}औं भाव`
+                          : `${gochar.house}${["st", "nd", "rd"][gochar.house - 1] ?? "th"} house from ${rashi.enName}`}
+                      </span>
+                      <span
+                        className={`px-2 py-1 rounded-md font-semibold ${
+                          gochar.favourable
+                            ? "bg-emerald-50 text-emerald-800 border border-emerald-200"
+                            : "bg-stone-100 text-stone-700 border border-stone-200"
+                        }`}
+                      >
+                        {gochar.favourable ? (isNe ? "शुभ" : "Favourable") : isNe ? "सावधानी" : "Caution"}
+                      </span>
+                    </div>
+                    <p className="text-base sm:text-lg font-serif text-stone-900 leading-relaxed font-normal">
+                      {isNe ? gochar.ne : gochar.en}
+                    </p>
 
-                {/* Progress bar for luck */}
-                <div className="mt-4 pt-4 border-t border-stone-200/80 flex items-center gap-3">
-                  <span className="text-xs font-mono text-stone-500 font-bold shrink-0">
-                    {isNe ? "उर्जा स्तर:" : "Energy:"} <strong className="text-stone-800">{isNe ? rashi.daily.energyNe : rashi.daily.energyEn}</strong>
-                  </span>
-                  <div className="w-full bg-stone-200 h-2 rounded-full overflow-hidden">
-                    <div
-                      className="bg-gradient-to-r from-amber-500 to-[#D95B16] h-full transition-all duration-500"
-                      style={{ width: `${rashi.daily.luckPercent}%` }}
-                    />
-                  </div>
-                  <span className="text-xs font-mono font-bold text-[#D95B16] shrink-0">
-                    {rashi.daily.luck}
-                  </span>
-                </div>
+                    <div className="mt-4 pt-4 border-t border-stone-200/80 flex items-center gap-3">
+                      <span className="text-xs font-mono text-stone-500 font-bold shrink-0">
+                        {isNe ? "उर्जा स्तर:" : "Energy:"} <strong className="text-stone-800">{isNe ? gochar.energyNe : gochar.energyEn}</strong>
+                      </span>
+                      <div className="w-full bg-stone-200 h-2 rounded-full overflow-hidden">
+                        <div
+                          className={`h-full transition-all duration-500 ${
+                            gochar.favourable ? "bg-gradient-to-r from-amber-500 to-[#D95B16]" : "bg-stone-400"
+                          }`}
+                          style={{ width: `${gochar.score}%` }}
+                        />
+                      </div>
+                      <span className="text-xs font-mono font-bold text-[#D95B16] shrink-0">{luckText}</span>
+                    </div>
+                  </>
+                ) : (
+                  <div className="h-20 animate-pulse bg-stone-200/60 rounded-md" />
+                )}
               </div>
 
               {/* Vedic Remedy (सात्विक उपाय) */}
@@ -878,7 +918,7 @@ export default function HoroscopeExplorer({
                 <IconSparkles className="w-5 h-5 text-[#D95B16] shrink-0 mt-0.5" />
                 <div>
                   <h4 className="text-xs font-mono uppercase font-bold text-[#D95B16] tracking-wider">
-                    {isNe ? "आजको सात्विक वैदिक उपाय (Remedy of the Day)" : "Auspicious Vedic Remedy of the Day"}
+                    {isNe ? `${rashi.neName} राशिका लागि सात्विक उपाय` : `Vedic Remedy for ${rashi.enName}`}
                   </h4>
                   <p className="text-sm font-sans text-stone-800 mt-1 font-medium leading-relaxed">
                     {isNe ? rashi.daily.adviceNe : rashi.daily.adviceEn}

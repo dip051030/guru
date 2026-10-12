@@ -10,6 +10,7 @@ import {
   calculatePlanetaryPositions,
   getSunTimes,
   getDailyMuhurtaTimings,
+  evaluatePanchanga,
 } from "./astronomy";
 
 describe("Astronomical Ephemeris & Panchang Engine", () => {
@@ -133,5 +134,14 @@ describe("Astronomical Ephemeris & Panchang Engine", () => {
     const ktm = getDailyMuhurtaTimings(day);
     const lon = getDailyMuhurtaTimings(day, 51.5074, -0.1278, "Europe/London");
     expect(ktm.rahuKaal.start).not.toEqual(lon.rahuKaal.start);
+  });
+
+  it("uses sidereal (Lahiri) positions for nakshatra and rashi", () => {
+    // Lakshmi Puja, 1 Nov 2024 evening in Kathmandu: Moon in Swati, Tula rashi.
+    const p = evaluatePanchanga(new Date("2024-11-01T13:00:00Z"));
+    expect(p.nakshatra.name).toBe("Swati");
+    expect(p.lunarSign.sanskrit).toBe("Tula");
+    // Sun is in Tula (sidereal) in early November, not tropical Scorpio.
+    expect(p.solarSign.sanskrit).toBe("Tula");
   });
 });

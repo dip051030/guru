@@ -13,6 +13,8 @@ import {
   IconClock,
   IconArrowRight,
   IconExternalLink,
+  IconRefresh,
+  IconClose,
 } from "@/components/icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -370,14 +372,14 @@ Karana: ${result.karana.name}`;
                   onClick={handleResetToNow}
                   className="px-2.5 py-1 text-[11px] font-mono font-bold text-[#C85A17] bg-orange-50 border border-orange-200 hover:bg-orange-100 transition-colors rounded-none"
                 >
-                  ⚡ {language === "ne" ? "अहिलेको लाइभ समय" : "Reset to Live Now"}
+                  <IconRefresh size={12} className="inline -mt-0.5 mr-1" />{language === "ne" ? "अहिलेको लाइभ समय" : "Reset to Live Now"}
                 </button>
               </div>
               <button
                 onClick={() => setShowInputDrawer(false)}
                 className="text-xs font-mono text-stone-500 hover:text-[#C85A17]"
               >
-                ✕ {language === "ne" ? "बन्द गर्नुहोस्" : "Close"}
+                <IconClose size={12} className="inline -mt-0.5 mr-1" />{language === "ne" ? "बन्द गर्नुहोस्" : "Close"}
               </button>
             </div>
 

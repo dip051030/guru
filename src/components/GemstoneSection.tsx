@@ -256,10 +256,10 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <div
-                    className="w-12 h-12 rounded-md flex items-center justify-center font-serif text-lg text-white shadow-xs"
+                    className="w-12 h-12 rounded-md flex items-center justify-center text-white shadow-xs"
                     style={{ backgroundColor: g.colorHex }}
                   >
-                    💎
+                    <IconGem size={22} weight="fill" className="drop-shadow-sm" />
                   </div>
                   <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold">
                     {g.availability}

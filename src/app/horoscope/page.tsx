@@ -66,8 +66,8 @@ export default function HoroscopePage() {
               </span>
               <p className="mt-3 text-stone-300 text-sm md:text-base font-light leading-relaxed">
                 {isNe
-                  ? "सूर्य सिद्धान्त र चित्रापक्षीय अयनांशमा आधारित बाह्र राशिको विस्तृत फलादेश। ग्रह गोचर, भाग्य प्रतिशत, शुभ रङ्ग, शुभ अंक र सात्विक वैदिक उपायहरू।"
-                  : "Comprehensive celestial transits and guidance for all 12 signs based on high-precision Chitrapaksha ayanamsha. Explore luck meters, favorable colors, numbers, and remedies."}
+                  ? "चित्रापक्षीय (लाहिडी) अयनांश र दृक् गणितमा आधारित बाह्र राशिको फलादेश। दैनिक फल आजको चन्द्र गोचरबाट गणना गरिन्छ; साथमा शुभ रङ्ग, शुभ अंक र सात्विक वैदिक उपाय।"
+                  : "Guidance for all 12 signs using the Chitrapaksha (Lahiri) ayanamsha and Drik Ganita. The daily reading is computed from today's Moon transit, with lucky colours, numbers and Vedic remedies."}
               </p>
             </div>
 

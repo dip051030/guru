@@ -13,6 +13,7 @@ import {
   IconHeartHandshake,
 } from "@/components/icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
+import { CirclesThree, Drop, Fire, Flame, Hexagon, House, Scroll, Triangle, type Icon } from "@phosphor-icons/react";
 
 interface SpiritualStoreSectionProps {
   onOpenInquiry: (topic?: string) => void;
@@ -28,7 +29,7 @@ interface ProductItem {
   badgeEn: string;
   descNe: string;
   descEn: string;
-  icon: string;
+  icon: Icon;
 }
 
 export const STORE_CATEGORIES = [
@@ -54,7 +55,7 @@ export const STORE_PRODUCTS: ProductItem[] = [
     badgeEn: "Bestseller",
     descNe: "कलश, शुद्ध रोली, चन्दन, जौ-तिल, कुश, कपुर, घ्यू, पञ्चरत्न र विधि सामग्रीहरू समावेश।",
     descEn: "Pure kalash, roli, sandalwood, barley-sesame, kusha grass, camphor, and ritual essentials.",
-    icon: "🪔",
+    icon: House,
   },
   {
     id: "havan-samagri-packet",
@@ -66,7 +67,7 @@ export const STORE_PRODUCTS: ProductItem[] = [
     badgeEn: "Ayurvedic Herbs",
     descNe: "गुगल, लोबान, जटामसी, कपुर, रक्तचन्दन, घ्यू र ३२ प्रकारका सात्विक जडीबुटी सम्मिश्रण।",
     descEn: "Guggul, loban, jatamansi, red sandalwood, and 32 pure Vedic sacrificial herbs.",
-    icon: "🔥",
+    icon: Fire,
   },
   {
     id: "panchamukhi-rudraksha-mala",
@@ -78,7 +79,7 @@ export const STORE_PRODUCTS: ProductItem[] = [
     badgeEn: "Certified Nepal Origin",
     descNe: "प्राकृतिक नेपाली रुद्राक्ष दानाबाट गाँसिएको, मन्त्र-जप तथा ध्यानका लागि अभिमन्त्रित।",
     descEn: "Consecrated authentic Nepali Rudraksha beads strung for daily mantra japa and mental stillness.",
-    icon: "📿",
+    icon: CirclesThree,
   },
   {
     id: "shree-yantra-copper",
@@ -90,7 +91,7 @@ export const STORE_PRODUCTS: ProductItem[] = [
     badgeEn: "Consecrated",
     descNe: "घर र कार्यालयमा धन, समृद्धि र वास्तु दोष निवारणका लागि शास्त्रीय ज्यामितिय श्रीयन्त्र।",
     descEn: "Sacred geometric copper plate designed according to Vedic scriptures for prosperity and Vastu harmony.",
-    icon: "🔯",
+    icon: Hexagon,
   },
   {
     id: "vastu-pyramid-brass",
@@ -102,7 +103,7 @@ export const STORE_PRODUCTS: ProductItem[] = [
     badgeEn: "Energy Harmonizer",
     descNe: "घर तथा कार्यक्षेत्रको नकारात्मक ऊर्जा निष्कासन र सकारात्मक कम्पन वृद्धिका लागि।",
     descEn: "Installed at key directions to neutralize spatial geo-stress and harmonize environment.",
-    icon: "🔺",
+    icon: Triangle,
   },
   {
     id: "kundali-frame-patro",
@@ -114,7 +115,7 @@ export const STORE_PRODUCTS: ProductItem[] = [
     badgeEn: "Custom Prepared",
     descNe: "लाहिडी अयनांशमा आधारित शुद्ध ग्रह गणित, लग्न चक्र, नवमांश र विंशोत्तरी दशा विवरण।",
     descEn: "Traditional handwritten parchment-style chart with complete planetary longitudes and Dasha balance.",
-    icon: "📜",
+    icon: Scroll,
   },
   {
     id: "natural-gangajal-dhoop",
@@ -126,7 +127,7 @@ export const STORE_PRODUCTS: ProductItem[] = [
     badgeEn: "Sacred Purification",
     descNe: "हरिद्वार गङ्गोत्रीको पवित्र जल र प्राकृतिक चन्दन-गुलाब धूपको दैनिक पूजा प्याक।",
     descEn: "Directly sourced sacred Gangetic water and natural handmade Himalayan incense.",
-    icon: "💧",
+    icon: Drop,
   },
   {
     id: "brass-diya-set",
@@ -138,7 +139,7 @@ export const STORE_PRODUCTS: ProductItem[] = [
     badgeEn: "Ideal Gift",
     descNe: "मन्दिर तथा गृह पूजाको शोभा बढाउने उत्कृष्ट कलात्मक ठोस पित्तलको दीयो।",
     descEn: "Solid brass traditional oil lamp crafted for daily aarti and spiritual home warming gifts.",
-    icon: "✨",
+    icon: Flame,
   },
 ];
 
@@ -203,7 +204,9 @@ export default function SpiritualStoreSection({ onOpenInquiry }: SpiritualStoreS
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-3xl">{p.icon}</span>
+                  <span className="w-11 h-11 rounded-md bg-orange-50 border border-orange-100 text-[#D95B16] flex items-center justify-center">
+                    <p.icon size={22} />
+                  </span>
                   <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold border border-amber-200">
                     {isNe ? p.badgeNe : p.badgeEn}
                   </span>
