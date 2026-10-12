@@ -28,7 +28,7 @@ import {
 } from "./icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 import { useLocation } from "@/context/LocationContext";
-import { useSunTimes } from "@/hooks/useLocalTime";
+import { useMuhurtaTimings, useSunTimes } from "@/hooks/useLocalTime";
 import {
   getMonthCalendarData,
   WEEKDAYS,
@@ -110,6 +110,8 @@ export default function HamroPatroHero({
     }
   }, [selectedDay.bsYear, selectedDay.bsMonth, selectedDay.bsDay]);
   const localSun = useSunTimes(selectedAdDate);
+  const muhurtaTimes = useMuhurtaTimings(selectedAdDate);
+  const timeRange = (w: { start: string; end: string }) => `${w.start} – ${w.end}`;
 
   // Keep selectedDay synced when month/year changes
   const handleMonthChange = (newMonth: number, newYear?: number) => {
@@ -1088,19 +1090,35 @@ export default function HamroPatroHero({
                 )}
               </div>
 
-              {/* Auspicious Muhurta Strip */}
-              <div className="mt-3.5 p-3 bg-emerald-50/60 border border-emerald-200/80 rounded-md flex items-center justify-between text-xs text-emerald-900">
-                <div className="flex items-center gap-2">
-                  <Leaf className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <div>
-                    <span className="font-semibold block text-[11px] text-emerald-700">Auspicious Muhurta</span>
-                    <span className="font-bold text-emerald-900">
-                      {selectedDay.muhurta || "अभिजित मुहूर्त (१२:१४ - १२:५४)"}
-                    </span>
+              {/* Daily muhurta windows, computed from local sunrise/sunset */}
+              {muhurtaTimes ? (
+                <div className="mt-3.5 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  <div className="p-3 bg-emerald-50/60 border border-emerald-200/80 rounded-md text-emerald-900">
+                    <div className="flex items-center gap-1.5 font-semibold text-[11px] text-emerald-700">
+                      <Leaf className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                      <span>{isNe ? "शुभ मुहूर्त" : "Auspicious"}</span>
+                    </div>
+                    <div className="mt-1 font-bold">
+                      {isNe ? "अभिजित" : "Abhijit"}: {timeRange(muhurtaTimes.abhijitMuhurta)}
+                    </div>
+                    <div className="mt-0.5 text-[11px] text-emerald-800">
+                      {isNe ? "ब्रह्म मुहूर्त" : "Brahma Muhurta"}: {timeRange(muhurtaTimes.brahmaMuhurta)}
+                    </div>
+                  </div>
+                  <div className="p-3 bg-red-50/60 border border-red-200/80 rounded-md text-red-900">
+                    <div className="flex items-center gap-1.5 font-semibold text-[11px] text-red-700">
+                      <span aria-hidden>⚠</span>
+                      <span>{isNe ? "राहु काल (नयाँ काम नथाल्नुहोस्)" : "Rahu Kaal (avoid new starts)"}</span>
+                    </div>
+                    <div className="mt-1 font-bold">{timeRange(muhurtaTimes.rahuKaal)}</div>
+                    <div className="mt-0.5 text-[11px] text-red-800">
+                      {isNe ? "यमगण्ड" : "Yamaganda"}: {timeRange(muhurtaTimes.yamaGanda)}
+                      <br />
+                      {isNe ? "गुलिक" : "Gulika"}: {timeRange(muhurtaTimes.gulika)}
+                    </div>
                   </div>
                 </div>
-                <ChevronRightIcon className="w-4 h-4 text-emerald-500" />
-              </div>
+              ) : null}
 
               {/* Primary Consultation CTA Button */}
               <button

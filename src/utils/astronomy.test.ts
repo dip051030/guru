@@ -9,6 +9,7 @@ import {
   calculateAscendant,
   calculatePlanetaryPositions,
   getSunTimes,
+  getDailyMuhurtaTimings,
 } from "./astronomy";
 
 describe("Astronomical Ephemeris & Panchang Engine", () => {
@@ -104,5 +105,33 @@ describe("Astronomical Ephemeris & Panchang Engine", () => {
     const autumn = getSunTimes(new Date(2026, 9, 12), 51.5074, -0.1278, "Europe/London");
     expect(Math.abs(toMinutes(autumn.sunrise) - (7 * 60 + 20))).toBeLessThan(6);
     expect(Math.abs(toMinutes(autumn.sunset) - (18 * 60 + 13))).toBeLessThan(6);
+  });
+
+  it("places Rahu Kaal in the right eighth of the local daytime", () => {
+    const toMinutes = (t: string) => {
+      const [, h, m, ap] = t.match(/(\d{2}):(\d{2})\s+(AM|PM)/)!;
+      return ((Number(h) % 12) + (ap === "PM" ? 12 : 0)) * 60 + Number(m);
+    };
+    // Monday 12 Oct 2026 in London: Rahu Kaal is the 2nd octant of the day.
+    const t = getDailyMuhurtaTimings(new Date(2026, 9, 12), 51.5074, -0.1278, "Europe/London");
+    const rise = toMinutes(t.sunrise);
+    const octant = (toMinutes(t.sunset) - rise) / 8;
+    expect(Math.abs(toMinutes(t.rahuKaal.start) - (rise + octant))).toBeLessThanOrEqual(1);
+    expect(Math.abs(toMinutes(t.rahuKaal.end) - (rise + 2 * octant))).toBeLessThanOrEqual(1);
+    // Yamaganda on Monday is the 4th octant, Gulika the 6th.
+    expect(Math.abs(toMinutes(t.yamaGanda.start) - (rise + 3 * octant))).toBeLessThanOrEqual(1);
+    expect(Math.abs(toMinutes(t.gulika.start) - (rise + 5 * octant))).toBeLessThanOrEqual(1);
+    // Abhijit straddles local solar noon; Brahma Muhurta ends before sunrise.
+    const noon = (rise + toMinutes(t.sunset)) / 2;
+    expect(toMinutes(t.abhijitMuhurta.start)).toBeLessThan(noon);
+    expect(toMinutes(t.abhijitMuhurta.end)).toBeGreaterThan(noon);
+    expect(toMinutes(t.brahmaMuhurta.end)).toBeLessThan(rise);
+  });
+
+  it("gives different Rahu Kaal clock times for different locations", () => {
+    const day = new Date(2026, 9, 12);
+    const ktm = getDailyMuhurtaTimings(day);
+    const lon = getDailyMuhurtaTimings(day, 51.5074, -0.1278, "Europe/London");
+    expect(ktm.rahuKaal.start).not.toEqual(lon.rahuKaal.start);
   });
 });

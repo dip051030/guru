@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "@/context/LocationContext";
-import { getSunTimes } from "@/utils/astronomy";
+import { getDailyMuhurtaTimings, getSunTimes } from "@/utils/astronomy";
 
 /** Live "hh:mm AM" clock in the visitor's chosen location. Empty until mounted. */
 export function useLocalClock(): string {
@@ -36,6 +36,20 @@ export function useSunTimes(date: Date | null) {
     if (time === undefined) return null;
     try {
       return getSunTimes(new Date(time), location.lat, location.lon, location.timeZone);
+    } catch {
+      return null;
+    }
+  }, [time, location.lat, location.lon, location.timeZone]);
+}
+
+/** Rahu Kaal, Yamaganda, Gulika, Abhijit and Brahma Muhurta at the visitor's location. */
+export function useMuhurtaTimings(date: Date | null) {
+  const { location } = useLocation();
+  const time = date?.getTime();
+  return useMemo(() => {
+    if (time === undefined) return null;
+    try {
+      return getDailyMuhurtaTimings(new Date(time), location.lat, location.lon, location.timeZone);
     } catch {
       return null;
     }

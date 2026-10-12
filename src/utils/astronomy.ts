@@ -489,55 +489,8 @@ export function getKathmanduSunTimes(date: Date): { sunrise: string; sunset: str
   };
 }
 
-/**
- * Calculates daily auspicious and inauspicious Muhurta segments for Kathmandu
- */
-export function getDailyMuhurtaTimings(date: Date) {
-  const dayOfWeek = date.getDay(); // 0 = Sunday, 1 = Monday, ... 6 = Saturday
-  const sunTimes = getKathmanduSunTimes(date);
-
-  // Traditional Rahu Kaal segments by day of week
-  const rahuKaalHours = [
-    { start: "16:30", end: "18:00" }, // Sunday (8th octant)
-    { start: "07:30", end: "09:00" }, // Monday (2nd octant)
-    { start: "15:00", end: "16:30" }, // Tuesday (7th octant)
-    { start: "12:00", end: "13:30" }, // Wednesday (5th octant)
-    { start: "13:30", end: "15:00" }, // Thursday (6th octant)
-    { start: "10:30", end: "12:00" }, // Friday (4th octant)
-    { start: "09:00", end: "10:30" }, // Saturday (3rd octant)
-  ];
-
-  // Yamaganda segments by day of week
-  const yamaGandaHours = [
-    { start: "12:00", end: "13:30" }, // Sun
-    { start: "10:30", end: "12:00" }, // Mon
-    { start: "09:00", end: "10:30" }, // Tue
-    { start: "07:30", end: "09:00" }, // Wed
-    { start: "06:00", end: "07:30" }, // Thu
-    { start: "15:00", end: "16:30" }, // Fri
-    { start: "13:30", end: "15:00" }, // Sat
-  ];
-
-  return {
-    rahuKaal: rahuKaalHours[dayOfWeek],
-    yamaGanda: yamaGandaHours[dayOfWeek],
-    abhijitMuhurta: { start: "11:42", end: "12:30" }, // Midday window
-    brahmaMuhurta: { start: "04:36", end: "05:24" },
-    sunrise: sunTimes.sunrise,
-    sunset: sunTimes.sunset,
-  };
-}
-
-/**
- * Sunrise and sunset for any coordinates, formatted in the given IANA time zone
- * (e.g. "Europe/London"), including the equation-of-time correction.
- */
-export function getSunTimes(
-  date: Date,
-  lat: number,
-  lon: number,
-  timeZone: string
-): { sunrise: string; sunset: string } {
+/** Sunrise and sunset instants (ms since epoch) for the calendar day of `date`. */
+function solarDay(date: Date, lat: number, lon: number): { sunriseMs: number; sunsetMs: number; weekday: number } {
   const rad = Math.PI / 180;
   // Day of year from calendar fields, so DST shifts can't push it off by one.
   const midnightUtc = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
@@ -554,16 +507,72 @@ export function getSunTimes(
 
   // Solar noon in UTC hours, then shift by the half-day arc.
   const solarNoonUtc = 12 - lon / 15 - eqTime / 60;
-  const fmt = new Intl.DateTimeFormat("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-    timeZone,
+  return {
+    sunriseMs: midnightUtc + (solarNoonUtc - H / 15) * 3600 * 1000,
+    sunsetMs: midnightUtc + (solarNoonUtc + H / 15) * 3600 * 1000,
+    weekday: new Date(midnightUtc).getUTCDay(),
+  };
+}
+
+function timeFormatter(timeZone: string) {
+  const fmt = new Intl.DateTimeFormat("en-US", { hour: "2-digit", minute: "2-digit", hour12: true, timeZone });
+  return (ms: number) => fmt.format(new Date(ms));
+}
+
+/**
+ * Sunrise and sunset for any coordinates, formatted in the given IANA time zone
+ * (e.g. "Europe/London"), including the equation-of-time correction.
+ */
+export function getSunTimes(
+  date: Date,
+  lat: number,
+  lon: number,
+  timeZone: string
+): { sunrise: string; sunset: string } {
+  const { sunriseMs, sunsetMs } = solarDay(date, lat, lon);
+  const at = timeFormatter(timeZone);
+  return { sunrise: at(sunriseMs), sunset: at(sunsetMs) };
+}
+
+export interface TimeWindow {
+  start: string;
+  end: string;
+}
+
+// Which eighth of the daytime (1-8) each period falls in, indexed Sunday..Saturday.
+const RAHU_KAAL_OCTANT = [8, 2, 7, 5, 6, 4, 3];
+const YAMAGANDA_OCTANT = [5, 4, 3, 2, 1, 7, 6];
+const GULIKA_OCTANT = [7, 6, 5, 4, 3, 2, 1];
+
+/**
+ * Daily muhurta windows for any location. Rahu Kaal, Yamaganda and Gulika are
+ * fixed eighths of the local sunrise-to-sunset span (so they shift with the
+ * seasons and the place); Abhijit is the 8th of 15 daytime muhurtas, and Brahma
+ * Muhurta is the 2nd-to-last of 15 night muhurtas before sunrise.
+ */
+export function getDailyMuhurtaTimings(
+  date: Date,
+  lat = 27.7172,
+  lon = 85.324,
+  timeZone = "Asia/Kathmandu"
+) {
+  const { sunriseMs, sunsetMs, weekday } = solarDay(date, lat, lon);
+  const at = timeFormatter(timeZone);
+  const day = sunsetMs - sunriseMs;
+  const night = 24 * 3600 * 1000 - day;
+
+  const octant = (n: number): TimeWindow => ({
+    start: at(sunriseMs + ((n - 1) * day) / 8),
+    end: at(sunriseMs + (n * day) / 8),
   });
-  const at = (hoursUtc: number) => fmt.format(new Date(midnightUtc + hoursUtc * 3600 * 1000));
 
   return {
-    sunrise: at(solarNoonUtc - H / 15),
-    sunset: at(solarNoonUtc + H / 15),
+    sunrise: at(sunriseMs),
+    sunset: at(sunsetMs),
+    rahuKaal: octant(RAHU_KAAL_OCTANT[weekday]),
+    yamaGanda: octant(YAMAGANDA_OCTANT[weekday]),
+    gulika: octant(GULIKA_OCTANT[weekday]),
+    abhijitMuhurta: { start: at(sunriseMs + (7 * day) / 15), end: at(sunriseMs + (8 * day) / 15) },
+    brahmaMuhurta: { start: at(sunriseMs - (2 * night) / 15), end: at(sunriseMs - night / 15) },
   };
 }
