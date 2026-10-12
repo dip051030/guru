@@ -27,6 +27,8 @@ import {
   IconChevronRight as ChevronRightIcon,
 } from "./icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
+import { useLocation } from "@/context/LocationContext";
+import { useSunTimes } from "@/hooks/useLocalTime";
 import {
   getMonthCalendarData,
   WEEKDAYS,
@@ -97,6 +99,17 @@ export default function HamroPatroHero({
       calendarData.days[10]
     );
   });
+
+  // Sunrise/sunset for the selected day at the visitor's location (Kathmandu by default)
+  const { location: userLocation, status: locationStatus, requestLocation } = useLocation();
+  const selectedAdDate = React.useMemo(() => {
+    try {
+      return convertBsToAd(selectedDay.bsYear, selectedDay.bsMonth, selectedDay.bsDay).adDate;
+    } catch {
+      return null;
+    }
+  }, [selectedDay.bsYear, selectedDay.bsMonth, selectedDay.bsDay]);
+  const localSun = useSunTimes(selectedAdDate);
 
   // Keep selectedDay synced when month/year changes
   const handleMonthChange = (newMonth: number, newYear?: number) => {
@@ -1039,7 +1052,7 @@ export default function HamroPatroHero({
                     <span>Sunrise</span>
                   </div>
                   <div className="font-bold text-stone-900 mt-0.5">
-                    {selectedDay.sunrise}
+                    {localSun?.sunrise ?? selectedDay.sunrise}
                   </div>
                 </div>
 
@@ -1049,9 +1062,30 @@ export default function HamroPatroHero({
                     <span>Sunset</span>
                   </div>
                   <div className="font-bold text-stone-900 mt-0.5">
-                    {selectedDay.sunset}
+                    {localSun?.sunset ?? selectedDay.sunset}
                   </div>
                 </div>
+              </div>
+
+              {/* Location used for sun times */}
+              <div className="mt-2 flex items-center justify-between gap-2 text-[11px] text-stone-500">
+                <span className="flex items-center gap-1 min-w-0">
+                  <MapPin className="w-3 h-3 text-[#D95B16] shrink-0" />
+                  <span className="truncate">
+                    {isNe ? `${userLocation.label} को समय अनुसार` : `Times for ${userLocation.label}`}
+                  </span>
+                </span>
+                {userLocation.source !== "device" && locationStatus !== "unsupported" && (
+                  <button
+                    onClick={requestLocation}
+                    disabled={locationStatus === "pending"}
+                    className="shrink-0 font-semibold text-[#D95B16] hover:underline disabled:opacity-60"
+                  >
+                    {locationStatus === "pending"
+                      ? isNe ? "खोज्दै..." : "Locating..."
+                      : isNe ? "मेरो स्थान प्रयोग गर्नुहोस्" : "Use my location"}
+                  </button>
+                )}
               </div>
 
               {/* Auspicious Muhurta Strip */}

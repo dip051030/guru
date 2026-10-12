@@ -8,6 +8,7 @@ import {
   getNepaliDate,
   calculateAscendant,
   calculatePlanetaryPositions,
+  getSunTimes,
 } from "./astronomy";
 
 describe("Astronomical Ephemeris & Panchang Engine", () => {
@@ -84,5 +85,24 @@ describe("Astronomical Ephemeris & Panchang Engine", () => {
       const diff = Math.abs(rahu.longitude - ketu.longitude);
       expect(Math.abs(diff - 180)).toBeLessThan(0.01);
     }
+  });
+
+  it("computes sunrise/sunset in the visitor's own time zone", () => {
+    const toMinutes = (t: string) => {
+      const [, h, m, ap] = t.match(/(\d{2}):(\d{2})\s+(AM|PM)/)!;
+      return ((Number(h) % 12) + (ap === "PM" ? 12 : 0)) * 60 + Number(m);
+    };
+    // London, 21 June 2026: real sunrise ~04:43, sunset ~21:21 BST
+    const london = getSunTimes(new Date(2026, 5, 21, 12), 51.5074, -0.1278, "Europe/London");
+    expect(Math.abs(toMinutes(london.sunrise) - (4 * 60 + 43))).toBeLessThan(15);
+    expect(Math.abs(toMinutes(london.sunset) - (21 * 60 + 21))).toBeLessThan(15);
+    // Kathmandu, same day: sunrise ~05:08, sunset ~19:02 NPT
+    const ktm = getSunTimes(new Date(2026, 5, 21, 12), 27.7172, 85.324, "Asia/Kathmandu");
+    expect(Math.abs(toMinutes(ktm.sunrise) - (5 * 60 + 8))).toBeLessThan(15);
+    expect(Math.abs(toMinutes(ktm.sunset) - (19 * 60 + 2))).toBeLessThan(15);
+    // London, 12 Oct 2026 (equation of time ≈ +14 min): sunrise ~07:20, sunset ~18:13 BST
+    const autumn = getSunTimes(new Date(2026, 9, 12), 51.5074, -0.1278, "Europe/London");
+    expect(Math.abs(toMinutes(autumn.sunrise) - (7 * 60 + 20))).toBeLessThan(6);
+    expect(Math.abs(toMinutes(autumn.sunset) - (18 * 60 + 13))).toBeLessThan(6);
   });
 });

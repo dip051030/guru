@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Outfit, JetBrains_Mono } from "next/font/google";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { LocationProvider } from "@/context/LocationContext";
 import FloatingContactButtons from "@/components/FloatingContactButtons";
+import AppPrompts from "@/components/AppPrompts";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -43,6 +45,19 @@ export const metadata: Metadata = {
     "Janma Kundali",
   ],
   authors: [{ name: "Guru Nilhari" }],
+  applicationName: "Guru Nilhari",
+  appleWebApp: {
+    capable: true,
+    title: "Guru Nilhari",
+    statusBarStyle: "default",
+  },
+  icons: {
+    apple: "/apple-touch-icon.png",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0E1A2E",
 };
 
 export default function RootLayout({
@@ -57,8 +72,11 @@ export default function RootLayout({
     >
       <body className="min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-secondary/20 selection:text-foreground">
         <LanguageProvider>
-          {children}
-          <FloatingContactButtons />
+          <LocationProvider>
+            {children}
+            <FloatingContactButtons />
+            <AppPrompts />
+          </LocationProvider>
         </LanguageProvider>
       </body>
     </html>

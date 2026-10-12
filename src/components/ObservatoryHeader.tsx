@@ -3,8 +3,10 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { IconCalendar as Calendar, IconPhone as Phone, IconWhatsApp as WhatsApp, IconMenu as Menu, IconClose as X, IconArrowRight as ArrowRight } from "./icons/CustomIcons";
-import { getNepaliDate, getDailyMuhurtaTimings, toNepaliNumber } from "@/utils/astronomy";
+import { IconCalendar as Calendar, IconPhone as Phone, IconWhatsApp as WhatsApp, IconMenu as Menu, IconClose as X, IconArrowRight as ArrowRight, IconClock as Clock, IconLocate as Locate } from "./icons/CustomIcons";
+import { getNepaliDate, toNepaliNumber } from "@/utils/astronomy";
+import { useLocation } from "@/context/LocationContext";
+import { useLocalClock, useSunTimes } from "@/hooks/useLocalTime";
 import { useLanguage } from "@/context/LanguageContext";
 import BrandLogo from "./BrandLogo";
 import LanguageToggle from "./LanguageToggle";
@@ -18,7 +20,11 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
   const pathname = usePathname();
   const { t, language } = useLanguage();
   const [nepaliDateStr, setNepaliDateStr] = useState<string>("");
-  const [muhurtaInfo, setMuhurtaInfo] = useState<{ sunrise: string; sunset: string } | null>(null);
+  const [today, setToday] = useState<Date | null>(null);
+  const { location, status, requestLocation } = useLocation();
+  const isDeviceLocation = location.source === "device";
+  const sunTimes = useSunTimes(today);
+  const localClock = useLocalClock();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -29,7 +35,7 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
         ? `${bs.formattedNepali} (${bs.formatted})`
         : `${bs.formatted} (B.S.)`
     );
-    setMuhurtaInfo(getDailyMuhurtaTimings(now));
+    setToday(now);
   }, [language]);
 
   return (
@@ -39,32 +45,42 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
         <div className="flex items-center gap-5">
           <div className="flex items-center gap-1.5">
             <Calendar className="w-3.5 h-3.5 text-[#D95B16]" />
-            <span className="text-stone-700 font-medium">{t.header.patro}:</span>
+            <span className="text-stone-700 font-medium">{t.header.patro}</span>
             <span className="text-[#D95B16] font-bold">{nepaliDateStr || t.header.loading}</span>
           </div>
           <span className="text-stone-300">|</span>
           <div className="flex items-center gap-1.5 text-stone-600">
             <span className="text-amber-500">☼</span>
-            <span>{t.header.sunrise}:</span>
+            <span>{isDeviceLocation ? (language === "ne" ? `${location.label} सूर्योदय:` : `${location.label} Sunrise:`) : t.header.sunrise}</span>
             <span className="text-stone-800 font-semibold">
-              {muhurtaInfo?.sunrise
-                ? language === "ne"
-                  ? toNepaliNumber(muhurtaInfo.sunrise)
-                  : muhurtaInfo.sunrise
-                : "06:09 AM"}
+              {sunTimes ? (language === "ne" ? toNepaliNumber(sunTimes.sunrise) : sunTimes.sunrise) : "--:--"}
             </span>
           </div>
           <span className="text-stone-300">|</span>
           <div className="flex items-center gap-1.5 text-stone-600">
             <span className="text-amber-600">☽</span>
-            <span>{t.header.sunset}:</span>
+            <span>{t.header.sunset}</span>
             <span className="text-stone-800 font-semibold">
-              {muhurtaInfo?.sunset
-                ? language === "ne"
-                  ? toNepaliNumber(muhurtaInfo.sunset)
-                  : muhurtaInfo.sunset
-                : "05:57 PM"}
+              {sunTimes ? (language === "ne" ? toNepaliNumber(sunTimes.sunset) : sunTimes.sunset) : "--:--"}
             </span>
+          </div>
+          <span className="text-stone-300">|</span>
+          <div className="flex items-center gap-1.5 text-stone-600">
+            <Clock className="w-3.5 h-3.5 text-[#D95B16]" />
+            <span>{location.label}:</span>
+            <span className="text-stone-800 font-semibold tabular-nums">
+              {localClock ? (language === "ne" ? toNepaliNumber(localClock) : localClock) : "--:--"}
+            </span>
+            {!isDeviceLocation && status !== "unsupported" && (
+              <button
+                onClick={requestLocation}
+                disabled={status === "pending"}
+                className="ml-1 inline-flex items-center gap-1 px-2 py-0.5 rounded-full border border-[#D95B16]/40 text-[#D95B16] hover:bg-[#D95B16] hover:text-white transition-colors disabled:opacity-60"
+              >
+                <Locate className="w-3 h-3" weight="fill" />
+                <span>{status === "pending" ? (language === "ne" ? "खोज्दै..." : "Locating...") : language === "ne" ? "मेरो स्थान" : "Use my location"}</span>
+              </button>
+            )}
           </div>
           <span className="text-stone-300">|</span>
           <div className="flex items-center gap-1 text-stone-600">

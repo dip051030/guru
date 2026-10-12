@@ -52,6 +52,9 @@ import {
   Database,
   TerminalWindow,
   Scroll,
+  DownloadSimple,
+  Export,
+  NavigationArrow,
   IconWeight,
 } from '@phosphor-icons/react';
 
@@ -323,3 +326,17 @@ export function IconTerminal({ size = 20, className = '', weight = 'regular', ..
   return <TerminalWindow size={size} className={className} weight={weight} {...(props as any)} />;
 }
 
+// 53. Download / Install Icon -> Phosphor DownloadSimple
+export function IconDownload({ size = 20, className = '', weight = 'regular', ...props }: IconProps) {
+  return <DownloadSimple size={size} className={className} weight={weight} {...(props as any)} />;
+}
+
+// 54. Share (iOS) Icon -> Phosphor Export
+export function IconShare({ size = 20, className = '', weight = 'regular', ...props }: IconProps) {
+  return <Export size={size} className={className} weight={weight} {...(props as any)} />;
+}
+
+// 55. Locate Me Icon -> Phosphor NavigationArrow
+export function IconLocate({ size = 20, className = '', weight = 'regular', ...props }: IconProps) {
+  return <NavigationArrow size={size} className={className} weight={weight} {...(props as any)} />;
+}

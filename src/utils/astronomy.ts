@@ -527,3 +527,43 @@ export function getDailyMuhurtaTimings(date: Date) {
     sunset: sunTimes.sunset,
   };
 }
+
+/**
+ * Sunrise and sunset for any coordinates, formatted in the given IANA time zone
+ * (e.g. "Europe/London"), including the equation-of-time correction.
+ */
+export function getSunTimes(
+  date: Date,
+  lat: number,
+  lon: number,
+  timeZone: string
+): { sunrise: string; sunset: string } {
+  const rad = Math.PI / 180;
+  // Day of year from calendar fields, so DST shifts can't push it off by one.
+  const midnightUtc = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+  const dayOfYear = Math.round((midnightUtc - Date.UTC(date.getFullYear(), 0, 0)) / 86400000);
+  const B = rad * (360 / 365) * (dayOfYear - 81);
+  const delta = 23.45 * Math.sin(B);
+  // Equation of time (minutes): sundial vs clock drift, up to ±16 min over the year.
+  const eqTime = 9.87 * Math.sin(2 * B) - 7.53 * Math.cos(B) - 1.5 * Math.sin(B);
+
+  const cosH =
+    (Math.cos(rad * 90.833) - Math.sin(rad * lat) * Math.sin(rad * delta)) /
+    (Math.cos(rad * lat) * Math.cos(rad * delta));
+  const H = Math.acos(Math.max(-1, Math.min(1, cosH))) * (180 / Math.PI);
+
+  // Solar noon in UTC hours, then shift by the half-day arc.
+  const solarNoonUtc = 12 - lon / 15 - eqTime / 60;
+  const fmt = new Intl.DateTimeFormat("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+    timeZone,
+  });
+  const at = (hoursUtc: number) => fmt.format(new Date(midnightUtc + hoursUtc * 3600 * 1000));
+
+  return {
+    sunrise: at(solarNoonUtc - H / 15),
+    sunset: at(solarNoonUtc + H / 15),
+  };
+}

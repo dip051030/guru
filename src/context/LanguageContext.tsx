@@ -258,7 +258,7 @@ const TRANSLATIONS: Record<Language, Translations> = {
     header: {
       patro: "Nepali Patro:",
       loading: "Loading...",
-      sunrise: "KTM Sunrise:",
+      sunrise: "Kathmandu Sunrise:",
       sunset: "Sunset:",
       contact: "Contact / WhatsApp: +44 7838 820518",
       location: "Vedic Sanatan Kendra UK",
