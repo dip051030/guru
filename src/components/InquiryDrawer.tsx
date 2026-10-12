@@ -11,7 +11,10 @@ import {
   IconShield,
   IconVideo,
   IconMapPin,
+  IconWhatsApp,
+  IconPhone,
 } from "@/components/icons/CustomIcons";
+import { TEL_LINK, bookingMessage, openWhatsApp, whatsappLink } from "@/config/contact";
 import confetti from "canvas-confetti";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -38,6 +41,8 @@ export default function InquiryDrawer({
   const [question, setQuestion] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [bookingRef, setBookingRef] = useState("");
+  const [waMessage, setWaMessage] = useState("");
 
   const CONSULTATION_TYPES = [
     {
@@ -74,6 +79,24 @@ export default function InquiryDrawer({
       return;
     }
     setErrorMsg("");
+
+    const ref = `VSK-${Math.floor(Math.random() * 9000 + 1000)}`;
+    const serviceTitle = CONSULTATION_TYPES.find((c) => c.id === selectedType)?.title;
+    const message = bookingMessage(`Namaste Guruji, I would like to book a consultation (${ref}).`, [
+      ["Name", fullName],
+      ["Phone", phone],
+      ["Email", email],
+      ["Service", serviceTitle],
+      ["Mode", meetingMode === "online" ? "Online video" : "In-person (UK)"],
+      ["Date of birth", dob],
+      ["Time of birth", tob],
+      ["Place of birth", pob],
+      ["Topic", initialTopic],
+      ["Question", question],
+    ]);
+    setBookingRef(ref);
+    setWaMessage(message);
+    openWhatsApp(message);
 
     try {
       confetti({
@@ -168,14 +191,38 @@ export default function InquiryDrawer({
                         </Dialog.Description>
 
                         <div className="mt-8 p-4 rounded-md border border-stone-200 bg-stone-50 font-mono text-xs text-stone-600 text-left w-full space-y-1.5">
-                          <div>{language === "ne" ? "बुकिङ दर्ता नं" : "Booking Reference"}: VSK-{(Math.random() * 9000 + 1000).toFixed(0)}</div>
+                          <div>{language === "ne" ? "बुकिङ दर्ता नं" : "Booking Reference"}: {bookingRef}</div>
                           <div>{language === "ne" ? "माध्यम" : "Mode"}: {meetingMode === "online" ? (language === "ne" ? "अनलाइन भिडियो (Zoom/WhatsApp)" : "Online Video (Zoom/WhatsApp)") : (language === "ne" ? "प्रत्यक्ष भेट (सनातन केन्द्र युके)" : "In-Person (Sanatan Kendra UK)")}</div>
                           <div>{language === "ne" ? "गोपनीयता" : "Privacy"}: {language === "ne" ? "१००% व्यक्तिगत र मर्यादित" : "100% Strictly Confidential"}</div>
                         </div>
 
+                        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+                          <a
+                            href={whatsappLink(waMessage)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="py-3.5 rounded-md bg-[#25D366] hover:bg-[#1EBE5D] text-white text-sm font-bold flex items-center justify-center gap-2 transition-colors shadow-xs"
+                          >
+                            <IconWhatsApp className="w-5 h-5" weight="fill" />
+                            <span>{language === "ne" ? "ह्वाट्सएपमा पठाउनुहोस्" : "Send on WhatsApp"}</span>
+                          </a>
+                          <a
+                            href={TEL_LINK}
+                            className="py-3.5 rounded-md bg-[#0E1A2E] hover:bg-[#1A2740] text-white text-sm font-bold flex items-center justify-center gap-2 transition-colors shadow-xs"
+                          >
+                            <IconPhone className="w-4 h-4 text-amber-400" weight="fill" />
+                            <span>{language === "ne" ? "फोन गर्नुहोस्" : "Call now"}</span>
+                          </a>
+                        </div>
+                        <p className="mt-2 text-[11px] text-stone-500">
+                          {language === "ne"
+                            ? "ह्वाट्सएप नखुलेमा माथिको हरियो बटन थिच्नुहोस्।"
+                            : "If WhatsApp didn't open, tap the green button to send your details."}
+                        </p>
+
                         <button
                           onClick={handleReset}
-                          className="mt-8 px-8 py-3.5 rounded-md bg-[#D95B16] text-white text-xs font-mono uppercase tracking-widest hover:bg-[#B8480C] transition-colors font-bold shadow-xs"
+                          className="mt-6 px-8 py-3.5 rounded-md bg-[#D95B16] text-white text-xs font-mono uppercase tracking-widest hover:bg-[#B8480C] transition-colors font-bold shadow-xs"
                         >
                           {language === "ne" ? "बन्द गरी मुख्य पृष्ठमा फर्कनुहोस्" : "Return to Home Page"}
                         </button>
@@ -378,7 +425,7 @@ export default function InquiryDrawer({
                           className="w-full py-4 rounded-md bg-[#D95B16] text-white font-mono text-xs uppercase tracking-widest font-bold hover:bg-[#B8480C] transition-all duration-200 flex items-center justify-center gap-2 shadow-xs"
                         >
                           <IconSend className="w-3.5 h-3.5" />
-                          <span>{language === "ne" ? "परामर्श अनुरोध पठाउनुहोस्" : "Submit Consultation Request"}</span>
+                          <span>{language === "ne" ? "ह्वाट्सएप मार्फत अनुरोध पठाउनुहोस्" : "Send Request via WhatsApp"}</span>
                         </button>
                       </form>
                     )}

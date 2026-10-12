@@ -10,6 +10,7 @@ import {
   IconMapPin as MapPin,
 } from "./icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
+import { whatsappLink, TEL_LINK, CONTACT_PHONE_DISPLAY } from "@/config/contact";
 
 interface AboutGuruSectionProps {
   onOpenInquiry: (topic?: string) => void;
@@ -71,8 +72,12 @@ export default function AboutGuruSection({ onOpenInquiry }: AboutGuruSectionProp
                 </div>
                 <div className="flex items-center gap-2">
                   <Phone className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                  <a href="https://wa.me/447838820518" target="_blank" rel="noopener noreferrer" className="hover:text-amber-300 font-mono">
-                    +44 7838 820518
+                  <a href={TEL_LINK} className="hover:text-amber-300 font-mono">
+                    {CONTACT_PHONE_DISPLAY}
+                  </a>
+                  <span className="text-stone-500">·</span>
+                  <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:text-amber-300">
+                    WhatsApp
                   </a>
                 </div>
               </div>

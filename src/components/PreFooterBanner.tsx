@@ -4,6 +4,7 @@ import React from "react";
 import {
   IconCalendar as Calendar,
   IconPhone as Phone,
+  IconWhatsApp as WhatsApp,
   IconSparkles as Sparkles,
   IconShield as Shield,
   IconHeartHandshake as HeartHandshake,
@@ -11,13 +12,14 @@ import {
 } from "./icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 import BrandLogo from "./BrandLogo";
+import { whatsappLink, TEL_LINK, WHATSAPP_GREETING } from "@/config/contact";
 
 interface PreFooterBannerProps {
   onOpenInquiry: (subject?: string) => void;
 }
 
 export default function PreFooterBanner({ onOpenInquiry }: PreFooterBannerProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section className="w-full py-16 md:py-24 bg-[#131B2E] text-white relative">
@@ -49,12 +51,20 @@ export default function PreFooterBanner({ onOpenInquiry }: PreFooterBannerProps)
           </button>
 
           <a
-            href="https://wa.me/447838820518"
+            href={whatsappLink(language === "ne" ? WHATSAPP_GREETING.ne : WHATSAPP_GREETING.en)}
             target="_blank"
             rel="noopener noreferrer"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-none bg-[#25D366] hover:bg-[#1EBE5D] border border-[#25D366] text-white font-bold text-sm md:text-base transition-all flex items-center justify-center gap-2.5"
+          >
+            <WhatsApp className="w-5 h-5" weight="fill" />
+            <span>WhatsApp</span>
+          </a>
+
+          <a
+            href={TEL_LINK}
             className="w-full sm:w-auto px-8 py-3.5 rounded-none bg-white/5 hover:bg-white/10 border border-white/20 text-white font-bold text-sm md:text-base transition-all flex items-center justify-center gap-2.5"
           >
-            <Phone className="w-4 h-4 text-[#F59E0B]" />
+            <Phone className="w-4 h-4 text-[#F59E0B]" weight="fill" />
             <span className="font-mono">{t.preFooter.phoneText}</span>
           </a>
         </div>

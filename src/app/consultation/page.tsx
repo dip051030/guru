@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { IconArrowLeft, IconCalendar, IconPhone } from "@/components/icons/CustomIcons";
+import { IconArrowLeft, IconCalendar, IconPhone, IconWhatsApp } from "@/components/icons/CustomIcons";
 import ObservatoryHeader from "@/components/ObservatoryHeader";
 import OnlineConsultationSection from "@/components/OnlineConsultationSection";
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
@@ -11,6 +11,7 @@ import InquiryDrawer from "@/components/InquiryDrawer";
 import Footer from "@/components/Footer";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import { useLanguage } from "@/context/LanguageContext";
+import { whatsappLink, TEL_LINK, CONTACT_PHONE_DISPLAY } from "@/config/contact";
 
 export default function ConsultationPage() {
   const { language } = useLanguage();
@@ -62,15 +63,24 @@ export default function ConsultationPage() {
               </p>
             </div>
 
+            <div className="flex flex-col sm:flex-row gap-3 shrink-0 self-start md:self-auto">
             <a
-              href="https://wa.me/447838820518"
+              href={whatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3.5 bg-[#D95B16] hover:bg-[#B8480C] text-white font-bold text-sm flex items-center gap-2 rounded-xl border border-[#D95B16] transition-all shadow-md shrink-0 self-start md:self-auto font-mono uppercase tracking-wider active:scale-95"
+              className="px-6 py-3.5 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-sm flex items-center justify-center gap-2 rounded-xl transition-all shadow-md font-sans active:scale-95"
             >
-              <IconPhone size={16} className="text-orange-200" />
-              <span>+44 7838 820518 (WhatsApp)</span>
+              <IconWhatsApp size={18} weight="fill" />
+              <span>WhatsApp</span>
             </a>
+            <a
+              href={TEL_LINK}
+              className="px-6 py-3.5 bg-[#D95B16] hover:bg-[#B8480C] text-white font-bold text-sm flex items-center justify-center gap-2 rounded-xl border border-[#D95B16] transition-all shadow-md font-mono active:scale-95"
+            >
+              <IconPhone size={16} weight="fill" className="text-orange-200" />
+              <span>{CONTACT_PHONE_DISPLAY}</span>
+            </a>
+            </div>
           </div>
         </div>
       </section>

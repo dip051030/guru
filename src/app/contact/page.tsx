@@ -19,6 +19,7 @@ import InquiryDrawer from "@/components/InquiryDrawer";
 import Footer from "@/components/Footer";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import { useLanguage } from "@/context/LanguageContext";
+import { whatsappLink, TEL_LINK, CONTACT_PHONE_DISPLAY, WHATSAPP_GREETING, bookingMessage, openWhatsApp } from "@/config/contact";
 
 export default function ContactPage() {
   const { t, language } = useLanguage();
@@ -36,6 +37,16 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    openWhatsApp(
+      bookingMessage("Namaste Guruji, I would like to book an appointment.", [
+        ["Name", formName],
+        ["Phone", formPhone],
+        ["Email", formEmail],
+        ["Service", formService],
+        ["Mode", formMode],
+        ["Notes", formNotes],
+      ])
+    );
     setSubmitted(true);
   };
 
@@ -65,10 +76,10 @@ export default function ContactPage() {
           </div>
 
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-amber-500/10 border border-amber-500/30 text-amber-300 rounded-full font-mono text-xs uppercase tracking-widest mb-3">
+            <a href={TEL_LINK} className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 rounded-full font-mono text-xs uppercase tracking-widest mb-3 transition-colors">
               <IconPhone size={14} className="text-amber-400" />
-              <span>+44 7838 820518</span>
-            </div>
+              <span>{CONTACT_PHONE_DISPLAY}</span>
+            </a>
             <h1 className="text-3xl md:text-5xl font-serif text-white tracking-tight">
               {language === "ne"
                 ? "परामर्श निर्धारण तथा सम्पर्क केन्द्र"
@@ -122,12 +133,10 @@ export default function ContactPage() {
                       {language === "ne" ? "फोन तथा ह्वाट्सएप" : "Phone & WhatsApp"}
                     </h4>
                     <a
-                      href="https://wa.me/447838820518"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={TEL_LINK}
                       className="text-[#D95B16] hover:underline font-mono text-sm font-bold block mt-0.5"
                     >
-                      +44 7838 820518
+                      {CONTACT_PHONE_DISPLAY}
                     </a>
                     <span className="text-[11px] text-stone-500 font-mono">
                       {language === "ne" ? "(२४/७ सन्देश तथा अपोइन्टमेन्ट)" : "(24/7 direct messaging)"}
@@ -188,15 +197,22 @@ export default function ContactPage() {
               </div>
 
               {/* Direct WhatsApp Quick Button */}
-              <div className="mt-8 pt-6 border-t border-stone-200">
+              <div className="mt-8 pt-6 border-t border-stone-200 grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <a
-                  href="https://wa.me/447838820518"
+                  href={whatsappLink(language === "ne" ? WHATSAPP_GREETING.ne : WHATSAPP_GREETING.en)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3.5 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-sm rounded-md flex items-center justify-center gap-2 shadow-sm transition-all font-sans active:scale-95"
                 >
                   <IconWhatsApp size={18} />
-                  <span>{language === "ne" ? "ह्वाट्सएपमा सिधै सन्देश पठाउनुहोस्" : "Direct WhatsApp Connect"}</span>
+                  <span>{language === "ne" ? "ह्वाट्सएप सन्देश" : "Chat on WhatsApp"}</span>
+                </a>
+                <a
+                  href={TEL_LINK}
+                  className="w-full py-3.5 bg-[#0E1A2E] hover:bg-[#1A2740] text-white font-bold text-sm rounded-md flex items-center justify-center gap-2 shadow-sm transition-all font-sans active:scale-95"
+                >
+                  <IconPhone size={18} weight="fill" className="text-amber-400" />
+                  <span>{language === "ne" ? "अहिले फोन गर्नुहोस्" : "Call now"}</span>
                 </a>
               </div>
             </div>
@@ -391,7 +407,7 @@ export default function ContactPage() {
                     className="w-full py-4 bg-[#D95B16] hover:bg-[#B8480C] text-white font-bold text-sm uppercase tracking-wider font-mono rounded-xl shadow-md transition-all flex items-center justify-center gap-2 active:scale-95"
                   >
                     <IconCalendar size={18} className="text-orange-200" />
-                    <span>{language === "ne" ? "परामर्श समय सुरक्षित गर्नुहोस्" : "Confirm Consultation Request"}</span>
+                    <span>{language === "ne" ? "ह्वाट्सएप मार्फत अनुरोध पठाउनुहोस्" : "Send Request via WhatsApp"}</span>
                   </button>
                 </form>
               )}

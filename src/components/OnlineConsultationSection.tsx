@@ -13,6 +13,7 @@ import {
   IconMessageCircle,
 } from "@/components/icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
+import { bookingMessage, openWhatsApp } from "@/config/contact";
 
 export default function OnlineConsultationSection() {
   const { language } = useLanguage();
@@ -30,6 +31,18 @@ export default function OnlineConsultationSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    openWhatsApp(
+      bookingMessage("Namaste Guruji, I would like to book a consultation.", [
+        ["Name", fullName],
+        ["Phone", phone],
+        ["Email", email],
+        ["Service", service],
+        ["Preferred date", preferredDate],
+        ["Preferred time", preferredTime],
+        ["Mode", mode],
+        ["Notes", notes],
+      ])
+    );
     setIsSubmitted(true);
   };
 

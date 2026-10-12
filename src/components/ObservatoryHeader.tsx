@@ -3,11 +3,12 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { IconCalendar as Calendar, IconPhone as Phone, IconMenu as Menu, IconClose as X, IconArrowRight as ArrowRight } from "./icons/CustomIcons";
+import { IconCalendar as Calendar, IconPhone as Phone, IconWhatsApp as WhatsApp, IconMenu as Menu, IconClose as X, IconArrowRight as ArrowRight } from "./icons/CustomIcons";
 import { getNepaliDate, getDailyMuhurtaTimings, toNepaliNumber } from "@/utils/astronomy";
 import { useLanguage } from "@/context/LanguageContext";
 import BrandLogo from "./BrandLogo";
 import LanguageToggle from "./LanguageToggle";
+import { whatsappLink, TEL_LINK, CONTACT_PHONE_DISPLAY } from "@/config/contact";
 
 interface HeaderProps {
   onOpenInquiry: (initialSubject?: string) => void;
@@ -74,13 +75,20 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
 
         <div className="flex items-center gap-5 text-xs">
           <a
-            href="https://wa.me/447838820518"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={TEL_LINK}
             className="flex items-center gap-1.5 text-stone-700 hover:text-[#D95B16] transition-colors"
           >
             <Phone className="w-3.5 h-3.5 text-[#D95B16]" />
-            <span>Contact / WhatsApp: <strong className="font-semibold">+44 7838 820518</strong></span>
+            <span>{language === "ne" ? "फोन" : "Call"}: <strong className="font-semibold">{CONTACT_PHONE_DISPLAY}</strong></span>
+          </a>
+          <a
+            href={whatsappLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-stone-700 hover:text-[#25D366] transition-colors"
+          >
+            <WhatsApp className="w-3.5 h-3.5 text-[#25D366]" weight="fill" />
+            <span>WhatsApp</span>
           </a>
           <span className="text-stone-300">|</span>
           <span className="text-stone-700 font-semibold">Vedic Sanatan Kendra UK</span>

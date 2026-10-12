@@ -17,6 +17,7 @@ import InquiryDrawer from "@/components/InquiryDrawer";
 import Footer from "@/components/Footer";
 import MobileBottomNav from "@/components/MobileBottomNav";
 import { useLanguage } from "@/context/LanguageContext";
+import { whatsappLink } from "@/config/contact";
 
 export default function StorePage() {
   const { language } = useLanguage();
@@ -69,7 +70,7 @@ export default function StorePage() {
             </div>
 
             <a
-              href="https://wa.me/447838820518?text=नमस्ते%20गुरु%20नीलहरी,%20मलाई%20सामग्री%20अर्डर%20गर्नु%20थियो।"
+              href={whatsappLink("नमस्ते गुरु नीलहरी, मलाई सामग्री अर्डर गर्नु थियो।")}
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3.5 bg-[#D95B16] hover:bg-[#B8480C] text-white font-bold text-sm flex items-center gap-2 rounded-xl border border-[#D95B16] transition-all shadow-md shrink-0 self-start md:self-auto font-mono uppercase tracking-wider active:scale-95"

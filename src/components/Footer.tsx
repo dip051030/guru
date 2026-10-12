@@ -13,6 +13,7 @@ import {
 } from "./icons/CustomIcons";
 import { useLanguage } from "@/context/LanguageContext";
 import BrandLogo from "./BrandLogo";
+import { whatsappLink, TEL_LINK, CONTACT_PHONE_DISPLAY } from "@/config/contact";
 
 interface FooterProps {
   onOpenInquiry: (subject?: string) => void;
@@ -150,8 +151,12 @@ export default function Footer({ onOpenInquiry }: FooterProps) {
             <div className="mt-4 pt-4 border-t border-stone-800 text-xs font-mono text-stone-400 space-y-2">
               <div className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-[#F59E0B] shrink-0" />
-                <a href="https://wa.me/447838820518" target="_blank" rel="noopener noreferrer" className="hover:text-white">
-                  +44 7838 820518 (UK)
+                <a href={TEL_LINK} className="hover:text-white">
+                  {CONTACT_PHONE_DISPLAY} (UK)
+                </a>
+                <span className="text-stone-600">·</span>
+                <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:text-white">
+                  WhatsApp
                 </a>
               </div>
               <div className="flex items-center gap-2">

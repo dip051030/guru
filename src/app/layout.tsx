@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Outfit, JetBrains_Mono } from "next/font/google";
 import { LanguageProvider } from "@/context/LanguageContext";
+import FloatingContactButtons from "@/components/FloatingContactButtons";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -55,7 +56,10 @@ export default function RootLayout({
       className={`${playfair.variable} ${outfit.variable} ${jetbrainsMono.variable} scroll-smooth`}
     >
       <body className="min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-secondary/20 selection:text-foreground">
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          {children}
+          <FloatingContactButtons />
+        </LanguageProvider>
       </body>
     </html>
   );
