@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { renderBookingEmail } from "@/lib/bookingEmail";
 
 export const dynamic = "force-dynamic";
 
@@ -24,15 +25,6 @@ interface BookingPayload {
   replyTo?: unknown;
   /** Honeypot: real visitors never fill this hidden field. */
   website?: unknown;
-}
-
-function escapeHtml(s: string) {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
 }
 
 function clean(v: unknown, max: number): string {
@@ -73,22 +65,7 @@ export async function POST(request: Request) {
   }
 
   const replyTo = clean(body.replyTo, 200);
-  const service = fields.find(([l]) => l === "Service")?.[1];
-  const subject = `New booking: ${name}${service ? ` — ${service}` : ""}`.slice(0, 200);
-
-  const rows = fields
-    .map(
-      ([label, value]) =>
-        `<tr><td style="padding:6px 12px 6px 0;color:#78716c;vertical-align:top;white-space:nowrap">${escapeHtml(label)}</td>` +
-        `<td style="padding:6px 0;color:#1c1917;white-space:pre-wrap">${escapeHtml(value)}</td></tr>`
-    )
-    .join("");
-  const html = `<div style="font-family:system-ui,-apple-system,Segoe UI,sans-serif;font-size:14px">
-<h2 style="margin:0 0 4px;color:#D95B16">New consultation request</h2>
-<p style="margin:0 0 16px;color:#78716c">From the ${escapeHtml(source)} form on gurunilhari.com</p>
-<table style="border-collapse:collapse">${rows}</table>
-</div>`;
-  const text = [`New consultation request (${source})`, "", ...fields.map(([l, v]) => `${l}: ${v}`)].join("\n");
+  const { subject, html, text } = renderBookingEmail({ source, fields });
 
   try {
     const res = await fetch("https://api.resend.com/emails", {
