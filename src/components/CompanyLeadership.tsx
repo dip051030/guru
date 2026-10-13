@@ -21,28 +21,6 @@ interface LeadershipProps {
 export default function CompanyLeadership({ onOpenInquiry }: LeadershipProps) {
   const { t, language } = useLanguage();
 
-  const HIGHLIGHTS = [
-    {
-      value: language === "ne" ? "३०+ वर्ष" : "30+ Years",
-      label: language === "ne" ? "शास्त्रीय साधना" : "Classical Mastery",
-      sub: language === "ne" ? "गुरुकुल परम्परामा दीक्षित" : "Trained in Gurukul Lineage",
-    },
-    {
-      value: "२५,०००+",
-      label: language === "ne" ? "परामर्श सेवाग्राही" : "Clients Advised",
-      sub: language === "ne" ? "स्वदेश तथा विदेशमा" : "Nepal & Global Diaspora",
-    },
-    {
-      value: "१००%",
-      label: language === "ne" ? "सात्विक मार्गदर्शन" : "Sattvic Guidance",
-      sub: language === "ne" ? "व्यापारिक विकृति रहित" : "Zero Commercial Rackets",
-    },
-    {
-      value: language === "ne" ? "युके केन्द्र" : "UK Centre",
-      label: language === "ne" ? "सनातन केन्द्र युके" : "Sanatan Kendra UK",
-      sub: language === "ne" ? "प्रत्यक्ष र अनलाइन सेवा" : "In-Person & Global Online",
-    },
-  ];
 
   return (
     <section id="about-guru" className="w-full py-20 md:py-28 border-b border-stone-200 bg-[#FAF7F2] relative">
@@ -106,23 +84,6 @@ export default function CompanyLeadership({ onOpenInquiry }: LeadershipProps) {
                 <p className="mt-3 text-sm md:text-base text-stone-600 leading-relaxed font-light">
                   {t.about.p2}
                 </p>
-              </div>
-
-              {/* 4 Stat Badges Grid */}
-              <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-stone-200/60">
-                {HIGHLIGHTS.map((item, idx) => (
-                  <div key={idx} className="p-3.5 rounded-md bg-stone-50/70 border border-stone-200/80 text-center hover:border-[#D95B16]/50 hover:-translate-y-0.5 transition-all duration-200">
-                    <div className="font-serif text-base lg:text-lg font-bold text-[#D95B16]">
-                      {item.value}
-                    </div>
-                    <div className="text-xs font-bold text-[#181411] mt-0.5">
-                      {item.label}
-                    </div>
-                    <div className="text-[10px] text-stone-500 mt-0.5 font-mono">
-                      {item.sub}
-                    </div>
-                  </div>
-                ))}
               </div>
 
               {/* Action Button */}

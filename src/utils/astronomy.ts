@@ -10,6 +10,11 @@
  * - Ascendant (Lagna) determination for any geographic coordinates
  */
 
+import {
+  GRAHAS, type Graha, lahiriAyanamsha, localMidnight, moonLongitude, riseSet, siderealGraha, siderealMoon,
+  sunLongitude, toSidereal,
+} from "./ephemeris";
+
 import NepaliDate from "nepali-date-converter";
 
 export interface GrahaPosition {
@@ -161,56 +166,19 @@ export function calculateJulianDate(date: Date): number {
   return time / 86400000 + 2440587.5;
 }
 
-/**
- * Lahiri (Chitrapaksha) ayanamsha in degrees: 23°51'11" at J2000, precessing
- * ~50.29" per year. Subtract from tropical longitudes to get sidereal ones.
- */
-export function lahiriAyanamsha(jd: number): number {
-  return 23.8531 + (0.013969 * (jd - 2451545.0)) / 365.25;
-}
-
-const toSidereal = (tropical: number, jd: number) => (((tropical - lahiriAyanamsha(jd)) % 360) + 360) % 360;
+export { lahiriAyanamsha };
 
 /** Sidereal (Lahiri) Moon sign at an instant: 0 = Mesha … 11 = Meena. */
 export function getSiderealMoonSign(date: Date): { index: number; degree: number } {
-  const jd = calculateJulianDate(date);
-  const moon = toSidereal(calculateMoonLongitude(jd), jd);
+  const moon = siderealMoon(calculateJulianDate(date));
   return { index: Math.floor(moon / 30), degree: moon % 30 };
 }
 
-/**
- * Calculates apparent Solar Ecliptic Longitude (degrees [0, 360))
- */
-export function calculateSunLongitude(jd: number): number {
-  const n = jd - 2451545.0; // days since J2000.0
-  const L = (280.460 + 0.9856474 * n) % 360;
-  const g = ((357.528 + 0.9856003 * n) % 360) * (Math.PI / 180);
-  let lambda = L + 1.915 * Math.sin(g) + 0.020 * Math.sin(2 * g);
-  lambda = (lambda % 360 + 360) % 360;
-  return lambda;
-}
+/** Apparent tropical longitude of the Sun (degrees), Meeus ch. 25. */
+export const calculateSunLongitude = sunLongitude;
 
-/**
- * Calculates approximate Lunar Ecliptic Longitude (degrees [0, 360))
- */
-export function calculateMoonLongitude(jd: number): number {
-  const d = jd - 2451545.0;
-  // Mean longitude of the Moon
-  const L = (218.316 + 13.176396 * d) % 360;
-  // Mean anomaly of the Moon
-  const M = ((134.963 + 13.064993 * d) % 360) * (Math.PI / 180);
-  // Moon's argument of latitude
-  const F = ((93.272 + 13.229350 * d) % 360) * (Math.PI / 180);
-  // Solar mean anomaly
-  const Ms = ((357.528 + 0.9856003 * d) % 360) * (Math.PI / 180);
-
-  let l = L + 6.289 * Math.sin(M)
-            - 1.274 * Math.sin(M - 2 * F)
-            + 0.658 * Math.sin(2 * (L * Math.PI / 180 - calculateSunLongitude(jd) * Math.PI / 180))
-            - 0.186 * Math.sin(Ms);
-  l = (l % 360 + 360) % 360;
-  return l;
-}
+/** Apparent tropical longitude of the Moon (degrees), Meeus ch. 47. */
+export const calculateMoonLongitude = moonLongitude;
 
 /**
  * Computes Tithi from Sun and Moon longitudes
@@ -359,8 +327,8 @@ export function calculateAscendant(date: Date, latitude: number, longitude: numb
   // Ascendant formula: tan(Asc) = cos(LST) / (-sin(LST)*cos(eps) - tan(lat)*sin(eps))
   const y = Math.cos(lstRad);
   const x = -Math.sin(lstRad) * Math.cos(epsRad) - Math.tan(latRad) * Math.sin(epsRad);
-  let ascDeg = Math.atan2(y, x) * (180 / Math.PI);
-  ascDeg = (ascDeg % 360 + 360) % 360;
+  // Tropical ascendant, then shifted to the sidereal (Lahiri) zodiac.
+  const ascDeg = toSidereal(Math.atan2(y, x) * (180 / Math.PI), jd);
 
   const signIndex = Math.floor(ascDeg / 30) + 1;
   const sign = ZODIAC_SIGNS[signIndex - 1];
@@ -379,41 +347,35 @@ export function calculateAscendant(date: Date, latitude: number, longitude: numb
  * Computes the 9 Vedic Grahas (Planets)
  */
 export function calculatePlanetaryPositions(jd: number): GrahaPosition[] {
-  const d = jd - 2451545.0;
-  const sunLong = calculateSunLongitude(jd);
-  const moonLong = calculateMoonLongitude(jd);
+  const META: Record<Graha, { sanskrit: string; symbol: string }> = {
+    Sun: { sanskrit: "Surya", symbol: "Su" },
+    Moon: { sanskrit: "Chandra", symbol: "Mo" },
+    Mars: { sanskrit: "Mangala", symbol: "Ma" },
+    Mercury: { sanskrit: "Budha", symbol: "Me" },
+    Jupiter: { sanskrit: "Guru", symbol: "Ju" },
+    Venus: { sanskrit: "Shukra", symbol: "Ve" },
+    Saturn: { sanskrit: "Shani", symbol: "Sa" },
+    Rahu: { sanskrit: "Rahu", symbol: "Ra" },
+    Ketu: { sanskrit: "Ketu", symbol: "Ke" },
+  };
 
-  // Mean orbital models for outer/inner planets (ephemeris approximations)
-  const planetsConfig = [
-    { name: "Sun", sanskrit: "Surya", symbol: "☉", long: sunLong, retrograde: false },
-    { name: "Moon", sanskrit: "Chandra", symbol: "☽", long: moonLong, retrograde: false },
-    { name: "Mars", sanskrit: "Mangala", symbol: "♂", long: (355.433 + 0.524071 * d) % 360, retrograde: false },
-    { name: "Mercury", sanskrit: "Budha", symbol: "☿", long: (sunLong + 18 * Math.sin((d * 0.05) % (2 * Math.PI)) + 360) % 360, retrograde: false },
-    { name: "Jupiter", sanskrit: "Guru", symbol: "♃", long: (34.351 + 0.083091 * d) % 360, retrograde: false },
-    { name: "Venus", sanskrit: "Shukra", symbol: "♀", long: (sunLong + 35 * Math.sin((d * 0.03) % (2 * Math.PI)) + 360) % 360, retrograde: false },
-    { name: "Saturn", sanskrit: "Shani", symbol: "♄", long: (50.077 + 0.033459 * d) % 360, retrograde: false },
-    { name: "Rahu", sanskrit: "Rahu", symbol: "☊", long: ((125.04 - 0.05295 * d) % 360 + 360) % 360, retrograde: true },
-    { name: "Ketu", sanskrit: "Ketu", symbol: "☋", long: ((125.04 - 0.05295 * d + 180) % 360 + 360) % 360, retrograde: true },
-  ];
-
-  return planetsConfig.map((p, idx) => {
-    const rawLong = (p.long % 360 + 360) % 360;
-    const signIndex = Math.floor(rawLong / 30) + 1;
-    const degInSign = rawLong % 30;
+  return GRAHAS.map((name) => {
+    const { lon, retrograde } = siderealGraha(name, jd);
+    const signIndex = Math.floor(lon / 30) + 1;
+    const degInSign = lon % 30;
     const sign = ZODIAC_SIGNS[signIndex - 1];
-
     return {
-      name: p.name,
-      sanskrit: p.sanskrit,
-      symbol: p.symbol,
-      longitude: parseFloat(rawLong.toFixed(2)),
+      name,
+      sanskrit: META[name].sanskrit,
+      symbol: META[name].symbol,
+      longitude: parseFloat(lon.toFixed(2)),
       sign: sign.name,
       signIndex,
       degreeInSign: Math.floor(degInSign),
       minuteInSign: Math.floor((degInSign % 1) * 60),
-      house: signIndex, // simplified whole sign
-      isRetrograde: p.retrograde,
-      dignity: "Direct",
+      house: signIndex, // whole-sign from Mesha
+      isRetrograde: retrograde,
+      dignity: retrograde ? "Retrograde" : "Direct",
     };
   });
 }
@@ -468,68 +430,16 @@ export function evaluatePanchanga(date: Date, latitude = 27.7172, longitude = 85
 }
 
 /**
- * Astronomical Solar calculation for Kathmandu (27.7172° N, 85.3240° E)
- * Calculates local sunrise and sunset based on true solar zenith and equation of time
+ * Sunrise and sunset instants (ms) for the calendar day of `date` at the
+ * location, searched from local midnight in `timeZone`.
  */
-export function getKathmanduSunTimes(date: Date): { sunrise: string; sunset: string } {
-  const lat = 27.7172;
-  const lon = 85.3240;
-  const rad = Math.PI / 180;
-
-  const startOfYear = new Date(date.getFullYear(), 0, 0);
-  const diff = date.getTime() - startOfYear.getTime();
-  const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-  // Solar declination approximation
-  const delta = 23.45 * Math.sin(rad * (360 / 365) * (dayOfYear - 81));
-
-  // Hour angle for civil zenith (90.833 degrees)
-  const cosH =
-    (Math.cos(rad * 90.833) - Math.sin(rad * lat) * Math.sin(rad * delta)) /
-    (Math.cos(rad * lat) * Math.cos(rad * delta));
-  const H = Math.acos(Math.max(-1, Math.min(1, cosH))) * (180 / Math.PI);
-
-  // Solar noon in UTC + 5:45 for Nepal Standard Time (5.75)
-  const solarNoonNepal = 12 - lon / 15 + 5.75;
-  const sunriseHours = solarNoonNepal - H / 15;
-  const sunsetHours = solarNoonNepal + H / 15;
-
-  const formatTime = (decHours: number): string => {
-    const hours = Math.floor(decHours);
-    const mins = Math.floor((decHours - hours) * 60);
-    const ampm = hours >= 12 ? "PM" : "AM";
-    const h12 = hours % 12 === 0 ? 12 : hours % 12;
-    return `${h12 < 10 ? "0" : ""}${h12}:${mins < 10 ? "0" : ""}${mins} ${ampm}`;
-  };
-
+function solarDay(date: Date, lat: number, lon: number, timeZone: string) {
+  const midnight = localMidnight(date.getFullYear(), date.getMonth(), date.getDate(), timeZone);
+  const { rise, set } = riseSet("sun", midnight, lat, lon);
   return {
-    sunrise: formatTime(sunriseHours),
-    sunset: formatTime(sunsetHours),
-  };
-}
-
-/** Sunrise and sunset instants (ms since epoch) for the calendar day of `date`. */
-function solarDay(date: Date, lat: number, lon: number): { sunriseMs: number; sunsetMs: number; weekday: number } {
-  const rad = Math.PI / 180;
-  // Day of year from calendar fields, so DST shifts can't push it off by one.
-  const midnightUtc = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
-  const dayOfYear = Math.round((midnightUtc - Date.UTC(date.getFullYear(), 0, 0)) / 86400000);
-  const B = rad * (360 / 365) * (dayOfYear - 81);
-  const delta = 23.45 * Math.sin(B);
-  // Equation of time (minutes): sundial vs clock drift, up to ±16 min over the year.
-  const eqTime = 9.87 * Math.sin(2 * B) - 7.53 * Math.cos(B) - 1.5 * Math.sin(B);
-
-  const cosH =
-    (Math.cos(rad * 90.833) - Math.sin(rad * lat) * Math.sin(rad * delta)) /
-    (Math.cos(rad * lat) * Math.cos(rad * delta));
-  const H = Math.acos(Math.max(-1, Math.min(1, cosH))) * (180 / Math.PI);
-
-  // Solar noon in UTC hours, then shift by the half-day arc.
-  const solarNoonUtc = 12 - lon / 15 - eqTime / 60;
-  return {
-    sunriseMs: midnightUtc + (solarNoonUtc - H / 15) * 3600 * 1000,
-    sunsetMs: midnightUtc + (solarNoonUtc + H / 15) * 3600 * 1000,
-    weekday: new Date(midnightUtc).getUTCDay(),
+    sunriseMs: rise?.getTime() ?? midnight + 6 * 3600000,
+    sunsetMs: set?.getTime() ?? midnight + 18 * 3600000,
+    weekday: new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())).getUTCDay(),
   };
 }
 
@@ -540,7 +450,7 @@ function timeFormatter(timeZone: string) {
 
 /**
  * Sunrise and sunset for any coordinates, formatted in the given IANA time zone
- * (e.g. "Europe/London"), including the equation-of-time correction.
+ * (e.g. "Europe/London").
  */
 export function getSunTimes(
   date: Date,
@@ -548,7 +458,7 @@ export function getSunTimes(
   lon: number,
   timeZone: string
 ): { sunrise: string; sunset: string } {
-  const { sunriseMs, sunsetMs } = solarDay(date, lat, lon);
+  const { sunriseMs, sunsetMs } = solarDay(date, lat, lon, timeZone);
   const at = timeFormatter(timeZone);
   return { sunrise: at(sunriseMs), sunset: at(sunsetMs) };
 }
@@ -575,7 +485,7 @@ export function getDailyMuhurtaTimings(
   lon = 85.324,
   timeZone = "Asia/Kathmandu"
 ) {
-  const { sunriseMs, sunsetMs, weekday } = solarDay(date, lat, lon);
+  const { sunriseMs, sunsetMs, weekday } = solarDay(date, lat, lon, timeZone);
   const at = timeFormatter(timeZone);
   const day = sunsetMs - sunriseMs;
   const night = 24 * 3600 * 1000 - day;

@@ -25,8 +25,6 @@ export interface GemstoneItem {
   origin: string;
   carat: string;
   certification: string;
-  priceEstimate: string;
-  availability: string;
   colorHex: string;
   descriptionNe: string;
   descriptionEn: string;
@@ -42,8 +40,6 @@ export const GEMSTONES_CATALOGUE: GemstoneItem[] = [
     origin: "Burma / Madagascar",
     carat: "4.50 Carat",
     certification: "Certified Untreated Natural",
-    priceEstimate: "£280 - £650",
-    availability: "In Stock (UK Kendra)",
     colorHex: "#9B111E",
     descriptionNe: "आत्मविश्वास, मान-प्रतिष्ठा र प्रशासनिक नेतृत्वका लागि परम्परागत सूर्य रत्न।",
     descriptionEn: "Traditional Surya gemstone supporting leadership, vital solar energy, and dignity.",
@@ -57,8 +53,6 @@ export const GEMSTONES_CATALOGUE: GemstoneItem[] = [
     origin: "South Sea / Japan",
     carat: "6.25 Carat",
     certification: "100% Natural Organic Marine",
-    priceEstimate: "£120 - £310",
-    availability: "In Stock (UK Kendra)",
     colorHex: "#F0EAD6",
     descriptionNe: "मानसिक शान्ति, भावनात्मक सन्तुलन र सौम्यताका लागि चन्द्रमाको रत्न।",
     descriptionEn: "Lunar gemstone fostering mental tranquillity, emotional grace, and equilibrium.",
@@ -72,8 +66,6 @@ export const GEMSTONES_CATALOGUE: GemstoneItem[] = [
     origin: "Mediterranean / Italy",
     carat: "5.75 Carat",
     certification: "Certified Natural Corallium Rubrum",
-    priceEstimate: "£160 - £380",
-    availability: "In Stock (UK Kendra)",
     colorHex: "#E24D28",
     descriptionNe: "पराक्रम, शारीरिक ऊर्जा र दृढ संकल्पका लागि मङ्गल ग्रहको पवित्र रत्न।",
     descriptionEn: "Mars gemstone associated with physical stamina, courage, and decisive fortitude.",
@@ -87,8 +79,6 @@ export const GEMSTONES_CATALOGUE: GemstoneItem[] = [
     origin: "Zambia / Colombia",
     carat: "4.80 Carat",
     certification: "Certified Natural Beryl",
-    priceEstimate: "£290 - £720",
-    availability: "In Stock (UK Kendra)",
     colorHex: "#097969",
     descriptionNe: "बुद्धि, व्यापारिक तीक्ष्णता र सञ्चार कुशलताका लागि बुधको हरियो रत्न।",
     descriptionEn: "Mercury gemstone for communicative clarity, analytical intellect, and commerce.",
@@ -102,8 +92,6 @@ export const GEMSTONES_CATALOGUE: GemstoneItem[] = [
     origin: "Ceylon (Sri Lanka)",
     carat: "5.20 Carat",
     certification: "Certified Natural Corundum",
-    priceEstimate: "£350 - £850",
-    availability: "In Stock (UK Kendra)",
     colorHex: "#F1B72F",
     descriptionNe: "ज्ञान, धर्म, सन्तान सुख र आध्यात्मिक उन्नतिका लागि देवगुरु बृहस्पतिको रत्न।",
     descriptionEn: "Jupiter's premier gem fostering wisdom, academic excellence, and sacred virtues.",
@@ -117,8 +105,6 @@ export const GEMSTONES_CATALOGUE: GemstoneItem[] = [
     origin: "Natural Gem-Quality",
     carat: "1.50 - 3.50 Carat",
     certification: "Certified Untreated",
-    priceEstimate: "£220 - £900",
-    availability: "In Stock (UK Kendra)",
     colorHex: "#E5E4E2",
     descriptionNe: "कला, सौन्दर्य, भौतिक समृद्धि र दाम्पत्य सुखका लागि शुक्रको रत्न।",
     descriptionEn: "Venusian gem supporting artistic refinement, harmonious marriage, and aesthetics.",
@@ -132,8 +118,6 @@ export const GEMSTONES_CATALOGUE: GemstoneItem[] = [
     origin: "Ceylon (Sri Lanka)",
     carat: "4.75 Carat",
     certification: "Certified Natural Untreated",
-    priceEstimate: "£420 - £1,100",
-    availability: "In Stock (UK Kendra)",
     colorHex: "#0F52BA",
     descriptionNe: "कर्मक्षेत्रमा धैर्य, न्याय, एकाग्रता र स्थायित्वका लागि शनिदेवको रत्न।",
     descriptionEn: "Saturnian gemstone for profound focus, discipline, and long-term career permanence.",
@@ -147,8 +131,6 @@ export const GEMSTONES_CATALOGUE: GemstoneItem[] = [
     origin: "Sri Lanka",
     carat: "6.50 Carat",
     certification: "Certified Natural Garnet",
-    priceEstimate: "£110 - £260",
-    availability: "In Stock (UK Kendra)",
     colorHex: "#A0522D",
     descriptionNe: "आकस्मिक बाधा निवारण र कानूनी सफलताका लागि राहु ग्रहको मह रङ्गको रत्न।",
     descriptionEn: "Rahu gemstone for dissolving sudden obstacles and navigating worldly complexities.",
@@ -162,8 +144,6 @@ export const GEMSTONES_CATALOGUE: GemstoneItem[] = [
     origin: "Orissa / Sri Lanka",
     carat: "5.10 Carat",
     certification: "Certified Chrysoberyl Chatoyancy",
-    priceEstimate: "£140 - £340",
-    availability: "In Stock (UK Kendra)",
     colorHex: "#708238",
     descriptionNe: "आध्यात्मिक मोक्ष, अन्तर्ज्ञान र अप्रत्याशित सुरक्षाका लागि केतुको रत्न।",
     descriptionEn: "Ketu gemstone renowned for chatoyancy, spiritual intuition, and shielding grace.",
@@ -261,9 +241,6 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
                   >
                     <IconGem size={22} weight="fill" className="drop-shadow-sm" />
                   </div>
-                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold">
-                    {g.availability}
-                  </span>
                 </div>
 
                 <h4 className="font-serif font-bold text-stone-900 text-lg group-hover:text-[#D95B16] transition-colors">
@@ -299,18 +276,13 @@ export default function GemstoneSection({ onOpenInquiry }: GemstoneSectionProps)
               </div>
 
               <div className="pt-3 border-t border-stone-100 flex items-center justify-between">
-                <div>
-                  <span className="block text-[10px] font-mono uppercase text-stone-600 font-bold">
-                    {isNe ? "अनुमानित मूल्य" : "Price Range"}
-                  </span>
-                  <span className="text-xs font-mono font-bold text-[#D95B16]">{g.priceEstimate}</span>
-                </div>
+                <span className="text-xs text-stone-500">{isNe ? "रत्नको गुणस्तर अनुसार मूल्य" : "Priced by stone quality"}</span>
 
                 <button
                   onClick={() => onOpenInquiry(`रत्न खरिद वा सोधपुछ: ${g.nameNe}`)}
                   className="px-3.5 py-1.5 rounded-md bg-[#181411] hover:bg-[#D95B16] text-white text-xs font-mono font-bold transition-colors active:scale-95 shadow-xs"
                 >
-                  {isNe ? "सोधपुछ / खरिद" : "Enquire / Buy"}
+                  {isNe ? "सोधपुछ गर्नुहोस्" : "Enquire"}
                 </button>
               </div>
             </div>

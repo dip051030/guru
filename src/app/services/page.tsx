@@ -14,6 +14,7 @@ import {
   IconCheckCircle,
 } from "@/components/icons/CustomIcons";
 import ObservatoryHeader from "@/components/ObservatoryHeader";
+import PageHero from "@/components/PageHero";
 import CompanySolutions from "@/components/CompanySolutions";
 import MuhurtaSection from "@/components/MuhurtaSection";
 import PreFooterBanner from "@/components/PreFooterBanner";
@@ -36,50 +37,15 @@ export default function ServicesPage() {
     <main className="min-h-screen flex flex-col bg-background text-foreground relative pb-16 md:pb-0">
       <ObservatoryHeader onOpenInquiry={handleOpenInquiry} />
 
-      {/* Breadcrumb & Subpage Hero Banner */}
-      <section className="w-full bg-[#131B2E] text-white border-b border-stone-800/80 pt-10 pb-12 px-6 lg:px-12 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#D95B16_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
-        
-        <div className="max-w-[1400px] mx-auto relative z-10">
-          <div className="flex items-center gap-2 text-xs font-mono text-stone-400 mb-4">
-            <Link href="/" className="hover:text-amber-400 flex items-center gap-1.5 transition-colors">
-              <IconArrowLeft size={14} />
-              <span>{language === "ne" ? "गृहपृष्ठ" : "Home"}</span>
-            </Link>
-            <span className="text-stone-600">/</span>
-            <span className="text-amber-400 font-bold">
-              {language === "ne" ? "चार सेवा स्तम्भहरू" : "4 Service Pillars"}
-            </span>
-          </div>
-
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-500/10 border border-amber-500/30 text-amber-300 rounded-full font-mono text-xs uppercase tracking-widest mb-3">
-                <IconSparkles size={14} className="text-amber-400" />
-                <span>{language === "ne" ? "वैदिक सनातन केन्द्र युके" : "Vedic Sanatan Kendra UK"}</span>
-              </div>
-              <h1 className="text-3xl md:text-5xl font-serif text-white tracking-tight">
-                {language === "ne"
-                  ? "परामर्श तथा चार प्रमुख सेवा स्तम्भहरू"
-                  : "Consultation & 4 Core Service Pillars"}
-              </h1>
-              <p className="mt-3 text-stone-300 max-w-2xl text-sm md:text-base font-light leading-relaxed">
-                {language === "ne"
-                  ? "गुरु निलहरि (CEO | Chief Consultant) द्वारा प्रत्यक्ष सञ्चालित: ज्योतिष, रत्न पहिचान, वास्तु शास्त्र र वैदिक कर्मकाण्ड।"
-                  : "Personally conducted by Guru Nilhari (CEO | Chief Consultant): Astrology, Gemstone Identification, Vastu Shastra, and Vedic Karmakanda."}
-              </p>
-            </div>
-
-            <button
-              onClick={() => handleOpenInquiry(t.header.bookConsultation)}
-              className="px-6 py-3.5 bg-[#D95B16] hover:bg-[#B8480C] text-white font-bold text-sm flex items-center gap-2.5 rounded-xl border border-[#D95B16] transition-all shadow-md shrink-0 self-start md:self-auto active:scale-95"
-            >
-              <IconCalendar size={18} className="text-orange-200" />
-              <span>{t.header.bookConsultation}</span>
-            </button>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        titleNe="सेवाहरू"
+        titleEn="Services"
+        descNe="ज्योतिष तथा कुण्डली, रत्न परामर्श, वास्तु शास्त्र र कर्मकाण्ड: युकेमा प्रत्यक्ष वा विश्वभर अनलाइन।"
+        descEn="Astrology and kundali, gemstone consultation, Vastu Shastra and Vedic rituals, in person in the UK or online worldwide."
+        ctaNe="परामर्श बुक गर्नुहोस्"
+        ctaEn="Book a consultation"
+        onCta={() => handleOpenInquiry("परामर्श बुक गर्नुहोस्")}
+      />
 
       {/* 4 Pillars Deep Overview Strip */}
       <section className="w-full bg-[#FAF7F2] border-b border-stone-200 py-8 px-6 lg:px-12">

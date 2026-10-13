@@ -15,6 +15,7 @@ import {
   IconWhatsApp,
 } from "@/components/icons/CustomIcons";
 import ObservatoryHeader from "@/components/ObservatoryHeader";
+import PageHero from "@/components/PageHero";
 import InquiryDrawer from "@/components/InquiryDrawer";
 import Footer from "@/components/Footer";
 import MobileBottomNav from "@/components/MobileBottomNav";
@@ -74,40 +75,12 @@ export default function ContactPage() {
     <main className="min-h-screen flex flex-col bg-background text-foreground relative pb-16 md:pb-0">
       <ObservatoryHeader onOpenInquiry={handleOpenInquiry} />
 
-      {/* Breadcrumb & Subpage Hero Banner */}
-      <section className="w-full bg-[#131B2E] text-white border-b border-stone-800/80 pt-10 pb-12 px-6 lg:px-12 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#D95B16_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
-        
-        <div className="max-w-[1400px] mx-auto relative z-10">
-          <div className="flex items-center gap-2 text-xs font-mono text-stone-400 mb-4">
-            <Link href="/" className="hover:text-amber-400 flex items-center gap-1.5 transition-colors">
-              <IconArrowLeft size={14} />
-              <span>{language === "ne" ? "गृहपृष्ठ" : "Home"}</span>
-            </Link>
-            <span className="text-stone-600">/</span>
-            <span className="text-amber-400 font-bold">
-              {language === "ne" ? "सम्पर्क तथा परामर्श निर्धारण" : "Contact & Consultation"}
-            </span>
-          </div>
-
-          <div className="max-w-3xl">
-            <a href={TEL_LINK} className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 rounded-full font-mono text-xs uppercase tracking-widest mb-3 transition-colors">
-              <IconPhone size={14} className="text-amber-400" />
-              <span>{CONTACT_PHONE_DISPLAY}</span>
-            </a>
-            <h1 className="text-3xl md:text-5xl font-serif text-white tracking-tight">
-              {language === "ne"
-                ? "परामर्श निर्धारण तथा सम्पर्क केन्द्र"
-                : "Schedule Consultation & Contact Centre"}
-            </h1>
-            <p className="mt-3 text-stone-300 text-sm md:text-base font-light leading-relaxed">
-              {language === "ne"
-                ? "गुरु निलहरिसँग प्रत्यक्ष व्यक्तिगत भेटघाट (UK Centre) वा उच्च गतिको अनलाइन भिडियो परामर्श लिन तलको फारम भर्नुहोस् वा सिधै ह्वाट्सएपमा सम्पर्क गर्नुहोस्।"
-                : "Schedule an in-person session at Vedic Sanatan Kendra UK or an encrypted remote video consultation worldwide with Guru Nilhari."}
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        titleNe="सम्पर्क"
+        titleEn="Contact"
+        descNe="फोन, ह्वाट्सएप वा इमेलबाट सम्पर्क गर्नुहोस्, वा तलको फारम भर्नुहोस्।"
+        descEn="Call, WhatsApp or email us, or fill in the form below."
+      />
 
       {/* Main Content Grid: Direct Contact Details & Interactive Form */}
       <section className="w-full py-16 px-6 lg:px-12 bg-[#FAF7F2] border-b border-stone-200">

@@ -10,6 +10,7 @@ import {
   IconArrowRight,
 } from "@/components/icons/CustomIcons";
 import ObservatoryHeader from "@/components/ObservatoryHeader";
+import PageHero from "@/components/PageHero";
 import SpiritualStoreSection from "@/components/SpiritualStoreSection";
 import GemstoneSection from "@/components/GemstoneSection";
 import PreFooterBanner from "@/components/PreFooterBanner";
@@ -34,53 +35,15 @@ export default function StorePage() {
     <main className="min-h-screen flex flex-col bg-background text-foreground relative pb-16 md:pb-0">
       <ObservatoryHeader onOpenInquiry={handleOpenInquiry} />
 
-      {/* Store Header Banner */}
-      <section className="w-full bg-[#131B2E] text-white border-b border-stone-800/80 pt-10 pb-12 px-6 lg:px-12 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#D95B16_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
-
-        <div className="max-w-[1400px] mx-auto relative z-10">
-          <div className="flex items-center gap-2 text-xs font-mono text-stone-400 mb-4">
-            <Link href="/" className="hover:text-amber-400 flex items-center gap-1.5 transition-colors">
-              <IconArrowLeft size={14} />
-              <span>{isNe ? "गृहपृष्ठ" : "Home"}</span>
-            </Link>
-            <span className="text-stone-600">/</span>
-            <span className="text-amber-400 font-bold">
-              {isNe ? "धार्मिक सामग्री स्टोर" : "Spiritual Store"}
-            </span>
-          </div>
-
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-500/10 border border-amber-500/30 text-amber-300 rounded-full font-mono text-xs uppercase tracking-widest mb-3">
-                <IconShoppingBag size={14} className="text-amber-400" />
-                <span>{isNe ? "वैदिक सनातन केन्द्र युके" : "Vedic Sanatan Kendra UK"}</span>
-              </div>
-              <h1 className="text-3xl md:text-5xl font-serif text-white tracking-tight">
-                {isNe ? "धार्मिक तथा पूजा सामग्री स्टोर" : "Authentic Spiritual & Puja Store"}
-              </h1>
-              <span className="block text-xs sm:text-sm font-mono text-amber-400 font-bold tracking-widest uppercase mt-2">
-                Pure Puja Samagri, Certified Gemstones & Vedic Items
-              </span>
-              <p className="mt-3 text-stone-300 max-w-2xl text-sm md:text-base font-light leading-relaxed">
-                {isNe
-                  ? "पूजा सामग्री, हवन सामग्री, रुद्राक्ष, जपमाला, प्राणप्रतिष्ठित यन्त्र, प्रमाणित नौ रत्न र ज्योतिषीय सामग्रीहरू एकै ठाउँमा।"
-                  : "Authentic puja materials, havan samagri, natural rudraksha, energized yantras, laboratory-certified gemstones, and spiritual gifts delivered with reverence across the UK."}
-              </p>
-            </div>
-
-            <a
-              href={whatsappLink("नमस्ते गुरु नीलहरी, मलाई सामग्री अर्डर गर्नु थियो।")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3.5 bg-[#D95B16] hover:bg-[#B8480C] text-white font-bold text-sm flex items-center gap-2 rounded-xl border border-[#D95B16] transition-all shadow-md shrink-0 self-start md:self-auto font-mono uppercase tracking-wider active:scale-95"
-            >
-              <IconPhone size={16} className="text-orange-200" />
-              <span>{isNe ? "अर्डर तथा सोधपुछ (+44 7838 820518)" : "WhatsApp Order (+44 7838 820518)"}</span>
-            </a>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        titleNe="पूजा सामग्री तथा रत्न"
+        titleEn="Puja items & gemstones"
+        descNe="पूजा, हवन र संस्कारका लागि सामग्री, रुद्राक्ष, यन्त्र र कुण्डली अनुसार रत्न। मूल्य र उपलब्धताका लागि सोध्नुहोस्।"
+        descEn="Items for puja, havan and rituals, rudraksha, yantras, and gemstones chosen for your chart. Ask for price and availability."
+        ctaNe="सोधपुछ गर्नुहोस्"
+        ctaEn="Send an enquiry"
+        onCta={() => handleOpenInquiry("स्टोर सोधपुछ")}
+      />
 
       {/* Service-to-Product Connection Notice Banner */}
       <section className="w-full bg-amber-50/80 border-b border-amber-200/80 py-4 px-6 lg:px-12 text-stone-800 text-xs sm:text-sm">

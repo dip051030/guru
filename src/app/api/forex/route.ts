@@ -19,18 +19,6 @@ export interface ForexApiResponse {
   rates: ForexCurrency[];
 }
 
-// Fallback rates if NRB API is unreachable
-const FALLBACK_RATES: ForexCurrency[] = [
-  { iso3: "USD", name: "U.S. Dollar", unit: 1, buy: "153.01", sell: "153.61" },
-  { iso3: "EUR", name: "European Euro", unit: 1, buy: "174.32", sell: "175.00" },
-  { iso3: "GBP", name: "UK Pound Sterling", unit: 1, buy: "202.64", sell: "203.43" },
-  { iso3: "AUD", name: "Australian Dollar", unit: 1, buy: "107.55", sell: "107.97" },
-  { iso3: "CAD", name: "Canadian Dollar", unit: 1, buy: "108.18", sell: "108.60" },
-  { iso3: "QAR", name: "Qatari Riyal", unit: 1, buy: "42.00", sell: "42.16" },
-  { iso3: "AED", name: "UAE Dirham", unit: 1, buy: "41.66", sell: "41.82" },
-  { iso3: "INR", name: "Indian Rupee", unit: 100, buy: "160.00", sell: "160.15" },
-];
-
 export async function GET() {
   const today = new Date();
   const toDateStr = today.toISOString().split("T")[0];
@@ -81,11 +69,9 @@ export async function GET() {
     console.error("Failed to fetch live NRB forex rates:", err);
   }
 
-  // Graceful fallback
-  return NextResponse.json({
-    success: true,
-    date: toDateStr,
-    source: "Nepal Rastra Bank (Reference Snapshot)",
-    rates: FALLBACK_RATES,
-  });
+  // Don't show made-up rates when NRB can't be reached.
+  return NextResponse.json(
+    { success: false, date: null, source: "Nepal Rastra Bank", rates: [] },
+    { status: 503 }
+  );
 }

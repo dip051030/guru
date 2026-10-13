@@ -24,9 +24,6 @@ interface ProductItem {
   category: string;
   nameNe: string;
   nameEn: string;
-  price: string;
-  badgeNe: string;
-  badgeEn: string;
   descNe: string;
   descEn: string;
   icon: Icon;
@@ -50,9 +47,6 @@ export const STORE_PRODUCTS: ProductItem[] = [
     category: "puja",
     nameNe: "सम्पूर्ण गृह प्रवेश पूजा किट",
     nameEn: "Complete Griha Pravesh Puja Kit",
-    price: "£45.00",
-    badgeNe: "धेरै रुचाइएको",
-    badgeEn: "Bestseller",
     descNe: "कलश, शुद्ध रोली, चन्दन, जौ-तिल, कुश, कपुर, घ्यू, पञ्चरत्न र विधि सामग्रीहरू समावेश।",
     descEn: "Pure kalash, roli, sandalwood, barley-sesame, kusha grass, camphor, and ritual essentials.",
     icon: House,
@@ -62,9 +56,6 @@ export const STORE_PRODUCTS: ProductItem[] = [
     category: "havan",
     nameNe: "शुद्ध वैदिक हवन सामग्री (१ केजी)",
     nameEn: "Pure Vedic Havan Samagri (1kg)",
-    price: "£18.50",
-    badgeNe: "सात्विक जडीबुटी",
-    badgeEn: "Ayurvedic Herbs",
     descNe: "गुगल, लोबान, जटामसी, कपुर, रक्तचन्दन, घ्यू र ३२ प्रकारका सात्विक जडीबुटी सम्मिश्रण।",
     descEn: "Guggul, loban, jatamansi, red sandalwood, and 32 pure Vedic sacrificial herbs.",
     icon: Fire,
@@ -74,9 +65,6 @@ export const STORE_PRODUCTS: ProductItem[] = [
     category: "rudraksha",
     nameNe: "नेपाली पञ्चमुखी रुद्राक्ष माला (१०८ दाना)",
     nameEn: "Nepali 5-Mukhi Rudraksha Mala (108 Beads)",
-    price: "£32.00",
-    badgeNe: "प्रमाणित नेपाली",
-    badgeEn: "Certified Nepal Origin",
     descNe: "प्राकृतिक नेपाली रुद्राक्ष दानाबाट गाँसिएको, मन्त्र-जप तथा ध्यानका लागि अभिमन्त्रित।",
     descEn: "Consecrated authentic Nepali Rudraksha beads strung for daily mantra japa and mental stillness.",
     icon: CirclesThree,
@@ -86,9 +74,6 @@ export const STORE_PRODUCTS: ProductItem[] = [
     category: "yantra",
     nameNe: "सिद्ध सम्पूर्ण श्रीयन्त्र (तामा / पित्तल)",
     nameEn: "Consecrated Copper Shree Yantra",
-    price: "£28.00",
-    badgeNe: "प्राण-प्रतिष्ठित",
-    badgeEn: "Consecrated",
     descNe: "घर र कार्यालयमा धन, समृद्धि र वास्तु दोष निवारणका लागि शास्त्रीय ज्यामितिय श्रीयन्त्र।",
     descEn: "Sacred geometric copper plate designed according to Vedic scriptures for prosperity and Vastu harmony.",
     icon: Hexagon,
@@ -98,9 +83,6 @@ export const STORE_PRODUCTS: ProductItem[] = [
     category: "yantra",
     nameNe: "पित्तलको वास्तु ऊर्जा पिरामिड",
     nameEn: "Brass Vastu Energy Pyramid",
-    price: "£24.00",
-    badgeNe: "वास्तु ऊर्जा शोधक",
-    badgeEn: "Energy Harmonizer",
     descNe: "घर तथा कार्यक्षेत्रको नकारात्मक ऊर्जा निष्कासन र सकारात्मक कम्पन वृद्धिका लागि।",
     descEn: "Installed at key directions to neutralize spatial geo-stress and harmonize environment.",
     icon: Triangle,
@@ -110,9 +92,6 @@ export const STORE_PRODUCTS: ProductItem[] = [
     category: "astrology",
     nameNe: "हस्तलिखित जन्म कुण्डली तथा चक्र",
     nameEn: "Hand-Crafted Natal Kundali Codex",
-    price: "£55.00",
-    badgeNe: "व्यक्तिगत हस्तलिखित",
-    badgeEn: "Custom Prepared",
     descNe: "लाहिडी अयनांशमा आधारित शुद्ध ग्रह गणित, लग्न चक्र, नवमांश र विंशोत्तरी दशा विवरण।",
     descEn: "Traditional handwritten parchment-style chart with complete planetary longitudes and Dasha balance.",
     icon: Scroll,
@@ -122,9 +101,6 @@ export const STORE_PRODUCTS: ProductItem[] = [
     category: "religious",
     nameNe: "शुद्ध गङ्गाजल तथा हिमालयन धूप सेट",
     nameEn: "Sacred Gangajal & Himalayan Incense Set",
-    price: "£14.00",
-    badgeNe: "पवित्र शुद्धि",
-    badgeEn: "Sacred Purification",
     descNe: "हरिद्वार गङ्गोत्रीको पवित्र जल र प्राकृतिक चन्दन-गुलाब धूपको दैनिक पूजा प्याक।",
     descEn: "Directly sourced sacred Gangetic water and natural handmade Himalayan incense.",
     icon: Drop,
@@ -134,9 +110,6 @@ export const STORE_PRODUCTS: ProductItem[] = [
     category: "gifts",
     nameNe: "परम्परागत पित्तलको पञ्चमुखी दीयो",
     nameEn: "Traditional Brass 5-Wick Diya",
-    price: "£22.00",
-    badgeNe: "उपहारका लागि उत्तम",
-    badgeEn: "Ideal Gift",
     descNe: "मन्दिर तथा गृह पूजाको शोभा बढाउने उत्कृष्ट कलात्मक ठोस पित्तलको दीयो।",
     descEn: "Solid brass traditional oil lamp crafted for daily aarti and spiritual home warming gifts.",
     icon: Flame,
@@ -207,9 +180,6 @@ export default function SpiritualStoreSection({ onOpenInquiry }: SpiritualStoreS
                   <span className="w-11 h-11 rounded-md bg-orange-50 border border-orange-100 text-[#D95B16] flex items-center justify-center">
                     <p.icon size={22} />
                   </span>
-                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold border border-amber-200">
-                    {isNe ? p.badgeNe : p.badgeEn}
-                  </span>
                 </div>
 
                 <h4 className="font-serif font-bold text-stone-900 text-base leading-snug group-hover:text-[#D95B16] transition-colors">
@@ -225,18 +195,13 @@ export default function SpiritualStoreSection({ onOpenInquiry }: SpiritualStoreS
               </div>
 
               <div className="pt-3 border-t border-stone-200/70 flex items-center justify-between">
-                <div>
-                  <span className="block text-[10px] font-mono uppercase text-stone-600 font-bold">
-                    {isNe ? "मूल्य" : "Price"}
-                  </span>
-                  <span className="text-sm font-mono font-bold text-stone-900">{p.price}</span>
-                </div>
+                <span className="text-xs text-stone-500">{isNe ? "मूल्यका लागि सोध्नुहोस्" : "Price on request"}</span>
 
                 <button
-                  onClick={() => onOpenInquiry(`स्टोर सामग्री अर्डर वा सोधपुछ: ${p.nameNe} (${p.price})`)}
+                  onClick={() => onOpenInquiry(`स्टोर सामग्री सोधपुछ: ${p.nameNe}`)}
                   className="px-3.5 py-1.5 rounded-md bg-[#181411] hover:bg-[#D95B16] text-white text-xs font-mono font-bold transition-colors active:scale-95 shadow-xs"
                 >
-                  {isNe ? "खरिद / सोधपुछ" : "Enquire / Buy"}
+                  {isNe ? "सोधपुछ गर्नुहोस्" : "Enquire"}
                 </button>
               </div>
             </div>

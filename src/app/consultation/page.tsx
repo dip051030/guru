@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { IconArrowLeft, IconCalendar, IconPhone, IconWhatsApp } from "@/components/icons/CustomIcons";
 import ObservatoryHeader from "@/components/ObservatoryHeader";
+import PageHero from "@/components/PageHero";
 import OnlineConsultationSection from "@/components/OnlineConsultationSection";
-import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import PreFooterBanner from "@/components/PreFooterBanner";
 import InquiryDrawer from "@/components/InquiryDrawer";
 import Footer from "@/components/Footer";
@@ -28,68 +28,16 @@ export default function ConsultationPage() {
     <main className="min-h-screen flex flex-col bg-background text-foreground relative pb-16 md:pb-0">
       <ObservatoryHeader onOpenInquiry={handleOpenInquiry} />
 
-      {/* Hero Banner */}
-      <section className="w-full bg-[#131B2E] text-white border-b border-stone-800/80 pt-10 pb-12 px-6 lg:px-12 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#D95B16_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
-
-        <div className="max-w-[1400px] mx-auto relative z-10">
-          <div className="flex items-center gap-2 text-xs font-mono text-stone-400 mb-4">
-            <Link href="/" className="hover:text-amber-400 flex items-center gap-1.5 transition-colors">
-              <IconArrowLeft size={14} />
-              <span>{isNe ? "गृहपृष्ठ" : "Home"}</span>
-            </Link>
-            <span className="text-stone-600">/</span>
-            <span className="text-amber-400 font-bold">
-              {isNe ? "परामर्श बुकिङ" : "Consultation Booking"}
-            </span>
-          </div>
-
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-500/10 border border-amber-500/30 text-amber-300 rounded-full font-mono text-xs uppercase tracking-widest mb-3">
-                <IconCalendar size={14} className="text-amber-400" />
-                <span>{isNe ? "वैदिक सनातन केन्द्र युके" : "Vedic Sanatan Kendra UK"}</span>
-              </div>
-              <h1 className="text-3xl md:text-5xl font-serif text-white tracking-tight">
-                {isNe ? "व्यक्तिगत परामर्श बुकिङ" : "Book a Vedic Consultation"}
-              </h1>
-              <span className="block text-xs sm:text-sm font-mono text-amber-400 font-bold tracking-widest uppercase mt-2">
-                Online Video Sessions & In-Person UK Appointments
-              </span>
-              <p className="mt-3 text-stone-300 max-w-2xl text-sm md:text-base font-light leading-relaxed">
-                {isNe
-                  ? "गुरु नीलहरीसँग प्रत्यक्ष वा भिडियो कल मार्फत आफ्नो जन्म कुण्डली, वास्तु, शुभ साइत, रत्न वा कर्मकाण्ड सम्बन्धी परामर्श लिनुहोस्।"
-                  : "Direct consultation with Guru Nilhari (CEO & Chief Consultant) via high-definition video call or in-person UK appointment."}
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 shrink-0 self-start md:self-auto">
-            <a
-              href={whatsappLink()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3.5 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-sm flex items-center justify-center gap-2 rounded-xl transition-all shadow-md font-sans active:scale-95"
-            >
-              <IconWhatsApp size={18} weight="fill" />
-              <span>WhatsApp</span>
-            </a>
-            <a
-              href={TEL_LINK}
-              className="px-6 py-3.5 bg-[#D95B16] hover:bg-[#B8480C] text-white font-bold text-sm flex items-center justify-center gap-2 rounded-xl border border-[#D95B16] transition-all shadow-md font-mono active:scale-95"
-            >
-              <IconPhone size={16} weight="fill" className="text-orange-200" />
-              <span>{CONTACT_PHONE_DISPLAY}</span>
-            </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        titleNe="परामर्श बुक गर्नुहोस्"
+        titleEn="Book a consultation"
+        descNe="सेवा, मिति र माध्यम छान्नुहोस्। गुरुज्यूको कार्यालयले समय पक्का गर्न सम्पर्क गर्नेछ।"
+        descEn="Choose the service, date and mode. Guruji's office will contact you to confirm the time."
+      />
 
       {/* Main Interactive Booking Engine */}
       <OnlineConsultationSection />
 
-      {/* Why Choose Us */}
-      <WhyChooseUsSection />
 
       {/* Pre-footer */}
       <PreFooterBanner onOpenInquiry={handleOpenInquiry} />

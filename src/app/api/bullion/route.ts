@@ -89,42 +89,10 @@ export async function GET() {
     }
   }
 
-  // Fallback
-  return NextResponse.json({
-    success: true,
-    date: today.toISOString().split("T")[0],
-    source: "नेपाल सुनचाँदी व्यवसायी महासंघ (Reference Snapshot)",
-    rates: [
-      {
-        id: 306,
-        rateType: "छापावाल सुन (१ तोला)",
-        name: "छापावाल सुन (१ तोला)",
-        nameEn: "Fine Gold (Per Tola)",
-        unit: "१ तोला",
-        rate: 299300,
-        rateFormatted: "Rs. 2,99,300",
-        rateFormattedNe: "रु २,९९,३००",
-      },
-      {
-        id: 307,
-        rateType: "छापावाल सुन (१० ग्राम)",
-        name: "छापावाल सुन (१० ग्राम)",
-        nameEn: "Fine Gold (10 Grams)",
-        unit: "१० ग्राम",
-        rate: 256600,
-        rateFormatted: "Rs. 2,56,600",
-        rateFormattedNe: "रु २,५६,६००",
-      },
-      {
-        id: 304,
-        rateType: "असली चाँदी दर (१ तोला)",
-        name: "असली चाँदी दर (१ तोला)",
-        nameEn: "Silver (Per Tola)",
-        unit: "१ तोला",
-        rate: 4655,
-        rateFormatted: "Rs. 4,655",
-        rateFormattedNe: "रु ४,६५५",
-      },
-    ],
-  });
+  // No live rate published in the last few days (or the API is down):
+  // say so rather than showing stale numbers.
+  return NextResponse.json(
+    { success: false, date: null, source: "FENEGOSIDA", rates: [] },
+    { status: 503 }
+  );
 }

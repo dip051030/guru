@@ -4,7 +4,9 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IconCalendar as Calendar, IconPhone as Phone, IconWhatsApp as WhatsApp, IconMenu as Menu, IconClose as X, IconArrowRight as ArrowRight, IconClock as Clock, IconLocate as Locate, IconSun as Sun, IconMoon as Moon } from "./icons/CustomIcons";
-import { getNepaliDate, toNepaliNumber } from "@/utils/astronomy";
+import NepaliDate from "nepali-date-converter";
+import { toNepaliNumber } from "@/utils/astronomy";
+import { fmtBsDate } from "@/lib/format";
 import { useLocation } from "@/context/LocationContext";
 import { useLocalClock, useSunTimes } from "@/hooks/useLocalTime";
 import { useLanguage } from "@/context/LanguageContext";
@@ -29,12 +31,8 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
 
   useEffect(() => {
     const now = new Date();
-    const bs = getNepaliDate(now);
-    setNepaliDateStr(
-      language === "ne"
-        ? `${bs.formattedNepali} (${bs.formatted})`
-        : `${bs.formatted} (B.S.)`
-    );
+    const bs = new NepaliDate(now);
+    setNepaliDateStr(fmtBsDate(bs.getYear(), bs.getMonth() + 1, bs.getDate(), language === "ne"));
     setToday(now);
   }, [language]);
 
@@ -129,7 +127,7 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
             )}
           </Link>
           <Link
-            href="/#calendar"
+            href="/#patro"
             className="text-stone-700 hover:text-[#D95B16] transition-colors py-1 relative"
           >
             {language === "ne" ? "पञ्चाङ्ग" : "Panchanga"}
@@ -258,7 +256,7 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
             {t.header.home}
           </Link>
           <Link
-            href="/#calendar"
+            href="/#patro"
             onClick={() => setMobileMenuOpen(false)}
             className="py-2 px-3 rounded-lg hover:bg-stone-50 transition-colors"
           >
