@@ -133,6 +133,12 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
             {language === "ne" ? "पञ्चाङ्ग" : "Panchanga"}
           </Link>
           <Link
+            href="/#news"
+            className="text-stone-700 hover:text-[#D95B16] transition-colors py-1 relative"
+          >
+            {language === "ne" ? "समाचार" : "News"}
+          </Link>
+          <Link
             href="/horoscope"
             className={`transition-colors py-1 relative ${
               pathname?.startsWith("/horoscope")
@@ -261,6 +267,13 @@ export default function ObservatoryHeader({ onOpenInquiry }: HeaderProps) {
             className="py-2 px-3 rounded-lg hover:bg-stone-50 transition-colors"
           >
             {language === "ne" ? "नेपाली पात्रो (पञ्चाङ्ग)" : "Nepali Patro (Panchanga)"}
+          </Link>
+          <Link
+            href="/#news"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-2 px-3 rounded-lg hover:bg-stone-50 transition-colors"
+          >
+            {language === "ne" ? "समाचार" : "News"}
           </Link>
           <Link
             href="/horoscope"

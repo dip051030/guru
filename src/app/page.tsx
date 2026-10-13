@@ -5,6 +5,7 @@ import ObservatoryHeader from "@/components/ObservatoryHeader";
 import PatroSection from "@/components/patro/PatroSection";
 import DateTools from "@/components/patro/DateTools";
 import RatesPanel from "@/components/patro/RatesPanel";
+import NewsSection from "@/components/NewsSection";
 import HoroscopeExplorer from "@/components/HoroscopeExplorer";
 import MainServicesSection from "@/components/MainServicesSection";
 import AboutGuruSection from "@/components/AboutGuruSection";
@@ -40,13 +41,19 @@ export default function Home() {
 
       <PatroSection onOpenInquiry={openInquiry} />
 
-      <section id="tools" className="w-full bg-[#FAF7F2] pb-12 px-4 sm:px-6 lg:px-10 scroll-mt-24">
-        <div className="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-5">
-          <div className="lg:col-span-5">
-            <SectionTitle eyebrow={isNe ? "उपयोगी साधन" : "Tools"} title={isNe ? "मिति तथा उमेर" : "Dates & age"} />
-            <DateTools isNe={isNe} />
+      <section id="news" className="w-full bg-[#FAF7F2] pb-12 px-4 sm:px-6 lg:px-10 scroll-mt-24">
+        <div className="max-w-[1300px] mx-auto space-y-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+            <div className="lg:col-span-7">
+              <SectionTitle eyebrow={isNe ? "समाचार" : "News"} title={isNe ? "आजका मुख्य समाचार" : "Today's headlines"} />
+              <NewsSection isNe={isNe} />
+            </div>
+            <div id="tools" className="lg:col-span-5 scroll-mt-24">
+              <SectionTitle eyebrow={isNe ? "उपयोगी साधन" : "Tools"} title={isNe ? "मिति तथा उमेर" : "Dates & age"} />
+              <DateTools isNe={isNe} />
+            </div>
           </div>
-          <div className="lg:col-span-7">
+          <div>
             <SectionTitle eyebrow={isNe ? "आजको बजार" : "Today's rates"} title={isNe ? "सुनचाँदी र विनिमय दर" : "Gold, silver & currency"} />
             <RatesPanel isNe={isNe} />
           </div>

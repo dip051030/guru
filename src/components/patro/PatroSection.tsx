@@ -5,7 +5,8 @@ import NepaliDate from "nepali-date-converter";
 import { useLanguage } from "@/context/LanguageContext";
 import { getMonthCalendarData, type CalendarDay } from "@/utils/nepaliCalendar";
 import { tithiName } from "@/utils/panchang";
-import { fmtAdDate, fmtBsDate, weekdayName } from "@/lib/format";
+import { fmtAdDate, fmtBsDate, nums, weekdayName } from "@/lib/format";
+import { festivalsBetween } from "@/utils/festivals";
 import MonthCalendar, { type BsDate } from "./MonthCalendar";
 import DayPanel from "./DayPanel";
 import UpcomingEvents from "./UpcomingEvents";
@@ -62,27 +63,75 @@ export default function PatroSection({ onOpenInquiry }: { onOpenInquiry?: (topic
     document.getElementById("patro")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  const nextFestival = useMemo(() => {
+    if (!today) return null;
+    const from = today.ad;
+    const next = festivalsBetween(from, 60).find((o) => !o.rule.minor);
+    if (!next) return null;
+    const [y, m, d] = next.date.split("-").map(Number);
+    const date = new Date(y, m - 1, d);
+    return { rule: next.rule, date, days: Math.round((date.getTime() - from.getTime()) / 86400000) };
+  }, [today]);
   const todayCell = today && data?.days.find((d) => d.bsYear === today.bs.y && d.bsMonth === today.bs.m && d.bsDay === today.bs.d);
   const isTodaySelected = !!(today && selected && today.bs.y === selected.y && today.bs.m === selected.m && today.bs.d === selected.d);
 
   return (
-    <section id="patro" className="w-full bg-[#FAF7F2] py-8 sm:py-12 px-4 sm:px-6 lg:px-10 scroll-mt-24">
-      <div className="max-w-[1300px] mx-auto">
-        <header className="mb-6">
-          <p className="text-sm font-semibold text-[#D95B16]">{isNe ? "नेपाली पात्रो तथा पञ्चाङ्ग" : "Nepali Patro & Panchang"}</p>
+    <section id="patro" className="relative w-full bg-[#FAF7F2] pb-8 sm:pb-12 scroll-mt-24 overflow-hidden">
+      {/* Himalayan sunrise backdrop, fading into the page */}
+      <div className="absolute inset-x-0 top-0 h-[300px] sm:h-[380px] lg:h-[440px] pointer-events-none select-none" aria-hidden="true">
+        <picture>
+          <source media="(max-width: 640px)" srcSet="/himalayan-bg-sm.webp" />
+          <img src="/himalayan-bg.webp" alt="" className="w-full h-full object-cover object-[65%_center] sm:object-center" />
+        </picture>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#FAF7F2]/10 via-[#FAF7F2]/35 to-[#FAF7F2]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FAF7F2]/70 via-[#FAF7F2]/20 to-transparent sm:from-[#FAF7F2]/60" />
+      </div>
+
+      <div className="relative max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-10">
+        <header className="pt-8 sm:pt-14 lg:pt-16 pb-6 sm:pb-10">
+          <p className="text-sm font-semibold text-[#B8480C]">{isNe ? "नेपाली पात्रो तथा पञ्चाङ्ग" : "Nepali Patro & Panchang"}</p>
           {today ? (
             <>
-              <h1 className="mt-1 font-serif text-3xl sm:text-4xl font-bold text-stone-900">
-                {weekdayName(today.ad.getDay(), isNe)}, {fmtBsDate(today.bs.y, today.bs.m, today.bs.d, isNe)}
+              <h1 className="mt-1 font-serif text-[32px] leading-tight sm:text-5xl font-bold text-stone-900">
+                <span className="block text-lg sm:text-2xl font-semibold text-stone-700">{weekdayName(today.ad.getDay(), isNe)}</span>
+                {fmtBsDate(today.bs.y, today.bs.m, today.bs.d, isNe)}
               </h1>
-              <p className="mt-1 text-stone-600">
+              <p className="mt-2 text-stone-700 sm:text-lg">
                 {fmtAdDate(today.ad, isNe)}
                 {todayCell && <> · {tithiName(todayCell.tithi, isNe ? "ne" : "en")}</>}
-                {todayCell?.festivals[0] && <> · <span className="text-[#B8480C] font-medium">{isNe ? todayCell.festivals[0].ne : todayCell.festivals[0].en}</span></>}
+                {todayCell?.festivals[0] && <> · <span className="text-[#B8480C] font-semibold">{isNe ? todayCell.festivals[0].ne : todayCell.festivals[0].en}</span></>}
               </p>
+              {nextFestival && (
+                <button
+                  onClick={() => pickAd(nextFestival.date)}
+                  className="mt-4 inline-flex items-center gap-2 max-w-full px-3.5 py-2 rounded-full bg-white/85 backdrop-blur border border-white text-sm text-stone-800 shadow-sm hover:bg-white"
+                >
+                  <span className="w-2 h-2 rounded-full bg-[#D95B16] shrink-0" />
+                  <span className="truncate">
+                    {isNe ? "अर्को चाड" : "Next"}: <strong>{isNe ? nextFestival.rule.ne : nextFestival.rule.en}</strong>
+                  </span>
+                  <span className="text-stone-500 shrink-0">· {nextFestival.days === 0 ? (isNe ? "आज" : "today") : nextFestival.days === 1 ? (isNe ? "भोलि" : "tomorrow") : isNe ? `${nums(nextFestival.days, true)} दिनमा` : `in ${nextFestival.days} days`}</span>
+                </button>
+              )}
+              <div className="mt-5 flex flex-wrap gap-2">
+                <a href="#horoscope-section" className="px-4 py-2.5 rounded-lg bg-[#0E1A2E] text-white text-sm font-semibold hover:bg-[#1A2740]">
+                  {isNe ? "आजको राशिफल" : "Today's rashifal"}
+                </a>
+                <a href="/ephemeris" className="px-4 py-2.5 rounded-lg bg-white/90 border border-stone-200 text-stone-900 text-sm font-semibold hover:bg-white">
+                  {isNe ? "कुण्डली हेर्नुहोस्" : "Birth chart"}
+                </a>
+                {onOpenInquiry && (
+                  <button onClick={() => onOpenInquiry()} className="px-4 py-2.5 rounded-lg bg-[#D95B16] text-white text-sm font-semibold hover:bg-[#B8480C]">
+                    {isNe ? "परामर्श बुक गर्नुहोस्" : "Book a consultation"}
+                  </button>
+                )}
+              </div>
             </>
           ) : (
-            <div className="mt-2 h-10 w-72 max-w-full rounded-lg bg-stone-200/70 animate-pulse" />
+            <div className="mt-3 space-y-3">
+              <div className="h-12 w-72 max-w-full rounded-lg bg-white/60 animate-pulse" />
+              <div className="h-5 w-56 max-w-full rounded bg-white/60 animate-pulse" />
+            </div>
           )}
         </header>
 
