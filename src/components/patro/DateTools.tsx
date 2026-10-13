@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import NepaliDate from "nepali-date-converter";
 import { MONTH_NAMES_BS, getDaysInBsMonth } from "@/utils/nepaliCalendar";
 import { festivalsOn } from "@/utils/festivals";
@@ -57,7 +57,7 @@ function BsPicker({ value, onChange, isNe }: { value: { y: number; m: number; d:
   );
 }
 
-export default function DateTools({ isNe }: { isNe: boolean }) {
+function DateToolsInner({ isNe }: { isNe: boolean }) {
   const today = useMemo(() => {
     const n = new Date();
     return new Date(n.getFullYear(), n.getMonth(), n.getDate());
@@ -245,4 +245,15 @@ export default function DateTools({ isNe }: { isNe: boolean }) {
       </div>
     </div>
   );
+}
+
+/**
+ * "Today" depends on the visitor's clock and time zone, which the server can't
+ * know, so the tools mount in the browser to avoid a hydration mismatch.
+ */
+export default function DateTools({ isNe }: { isNe: boolean }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return <div className="h-[340px] rounded-xl bg-white border border-stone-200 animate-pulse" />;
+  return <DateToolsInner isNe={isNe} />;
 }

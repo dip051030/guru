@@ -19,4 +19,29 @@ describe("parseFeed", () => {
     const xml = `<feed><entry><title>Atom headline</title><link rel="alternate" href="https://example.com/x"/><updated>2026-10-13T06:00:00Z</updated></entry></feed>`;
     expect(parseFeed(xml, "A")[0]).toMatchObject({ title: "Atom headline", link: "https://example.com/x" });
   });
+
+  it("finds the article photo in the common feed formats", () => {
+    const wrap = (inner: string) => `<rss><channel><item><title>T</title><link>https://e.com/a</link>${inner}</item></channel></rss>`;
+    const img = (inner: string) => parseFeed(wrap(inner), "S")[0].image;
+    // BBC style
+    expect(img('<media:thumbnail width="240" url="https://ichef.bbci.co.uk/x.jpg"/>')).toBe("https://ichef.bbci.co.uk/x.jpg");
+    // media:content with medium
+    expect(img('<media:content url="https://cdn.e.com/p.jpg" medium="image"/>')).toBe("https://cdn.e.com/p.jpg");
+    // enclosure
+    expect(img('<enclosure url="https://cdn.e.com/e.webp" length="1" type="image/webp"/>')).toBe("https://cdn.e.com/e.webp");
+    // WordPress: <img> inside escaped description
+    expect(img('<description>&lt;p&gt;&lt;img src="https://cdn.e.com/wp.jpg" /&gt;Body text&lt;/p&gt;</description>')).toBe("https://cdn.e.com/wp.jpg");
+    // CDATA content:encoded
+    expect(img('<content:encoded><![CDATA[<figure><img class="a" src="https://cdn.e.com/c.jpg"></figure>]]></content:encoded>')).toBe("https://cdn.e.com/c.jpg");
+    // http-only or missing -> null
+    expect(img('<enclosure url="http://insecure.e.com/a.jpg" type="image/jpeg"/>')).toBeNull();
+    expect(img("")).toBeNull();
+  });
+
+  it("makes a short plain-text excerpt", () => {
+    const xml = `<rss><item><title>T</title><link>https://e.com/a</link><description><![CDATA[<p>${"शब्द ".repeat(60)}</p>]]></description></item></rss>`;
+    const e = parseFeed(xml, "S")[0].excerpt;
+    expect(e.length).toBeLessThanOrEqual(180);
+    expect(e).not.toContain("<");
+  });
 });
