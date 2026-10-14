@@ -5,6 +5,8 @@ export interface RashiInfo {
   id: string;
   neName: string;
   enName: string;
+  /** Traditional first syllables of names under this rashi. */
+  namakshar: string;
   elementNe: string;
   elementEn: string;
   lordNe: string;
@@ -25,6 +27,7 @@ export const RASHIS: RashiInfo[] = [
     id: "aries",
     neName: "मेष",
     enName: "Aries",
+    namakshar: "चु, चे, चो, ला, लि, लु, ले, लो, अ",
     elementNe: "अग्नि",
     elementEn: "Fire",
     lordNe: "मङ्गल",
@@ -43,6 +46,7 @@ export const RASHIS: RashiInfo[] = [
     id: "taurus",
     neName: "वृष",
     enName: "Taurus",
+    namakshar: "इ, उ, ए, ओ, वा, वि, वु, वे, वो",
     elementNe: "पृथ्वी",
     elementEn: "Earth",
     lordNe: "शुक्र",
@@ -61,6 +65,7 @@ export const RASHIS: RashiInfo[] = [
     id: "gemini",
     neName: "मिथुन",
     enName: "Gemini",
+    namakshar: "का, कि, कु, घ, ङ, छ, के, को, हा",
     elementNe: "वायु",
     elementEn: "Air",
     lordNe: "बुध",
@@ -79,6 +84,7 @@ export const RASHIS: RashiInfo[] = [
     id: "cancer",
     neName: "कर्कट",
     enName: "Cancer",
+    namakshar: "हि, हु, हे, हो, डा, डि, डु, डे, डो",
     elementNe: "जल",
     elementEn: "Water",
     lordNe: "चन्द्रमा",
@@ -97,6 +103,7 @@ export const RASHIS: RashiInfo[] = [
     id: "leo",
     neName: "सिंह",
     enName: "Leo",
+    namakshar: "मा, मि, मु, मे, मो, टा, टि, टु, टे",
     elementNe: "अग्नि",
     elementEn: "Fire",
     lordNe: "सूर्य",
@@ -115,6 +122,7 @@ export const RASHIS: RashiInfo[] = [
     id: "virgo",
     neName: "कन्या",
     enName: "Virgo",
+    namakshar: "टो, पा, पि, पु, ष, ण, ठ, पे, पो",
     elementNe: "पृथ्वी",
     elementEn: "Earth",
     lordNe: "बुध",
@@ -133,6 +141,7 @@ export const RASHIS: RashiInfo[] = [
     id: "libra",
     neName: "तुला",
     enName: "Libra",
+    namakshar: "रा, रि, रु, रे, रो, ता, ति, तु, ते",
     elementNe: "वायु",
     elementEn: "Air",
     lordNe: "शुक्र",
@@ -151,6 +160,7 @@ export const RASHIS: RashiInfo[] = [
     id: "scorpio",
     neName: "वृश्चिक",
     enName: "Scorpio",
+    namakshar: "तो, ना, नि, नु, ने, नो, या, यि, यु",
     elementNe: "जल",
     elementEn: "Water",
     lordNe: "मङ्गल",
@@ -169,6 +179,7 @@ export const RASHIS: RashiInfo[] = [
     id: "sagittarius",
     neName: "धनु",
     enName: "Sagittarius",
+    namakshar: "ये, यो, भा, भि, भु, धा, फा, ढा, भे",
     elementNe: "अग्नि",
     elementEn: "Fire",
     lordNe: "बृहस्पति",
@@ -187,6 +198,7 @@ export const RASHIS: RashiInfo[] = [
     id: "capricorn",
     neName: "मकर",
     enName: "Capricorn",
+    namakshar: "भो, जा, जि, खि, खु, खे, खो, गा, गि",
     elementNe: "पृथ्वी",
     elementEn: "Earth",
     lordNe: "शनि",
@@ -205,6 +217,7 @@ export const RASHIS: RashiInfo[] = [
     id: "aquarius",
     neName: "कुम्भ",
     enName: "Aquarius",
+    namakshar: "गु, गे, गो, सा, सि, सु, से, सो, दा",
     elementNe: "वायु",
     elementEn: "Air",
     lordNe: "शनि",
@@ -223,6 +236,7 @@ export const RASHIS: RashiInfo[] = [
     id: "pisces",
     neName: "मीन",
     enName: "Pisces",
+    namakshar: "दि, दु, थ, झ, ञ, दे, दो, चा, चि",
     elementNe: "जल",
     elementEn: "Water",
     lordNe: "बृहस्पति",
